@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16281C">
+<title>Transcriptions de prédications · mustardseed</title>
+<meta name="description" content="Site de l’église de Zhuzhou (株洲教会) — mustardseed : six transcriptions de prédications avec Écritures, résumés et textes complets.">
+<meta name="keywords" content="株洲教会,株洲家庭教会,株洲家教会,株洲家庭小组教会,église de Zhuzhou,église de maison Zhuzhou,prédications,mustardseed">
+<meta property="og:title" content="Transcriptions de prédications · mustardseed">
+<meta property="og:description" content="Site de l’église de Zhuzhou (株洲教会) — mustardseed : six transcriptions de prédications avec Écritures, résumés et textes complets.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mustardseed">
+<meta property="og:locale" content="fr_FR">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=Noto+Sans+SC:wght@300;400;500&amp;family=Noto+Sans:wght@300;400;500&amp;family=Noto+Serif:wght@400;600;700&amp;family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media=\'all\'">
+<link rel="stylesheet" href="../src/site.css">
+
+  <link rel="canonical" href="https://www.zhuzhouchurch.com/fr/sermons.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.zhuzhouchurch.com/sermons.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.zhuzhouchurch.com/zh-Hant/sermons.html">
+  <link rel="alternate" hreflang="en" href="https://www.zhuzhouchurch.com/en/sermons.html">
+  <link rel="alternate" hreflang="fr" href="https://www.zhuzhouchurch.com/fr/sermons.html">
+  <link rel="alternate" hreflang="it" href="https://www.zhuzhouchurch.com/it/sermons.html">
+  <link rel="alternate" hreflang="ja" href="https://www.zhuzhouchurch.com/ja/sermons.html">
+  <link rel="alternate" hreflang="ko" href="https://www.zhuzhouchurch.com/ko/sermons.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.zhuzhouchurch.com/">
+</head>
+<body class="page-sermons no-chap">
+<div class="page">
+
+  <!-- ===== 顶部：文字 logo + 语言切换 ===== -->
+  <header class="site-header">
+    <span class="logo" id="siteLogo"></span>
+    <div class="lang-bar" id="langBar" role="group" data-i18n-aria="lang.label" aria-label="Langue">
+      </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="sprout" aria-hidden="true"></div>
+    <h1 data-i18n="hero.title">Transcriptions de prédications</h1>
+    <p class="hero-verse" data-i18n="hero.sub">Que chaque prédication soit gardée comme une graine</p>
+    <div class="hero-rule"></div>
+  </section>
+
+  <!-- ===== 支持与合作 ===== -->
+  <div class="contact-row">
+    <a class="contact-link" href="mailto:xiaodongdaniel@icloud.com" data-i18n-aria="contact.label" aria-label="Soutien &amp; Coopération">
+      <span class="contact-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
+      <span data-i18n="contact.label">Soutien &amp; Coopération</span>
+    </a>
+  <div class="ms-player" id="msPlayer">
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="Lire la musique de fond">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" id="siteNav" aria-label="Navigation du site"></nav>
+
+  <!-- ===== 朗读条：固定于主导航与正文之间（非悬浮） ===== -->
+  <div class="rd-strip" id="rdBar" role="region" data-i18n-aria="rd.control" aria-label="朗读控制">
+    <button class="rd-btn" id="rdBtn" data-i18n-aria="rd.play" aria-label="朗读全文">
+      <svg class="ic-play" viewBox="0 0 24 24"><path d="M7 4.6v14.8L20 12z" fill="currentColor"/></svg>
+      <svg class="ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-info">
+      <span class="rd-title" data-i18n="rd.title">Lecture à voix haute</span>
+    </div>
+    <button class="rd-set" id="rdSet" data-i18n-aria="rd.set" aria-label="朗读设置" aria-expanded="false">
+      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-panel" id="rdSettings">
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.rate">Vitesse</span>
+        <input class="rd-slider" id="rdRate" type="range" min="0.5" max="1.5" step="0.05" value="1.15" data-i18n-aria="rd.rate" aria-label="Vitesse">
+        <span class="rd-val" id="rdRateVal">1.15</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.pitch">Ton</span>
+        <input class="rd-slider" id="rdPitch" type="range" min="0.5" max="1.5" step="0.05" value="1" data-i18n-aria="rd.pitch" aria-label="Ton">
+        <span class="rd-val" id="rdPitchVal">1.00</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.voice">Voix</span>
+        <button class="rd-voice" id="rdVoiceName" data-i18n="rd.voice.default" data-i18n-aria="rd.voice.aria" aria-label="Changer de voix">Par défaut</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <div class="sermon-list">
+
+      <!-- ===== 讲道一（最新） ===== -->
+<article class="sermon-card">
+        <div class="sermon-no" data-i18n="item.7.no">Sermon · 01</div>
+        <h2 class="sermon-title" data-i18n="item.7.title">Quel rapport le ciel et l'enfer ont-ils avec moi ?</h2>
+        <p class="sermon-verse" data-i18n-html="item.7.verse">Dieu est amour ; et celui qui demeure dans l'amour demeure en Dieu, et Dieu demeure en lui<small>1 Jean 4:16</small></p>
+        <p class="sermon-summary" data-i18n="item.7.summary">Partant de la question « Dieu est aimant, pourquoi ceux qui ne croient pas en Lui souffrent-ils en enfer ? » : éclaircissement des mots de la Bible sur l'enfer et l'Hadès — la vallée de Hinnom (l'origine de l'« enfer » dans le Nouveau Testament), le Tartare (le lieu où les anges déchus sont retenus), l'Hadès (où les incrédules souffrent temporairement après la mort), le Paradis (la demeure des sauvés) et le lac de feu (la seconde mort) ; puis le ciel et le royaume de Dieu — le royaume de Dieu est au-dedans de vous, il faut vivre au ciel dès maintenant, vivre dans l'amour de Dieu ; enfin, par la parabole de l'enfant rebelle qui rejette l'amour de ses parents, montrant que ce n'est pas Dieu qui fait souffrir, mais que rejeter l'amour de Dieu apporte la douleur — vivre dans la haine et l'amertume est un avant-goût de l'enfer. Avec 4 questions de réflexion.</p>
+        <div class="tags">
+          <span class="tag" data-i18n="item.7.tag1">Vallée de Hinnom</span>
+          <span class="tag" data-i18n="item.7.tag2">Hadès & Paradis</span>
+          <span class="tag" data-i18n="item.7.tag3">Royaume de Dieu</span>
+          <span class="tag" data-i18n="item.7.tag4">Avant-goût de l'enfer</span>
+        </div>
+        <a class="sermon-link" href="sermons/天堂和地狱和“我”有什么关系吗？.html"><span data-i18n="item.7.more">Lire le texte</span><span class="arrow" aria-hidden="true"></span></a>
+      </article>
+
+      <!-- ===== 讲道二 ===== -->
+<article class="sermon-card">
+        <div class="sermon-no" data-i18n="item.6.no">Sermon · 02</div>
+        <h2 class="sermon-title" data-i18n="item.6.title">Que signifie croire en Jésus ?</h2>
+        <p class="sermon-verse" data-i18n-html="item.6.verse">Si quelqu'un veut venir après moi, qu'il renonce à lui-même, qu'il se charge chaque jour de sa croix et qu'il me suive<small>Luc 9:23</small></p>
+        <p class="sermon-summary" data-i18n="item.6.summary">À partir de l'humour sec de Mark Twain lisant la Bible—ce qui le troublait vraiment, ce n'était pas ce qu'il ne comprenait pas, mais ce qu'il comprenait trop bien sans le vivre. Il compare le contexte de la foi en Jésus dans l'Église primitive avec celui d'aujourd'hui : pour les premiers disciples, croire en Jésus signifiait donner leur vie à Jésus. Revenant à l'histoire d'Israël—de l'exil au retour, jusqu'à l'Aliyah—il montre pourquoi les chefs religieux ont persécuté Jésus, la déception et la trahison de Judas, et rappelle aux croyants d'aujourd'hui : ce ne sont pas nos circonstances qui nous éloignent de Dieu, mais la question de savoir si la source de notre foi est Jésus-Christ. Croire en Jésus n'est pas une question d'argent, mais une question de vie—puissions-nous suivre Jésus fidèlement et devenir des personnes qui portent du fruit au centuple.</p>
+        <div class="tags">
+          <span class="tag" data-i18n="item.6.tag1">Mark Twain</span>
+          <span class="tag" data-i18n="item.6.tag2">L'Église primitive</span>
+          <span class="tag" data-i18n="item.6.tag3">L'Aliyah</span>
+          <span class="tag" data-i18n="item.6.tag4">Donner sa vie</span>
+        </div>
+        <a class="sermon-link" href="sermons/信耶稣意味着什么.html"><span data-i18n="item.6.more">Lire la prédication complète</span><span class="arrow" aria-hidden="true"></span></a>
+      </article>
+
+      <!-- ===== 讲道三 ===== -->
+<article class="sermon-card">
+        <div class="sermon-no" data-i18n="item.5.no">Sermon · 03</div>
+        <h2 class="sermon-title" data-i18n="item.5.title">Jésus enseigne deux fois la pêche à Pierre</h2>
+        <p class="sermon-verse" data-i18n-html="item.5.verse">Avance en eau profonde, et jetez vos filets pour pêcher<small>Luc 5:4</small></p>
+        <p class="sermon-summary" data-i18n="item.5.summary">Partant de la géographie de la mer de Galilée (le lac de Gennésareth et la mer de Tibériade sont en réalité la même étendue d’eau), cette prédication compare les récits de l’appel dans Luc 5 et Marc 1. Elle médite sur Pierre, qui peina toute la nuit sans rien prendre, et qui pourtant obéit, avança en eau profonde, reçut un filet plein de poissons et tomba aux pieds du Seigneur. Puis nous voyons Jésus ressuscité enseigner de nouveau la pêche à Pierre au bord de la mer de Tibériade ; alors que ces deux événements semblables se rejoignent dans la mémoire, les disciples reconnaissent le Seigneur. Enfin, deux questions nous invitent à parler ensemble : quand vous êtes fatigué et faible, êtes-vous encore prêt à pousser la barque pour Jésus ? Et que ressentez-vous lorsque les deux pêches se rejoignent dans votre mémoire ?</p>
+        <div class="tags">
+          <span class="tag" data-i18n="item.5.tag1">La même eau</span>
+          <span class="tag" data-i18n="item.5.tag2">Peiner toute la nuit</span>
+          <span class="tag" data-i18n="item.5.tag3">Mémoire qui se rejoint</span>
+          <span class="tag" data-i18n="item.5.tag4">Parlons-en</span>
+        </div>
+        <a class="sermon-link" href="sermons/耶稣两次教导彼得捕鱼.html"><span data-i18n="item.5.more">Lire la prédication complète</span><span class="arrow" aria-hidden="true"></span></a>
+      </article>
+
+      <!-- ===== 讲道四 ===== -->
+<article class="sermon-card">
+        <div class="sermon-no" data-i18n="item.4.no">Sermon · 04</div>
+        <h2 class="sermon-title" data-i18n="item.4.title">Dieu entend notre cri</h2>
+        <p class="sermon-verse" data-i18n-html="item.4.verse">Demandez, et l'on vous donnera ; cherchez, et vous trouverez ; frappez, et l'on vous ouvrira<small>Luc 11:9</small></p>
+        <p class="sermon-summary" data-i18n="item.4.summary">À partir de la joie de la prière exaucée et du désarroi de la prière sans réponse, cette prédication nous montre : déboucher le canal de la prière—le péché, le doute, les plaisirs, l'orgueil et la propre justice bloquent tous la prière ; avoir la foi de la Parole de Dieu, car la foi vient de la Parole de Dieu ; prier selon la volonté de Dieu ; et persévérer dans la prière—la veuve et le juge inique, les vingt et un jours de prière de Daniel, P.U.S.H. (priez jusqu'à ce qu'il se passe quelque chose). Elle nous invite enfin à réfléchir : le canal de ma prière est-il dégagé, continué-je à attendre dans une prière conforme à la volonté de Dieu, et crois-je que Dieu entendra ?</p>
+        <div class="tags">
+          <span class="tag" data-i18n="item.4.tag1">Déboucher le canal</span>
+          <span class="tag" data-i18n="item.4.tag2">La foi en la Parole</span>
+          <span class="tag" data-i18n="item.4.tag3">La volonté de Dieu</span>
+          <span class="tag" data-i18n="item.4.tag4">P.U.S.H.</span>
+        </div>
+        <a class="sermon-link" href="sermons/神听我们的呼求.html"><span data-i18n="item.4.more">Lire la prédication complète</span><span class="arrow" aria-hidden="true"></span></a>
+      </article>
+
+      <!-- ===== 讲道五 ===== -->
+<article class="sermon-card">
+        <div class="sermon-no" data-i18n="item.3.no">Sermon · 05</div>
+        <h2 class="sermon-title" data-i18n="item.3.title">Le pardon rend libre</h2>
+        <p class="sermon-verse" data-i18n-html="item.3.verse">pardonnez, et vous serez pardonnés. (Le mot grec signifie « relâchés ».)<small>Luc 6:37</small></p>
+        <p class="sermon-summary" data-i18n="item.3.summary">À partir d’un incident désagréable sur le chemin de l’école en accompagnant un enfant, cette prédication aborde le thème du pardon : ne jugez pas et ne condamnez pas les autres, de peur qu’en refusant de pardon vous ne les jugiez ; l’effet papillon du non-pardon—l’amertume et la haine dévorent la vie. Combien de fois pardonner ? Pas sept fois, mais soixante-dix fois sept. Imitez Jésus sans cesse, et considérez combien le pardon du roi était grand ; le non-pardon nous livre aux mains du geôlier—choisissez le pardon, et vous vous libérerez vous-même.</p>
+        <div class="tags">
+          <span class="tag" data-i18n="item.3.tag1">Ne pas juger</span>
+          <span class="tag" data-i18n="item.3.tag2">L’effet papillon</span>
+          <span class="tag" data-i18n="item.3.tag3">Soixante-dix fois sept</span>
+          <span class="tag" data-i18n="item.3.tag4">Être libre</span>
+        </div>
+        <a class="sermon-link" href="sermons/饶恕人就得自由释放.html"><span data-i18n="item.3.more">Lire la prédication complète</span><span class="arrow" aria-hidden="true"></span></a>
+      </article>
+
+      <!-- ===== 讲道六 ===== -->
+<article class="sermon-card">
+        <div class="sermon-no" data-i18n="item.2.no">Sermon · 06</div>
+        <h2 class="sermon-title" data-i18n="item.2.title">Guérison et délivrance</h2>
+        <p class="sermon-verse" data-i18n-html="item.2.verse">par ses meurtrissures vous avez été guéris<small>1 Pierre 2:24</small></p>
+        <p class="sermon-summary" data-i18n="item.2.summary">L’orateur partage d’abord sa propre expérience personnelle de la guérison de Dieu, puis montre que la guérison est l’ADN de l’église—toute personne malade qui vient parmi nous doit être guérie. La foi est puissante : croyez aux promesses de la Bible concernant la guérison et la délivrance ; si tu crois, tu verras la gloire de Dieu, crois que tu l’as reçu, et cela t’appartiendra. Il révèle aussi que la maladie vient du voleur dans le domaine spirituel, et conclut par un appel à la décision dans la prière.</p>
+        <div class="tags">
+          <span class="tag" data-i18n="item.2.tag1">L’ADN de l’église</span>
+          <span class="tag" data-i18n="item.2.tag2">La puissance de la foi</span>
+          <span class="tag" data-i18n="item.2.tag3">Croire que l’on a reçu</span>
+          <span class="tag" data-i18n="item.2.tag4">Le voleur spirituel</span>
+        </div>
+        <a class="sermon-link" href="sermons/医治和释放.html"><span data-i18n="item.2.more">Lire la prédication complète</span><span class="arrow" aria-hidden="true"></span></a>
+      </article>
+
+      <!-- ===== 讲道七 ===== -->
+<article class="sermon-card">
+        <div class="sermon-no" data-i18n="item.1.no">Sermon · 07</div>
+        <h2 class="sermon-title" data-i18n="item.1.title">Voir le cœur de Dieu pour le réveil à travers la guérison</h2>
+        <p class="sermon-verse" data-i18n-html="item.1.verse">Voici les signes qui accompagneront ceux qui auront cru<small>Marc 16:17</small></p>
+        <p class="sermon-summary" data-i18n="item.1.summary">En partant du témoignage de guérison d’une rencontre de jeûne et de prière d’avril 2018 à Hengyang, cette prédication explique comment les témoignages allument notre soif et pourquoi le témoignage est notre héritage. Elle croit que Dieu veut guérir cette génération brisée, et que nous devons à cette génération une chance de rencontrer la puissance de Dieu. L’Esprit de Dieu apporte la puissance de Dieu, et parler en langues édifie ; à travers les réunions de guérison de l’histoire du réveil de l’Église, nous voyons le cœur de Dieu d’apporter le réveil par la guérison.</p>
+        <div class="tags">
+          <span class="tag" data-i18n="item.1.tag1">Guérison à Hengyang</span>
+          <span class="tag" data-i18n="item.1.tag2">Le témoignage est un héritage</span>
+          <span class="tag" data-i18n="item.1.tag3">L’Esprit de Dieu</span>
+          <span class="tag" data-i18n="item.1.tag4">Histoire du réveil</span>
+        </div>
+        <a class="sermon-link" href="sermons/透过医治看见神对复兴的心意.html"><span data-i18n="item.1.more">Lire la prédication complète</span><span class="arrow" aria-hidden="true"></span></a>
+      </article>
+
+</div>
+
+
+    </div>
+
+  </main>
+
+    <footer>
+    <nav id="siteNavFoot" class="foot-nav"></nav>mustard<span class="seed">·</span>seed — <span data-i18n="footer.tag">Que chaque partage tombe comme une graine dans la terre</span> <a class="foot-privacy" href="../privacy.html" data-i18n="footer.privacy">隐私政策</a></footer>
+
+</div>
+
+  <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
+
+<script>/* ===== 语言字典（仅 fr） ===== */window.I18N = {"fr":{"title":"Transcriptions de prédications · mustardseed","nav.guestbook":"Livre d'or","hero.title":"Transcriptions de prédications","hero.sub":"Que chaque prédication soit gardée comme une graine","item.1.no":"Sermon · 07","item.1.title":"Voir le cœur de Dieu pour le réveil à travers la guérison","item.1.verse":"Voici les signes qui accompagneront ceux qui auront cru<small>Marc 16:17</small>","item.1.summary":"En partant du témoignage de guérison d’une rencontre de jeûne et de prière d’avril 2018 à Hengyang, cette prédication explique comment les témoignages allument notre soif et pourquoi le témoignage est notre héritage. Elle croit que Dieu veut guérir cette génération brisée, et que nous devons à cette génération une chance de rencontrer la puissance de Dieu. L’Esprit de Dieu apporte la puissance de Dieu, et parler en langues édifie ; à travers les réunions de guérison de l’histoire du réveil de l’Église, nous voyons le cœur de Dieu d’apporter le réveil par la guérison.","item.1.tag1":"Guérison à Hengyang","item.1.tag2":"Le témoignage est un héritage","item.1.tag3":"L’Esprit de Dieu","item.1.tag4":"Histoire du réveil","item.1.more":"Lire la prédication complète","item.2.no":"Sermon · 06","item.2.title":"Guérison et délivrance","item.2.verse":"par ses meurtrissures vous avez été guéris<small>1 Pierre 2:24</small>","item.2.summary":"L’orateur partage d’abord sa propre expérience personnelle de la guérison de Dieu, puis montre que la guérison est l’ADN de l’église—toute personne malade qui vient parmi nous doit être guérie. La foi est puissante : croyez aux promesses de la Bible concernant la guérison et la délivrance ; si tu crois, tu verras la gloire de Dieu, crois que tu l’as reçu, et cela t’appartiendra. Il révèle aussi que la maladie vient du voleur dans le domaine spirituel, et conclut par un appel à la décision dans la prière.","item.2.tag1":"L’ADN de l’église","item.2.tag2":"La puissance de la foi","item.2.tag3":"Croire que l’on a reçu","item.2.tag4":"Le voleur spirituel","item.2.more":"Lire la prédication complète","item.3.no":"Sermon · 05","item.3.title":"Le pardon rend libre","item.3.verse":"pardonnez, et vous serez pardonnés. (Le mot grec signifie « relâchés ».)<small>Luc 6:37</small>","item.3.summary":"À partir d’un incident désagréable sur le chemin de l’école en accompagnant un enfant, cette prédication aborde le thème du pardon : ne jugez pas et ne condamnez pas les autres, de peur qu’en refusant de pardon vous ne les jugiez ; l’effet papillon du non-pardon—l’amertume et la haine dévorent la vie. Combien de fois pardonner ? Pas sept fois, mais soixante-dix fois sept. Imitez Jésus sans cesse, et considérez combien le pardon du roi était grand ; le non-pardon nous livre aux mains du geôlier—choisissez le pardon, et vous vous libérerez vous-même.","item.3.tag1":"Ne pas juger","item.3.tag2":"L’effet papillon","item.3.tag3":"Soixante-dix fois sept","item.3.tag4":"Être libre","item.3.more":"Lire la prédication complète","item.4.no":"Sermon · 04","item.4.title":"Dieu entend notre cri","item.4.verse":"Demandez, et l'on vous donnera ; cherchez, et vous trouverez ; frappez, et l'on vous ouvrira<small>Luc 11:9</small>","item.4.summary":"À partir de la joie de la prière exaucée et du désarroi de la prière sans réponse, cette prédication nous montre : déboucher le canal de la prière—le péché, le doute, les plaisirs, l'orgueil et la propre justice bloquent tous la prière ; avoir la foi de la Parole de Dieu, car la foi vient de la Parole de Dieu ; prier selon la volonté de Dieu ; et persévérer dans la prière—la veuve et le juge inique, les vingt et un jours de prière de Daniel, P.U.S.H. (priez jusqu'à ce qu'il se passe quelque chose). Elle nous invite enfin à réfléchir : le canal de ma prière est-il dégagé, continué-je à attendre dans une prière conforme à la volonté de Dieu, et crois-je que Dieu entendra ?","item.4.tag1":"Déboucher le canal","item.4.tag2":"La foi en la Parole","item.4.tag3":"La volonté de Dieu","item.4.tag4":"P.U.S.H.","item.4.more":"Lire la prédication complète","item.5.no":"Sermon · 03","item.5.title":"Jésus enseigne deux fois la pêche à Pierre","item.5.verse":"Avance en eau profonde, et jetez vos filets pour pêcher<small>Luc 5:4</small>","item.5.summary":"Partant de la géographie de la mer de Galilée (le lac de Gennésareth et la mer de Tibériade sont en réalité la même étendue d’eau), cette prédication compare les récits de l’appel dans Luc 5 et Marc 1. Elle médite sur Pierre, qui peina toute la nuit sans rien prendre, et qui pourtant obéit, avança en eau profonde, reçut un filet plein de poissons et tomba aux pieds du Seigneur. Puis nous voyons Jésus ressuscité enseigner de nouveau la pêche à Pierre au bord de la mer de Tibériade ; alors que ces deux événements semblables se rejoignent dans la mémoire, les disciples reconnaissent le Seigneur. Enfin, deux questions nous invitent à parler ensemble : quand vous êtes fatigué et faible, êtes-vous encore prêt à pousser la barque pour Jésus ? Et que ressentez-vous lorsque les deux pêches se rejoignent dans votre mémoire ?","item.5.tag1":"La même eau","item.5.tag2":"Peiner toute la nuit","item.5.tag3":"Mémoire qui se rejoint","item.5.tag4":"Parlons-en","item.5.more":"Lire la prédication complète","item.6.no":"Sermon · 02","item.6.title":"Que signifie croire en Jésus ?","item.6.verse":"Si quelqu'un veut venir après moi, qu'il renonce à lui-même, qu'il se charge chaque jour de sa croix et qu'il me suive<small>Luc 9:23</small>","item.6.summary":"À partir de l'humour sec de Mark Twain lisant la Bible—ce qui le troublait vraiment, ce n'était pas ce qu'il ne comprenait pas, mais ce qu'il comprenait trop bien sans le vivre. Il compare le contexte de la foi en Jésus dans l'Église primitive avec celui d'aujourd'hui : pour les premiers disciples, croire en Jésus signifiait donner leur vie à Jésus. Revenant à l'histoire d'Israël—de l'exil au retour, jusqu'à l'Aliyah—il montre pourquoi les chefs religieux ont persécuté Jésus, la déception et la trahison de Judas, et rappelle aux croyants d'aujourd'hui : ce ne sont pas nos circonstances qui nous éloignent de Dieu, mais la question de savoir si la source de notre foi est Jésus-Christ. Croire en Jésus n'est pas une question d'argent, mais une question de vie—puissions-nous suivre Jésus fidèlement et devenir des personnes qui portent du fruit au centuple.","item.6.tag1":"Mark Twain","item.6.tag2":"L'Église primitive","item.6.tag3":"L'Aliyah","item.6.tag4":"Donner sa vie","item.6.more":"Lire la prédication complète","rd.voice.default":"Par défaut","rd.voice.aria":"Changer de voix","rd.rate":"Vitesse","rd.pitch":"Ton","rd.voice":"Voix","rd.title":"Lecture à voix haute","lang.label":"Langue","nav.aria":"Navigation du site","nav.home":"Accueil","nav.sermons":"Prédications","nav.discussion":"Discussion","nav.testimonies":"Témoignages","nav.prayer":"Mur de prière","nav.about":"À propos","contact.label":"Soutien & Coopération","footer.tag":"Que chaque partage tombe comme une graine dans la terre","ms.play":"Lire la musique de fond","ms.pause":"Mettre la musique en pause","gb.section":"Livre d’or","gb.name.label":"Votre nom","gb.name.placeholder":"Comment vous appeler ?","gb.content.label":"Message","gb.content.placeholder":"Partagez vos pensées… (500 caractères max)","gb.hint":"Chaque message sera lu et précieusement conservé","gb.submit":"Envoyer","gb.sending":"Envoi en cours…","gb.loading":"Chargement des messages…","gb.empty":"Pas encore de message—soyez le premier à partager","gb.count":"Messages","gb.err.name":"Veuillez saisir votre nom","gb.err.content":"Veuillez saisir votre message","gb.err.send":"Échec de l’envoi, veuillez réessayer","gb.err.load":"Échec du chargement, veuillez réessayer","gb.err.blocked":"Votre message contient un contenu inapproprié (pornographie/violence/injures/publicité), veuillez le modifier et réessayer","gb.ok":"Message envoyé, merci pour votre partage","gb.foot":"Les messages sont publics—merci de ne pas inclure d’informations privées","q.tag":"Réflexion","chap.intro":"Intro","ms.list":"Choisir la musique","item.7.no":"Sermon · 01","item.7.title":"Quel rapport le ciel et l'enfer ont-ils avec moi ?","item.7.verse":"Dieu est amour ; et celui qui demeure dans l'amour demeure en Dieu, et Dieu demeure en lui<small>1 Jean 4:16</small>","item.7.summary":"Partant de la question « Dieu est aimant, pourquoi ceux qui ne croient pas en Lui souffrent-ils en enfer ? » : éclaircissement des mots de la Bible sur l'enfer et l'Hadès — la vallée de Hinnom (l'origine de l'« enfer » dans le Nouveau Testament), le Tartare (le lieu où les anges déchus sont retenus), l'Hadès (où les incrédules souffrent temporairement après la mort), le Paradis (la demeure des sauvés) et le lac de feu (la seconde mort) ; puis le ciel et le royaume de Dieu — le royaume de Dieu est au-dedans de vous, il faut vivre au ciel dès maintenant, vivre dans l'amour de Dieu ; enfin, par la parabole de l'enfant rebelle qui rejette l'amour de ses parents, montrant que ce n'est pas Dieu qui fait souffrir, mais que rejeter l'amour de Dieu apporte la douleur — vivre dans la haine et l'amertume est un avant-goût de l'enfer. Avec 4 questions de réflexion.","item.7.tag1":"Vallée de Hinnom","item.7.tag2":"Hadès & Paradis","item.7.tag3":"Royaume de Dieu","item.7.tag4":"Avant-goût de l'enfer","item.7.more":"Lire le texte"}};</script>
+<script>window.RD_SEL = ['.sermon-title', '.sermon-verse', '.sermon-summary'];</script><script src="../src/shared.js"></script>
+</body>
+</html>

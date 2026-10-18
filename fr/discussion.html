@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16281C">
+<title>mustardseed · Discussion</title>
+<meta name="description" content="Site de l’église de Zhuzhou (株洲教会) — mustardseed : partagez vos joies et répondez aux questions de discussion.">
+<meta name="keywords" content="株洲教会,株洲家庭教会,株洲家教会,株洲家庭小组教会,église de Zhuzhou,église de maison Zhuzhou,prédications,mustardseed">
+<meta property="og:title" content="mustardseed · Discussion">
+<meta property="og:description" content="Site de l’église de Zhuzhou (株洲教会) — mustardseed : partagez vos joies et répondez aux questions de discussion.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mustardseed">
+<meta property="og:locale" content="fr_FR">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=Noto+Sans+SC:wght@300;400;500&amp;family=Noto+Sans:wght@300;400;500&amp;family=Noto+Serif:wght@400;600;700&amp;family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media=\'all\'">
+<link rel="stylesheet" href="../src/site.css">
+
+  <link rel="canonical" href="https://www.zhuzhouchurch.com/fr/discussion.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.zhuzhouchurch.com/discussion.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.zhuzhouchurch.com/zh-Hant/discussion.html">
+  <link rel="alternate" hreflang="en" href="https://www.zhuzhouchurch.com/en/discussion.html">
+  <link rel="alternate" hreflang="fr" href="https://www.zhuzhouchurch.com/fr/discussion.html">
+  <link rel="alternate" hreflang="it" href="https://www.zhuzhouchurch.com/it/discussion.html">
+  <link rel="alternate" hreflang="ja" href="https://www.zhuzhouchurch.com/ja/discussion.html">
+  <link rel="alternate" hreflang="ko" href="https://www.zhuzhouchurch.com/ko/discussion.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.zhuzhouchurch.com/">
+</head>
+<body class="page-discussion no-chap">
+<div class="page">
+
+  <!-- ===== 顶部：文字 logo + 语言切换 ===== -->
+  <header class="site-header">
+    <span class="logo" id="siteLogo"></span>
+    <div class="lang-bar" id="langBar" role="group" data-i18n-aria="lang.label" aria-label="Langue">
+      </div>
+  </header>
+
+  <!-- ===== Hero：嫩芽 + 主标题 ===== -->
+  <section class="hero">
+    <div class="sprout" aria-hidden="true"></div>
+    <h1 data-i18n="hero.title">Aujourd’hui, échangeons</h1>
+    <p class="hero-verse" data-i18n="hero.sub">Le temps de deux tasses de thé, parlez de ce qui vous rend heureux, et de vos rêves les plus audacieux</p>
+    <div class="hero-rule"></div>
+  </section>
+
+  <!-- ===== 支持与合作 ===== -->
+  <div class="contact-row">
+    <a class="contact-link" href="mailto:xiaodongdaniel@icloud.com" data-i18n-aria="contact.label" aria-label="Soutien &amp; Coopération">
+      <span class="contact-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
+      <span data-i18n="contact.label">Soutien &amp; Coopération</span>
+    </a>
+  <div class="ms-player" id="msPlayer">
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="Lire la musique de fond">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" id="siteNav" aria-label="Navigation du site"></nav>
+
+  <!-- ===== 朗读条：固定于主导航与正文之间（非悬浮） ===== -->
+  <div class="rd-strip" id="rdBar" role="region" data-i18n-aria="rd.control" aria-label="朗读控制">
+    <button class="rd-btn" id="rdBtn" data-i18n-aria="rd.play" aria-label="朗读全文">
+      <svg class="ic-play" viewBox="0 0 24 24"><path d="M7 4.6v14.8L20 12z" fill="currentColor"/></svg>
+      <svg class="ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-info">
+      <span class="rd-title" data-i18n="rd.title">Lecture à voix haute</span>
+    </div>
+    <button class="rd-set" id="rdSet" data-i18n-aria="rd.set" aria-label="朗读设置" aria-expanded="false">
+      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-panel" id="rdSettings">
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.rate">Vitesse</span>
+        <input class="rd-slider" id="rdRate" type="range" min="0.5" max="1.5" step="0.05" value="1.15" data-i18n-aria="rd.rate" aria-label="Vitesse">
+        <span class="rd-val" id="rdRateVal">1.15</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.pitch">Ton</span>
+        <input class="rd-slider" id="rdPitch" type="range" min="0.5" max="1.5" step="0.05" value="1" data-i18n-aria="rd.pitch" aria-label="Ton">
+        <span class="rd-val" id="rdPitchVal">1.00</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.voice">Voix</span>
+        <button class="rd-voice" id="rdVoiceName" data-i18n="rd.voice.default" data-i18n-aria="rd.voice.aria" aria-label="Changer de voix">Par défaut</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 十个讨论题（倒序：新题在前） ===== -->
+  <div class="topics">
+    <!-- Q1（新）：Ciel & Enfer -->
+    <section class="topic-card" aria-labelledby="q-heaven-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3c3.2 3.2 5.5 6 5.5 9.2A5.5 5.5 0 1 1 6.5 12.2C6.5 9 8.8 6.2 12 3z"/><path d="M12 3v14"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q1</span>
+        <span class="card-label" data-i18n="card6.label">Ciel & Enfer</span>
+      </div>
+      <h2 id="q-heaven-title" data-i18n="card6.q">À partir de la parabole de l’enfant rebelle qui rejette l’amour de ses parents, comment pouvons-nous aider les gens à comprendre cette difficulté — « Dieu est aimant, mais ceux qui le rejettent tombent dans la souffrance/l’enfer » ?</h2>
+      <p class="prompt" data-i18n="card6.prompt">Ce n’est pas Dieu qui fait souffrir ; rejeter l’amour laisse dans la douleur.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-heaven-hints">
+        <span data-i18n="hint.toggle">Pas d’idée ? Ouvrez quelques petites pistes</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-heaven-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card6.hint1">D’où vient la souffrance de l’enfant dans la parabole ?</li>
+            <li data-i18n="card6.hint2">Le fait de « ne pas retenir » des parents est-il de la cruauté, ou une autre forme d’amour ?</li>
+            <li data-i18n="card6.hint3">Connaissez-vous des personnes qui goûtent un avant-goût de l’enfer ?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2（新）：Cinq mots -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q-words-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q2</span>
+        <span class="card-label" data-i18n="card7.label">Cinq mots</span>
+      </div>
+      <h2 id="q-words-title" data-i18n="card7.q">Après avoir compris les différences entre « la vallée de Hinnom », « le Tartare », « l’Hadès », « le Paradis » et « le lac de feu », quel nouvel éclairage cela apporte-t-il à votre compréhension du jugement après la mort et du salut de Dieu ?</h2>
+      <p class="prompt" data-i18n="card7.prompt">Quand les mots deviennent clairs, on voit ce que Dieu veut sauver.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-words-hints">
+        <span data-i18n="hint.toggle">Pas d’idée ? Ouvrez quelques petites pistes</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-words-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card7.hint1">Lequel de ces mots vous a donné une nouvelle compréhension de l’« enfer » ?</li>
+            <li data-i18n="card7.hint2">Le Paradis et le lac de feu : quelles sont leurs destinations respectives ?</li>
+            <li data-i18n="card7.hint3">Avec ces différences claires, comment voyez-vous le jugement et le salut de Dieu ?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q3（新）：Le Royaume de Dieu -->
+    <section class="topic-card" aria-labelledby="q-kingdom-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 8l3 4 4-6 4 6 3-4v9H5z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q3</span>
+        <span class="card-label" data-i18n="card8.label">Le Royaume de Dieu</span>
+      </div>
+      <h2 id="q-kingdom-title" data-i18n="card8.q">Jésus a dit : « le royaume de Dieu est au-dedans de vous ». Comment, dans la vie quotidienne ou dans l’amour mutuel de l’Église, pouvez-vous expérimenter réellement la paix de la souveraineté de Dieu et la réalité du royaume ?</h2>
+      <p class="prompt" data-i18n="card8.prompt">Le royaume de Dieu n’est pas loin ; il règne dans votre cœur.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-kingdom-hints">
+        <span data-i18n="hint.toggle">Pas d’idée ? Ouvrez quelques petites pistes</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-kingdom-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card8.hint1">Quand ressentez-vous le plus fortement que Dieu règne ?</li>
+            <li data-i18n="card8.hint2">Quel moment d’amour mutuel à l’Église vous a semblé être le ciel ?</li>
+            <li data-i18n="card8.hint3">Où pouvez-vous rendre le royaume un peu plus réel aujourd’hui ?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q4（新）：Le pardon -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q-forgive-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 20c-5-3-8-6-8-9.5A4 4 0 0 1 12 7a4 4 0 0 1 8 3.5C20 14 17 17 12 20z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q4</span>
+        <span class="card-label" data-i18n="card9.label">Le pardon</span>
+      </div>
+      <h2 id="q-forgive-title" data-i18n="card9.q">Vivre dans la haine et l’amertume, c’est « goûter un avant-goût de l’enfer ». Face aux blessures relationnelles, comment faire le premier pas du pardon grâce à l’amour du Christ ?</h2>
+      <p class="prompt" data-i18n="card9.prompt">Pardonner, ce n’est pas oublier ; c’est remettre le jugement à l’amour.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-forgive-hints">
+        <span data-i18n="hint.toggle">Pas d’idée ? Ouvrez quelques petites pistes</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-forgive-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card9.hint1">Êtes-vous prêt à dire d’abord à Dieu l’amertume de votre cœur ?</li>
+            <li data-i18n="card9.hint2">Comment le Christ nous a-t-il pardonnés le premier ?</li>
+            <li data-i18n="card9.hint3">Jusqu’où peut être petit le premier pas du pardon ?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+      <!-- Q1（新）：关于医治 -->
+    <section class="topic-card" aria-labelledby="q6-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v11M12 14l-4-4M12 14l4-4M12 20c-3.5 0-6.5-2-6.5-5.5V11M18.5 11v3.5c0 3.5-3 5.5-6.5 5.5"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q5</span>
+        <span class="card-label" data-i18n="card4.label">À propos de la guérison</span>
+      </div>
+      <h2 id="q6-title" data-i18n="card4.q">Selon vous, qui Dieu guérit-il, et pourquoi Dieu nous guérit-il ?</h2>
+      <p class="prompt" data-i18n="card4.prompt">Chaque vie guérie est une preuve de l'amour de Dieu pour nous.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q6-hints">
+        <span data-i18n="hint.toggle">Pas d’idée ? Ouvrez quelques indices</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q6-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card4.hint1">Pensez-vous que la guérison de Dieu a des « conditions » ?</li>
+            <li data-i18n="card4.hint2">Dieu nous guérit-il parce que nous le méritons, ou par sa miséricorde ?</li>
+            <li data-i18n="card4.hint3">En repensant aux guérisons que vous avez entendues ou vues, qu'est-ce qui vous touche le plus ?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2（新）：关于见证 -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q5-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l2.1 5.1L19.5 10l-5.4 1.9L12 17l-2.1-5.1L4.5 10l5.4-1.9z"/>
+        <path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q6</span>
+        <span class="card-label" data-i18n="card5.label">À propos du témoignage</span>
+      </div>
+      <h2 id="q5-title" data-i18n="card5.q">Après avoir été guéris, pourquoi devons-nous témoigner ? Lorsque vous entendez ou voyez quelqu'un être guéri par Dieu, que ressentez-vous et que pensez-vous ?</h2>
+      <p class="prompt" data-i18n="card5.prompt">Le témoignage n'est pas notre mérite, mais la gloire rendue au Guérisseur.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q5-hints">
+        <span data-i18n="hint.toggle">Pas d’idée ? Ouvrez quelques indices</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q5-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card5.hint1">En quoi témoigner nous aide-t-il nous-mêmes ?</li>
+            <li data-i18n="card5.hint2">Entendre les témoignages des autres a-t-il déjà ranimé votre foi ?</li>
+            <li data-i18n="card5.hint3">Si vous deviez partager à une personne ce que Dieu a fait dans votre vie, que diriez-vous ?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+      <!-- Q3（撑船） -->
+    <section class="topic-card" aria-labelledby="q4-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 21h18M12 5v11M12 16l-4.2-4.2M12 16l4.2-4.2"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q7</span>
+        <span class="card-label" data-i18n="card0.label">Pousser la barque</span>
+      </div>
+      <h2 id="q4-title" data-i18n="card0.q">Lorsque vous êtes fatigué et faible, comme Pierre qui a peiné toute la nuit sans rien attraper, êtes-vous encore prêt à pousser la barque pour Jésus ? Dites-nous ce que vous ressentez.</h2>
+      <p class="prompt" data-i18n="card0.prompt">Après une nuit sans rien prendre, Jésus vous invite encore une fois à pousser vers le large.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q4-hints">
+        <span data-i18n="hint.toggle">Pas d’idée ? Ouvrez quelques indices</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q4-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card0.hint1">Avez-vous déjà connu un moment de peiner toute la nuit sans rien attraper ?</li>
+            <li data-i18n="card0.hint2">Lorsque Jésus vous demande de réessayer, êtes-vous prêt, ou hésitant ?</li>
+            <li data-i18n="card0.hint3">Que signifie pour vous pousser la barque pour Jésus ?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q4（呼召） -->
+    <section class="topic-card" aria-labelledby="q0-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v13M12 21c-4.2 0-7-3-7-7.2M12 21c4.2 0 7-3 7-7.2M5 7h14"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q8</span>
+        <span class="card-label" data-i18n="card1.label">L’appel</span>
+      </div>
+      <h2 id="q0-title" data-i18n="card1.q">Lorsque vous pensez à Jésus enseignant deux fois à Pierre et aux autres à pêcher, quand ces deux événements semblables se rejoignent dans votre mémoire, que ressentez-vous au fond de vous ?</h2>
+      <p class="prompt" data-i18n="card1.prompt">Deux eaux profondes semblables sont l’appel immuable d’amour et de patience de Jésus.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q0-hints">
+        <span data-i18n="hint.toggle">Pas d’idée ? Ouvrez quelques indices</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q0-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card1.hint1">Quels détails retenez-vous de ces deux événements de pêche ?</li>
+            <li data-i18n="card1.hint2">Dans ces deux événements, en quoi la réponse de Jésus à Pierre a-t-elle été différente ?</li>
+            <li data-i18n="card1.hint3">Lorsque les deux scènes se rejoignent dans votre cœur, à quoi pensez-vous en premier ?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q5（梦想） -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q2-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l2.1 5.1L19.5 10l-5.4 1.9L12 17l-2.1-5.1L4.5 10l5.4-1.9z"/>
+        <path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q9</span>
+        <span class="card-label" data-i18n="card2.label">Les rêves</span>
+      </div>
+      <h2 id="q2-title" data-i18n="card2.q">Si vous aviez de l’argent sans fin, que voudriez-vous faire avant tout ?</h2>
+      <p class="prompt" data-i18n="card2.prompt">De l’argent qu’on ne dépense pas n’est qu’une suite de chiffres—avec quoi aimeriez-vous l’échanger ?</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q2-hints">
+        <span data-i18n="hint.toggle">Pas d’idée ? Ouvrez quelques indices</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q2-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card2.hint1">Sans penser à la réalité, quelle est la première chose que vous feriez ?</li>
+            <li data-i18n="card2.hint2">Pour qui le dépenseriez-vous, et de qui changeriez-vous la vie ?</li>
+            <li data-i18n="card2.hint3">Y a-t-il une chose dont vous rêvez depuis longtemps, sans jamais l’avoir faite ?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  <!-- Q6（开心） -->
+    <section class="topic-card" aria-labelledby="q1-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+        <path d="M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/>
+        <circle cx="12" cy="12" r="3.4"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q10</span>
+        <span class="card-label" data-i18n="card3.label">Le bonheur</span>
+      </div>
+      <h2 id="q1-title" data-i18n-html="card3.q">Partagez la chose la plus joyeuse<br>qui vous est arrivée récemment ?</h2>
+      <p class="prompt" data-i18n="card3.prompt">Le bonheur se cache souvent dans les toutes petites choses ; dès que vous les dites à voix haute, elles brillent davantage.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q1-hints">
+        <span data-i18n="hint.toggle">Pas d’idée ? Ouvrez quelques indices</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q1-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card3.hint1">Qu’est-ce qui vous a fait rire aux éclats pour la dernière fois ?</li>
+            <li data-i18n="card3.hint2">Où cela s’est-il passé, et qui était présent ?</li>
+            <li data-i18n="card3.hint3">Pour décrire ce sentiment en un seul mot, lequel choisiriez-vous ?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== 参与方式 ===== -->
+  <section class="rules" data-i18n-aria="rules.aria" aria-label="Façon de participer">
+    <span class="rule" data-i18n="rule1">Écouter attentivement</span>
+    <span class="rule" data-i18n="rule2">Ne pas interrompre</span>
+    <span class="rule" data-i18n="rule3">Partager à tour de rôle</span>
+  </section>
+
+  <!-- ===== 留言区：直接留言 + 显示留言 ===== -->
+  <section class="gb-section" data-gb-page="discussion">
+    <h2 class="gb-section-title" data-i18n="gb.section">Livre d’or</h2>
+    <form class="gb-form" id="gbForm">
+      <label class="gb-label" for="gbName" data-i18n="gb.name.label">Votre nom</label>
+      <input class="gb-input" id="gbName" name="name" maxlength="20" placeholder="怎么称呼你？" autocomplete="off">
+      <label class="gb-label" for="gbContent" data-i18n="gb.content.label">Message</label>
+      <textarea class="gb-textarea" id="gbContent" name="content" maxlength="500" placeholder="写下你想分享的话…（最长 500 字）"></textarea>
+      <p class="gb-hint" data-i18n="gb.hint">Chaque message sera lu et précieusement conservé</p>
+      <button class="gb-submit" type="submit" data-i18n="gb.submit">Envoyer</button>
+      <p class="gb-msg" id="gbMsg" role="status"></p>
+    </form>
+
+    <h3 class="gb-head"><span data-i18n="gb.count">Messages</span></h3>
+    <ul class="gb-list" id="gbList">
+      <li class="gb-loading" data-i18n="gb.loading">Chargement des messages…</li>
+    </ul>
+    <p class="gb-foot" data-i18n="gb.foot">Les messages sont publics—merci de ne pas inclure d’informations privées</p>
+  </section>
+
+    <footer>
+    <nav id="siteNavFoot" class="foot-nav"></nav>mustard<span class="seed">·</span>seed — <span data-i18n="footer.tag">Que chaque partage tombe comme une graine dans la terre</span> <a class="foot-privacy" href="../privacy.html" data-i18n="footer.privacy">隐私政策</a></footer>
+
+</div>
+
+<!-- ===== script 区 ===== -->
+<script>
+(function () {
+  document.querySelectorAll('.hint-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var list = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!list) return;
+      var open = list.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.classList.toggle('is-open', open);
+    });
+  });
+})();
+</script>
+
+  <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
+
+<script>/* ===== 语言字典（仅 fr） ===== */window.I18N = {"fr":{"title":"mustardseed · Discussion","card4.label":"À propos de la guérison","card4.q":"Selon vous, qui Dieu guérit-il, et pourquoi Dieu nous guérit-il ?","card4.prompt":"Chaque vie guérie est une preuve de l'amour de Dieu pour nous.","card4.hint1":"Pensez-vous que la guérison de Dieu a des « conditions » ?","card4.hint2":"Dieu nous guérit-il parce que nous le méritons, ou par sa miséricorde ?","card4.hint3":"En repensant aux guérisons que vous avez entendues ou vues, qu'est-ce qui vous touche le plus ?","card5.label":"À propos du témoignage","card5.q":"Après avoir été guéris, pourquoi devons-nous témoigner ? Lorsque vous entendez ou voyez quelqu'un être guéri par Dieu, que ressentez-vous et que pensez-vous ?","card5.prompt":"Le témoignage n'est pas notre mérite, mais la gloire rendue au Guérisseur.","card5.hint1":"En quoi témoigner nous aide-t-il nous-mêmes ?","card5.hint2":"Entendre les témoignages des autres a-t-il déjà ranimé votre foi ?","card5.hint3":"Si vous deviez partager à une personne ce que Dieu a fait dans votre vie, que diriez-vous ?","nav.guestbook":"Livre d'or","hero.title":"Aujourd’hui, échangeons","card0.label":"Pousser la barque","card0.q":"Lorsque vous êtes fatigué et faible, comme Pierre qui a peiné toute la nuit sans rien attraper, êtes-vous encore prêt à pousser la barque pour Jésus ? Dites-nous ce que vous ressentez.","card0.prompt":"Après une nuit sans rien prendre, Jésus vous invite encore une fois à pousser vers le large.","card0.hint1":"Avez-vous déjà connu un moment de peiner toute la nuit sans rien attraper ?","card0.hint2":"Lorsque Jésus vous demande de réessayer, êtes-vous prêt, ou hésitant ?","card0.hint3":"Que signifie pour vous pousser la barque pour Jésus ?","hero.sub":"Le temps de deux tasses de thé, parlez de ce qui vous rend heureux, et de vos rêves les plus audacieux","card1.label":"L’appel","card1.q":"Lorsque vous pensez à Jésus enseignant deux fois à Pierre et aux autres à pêcher, quand ces deux événements semblables se rejoignent dans votre mémoire, que ressentez-vous au fond de vous ?","card1.prompt":"Deux eaux profondes semblables sont l’appel immuable d’amour et de patience de Jésus.","card1.hint1":"Quels détails retenez-vous de ces deux événements de pêche ?","card1.hint2":"Dans ces deux événements, en quoi la réponse de Jésus à Pierre a-t-elle été différente ?","card1.hint3":"Lorsque les deux scènes se rejoignent dans votre cœur, à quoi pensez-vous en premier ?","card3.label":"Le bonheur","card3.q":"Partagez la chose la plus joyeuse<br>qui vous est arrivée récemment ?","card3.prompt":"Le bonheur se cache souvent dans les toutes petites choses ; dès que vous les dites à voix haute, elles brillent davantage.","card3.hint1":"Qu’est-ce qui vous a fait rire aux éclats pour la dernière fois ?","card3.hint2":"Où cela s’est-il passé, et qui était présent ?","card3.hint3":"Pour décrire ce sentiment en un seul mot, lequel choisiriez-vous ?","card2.label":"Les rêves","card2.q":"Si vous aviez de l’argent sans fin, que voudriez-vous faire avant tout ?","card2.prompt":"De l’argent qu’on ne dépense pas n’est qu’une suite de chiffres—avec quoi aimeriez-vous l’échanger ?","card2.hint1":"Sans penser à la réalité, quelle est la première chose que vous feriez ?","card2.hint2":"Pour qui le dépenseriez-vous, et de qui changeriez-vous la vie ?","card2.hint3":"Y a-t-il une chose dont vous rêvez depuis longtemps, sans jamais l’avoir faite ?","hint.toggle":"Pas d’idée ? Ouvrez quelques indices","rules.aria":"Façon de participer","rule1":"Écouter attentivement","rule2":"Ne pas interrompre","rule3":"Partager à tour de rôle","gb.err.blocked":"Votre message contient un contenu inapproprié, veuillez le modifier et réessayer","rd.voice.default":"Par défaut","rd.voice.aria":"Changer de voix","rd.rate":"Vitesse","rd.pitch":"Ton","rd.voice":"Voix","rd.title":"Lecture à voix haute","lang.label":"Langue","nav.aria":"Navigation du site","nav.home":"Accueil","nav.sermons":"Prédications","nav.discussion":"Discussion","nav.testimonies":"Témoignages","nav.prayer":"Mur de prière","nav.about":"À propos","contact.label":"Soutien & Coopération","footer.tag":"Que chaque partage tombe comme une graine dans la terre","ms.play":"Lire la musique de fond","ms.pause":"Mettre la musique en pause","gb.section":"Livre d’or","gb.name.label":"Votre nom","gb.name.placeholder":"Comment vous appeler ?","gb.content.label":"Message","gb.content.placeholder":"Partagez vos pensées… (500 caractères max)","gb.hint":"Chaque message sera lu et précieusement conservé","gb.submit":"Envoyer","gb.sending":"Envoi en cours…","gb.loading":"Chargement des messages…","gb.empty":"Pas encore de message—soyez le premier à partager","gb.count":"Messages","gb.err.name":"Veuillez saisir votre nom","gb.err.content":"Veuillez saisir votre message","gb.err.send":"Échec de l’envoi, veuillez réessayer","gb.err.load":"Échec du chargement, veuillez réessayer","gb.ok":"Message envoyé, merci pour votre partage","gb.foot":"Les messages sont publics—merci de ne pas inclure d’informations privées","q.tag":"Réflexion","chap.intro":"Intro","ms.list":"Choisir la musique","card6.label":"Ciel & Enfer","card6.q":"À partir de la parabole de l’enfant rebelle qui rejette l’amour de ses parents, comment pouvons-nous aider les gens à comprendre cette difficulté — « Dieu est aimant, mais ceux qui le rejettent tombent dans la souffrance/l’enfer » ?","card6.prompt":"Ce n’est pas Dieu qui fait souffrir ; rejeter l’amour laisse dans la douleur.","card6.hint1":"D’où vient la souffrance de l’enfant dans la parabole ?","card6.hint2":"Le fait de « ne pas retenir » des parents est-il de la cruauté, ou une autre forme d’amour ?","card6.hint3":"Connaissez-vous des personnes qui goûtent un avant-goût de l’enfer ?","card7.label":"Cinq mots","card7.q":"Après avoir compris les différences entre « la vallée de Hinnom », « le Tartare », « l’Hadès », « le Paradis » et « le lac de feu », quel nouvel éclairage cela apporte-t-il à votre compréhension du jugement après la mort et du salut de Dieu ?","card7.prompt":"Quand les mots deviennent clairs, on voit ce que Dieu veut sauver.","card7.hint1":"Lequel de ces mots vous a donné une nouvelle compréhension de l’« enfer » ?","card7.hint2":"Le Paradis et le lac de feu : quelles sont leurs destinations respectives ?","card7.hint3":"Avec ces différences claires, comment voyez-vous le jugement et le salut de Dieu ?","card8.label":"Le Royaume de Dieu","card8.q":"Jésus a dit : « le royaume de Dieu est au-dedans de vous ». Comment, dans la vie quotidienne ou dans l’amour mutuel de l’Église, pouvez-vous expérimenter réellement la paix de la souveraineté de Dieu et la réalité du royaume ?","card8.prompt":"Le royaume de Dieu n’est pas loin ; il règne dans votre cœur.","card8.hint1":"Quand ressentez-vous le plus fortement que Dieu règne ?","card8.hint2":"Quel moment d’amour mutuel à l’Église vous a semblé être le ciel ?","card8.hint3":"Où pouvez-vous rendre le royaume un peu plus réel aujourd’hui ?","card9.label":"Le pardon","card9.q":"Vivre dans la haine et l’amertume, c’est « goûter un avant-goût de l’enfer ». Face aux blessures relationnelles, comment faire le premier pas du pardon grâce à l’amour du Christ ?","card9.prompt":"Pardonner, ce n’est pas oublier ; c’est remettre le jugement à l’amour.","card9.hint1":"Êtes-vous prêt à dire d’abord à Dieu l’amertume de votre cœur ?","card9.hint2":"Comment le Christ nous a-t-il pardonnés le premier ?","card9.hint3":"Jusqu’où peut être petit le premier pas du pardon ?"}};</script>
+<script>window.RD_SEL = ['.topic-card h2', '.prompt'];</script><script src="../src/shared.js"></script>
+</body>
+</html>

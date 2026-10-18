@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16281C">
+<title>mustardseed · 交流討論</title>
+<meta name="description" content="株洲教會網站 mustardseed 交流討論：分享你最近最開心的一件事、如果錢用不完你最想做什麼，附破冰提示與參與規則。">
+<meta name="keywords" content="株洲教會,株洲家庭教會,株洲家教會,株洲家庭小組教會,株洲基督教,mustardseed,講道,見證">
+<meta property="og:title" content="mustardseed · 交流討論">
+<meta property="og:description" content="株洲教會網站 mustardseed 交流討論：分享你最近最開心的一件事、如果錢用不完你最想做什麼，附破冰提示與參與規則。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mustardseed">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=Noto+Sans+SC:wght@300;400;500&amp;family=Noto+Sans:wght@300;400;500&amp;family=Noto+Serif:wght@400;600;700&amp;family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media=\'all\'">
+<link rel="stylesheet" href="../src/site.css">
+
+  <link rel="canonical" href="https://www.zhuzhouchurch.com/zh-Hant/discussion.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.zhuzhouchurch.com/discussion.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.zhuzhouchurch.com/zh-Hant/discussion.html">
+  <link rel="alternate" hreflang="en" href="https://www.zhuzhouchurch.com/en/discussion.html">
+  <link rel="alternate" hreflang="fr" href="https://www.zhuzhouchurch.com/fr/discussion.html">
+  <link rel="alternate" hreflang="it" href="https://www.zhuzhouchurch.com/it/discussion.html">
+  <link rel="alternate" hreflang="ja" href="https://www.zhuzhouchurch.com/ja/discussion.html">
+  <link rel="alternate" hreflang="ko" href="https://www.zhuzhouchurch.com/ko/discussion.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.zhuzhouchurch.com/">
+</head>
+<body class="page-discussion no-chap">
+<div class="page">
+
+  <!-- ===== 顶部：文字 logo + 语言切换 ===== -->
+  <header class="site-header">
+    <span class="logo" id="siteLogo"></span>
+    <div class="lang-bar" id="langBar" role="group" data-i18n-aria="lang.label" aria-label="語言">
+      </div>
+  </header>
+
+  <!-- ===== Hero：嫩芽 + 主标题 ===== -->
+  <section class="hero">
+    <div class="sprout" aria-hidden="true"></div>
+    <h1 data-i18n="hero.title">今天，我們聊聊</h1>
+    <p class="hero-verse" data-i18n="hero.sub">兩杯茶的時間，說說開心的事，也聊聊大膽的夢</p>
+    <div class="hero-rule"></div>
+  </section>
+
+  <!-- ===== 支持与合作 ===== -->
+  <div class="contact-row">
+    <a class="contact-link" href="mailto:xiaodongdaniel@icloud.com" data-i18n-aria="contact.label" aria-label="支持與合作">
+      <span class="contact-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
+      <span data-i18n="contact.label">支持與合作</span>
+    </a>
+  <div class="ms-player" id="msPlayer">
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="播放背景音樂">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" id="siteNav" aria-label="站點導航"></nav>
+
+  <!-- ===== 朗读条：固定于主导航与正文之间（非悬浮） ===== -->
+  <div class="rd-strip" id="rdBar" role="region" data-i18n-aria="rd.control" aria-label="朗读控制">
+    <button class="rd-btn" id="rdBtn" data-i18n-aria="rd.play" aria-label="朗读全文">
+      <svg class="ic-play" viewBox="0 0 24 24"><path d="M7 4.6v14.8L20 12z" fill="currentColor"/></svg>
+      <svg class="ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-info">
+      <span class="rd-title" data-i18n="rd.title">朗讀全文</span>
+    </div>
+    <button class="rd-set" id="rdSet" data-i18n-aria="rd.set" aria-label="朗读设置" aria-expanded="false">
+      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-panel" id="rdSettings">
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.rate">語速</span>
+        <input class="rd-slider" id="rdRate" type="range" min="0.5" max="1.5" step="0.05" value="1.15" data-i18n-aria="rd.rate" aria-label="語速">
+        <span class="rd-val" id="rdRateVal">1.15</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.pitch">音調</span>
+        <input class="rd-slider" id="rdPitch" type="range" min="0.5" max="1.5" step="0.05" value="1" data-i18n-aria="rd.pitch" aria-label="音調">
+        <span class="rd-val" id="rdPitchVal">1.00</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.voice">聲音</span>
+        <button class="rd-voice" id="rdVoiceName" data-i18n="rd.voice.default" data-i18n-aria="rd.voice.aria" aria-label="切換語音">系統預設</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 十个讨论题（倒序：新题在前） ===== -->
+  <div class="topics">
+    <!-- Q1（新）：關於天堂地獄 -->
+    <section class="topic-card" aria-labelledby="q-heaven-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3c3.2 3.2 5.5 6 5.5 9.2A5.5 5.5 0 1 1 6.5 12.2C6.5 9 8.8 6.2 12 3z"/><path d="M12 3v14"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q1</span>
+        <span class="card-label" data-i18n="card6.label">關於天堂地獄</span>
+      </div>
+      <h2 id="q-heaven-title" data-i18n="card6.q">結合“叛逆孩子拒絕父母之愛”的比喻，我們該如何幫助大家理解“上帝是慈愛的，但拒絕神的人會陷入痛苦/地獄的光景”這一難題？</h2>
+      <p class="prompt" data-i18n="card6.prompt">不是上帝要人受苦，而是拒絕愛，讓人活在痛苦裏。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-heaven-hints">
+        <span data-i18n="hint.toggle">沒想好？點開幾顆小提示</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-heaven-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card6.hint1">比喻中，孩子的痛苦是從哪裏來的？</li>
+            <li data-i18n="card6.hint2">父母的“不攔阻”是殘忍，還是另一種愛？</li>
+            <li data-i18n="card6.hint3">我們身邊有沒有“淺嘗地獄滋味”的人？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2（新）：關於五個詞 -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q-words-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q2</span>
+        <span class="card-label" data-i18n="card7.label">關於五個詞</span>
+      </div>
+      <h2 id="q-words-title" data-i18n="card7.q">在瞭解“欣嫩子谷”、“塔塔魯斯”、“陰間/哈迪斯”、“樂園”與“火湖”的差異後，這對你認識死後的審判與神的拯救有什麼新澄清？</h2>
+      <p class="prompt" data-i18n="card7.prompt">把詞語看清楚，才知道神要救的是什麼。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-words-hints">
+        <span data-i18n="hint.toggle">沒想好？點開幾顆小提示</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-words-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card7.hint1">這幾個詞裏，哪個讓你對“地獄”有了新的認識？</li>
+            <li data-i18n="card7.hint2">樂園與火湖，分別指向誰的去處？</li>
+            <li data-i18n="card7.hint3">明白了這些差異，你如何看神的審判與拯救？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q3（新）：關於神的國 -->
+    <section class="topic-card" aria-labelledby="q-kingdom-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 8l3 4 4-6 4 6 3-4v9H5z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q3</span>
+        <span class="card-label" data-i18n="card8.label">關於神的國</span>
+      </div>
+      <h2 id="q-kingdom-title" data-i18n="card8.q">耶穌說“神的國就在你們心裏”，你如何在日常生活或教會彼此相愛中，真實體會神掌權的平安與天國的實際？</h2>
+      <p class="prompt" data-i18n="card8.prompt">神的國不在遠方，就在你心裏掌權。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-kingdom-hints">
+        <span data-i18n="hint.toggle">沒想好？點開幾顆小提示</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-kingdom-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card8.hint1">你什麼時候最強烈地感到“神在掌權”？</li>
+            <li data-i18n="card8.hint2">教會里哪一個彼此相愛的時刻，讓你覺得像天國？</li>
+            <li data-i18n="card8.hint3">今天，你能在哪裏先讓神的國真實一點？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q4（新）：關於饒恕 -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q-forgive-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 20c-5-3-8-6-8-9.5A4 4 0 0 1 12 7a4 4 0 0 1 8 3.5C20 14 17 17 12 20z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q4</span>
+        <span class="card-label" data-i18n="card9.label">關於饒恕</span>
+      </div>
+      <h2 id="q-forgive-title" data-i18n="card9.q">活在仇恨和苦毒中就像“淺嘗地獄的滋味”。面對關係中的傷害，我們如何靠着基督的愛邁出饒恕的第一步？</h2>
+      <p class="prompt" data-i18n="card9.prompt">饒恕不是忘記，而是把審判交給愛。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-forgive-hints">
+        <span data-i18n="hint.toggle">沒想好？點開幾顆小提示</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-forgive-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card9.hint1">你願意先向神說出心裏的苦毒嗎？</li>
+            <li data-i18n="card9.hint2">基督怎樣先饒恕了我們？</li>
+            <li data-i18n="card9.hint3">饒恕的第一步，可以小到什麼程度？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+      <!-- Q1（新）：关于医治 -->
+    <section class="topic-card" aria-labelledby="q6-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v11M12 14l-4-4M12 14l4-4M12 20c-3.5 0-6.5-2-6.5-5.5V11M18.5 11v3.5c0 3.5-3 5.5-6.5 5.5"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q5</span>
+        <span class="card-label" data-i18n="card4.label">關於醫治</span>
+      </div>
+      <h2 id="q6-title" data-i18n="card4.q">在你的心中，你覺得上帝會醫治什麼樣的人，你覺得上帝為什麼要醫治我們？</h2>
+      <p class="prompt" data-i18n="card4.prompt">每個被醫治的生命，都是神愛我們的證明。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q6-hints">
+        <span data-i18n="hint.toggle">沒想好？點開幾顆小提示</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q6-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card4.hint1">你覺得神醫治的對象有「條件」嗎？</li>
+            <li data-i18n="card4.hint2">神醫治我們，是因為我們配得，還是因為他憐憫？</li>
+            <li data-i18n="card4.hint3">回想你聽過或見過的醫治，最觸動你的是什麼？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2（新）：关于见证 -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q5-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l2.1 5.1L19.5 10l-5.4 1.9L12 17l-2.1-5.1L4.5 10l5.4-1.9z"/>
+        <path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q6</span>
+        <span class="card-label" data-i18n="card5.label">關於見證</span>
+      </div>
+      <h2 id="q5-title" data-i18n="card5.q">我們得醫治之後，為什麼要作見證？當你親耳聽到、親眼看見別人得到上帝醫治的時候，你會有怎樣的感受或者想法？</h2>
+      <p class="prompt" data-i18n="card5.prompt">見證不是我們的功勞，而是把榮耀歸給那一位醫治者。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q5-hints">
+        <span data-i18n="hint.toggle">沒想好？點開幾顆小提示</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q5-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card5.hint1">作見證對我們自己有甚麼幫助？</li>
+            <li data-i18n="card5.hint2">聽到別人的見證時，你的信心曾被點燃嗎？</li>
+            <li data-i18n="card5.hint3">如果讓你向一個人分享神在你身上的作為，你會說甚麼？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+      <!-- Q3（撑船） -->
+    <section class="topic-card" aria-labelledby="q4-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 21h18M12 5v11M12 16l-4.2-4.2M12 16l4.2-4.2"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q7</span>
+        <span class="card-label" data-i18n="card0.label">關於撐船</span>
+      </div>
+      <h2 id="q4-title" data-i18n="card0.q">當你處在又疲勞、又軟弱的境況中的時候，好像彼得整夜勞力去什麼都沒有捕獲，你還願意為耶穌撐船嗎？說說你的感受。</h2>
+      <p class="prompt" data-i18n="card0.prompt">整夜一無所獲之後，耶穌仍邀請你再一次把船開到水深之處。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q4-hints">
+        <span data-i18n="hint.toggle">沒想好？點開幾顆小提示</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q4-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card0.hint1">你經歷過「整夜勞苦卻一無所獲」的時刻嗎？</li>
+            <li data-i18n="card0.hint2">耶穌請你再試一次的時候，你心裡是願意，還是遲疑？</li>
+            <li data-i18n="card0.hint3">為耶穌撐船，對你來說意味著什麼？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q4（呼召） -->
+    <section class="topic-card" aria-labelledby="q0-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v13M12 21c-4.2 0-7-3-7-7.2M12 21c4.2 0 7-3 7-7.2M5 7h14"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q8</span>
+        <span class="card-label" data-i18n="card1.label">關於呼召</span>
+      </div>
+      <h2 id="q0-title" data-i18n="card1.q">當你想到耶穌兩次教導彼得他們捕魚的時候，在你記憶重合這兩次相似的事件的時候，你內心是怎樣感受？</h2>
+      <p class="prompt" data-i18n="card1.prompt">兩次相似的水深之處，是耶穌不變的愛與耐心的呼召。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q0-hints">
+        <span data-i18n="hint.toggle">沒想好？點開幾顆小提示</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q0-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card1.hint1">這兩次捕魚事件，你記得哪些細節？</li>
+            <li data-i18n="card1.hint2">兩次事件中，耶穌對彼得的回應有什麼不同？</li>
+            <li data-i18n="card1.hint3">當兩幅畫面在你心裡重合時，你最先想到的是什麼？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q5（梦想） -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q2-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l2.1 5.1L19.5 10l-5.4 1.9L12 17l-2.1-5.1L4.5 10l5.4-1.9z"/>
+        <path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q9</span>
+        <span class="card-label" data-i18n="card2.label">關於夢想</span>
+      </div>
+      <h2 id="q2-title" data-i18n="card2.q">如果你有用不完的錢，你最想做什麼事情？</h2>
+      <p class="prompt" data-i18n="card2.prompt">錢不用來花，就只是一串數字——你想用它，換什麼？</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q2-hints">
+        <span data-i18n="hint.toggle">沒想好？點開幾顆小提示</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q2-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card2.hint1">不用考慮現實，第一件想做的事是什麼？</li>
+            <li data-i18n="card2.hint2">你會為誰花這筆錢，讓誰的生活不一樣？</li>
+            <li data-i18n="card2.hint3">有沒有一件想了很久、卻一直沒去做的事？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  <!-- Q6（开心） -->
+    <section class="topic-card" aria-labelledby="q1-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+        <path d="M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/>
+        <circle cx="12" cy="12" r="3.4"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q10</span>
+        <span class="card-label" data-i18n="card3.label">關於開心</span>
+      </div>
+      <h2 id="q1-title" data-i18n-html="card3.q">分享你最近最快樂<br>的一件事？</h2>
+      <p class="prompt" data-i18n="card3.prompt">開心常常藏在很小的事裡，說出來的那一刻，它會變得更亮。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q1-hints">
+        <span data-i18n="hint.toggle">沒想好？點開幾顆小提示</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q1-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card3.hint1">最近一次讓你笑出聲，是因為什麼？</li>
+            <li data-i18n="card3.hint2">那件事發生在哪裡，當時有誰在場？</li>
+            <li data-i18n="card3.hint3">如果用一個詞形容那種感覺，你會選哪個？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== 参与方式 ===== -->
+  <section class="rules" data-i18n-aria="rules.aria" aria-label="參與方式">
+    <span class="rule" data-i18n="rule1">認真傾聽</span>
+    <span class="rule" data-i18n="rule2">不打斷</span>
+    <span class="rule" data-i18n="rule3">輪流分享</span>
+  </section>
+
+  <!-- ===== 留言区：直接留言 + 显示留言 ===== -->
+  <section class="gb-section" data-gb-page="discussion">
+    <h2 class="gb-section-title" data-i18n="gb.section">留言板</h2>
+    <form class="gb-form" id="gbForm">
+      <label class="gb-label" for="gbName" data-i18n="gb.name.label">暱稱</label>
+      <input class="gb-input" id="gbName" name="name" maxlength="20" placeholder="怎么称呼你？" autocomplete="off">
+      <label class="gb-label" for="gbContent" data-i18n="gb.content.label">留言</label>
+      <textarea class="gb-textarea" id="gbContent" name="content" maxlength="500" placeholder="写下你想分享的话…（最长 500 字）"></textarea>
+      <p class="gb-hint" data-i18n="gb.hint">每一則分享都會被認真閱讀與珍藏</p>
+      <button class="gb-submit" type="submit" data-i18n="gb.submit">發送留言</button>
+      <p class="gb-msg" id="gbMsg" role="status"></p>
+    </form>
+
+    <h3 class="gb-head"><span data-i18n="gb.count">留言</span></h3>
+    <ul class="gb-list" id="gbList">
+      <li class="gb-loading" data-i18n="gb.loading">留言載入中…</li>
+    </ul>
+    <p class="gb-foot" data-i18n="gb.foot">留言會公開顯示，請勿填寫隱私資訊</p>
+  </section>
+
+    <footer>
+    <nav id="siteNavFoot" class="foot-nav"></nav>mustard<span class="seed">·</span>seed — <span data-i18n="footer.tag">讓每個分享都像種子，落進土壤</span> <a class="foot-privacy" href="../privacy.html" data-i18n="footer.privacy">隐私政策</a></footer>
+
+</div>
+
+<!-- ===== script 区 ===== -->
+<script>
+(function () {
+  document.querySelectorAll('.hint-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var list = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!list) return;
+      var open = list.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.classList.toggle('is-open', open);
+    });
+  });
+})();
+</script>
+
+  <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
+
+<script>/* ===== 语言字典（仅 zh-Hant） ===== */window.I18N = {"zh-Hant":{"title":"mustardseed · 交流討論","card4.label":"關於醫治","card4.q":"在你的心中，你覺得上帝會醫治什麼樣的人，你覺得上帝為什麼要醫治我們？","card4.prompt":"每個被醫治的生命，都是神愛我們的證明。","card4.hint1":"你覺得神醫治的對象有「條件」嗎？","card4.hint2":"神醫治我們，是因為我們配得，還是因為他憐憫？","card4.hint3":"回想你聽過或見過的醫治，最觸動你的是什麼？","card5.label":"關於見證","card5.q":"我們得醫治之後，為什麼要作見證？當你親耳聽到、親眼看見別人得到上帝醫治的時候，你會有怎樣的感受或者想法？","card5.prompt":"見證不是我們的功勞，而是把榮耀歸給那一位醫治者。","card5.hint1":"作見證對我們自己有甚麼幫助？","card5.hint2":"聽到別人的見證時，你的信心曾被點燃嗎？","card5.hint3":"如果讓你向一個人分享神在你身上的作為，你會說甚麼？","hero.title":"今天，我們聊聊","card0.label":"關於撐船","card0.q":"當你處在又疲勞、又軟弱的境況中的時候，好像彼得整夜勞力去什麼都沒有捕獲，你還願意為耶穌撐船嗎？說說你的感受。","card0.prompt":"整夜一無所獲之後，耶穌仍邀請你再一次把船開到水深之處。","card0.hint1":"你經歷過「整夜勞苦卻一無所獲」的時刻嗎？","card0.hint2":"耶穌請你再試一次的時候，你心裡是願意，還是遲疑？","card0.hint3":"為耶穌撐船，對你來說意味著什麼？","hero.sub":"兩杯茶的時間，說說開心的事，也聊聊大膽的夢","card1.label":"關於呼召","card1.q":"當你想到耶穌兩次教導彼得他們捕魚的時候，在你記憶重合這兩次相似的事件的時候，你內心是怎樣感受？","card1.prompt":"兩次相似的水深之處，是耶穌不變的愛與耐心的呼召。","card1.hint1":"這兩次捕魚事件，你記得哪些細節？","card1.hint2":"兩次事件中，耶穌對彼得的回應有什麼不同？","card1.hint3":"當兩幅畫面在你心裡重合時，你最先想到的是什麼？","card3.label":"關於開心","card3.q":"分享你最近最快樂<br>的一件事？","card3.prompt":"開心常常藏在很小的事裡，說出來的那一刻，它會變得更亮。","card3.hint1":"最近一次讓你笑出聲，是因為什麼？","card3.hint2":"那件事發生在哪裡，當時有誰在場？","card3.hint3":"如果用一個詞形容那種感覺，你會選哪個？","card2.label":"關於夢想","card2.q":"如果你有用不完的錢，你最想做什麼事情？","card2.prompt":"錢不用來花，就只是一串數字——你想用它，換什麼？","card2.hint1":"不用考慮現實，第一件想做的事是什麼？","card2.hint2":"你會為誰花這筆錢，讓誰的生活不一樣？","card2.hint3":"有沒有一件想了很久、卻一直沒去做的事？","hint.toggle":"沒想好？點開幾顆小提示","rules.aria":"參與方式","rule1":"認真傾聽","rule2":"不打斷","rule3":"輪流分享","gb.err.blocked":"留言包含不當內容（色情/暴力/辱罵），請修改後重試","rd.voice.default":"系統預設","rd.voice.aria":"切換語音","rd.rate":"語速","rd.pitch":"音調","rd.voice":"聲音","rd.title":"朗讀全文","lang.label":"語言","nav.aria":"站點導航","nav.home":"主頁","nav.sermons":"講道","nav.discussion":"討論","nav.testimonies":"見證","nav.guestbook":"留言","nav.prayer":"禱告牆","nav.about":"關於","contact.label":"支持與合作","footer.tag":"讓每個分享都像種子，落進土壤","ms.play":"播放背景音樂","ms.pause":"暫停背景音樂","gb.section":"留言板","gb.name.label":"暱稱","gb.name.placeholder":"怎麼稱呼你？","gb.content.label":"留言","gb.content.placeholder":"寫下你想分享的話…（最長 500 字）","gb.hint":"每一則分享都會被認真閱讀與珍藏","gb.submit":"發送留言","gb.sending":"發送中…","gb.loading":"留言載入中…","gb.empty":"還沒有留言，來做第一個分享的人吧","gb.count":"留言","gb.err.name":"請填寫暱稱","gb.err.content":"請填寫留言內容","gb.err.send":"發送失敗，請稍後再試","gb.err.load":"留言載入失敗，請稍後再試","gb.ok":"留言已送出，感謝你的分享","gb.foot":"留言會公開顯示，請勿填寫隱私資訊","q.tag":"思考 · Question","chap.intro":"引言","ms.list":"選擇音樂","card6.label":"關於天堂地獄","card6.q":"結合“叛逆孩子拒絕父母之愛”的比喻，我們該如何幫助大家理解“上帝是慈愛的，但拒絕神的人會陷入痛苦/地獄的光景”這一難題？","card6.prompt":"不是上帝要人受苦，而是拒絕愛，讓人活在痛苦裏。","card6.hint1":"比喻中，孩子的痛苦是從哪裏來的？","card6.hint2":"父母的“不攔阻”是殘忍，還是另一種愛？","card6.hint3":"我們身邊有沒有“淺嘗地獄滋味”的人？","card7.label":"關於五個詞","card7.q":"在瞭解“欣嫩子谷”、“塔塔魯斯”、“陰間/哈迪斯”、“樂園”與“火湖”的差異後，這對你認識死後的審判與神的拯救有什麼新澄清？","card7.prompt":"把詞語看清楚，才知道神要救的是什麼。","card7.hint1":"這幾個詞裏，哪個讓你對“地獄”有了新的認識？","card7.hint2":"樂園與火湖，分別指向誰的去處？","card7.hint3":"明白了這些差異，你如何看神的審判與拯救？","card8.label":"關於神的國","card8.q":"耶穌說“神的國就在你們心裏”，你如何在日常生活或教會彼此相愛中，真實體會神掌權的平安與天國的實際？","card8.prompt":"神的國不在遠方，就在你心裏掌權。","card8.hint1":"你什麼時候最強烈地感到“神在掌權”？","card8.hint2":"教會里哪一個彼此相愛的時刻，讓你覺得像天國？","card8.hint3":"今天，你能在哪裏先讓神的國真實一點？","card9.label":"關於饒恕","card9.q":"活在仇恨和苦毒中就像“淺嘗地獄的滋味”。面對關係中的傷害，我們如何靠着基督的愛邁出饒恕的第一步？","card9.prompt":"饒恕不是忘記，而是把審判交給愛。","card9.hint1":"你願意先向神說出心裏的苦毒嗎？","card9.hint2":"基督怎樣先饒恕了我們？","card9.hint3":"饒恕的第一步，可以小到什麼程度？"}};</script>
+<script>window.RD_SEL = ['.topic-card h2', '.prompt'];</script><script src="../src/shared.js"></script>
+</body>
+</html>

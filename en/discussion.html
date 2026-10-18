@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16281C">
+<title>mustardseed · Discussion</title>
+<meta name="description" content="Zhuzhou church website (株洲教会) — mustardseed discussion: share your joys and respond to the discussion questions.">
+<meta name="keywords" content="株洲教会,株洲家庭教会,株洲家教会,株洲家庭小组教会,Zhuzhou church,Zhuzhou house church,Zhuzhou home church,Christian sermons,testimonies,mustardseed">
+<meta property="og:title" content="mustardseed · Discussion">
+<meta property="og:description" content="Zhuzhou church website (株洲教会) — mustardseed discussion: share your joys and respond to the discussion questions.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mustardseed">
+<meta property="og:locale" content="en_US">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=Noto+Sans+SC:wght@300;400;500&amp;family=Noto+Sans:wght@300;400;500&amp;family=Noto+Serif:wght@400;600;700&amp;family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media=\'all\'">
+<link rel="stylesheet" href="../src/site.css">
+
+  <link rel="canonical" href="https://www.zhuzhouchurch.com/en/discussion.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.zhuzhouchurch.com/discussion.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.zhuzhouchurch.com/zh-Hant/discussion.html">
+  <link rel="alternate" hreflang="en" href="https://www.zhuzhouchurch.com/en/discussion.html">
+  <link rel="alternate" hreflang="fr" href="https://www.zhuzhouchurch.com/fr/discussion.html">
+  <link rel="alternate" hreflang="it" href="https://www.zhuzhouchurch.com/it/discussion.html">
+  <link rel="alternate" hreflang="ja" href="https://www.zhuzhouchurch.com/ja/discussion.html">
+  <link rel="alternate" hreflang="ko" href="https://www.zhuzhouchurch.com/ko/discussion.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.zhuzhouchurch.com/">
+</head>
+<body class="page-discussion no-chap">
+<div class="page">
+
+  <!-- ===== 顶部：文字 logo + 语言切换 ===== -->
+  <header class="site-header">
+    <span class="logo" id="siteLogo"></span>
+    <div class="lang-bar" id="langBar" role="group" data-i18n-aria="lang.label" aria-label="Language">
+      </div>
+  </header>
+
+  <!-- ===== Hero：嫩芽 + 主标题 ===== -->
+  <section class="hero">
+    <div class="sprout" aria-hidden="true"></div>
+    <h1 data-i18n="hero.title">Let’s talk today</h1>
+    <p class="hero-verse" data-i18n="hero.sub">Over two cups of tea, share what makes you happy—and the bold dreams you dare to dream</p>
+    <div class="hero-rule"></div>
+  </section>
+
+  <!-- ===== 支持与合作 ===== -->
+  <div class="contact-row">
+    <a class="contact-link" href="mailto:xiaodongdaniel@icloud.com" data-i18n-aria="contact.label" aria-label="Support &amp; Cooperation">
+      <span class="contact-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
+      <span data-i18n="contact.label">Support &amp; Cooperation</span>
+    </a>
+  <div class="ms-player" id="msPlayer">
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="Play background music">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" id="siteNav" aria-label="Site navigation"></nav>
+
+  <!-- ===== 朗读条：固定于主导航与正文之间（非悬浮） ===== -->
+  <div class="rd-strip" id="rdBar" role="region" data-i18n-aria="rd.control" aria-label="朗读控制">
+    <button class="rd-btn" id="rdBtn" data-i18n-aria="rd.play" aria-label="朗读全文">
+      <svg class="ic-play" viewBox="0 0 24 24"><path d="M7 4.6v14.8L20 12z" fill="currentColor"/></svg>
+      <svg class="ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-info">
+      <span class="rd-title" data-i18n="rd.title">Read Aloud</span>
+    </div>
+    <button class="rd-set" id="rdSet" data-i18n-aria="rd.set" aria-label="朗读设置" aria-expanded="false">
+      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-panel" id="rdSettings">
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.rate">Speed</span>
+        <input class="rd-slider" id="rdRate" type="range" min="0.5" max="1.5" step="0.05" value="1.15" data-i18n-aria="rd.rate" aria-label="Speed">
+        <span class="rd-val" id="rdRateVal">1.15</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.pitch">Pitch</span>
+        <input class="rd-slider" id="rdPitch" type="range" min="0.5" max="1.5" step="0.05" value="1" data-i18n-aria="rd.pitch" aria-label="Pitch">
+        <span class="rd-val" id="rdPitchVal">1.00</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.voice">Voice</span>
+        <button class="rd-voice" id="rdVoiceName" data-i18n="rd.voice.default" data-i18n-aria="rd.voice.aria" aria-label="Switch voice">System default</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 十个讨论题（倒序：新题在前） ===== -->
+  <div class="topics">
+    <!-- Q1（新）：Heaven & Hell -->
+    <section class="topic-card" aria-labelledby="q-heaven-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3c3.2 3.2 5.5 6 5.5 9.2A5.5 5.5 0 1 1 6.5 12.2C6.5 9 8.8 6.2 12 3z"/><path d="M12 3v14"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q1</span>
+        <span class="card-label" data-i18n="card6.label">Heaven & Hell</span>
+      </div>
+      <h2 id="q-heaven-title" data-i18n="card6.q">Using the parable of the rebellious child who rejects his parents’ love, how can we help people understand this difficulty — “God is loving, yet those who reject Him fall into pain/hell”?</h2>
+      <p class="prompt" data-i18n="card6.prompt">It is not God who makes people suffer; rejecting love keeps them in pain.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-heaven-hints">
+        <span data-i18n="hint.toggle">Not sure? Open a few little hints</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-heaven-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card6.hint1">Where does the child’s pain come from in the parable?</li>
+            <li data-i18n="card6.hint2">Is the parents’ “not holding back” cruelty, or another kind of love?</li>
+            <li data-i18n="card6.hint3">Do we know people who are tasting a foretaste of hell?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2（新）：Five Words -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q-words-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q2</span>
+        <span class="card-label" data-i18n="card7.label">Five Words</span>
+      </div>
+      <h2 id="q-words-title" data-i18n="card7.q">After learning the differences between “the Valley of Hinnom,” “Tartarus,” “Hades,” “Paradise,” and “the Lake of Fire,” what new clarity does this bring to your understanding of judgment after death and God’s salvation?</h2>
+      <p class="prompt" data-i18n="card7.prompt">When you see the words clearly, you see what God came to save.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-words-hints">
+        <span data-i18n="hint.toggle">Not sure? Open a few little hints</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-words-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card7.hint1">Which of these words gave you a new understanding of “hell”?</li>
+            <li data-i18n="card7.hint2">Paradise and the Lake of Fire — whose destinations are they?</li>
+            <li data-i18n="card7.hint3">With these differences clear, how do you see God’s judgment and salvation?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q3（新）：The Kingdom of God -->
+    <section class="topic-card" aria-labelledby="q-kingdom-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 8l3 4 4-6 4 6 3-4v9H5z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q3</span>
+        <span class="card-label" data-i18n="card8.label">The Kingdom of God</span>
+      </div>
+      <h2 id="q-kingdom-title" data-i18n="card8.q">Jesus said, “the kingdom of God is within you.” How can you truly experience the peace of God’s reign and the reality of the kingdom in daily life or in loving one another in the church?</h2>
+      <p class="prompt" data-i18n="card8.prompt">The kingdom of God is not far away; it reigns within you.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-kingdom-hints">
+        <span data-i18n="hint.toggle">Not sure? Open a few little hints</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-kingdom-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card8.hint1">When do you most strongly feel that God is in control?</li>
+            <li data-i18n="card8.hint2">Which moment of loving one another in church felt like heaven to you?</li>
+            <li data-i18n="card8.hint3">Where can you make the kingdom a little more real today?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q4（新）：Forgiveness -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q-forgive-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 20c-5-3-8-6-8-9.5A4 4 0 0 1 12 7a4 4 0 0 1 8 3.5C20 14 17 17 12 20z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q4</span>
+        <span class="card-label" data-i18n="card9.label">Forgiveness</span>
+      </div>
+      <h2 id="q-forgive-title" data-i18n="card9.q">Living in hatred and bitterness is like “tasting a foretaste of hell.” Facing hurts in relationships, how can we take the first step of forgiveness through the love of Christ?</h2>
+      <p class="prompt" data-i18n="card9.prompt">Forgiveness is not forgetting; it is handing judgment over to love.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-forgive-hints">
+        <span data-i18n="hint.toggle">Not sure? Open a few little hints</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-forgive-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card9.hint1">Are you willing to tell God the bitterness in your heart first?</li>
+            <li data-i18n="card9.hint2">How did Christ forgive us first?</li>
+            <li data-i18n="card9.hint3">How small can the first step of forgiveness be?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+      <!-- Q1（新）：关于医治 -->
+    <section class="topic-card" aria-labelledby="q6-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v11M12 14l-4-4M12 14l4-4M12 20c-3.5 0-6.5-2-6.5-5.5V11M18.5 11v3.5c0 3.5-3 5.5-6.5 5.5"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q5</span>
+        <span class="card-label" data-i18n="card4.label">About Healing</span>
+      </div>
+      <h2 id="q6-title" data-i18n="card4.q">In your heart, who do you think God heals, and why do you think God heals us?</h2>
+      <p class="prompt" data-i18n="card4.prompt">Every healed life is proof of God's love for us.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q6-hints">
+        <span data-i18n="hint.toggle">Not sure? Tap for a few hints</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q6-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card4.hint1">Do you think God's healing has "conditions"?</li>
+            <li data-i18n="card4.hint2">Does God heal us because we deserve it, or because of His mercy?</li>
+            <li data-i18n="card4.hint3">As you recall healings you have heard or seen, what touches you most?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2（新）：关于见证 -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q5-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l2.1 5.1L19.5 10l-5.4 1.9L12 17l-2.1-5.1L4.5 10l5.4-1.9z"/>
+        <path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q6</span>
+        <span class="card-label" data-i18n="card5.label">About Testimony</span>
+      </div>
+      <h2 id="q5-title" data-i18n="card5.q">After we are healed, why should we give testimony? When you hear or see someone else being healed by God, how do you feel, and what do you think?</h2>
+      <p class="prompt" data-i18n="card5.prompt">Testimony is not our own credit, but giving glory to the Healer.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q5-hints">
+        <span data-i18n="hint.toggle">Not sure? Tap for a few hints</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q5-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card5.hint1">How does giving testimony help us ourselves?</li>
+            <li data-i18n="card5.hint2">Has hearing others' testimonies ever ignited your faith?</li>
+            <li data-i18n="card5.hint3">If you were to share with one person what God has done in your life, what would you say?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+      <!-- Q3（撑船） -->
+    <section class="topic-card" aria-labelledby="q4-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 21h18M12 5v11M12 16l-4.2-4.2M12 16l4.2-4.2"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q7</span>
+        <span class="card-label" data-i18n="card0.label">About pushing the boat out</span>
+      </div>
+      <h2 id="q4-title" data-i18n="card0.q">When you are weary and weak, like Peter who toiled all night and caught nothing, are you still willing to push the boat out for Jesus? Tell us how you feel.</h2>
+      <p class="prompt" data-i18n="card0.prompt">After a night of catching nothing, Jesus still invites you to push out once more into the deep.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q4-hints">
+        <span data-i18n="hint.toggle">Not sure? Tap for a few hints</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q4-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card0.hint1">Have you ever had a time of toiling all night and catching nothing?</li>
+            <li data-i18n="card0.hint2">When Jesus asks you to try again, are you willing, or hesitant?</li>
+            <li data-i18n="card0.hint3">What does pushing the boat out for Jesus mean to you?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q4（呼召） -->
+    <section class="topic-card" aria-labelledby="q0-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v13M12 21c-4.2 0-7-3-7-7.2M12 21c4.2 0 7-3 7-7.2M5 7h14"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q8</span>
+        <span class="card-label" data-i18n="card1.label">About the call</span>
+      </div>
+      <h2 id="q0-title" data-i18n="card1.q">When you think of Jesus teaching Peter and the others to fish twice, when these two similar events overlap in your memory, how do you feel inside?</h2>
+      <p class="prompt" data-i18n="card1.prompt">Two similar deep waters are Jesus’ unchanging call of love and patience.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q0-hints">
+        <span data-i18n="hint.toggle">Not sure? Tap for a few hints</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q0-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card1.hint1">What details do you remember about these two fishing events?</li>
+            <li data-i18n="card1.hint2">In these two events, how was Jesus’ response to Peter different?</li>
+            <li data-i18n="card1.hint3">When the two scenes overlap in your heart, what comes to mind first?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q5（梦想） -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q2-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l2.1 5.1L19.5 10l-5.4 1.9L12 17l-2.1-5.1L4.5 10l5.4-1.9z"/>
+        <path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q9</span>
+        <span class="card-label" data-i18n="card2.label">About dreams</span>
+      </div>
+      <h2 id="q2-title" data-i18n="card2.q">If you had more money than you could ever spend, what would you most want to do?</h2>
+      <p class="prompt" data-i18n="card2.prompt">Money that isn’t spent is just a string of digits—what would you trade it for?</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q2-hints">
+        <span data-i18n="hint.toggle">Not sure? Tap for a few hints</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q2-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card2.hint1">Forget reality for a moment—what’s the first thing you’d do?</li>
+            <li data-i18n="card2.hint2">On whom would you spend it, to change whose life?</li>
+            <li data-i18n="card2.hint3">Is there something you’ve long dreamed of but never got around to doing?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  <!-- Q6（开心） -->
+    <section class="topic-card" aria-labelledby="q1-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+        <path d="M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/>
+        <circle cx="12" cy="12" r="3.4"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q10</span>
+        <span class="card-label" data-i18n="card3.label">About happiness</span>
+      </div>
+      <h2 id="q1-title" data-i18n-html="card3.q">Share the happiest thing<br>that happened to you lately?</h2>
+      <p class="prompt" data-i18n="card3.prompt">Happiness often hides in the smallest things; the moment you say it out loud, it shines even brighter.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q1-hints">
+        <span data-i18n="hint.toggle">Not sure? Tap for a few hints</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q1-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card3.hint1">What was the last thing that made you laugh out loud?</li>
+            <li data-i18n="card3.hint2">Where did it happen, and who was there?</li>
+            <li data-i18n="card3.hint3">If you had to describe that feeling in one word, which would you choose?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== 参与方式 ===== -->
+  <section class="rules" data-i18n-aria="rules.aria" aria-label="How to participate">
+    <span class="rule" data-i18n="rule1">Listen carefully</span>
+    <span class="rule" data-i18n="rule2">Don’t interrupt</span>
+    <span class="rule" data-i18n="rule3">Take turns sharing</span>
+  </section>
+
+  <!-- ===== 留言区：直接留言 + 显示留言 ===== -->
+  <section class="gb-section" data-gb-page="discussion">
+    <h2 class="gb-section-title" data-i18n="gb.section">Guestbook</h2>
+    <form class="gb-form" id="gbForm">
+      <label class="gb-label" for="gbName" data-i18n="gb.name.label">Your name</label>
+      <input class="gb-input" id="gbName" name="name" maxlength="20" placeholder="怎么称呼你？" autocomplete="off">
+      <label class="gb-label" for="gbContent" data-i18n="gb.content.label">Message</label>
+      <textarea class="gb-textarea" id="gbContent" name="content" maxlength="500" placeholder="写下你想分享的话…（最长 500 字）"></textarea>
+      <p class="gb-hint" data-i18n="gb.hint">Every message will be read and treasured</p>
+      <button class="gb-submit" type="submit" data-i18n="gb.submit">Send message</button>
+      <p class="gb-msg" id="gbMsg" role="status"></p>
+    </form>
+
+    <h3 class="gb-head"><span data-i18n="gb.count">Messages</span></h3>
+    <ul class="gb-list" id="gbList">
+      <li class="gb-loading" data-i18n="gb.loading">Loading messages…</li>
+    </ul>
+    <p class="gb-foot" data-i18n="gb.foot">Messages are public—please do not include private information</p>
+  </section>
+
+    <footer>
+    <nav id="siteNavFoot" class="foot-nav"></nav>mustard<span class="seed">·</span>seed — <span data-i18n="footer.tag">May every sharing fall like a seed into the soil</span> <a class="foot-privacy" href="../privacy.html" data-i18n="footer.privacy">隐私政策</a></footer>
+
+</div>
+
+<!-- ===== script 区 ===== -->
+<script>
+(function () {
+  document.querySelectorAll('.hint-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var list = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!list) return;
+      var open = list.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.classList.toggle('is-open', open);
+    });
+  });
+})();
+</script>
+
+  <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
+
+<script>/* ===== 语言字典（仅 en） ===== */window.I18N = {"en":{"title":"mustardseed · Discussion","card4.label":"About Healing","card4.q":"In your heart, who do you think God heals, and why do you think God heals us?","card4.prompt":"Every healed life is proof of God's love for us.","card4.hint1":"Do you think God's healing has \"conditions\"?","card4.hint2":"Does God heal us because we deserve it, or because of His mercy?","card4.hint3":"As you recall healings you have heard or seen, what touches you most?","card5.label":"About Testimony","card5.q":"After we are healed, why should we give testimony? When you hear or see someone else being healed by God, how do you feel, and what do you think?","card5.prompt":"Testimony is not our own credit, but giving glory to the Healer.","card5.hint1":"How does giving testimony help us ourselves?","card5.hint2":"Has hearing others' testimonies ever ignited your faith?","card5.hint3":"If you were to share with one person what God has done in your life, what would you say?","hero.title":"Let’s talk today","card0.label":"About pushing the boat out","card0.q":"When you are weary and weak, like Peter who toiled all night and caught nothing, are you still willing to push the boat out for Jesus? Tell us how you feel.","card0.prompt":"After a night of catching nothing, Jesus still invites you to push out once more into the deep.","card0.hint1":"Have you ever had a time of toiling all night and catching nothing?","card0.hint2":"When Jesus asks you to try again, are you willing, or hesitant?","card0.hint3":"What does pushing the boat out for Jesus mean to you?","hero.sub":"Over two cups of tea, share what makes you happy—and the bold dreams you dare to dream","card1.label":"About the call","card1.q":"When you think of Jesus teaching Peter and the others to fish twice, when these two similar events overlap in your memory, how do you feel inside?","card1.prompt":"Two similar deep waters are Jesus’ unchanging call of love and patience.","card1.hint1":"What details do you remember about these two fishing events?","card1.hint2":"In these two events, how was Jesus’ response to Peter different?","card1.hint3":"When the two scenes overlap in your heart, what comes to mind first?","card3.label":"About happiness","card3.q":"Share the happiest thing<br>that happened to you lately?","card3.prompt":"Happiness often hides in the smallest things; the moment you say it out loud, it shines even brighter.","card3.hint1":"What was the last thing that made you laugh out loud?","card3.hint2":"Where did it happen, and who was there?","card3.hint3":"If you had to describe that feeling in one word, which would you choose?","card2.label":"About dreams","card2.q":"If you had more money than you could ever spend, what would you most want to do?","card2.prompt":"Money that isn’t spent is just a string of digits—what would you trade it for?","card2.hint1":"Forget reality for a moment—what’s the first thing you’d do?","card2.hint2":"On whom would you spend it, to change whose life?","card2.hint3":"Is there something you’ve long dreamed of but never got around to doing?","hint.toggle":"Not sure? Tap for a few hints","rules.aria":"How to participate","rule1":"Listen carefully","rule2":"Don’t interrupt","rule3":"Take turns sharing","gb.err.blocked":"Your message contains inappropriate content, please revise and try again","rd.voice.default":"System default","rd.voice.aria":"Switch voice","rd.rate":"Speed","rd.pitch":"Pitch","rd.voice":"Voice","rd.title":"Read Aloud","lang.label":"Language","nav.aria":"Site navigation","nav.home":"Home","nav.sermons":"Sermons","nav.discussion":"Discussion","nav.testimonies":"Testimonies","nav.guestbook":"Guestbook","nav.prayer":"Prayer Wall","nav.about":"About Us","contact.label":"Support & Cooperation","footer.tag":"May every sharing fall like a seed into the soil","ms.play":"Play background music","ms.pause":"Pause background music","gb.section":"Guestbook","gb.name.label":"Your name","gb.name.placeholder":"What should we call you?","gb.content.label":"Message","gb.content.placeholder":"Share your thoughts… (max 500 characters)","gb.hint":"Every message will be read and treasured","gb.submit":"Send message","gb.sending":"Sending…","gb.loading":"Loading messages…","gb.empty":"No messages yet—be the first to share","gb.count":"Messages","gb.err.name":"Please enter your name","gb.err.content":"Please enter your message","gb.err.send":"Failed to send, please try again","gb.err.load":"Failed to load, please try again","gb.ok":"Message sent, thank you for sharing","gb.foot":"Messages are public—please do not include private information","q.tag":"Reflection","chap.intro":"Intro","ms.list":"Choose music","card6.label":"Heaven & Hell","card6.q":"Using the parable of the rebellious child who rejects his parents’ love, how can we help people understand this difficulty — “God is loving, yet those who reject Him fall into pain/hell”?","card6.prompt":"It is not God who makes people suffer; rejecting love keeps them in pain.","card6.hint1":"Where does the child’s pain come from in the parable?","card6.hint2":"Is the parents’ “not holding back” cruelty, or another kind of love?","card6.hint3":"Do we know people who are tasting a foretaste of hell?","card7.label":"Five Words","card7.q":"After learning the differences between “the Valley of Hinnom,” “Tartarus,” “Hades,” “Paradise,” and “the Lake of Fire,” what new clarity does this bring to your understanding of judgment after death and God’s salvation?","card7.prompt":"When you see the words clearly, you see what God came to save.","card7.hint1":"Which of these words gave you a new understanding of “hell”?","card7.hint2":"Paradise and the Lake of Fire — whose destinations are they?","card7.hint3":"With these differences clear, how do you see God’s judgment and salvation?","card8.label":"The Kingdom of God","card8.q":"Jesus said, “the kingdom of God is within you.” How can you truly experience the peace of God’s reign and the reality of the kingdom in daily life or in loving one another in the church?","card8.prompt":"The kingdom of God is not far away; it reigns within you.","card8.hint1":"When do you most strongly feel that God is in control?","card8.hint2":"Which moment of loving one another in church felt like heaven to you?","card8.hint3":"Where can you make the kingdom a little more real today?","card9.label":"Forgiveness","card9.q":"Living in hatred and bitterness is like “tasting a foretaste of hell.” Facing hurts in relationships, how can we take the first step of forgiveness through the love of Christ?","card9.prompt":"Forgiveness is not forgetting; it is handing judgment over to love.","card9.hint1":"Are you willing to tell God the bitterness in your heart first?","card9.hint2":"How did Christ forgive us first?","card9.hint3":"How small can the first step of forgiveness be?"}};</script>
+<script>window.RD_SEL = ['.topic-card h2', '.prompt'];</script><script src="../src/shared.js"></script>
+</body>
+</html>

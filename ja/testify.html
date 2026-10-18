@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16281C">
+<title>証しを分かち合う · mustardseed</title>
+<meta name="description" content="株洲教会ウェブサイト mustardseed 証しを分かち合う：あなたの人生に神がなさったことを書き留め、兄弟姉妹と分かち合いましょう。">
+<meta name="keywords" content="株洲教会,株洲家庭教会,株洲家教会,株洲家庭小组教会,株洲基督教,mustardseed,见证,做见证">
+<meta property="og:title" content="証しを分かち合う · mustardseed">
+<meta property="og:description" content="株洲教会ウェブサイト mustardseed 証しを分かち合う：あなたの人生に神がなさったことを書き留め、兄弟姉妹と分かち合いましょう。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mustardseed">
+<meta property="og:locale" content="ja_JP">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=Noto+Sans+SC:wght@300;400;500&amp;family=Noto+Sans:wght@300;400;500&amp;family=Noto+Serif:wght@400;600;700&amp;family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../src/site.css">
+
+  <link rel="canonical" href="https://www.zhuzhouchurch.com/ja/testify.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.zhuzhouchurch.com/testify.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.zhuzhouchurch.com/zh-Hant/testify.html">
+  <link rel="alternate" hreflang="en" href="https://www.zhuzhouchurch.com/en/testify.html">
+  <link rel="alternate" hreflang="fr" href="https://www.zhuzhouchurch.com/fr/testify.html">
+  <link rel="alternate" hreflang="it" href="https://www.zhuzhouchurch.com/it/testify.html">
+  <link rel="alternate" hreflang="ja" href="https://www.zhuzhouchurch.com/ja/testify.html">
+  <link rel="alternate" hreflang="ko" href="https://www.zhuzhouchurch.com/ko/testify.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.zhuzhouchurch.com/">
+</head>
+<body class="page-testify">
+<div class="page">
+
+  <!-- ===== 顶部：文字 logo + 语言切换 ===== -->
+  <header class="site-header">
+    <span class="logo" id="siteLogo"></span>
+    <div class="lang-bar" id="langBar" role="group" data-i18n-aria="lang.label" aria-label="语言">
+      </div>
+  </header>
+
+  <!-- ===== Hero：嫩芽 + 主标题 ===== -->
+  <section class="hero">
+    <div class="sprout" aria-hidden="true"></div>
+    <h1 data-i18n="hero.title">証しを分かち合う</h1>
+    <p class="hero-verse" data-i18n="hero.sub">あなたの人生に神がなさったことを、ぜひ分かち合ってください</p>
+    <div class="hero-rule"></div>
+  </section>
+
+  <!-- ===== 支持与合作 ===== -->
+  <div class="contact-row">
+    <a class="contact-link" href="mailto:xiaodongdaniel@icloud.com" data-i18n-aria="contact.label" aria-label="支持与合作">
+      <span class="contact-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
+      <span data-i18n="contact.label">支持与合作</span>
+    </a>
+  <div class="ms-player" id="msPlayer">
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="播放背景音乐">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" aria-label="站点导航" id="siteNav"></nav>
+
+  <!-- ===== 朗读条：固定于主导航与正文之间（非悬浮） ===== -->
+  <div class="rd-strip" id="rdBar" role="region" data-i18n-aria="rd.control" aria-label="朗读控制">
+    <button class="rd-btn" id="rdBtn" data-i18n-aria="rd.play" aria-label="朗读全文">
+      <svg class="ic-play" viewBox="0 0 24 24"><path d="M7 4.6v14.8L20 12z" fill="currentColor"/></svg>
+      <svg class="ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-info">
+      <span class="rd-title" data-i18n="rd.title">朗读全文</span>
+    </div>
+    <button class="rd-set" id="rdSet" data-i18n-aria="rd.set" aria-label="朗读设置" aria-expanded="false">
+      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-panel" id="rdSettings">
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.rate">语速</span>
+        <input class="rd-slider" id="rdRate" type="range" min="0.5" max="1.5" step="0.05" value="1.15" data-i18n-aria="rd.rate" aria-label="语速">
+        <span class="rd-val" id="rdRateVal">1.15</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.pitch">音调</span>
+        <input class="rd-slider" id="rdPitch" type="range" min="0.5" max="1.5" step="0.05" value="1" data-i18n-aria="rd.pitch" aria-label="音调">
+        <span class="rd-val" id="rdPitchVal">1.00</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.voice">语音</span>
+        <button class="rd-voice" id="rdVoiceName" data-i18n="rd.voice.default" data-i18n-aria="rd.voice.aria" aria-label="切换语音">系统默认</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 见证引导 ===== -->
+  <main>
+    <p class="para" data-i18n="p.lead">神の癒し、備え、導きを経験されたことがありますか。あなたの証しを書き留めて、多くの人が神の真実を見て、励ましと希望を得られますように。</p>
+    <p class="para" data-i18n="p.lead2">証しは自分を誇ることではなく、イエスを高めることです——「イエスの証しを持つ者には預言の霊があるからです」（黙示録19:10）。あなたの一つの物語が、誰かの人生の種となるかもしれません。</p>
+  </main>
+
+  <!-- ===== 留言区：与见证分享页共用 testimonies 标签 ===== -->
+  <section class="gb-section" data-gb-page="testimonies">
+    <h2 class="gb-section-title" data-i18n="gb.section">証しをシェア</h2>
+    <form class="gb-form" id="gbForm">
+      <label class="gb-label" for="gbName" data-i18n="gb.name.label">ニックネーム</label>
+      <input class="gb-input" id="gbName" name="name" maxlength="20" placeholder="お名前は？" autocomplete="off">
+      <label class="gb-label" for="gbContent" data-i18n="gb.content.label">証し</label>
+      <textarea class="gb-textarea" id="gbContent" name="content" maxlength="500" placeholder="証しを書いてください…（最大500字）"></textarea>
+      <p class="gb-hint" data-i18n="gb.hint">すべての分かち合いを大切に読ませていただきます</p>
+      <button class="gb-submit" type="submit" data-i18n="gb.submit">証しを送る</button>
+      <p class="gb-msg" id="gbMsg" role="status"></p>
+    </form>
+
+    <h3 class="gb-head"><span data-i18n="gb.count">証し</span></h3>
+    <ul class="gb-list" id="gbList">
+      <li class="gb-loading" data-i18n="gb.loading">読み込み中…</li>
+    </ul>
+    <p class="gb-foot" data-i18n="gb.foot">公開されますので、個人情報は書かないでください</p>
+  </section>
+
+    <footer>
+    <nav id="siteNavFoot" class="foot-nav"></nav>mustard<span class="seed">·</span>seed — <span data-i18n="footer.tag">让每个分享都像种子，落进土壤</span> <a class="foot-privacy" href="../privacy.html" data-i18n="footer.privacy">隐私政策</a></footer>
+  </div>
+
+  <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
+
+<script>/* ===== 语言字典（仅 zh-CN；简体中文为根目录） ===== */window.I18N = {"title": "証しを分かち合う · mustardseed", "hero.title": "証しを分かち合う", "hero.sub": "あなたの人生に神がなさったことを、ぜひ分かち合ってください", "p.lead": "神の癒し、備え、導きを経験されたことがありますか。あなたの証しを書き留めて、多くの人が神の真実を見て、励ましと希望を得られますように。", "p.lead2": "証しは自分を誇ることではなく、イエスを高めることです——「イエスの証しを持つ者には預言の霊があるからです」（黙示録19:10）。あなたの一つの物語が、誰かの人生の種となるかもしれません。", "gb.section": "証しをシェア", "gb.name.label": "ニックネーム", "gb.content.label": "証し", "gb.hint": "すべての分かち合いを大切に読ませていただきます", "gb.submit": "証しを送る", "gb.count": "証し", "gb.loading": "読み込み中…", "gb.foot": "公開されますので、個人情報は書かないでください", "rd.control": "読み上げコントロール", "rd.play": "全文読み上げ", "rd.stop": "停止", "rd.set": "読み上げ設定", "rd.rate": "速度", "rd.pitch": "音程", "rd.voice": "音声", "rd.default": "システム標準", "rd.switch": "音声切替", "gb.err.blocked": "メッセージに不適切な内容（ポルノ/暴力/虐待）が含まれています。修正して再度お試しください。"};</script>
+<script src="../src/i18n.js"></script>
+<script>window.RD_SEL = ['.para'];</script>
+<script src="../src/shared.js"></script>
+</body>
+</html>
