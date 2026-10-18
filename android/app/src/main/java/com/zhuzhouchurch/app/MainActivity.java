@@ -12,10 +12,10 @@ public class MainActivity extends BridgeActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        // 联网时加载线上最新网站，离线时使用内置资源（离线优先混合方案）
+        // 联网时加载线上最新网站，离线时使用内置资源（先连线上，无网络再调用本地）
         if (isOnline()) {
             CapConfig.Builder configBuilder = new CapConfig.Builder(getApplicationContext());
-            configBuilder.setServerUrl("https://www.zhuzhouchurch.com");
+            configBuilder.setServerUrl("https://zhuzhouchurch.com");
             this.config = configBuilder.create();
         }
         super.onCreate(savedInstanceState);
