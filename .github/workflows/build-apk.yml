@@ -44,3 +44,15 @@ jobs:
         with:
           name: mustardseed-apk
           path: android/app/build/outputs/apk/release/app-release.apk
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: android/app/build/outputs/apk/release/app-release.apk
+          tag_name: v${{ github.run_number }}
+          name: 芥菜种教会 v${{ github.run_number }}
+          body: |
+            自动打包的安卓安装包（Release 签名版）
+            - 包名：com.zhuzhouchurch.app
+            - 内置完整多语言网站，支持离线浏览
+          generate_release_notes: true
