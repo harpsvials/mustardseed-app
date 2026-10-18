@@ -157,8 +157,17 @@
 (function(){
   function rdMain(){
   var SEL = window.RD_SEL || ['.para'];
-  if(!('speechSynthesis' in window)) return;
+  /* 原生 TTS 桥（Android App 内）：WebView 的 speechSynthesis 不可用，改用原生朗读 */
+  var nativeTTS = !!(window.AndroidTTS && window.AndroidTTS.isReady());
+  if(!('speechSynthesis' in window) && !nativeTTS) return;
   var syn = window.speechSynthesis;
+  var curUttId = '';
+  if(nativeTTS){
+    window.__ttsCb = function(ev, id){
+      if(id && id !== curUttId) return;
+      if((ev === 'done' || ev === 'error') && state === 'playing'){ speakFrom(idx + 1); }
+    };
+  }
   var btn = document.getElementById('rdBtn');
   if(!btn) return;
   var segs = [], total = 0, idx = -1, playing = false;
@@ -207,6 +216,7 @@
   }
   function langPrefix(){ return (window.__lang.get() || 'zh-CN').split('-')[0]; }
   function pickVoices(){
+    if(nativeTTS){ if(voiceName) voiceName.textContent = (window.I18N[window.__lang.get()] || window.I18N['zh-CN'])['rd.voice.default']; return; }
     var prefix = langPrefix();
     var vs = syn.getVoices();
     var m = [];
@@ -227,7 +237,7 @@
   }
   if(voiceName){
     voiceName.addEventListener('click', function(){
-      if(!curVoices.length) return;
+      if(nativeTTS || !curVoices.length) return;
       voiceIdx = (voiceIdx + 1) % curVoices.length;
       voiceName.textContent = curVoices[voiceIdx].name;
       restartIfPlaying();
@@ -246,7 +256,8 @@
     else { icPlay.style.display = ''; icPause.style.display = 'none'; }
   }
   function stopAll(){
-    try{ syn.cancel(); }catch(e){}
+    if(nativeTTS){ try{ window.AndroidTTS.stop(); }catch(e){} }
+    else { try{ syn.cancel(); }catch(e){} }
     lastCancel = Date.now();
     state = 'idle';
     setBtnUI();
@@ -258,6 +269,15 @@
       return;
     }
     idx = i; mark(i);
+    if(nativeTTS){
+      state = 'playing';
+      setBtnUI();
+      var rate = rateEl ? (+rateEl.value) : 1.15;
+      var pitch = pitchEl ? (+pitchEl.value) : 1;
+      curUttId = 'u' + Date.now();
+      try{ window.AndroidTTS.speak(segs[i].textContent, LANG_BCP[window.__lang.get()] || 'zh-CN', rate, pitch); }catch(e){}
+      return;
+    }
     var u = new SpeechSynthesisUtterance(segs[i].textContent);
     var v = curVoice(); if(v) u.voice = v;
     u.lang = LANG_BCP[window.__lang.get()] || 'zh-CN';
@@ -276,6 +296,7 @@
       if(idx === -1) idx = 0;
       speakFrom(idx);
     } else if(state === 'playing'){
+      if(nativeTTS){ stopAll(); clearHL(); idx = -1; return; }   /* 原生 TTS 无暂停，播放中点击=停止 */
       try{ syn.pause(); }catch(e){ stopAll(); }
       state = 'paused';
       setBtnUI();
@@ -301,6 +322,47 @@
   }
   if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', rdMain); }
   else { rdMain(); }
+})();
+
+/* ===== 5.1 支持与合作：App 内 mailto 不可用 → 点击复制邮箱 ===== */
+(function(){
+  var contact = document.querySelector('.contact-link');
+  if(!contact) return;
+  contact.addEventListener('click', function(e){
+    /* 浏览器保留 mailto 原生行为；仅原生 App（WebView）内改为复制邮箱 */
+    if(!(window.Capacitor && window.Capacitor.isNativePlatform())) return;
+    e.preventDefault();
+    var mail = (contact.getAttribute('href') || '').replace(/^mailto:/i, '');
+    if(!mail) return;
+    var done = false;
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = mail;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      done = document.execCommand('copy');
+      document.body.removeChild(ta);
+    }catch(err){ done = false; }
+    if(!done && navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(mail).catch(function(){});
+      done = true;
+    }
+    var d = (window.I18N && window.__lang && window.I18N[window.__lang.get()]) || (window.I18N && window.I18N['zh-CN']) || {};
+    var msg = (d['contact.copied'] || '邮箱已复制') + '：' + mail;
+    var t = document.createElement('div');
+    t.className = 'rd-toast';
+    t.setAttribute('role', 'status');
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(function(){ t.classList.add('show'); }, 10);
+    setTimeout(function(){
+      t.classList.remove('show');
+      setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 400);
+    }, 2600);
+  });
 })();
 
 /* ===== 6. 背景音乐播放器：悬浮播放列表（多曲目，点选任意曲目均单曲循环） ===== */

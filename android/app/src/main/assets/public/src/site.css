@@ -420,3 +420,13 @@ body.page-prayer #pwList .gb-empty,body.page-prayer #pwList .gb-loading{grid-col
   body.page-prayer #pwList{grid-template-columns:1fr;}
 }
 
+
+/* ===== 支持与合作：复制邮箱 toast ===== */
+.rd-toast{
+  position:fixed;left:50%;bottom:110px;transform:translateX(-50%) translateY(12px);
+  background:rgba(24,28,18,.92);color:#f7e8bd;font-size:14px;line-height:1.5;
+  padding:10px 18px;border:1px solid rgba(247,232,189,.35);border-radius:10px;
+  box-shadow:0 6px 24px rgba(0,0,0,.35);opacity:0;transition:opacity .35s ease,transform .35s ease;
+  z-index:9999;max-width:86vw;text-align:center;word-break:break-all;pointer-events:none;
+}
+.rd-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
