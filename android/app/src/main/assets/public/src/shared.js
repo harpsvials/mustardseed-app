@@ -172,8 +172,9 @@
   function rdMain(){
   try{
   var SEL = window.RD_SEL || ['.para'];
-  /* 原生 TTS 桥（Android App 内）：WebView 的 speechSynthesis 不可用，改用原生朗读 */
-  var nativeTTS = !!(window.AndroidTTS && window.AndroidTTS.isReady());
+  /* 原生 TTS 桥（Android App 内）：WebView 的 speechSynthesis 不可用，改用原生朗读。
+     就绪检测在启动轮询中完成（window.__nt 由 TTS 就绪后置位），避免引擎异步初始化导致误判 */
+  var nativeTTS = window.__nt === true;
   if(!('speechSynthesis' in window) && !nativeTTS) return;
   var syn = window.speechSynthesis;
   var curUttId = '';
@@ -344,8 +345,33 @@
   if(window.AndroidTTS){
     var _tries = 0;
     (function wait(){
-      try{ if(window.AndroidTTS.isReady()){ boot(); return; } }catch(e){}
-      if(++_tries < 60){ setTimeout(wait, 200); } else { boot(); }
+      try{
+        if(window.AndroidTTS.isReady()){
+          window.__nt = true;   /* TTS 引擎就绪后置位，rdMain 读取 → 走原生 TTS 有声音 */
+          boot();
+          return;
+        }
+      }catch(e){}
+      if(++_tries < 60){ setTimeout(wait, 200); }
+      else {
+        /* 12 秒仍未就绪：多半是设备没有安装语音引擎。原生 App 内一次性提示用户安装语音包 */
+        if(!window.__ttsWarned){
+          window.__ttsWarned = true;
+          try{
+            var d = (window.I18N && window.__lang && window.I18N[window.__lang.get()]) || (window.I18N && window.I18N['zh-CN']) || {};
+            var msg = d['rd.engine.missing'] || '语音引擎未就绪，请在系统设置中安装文字转语音语音包';
+            var t = document.createElement('div');
+            t.className = 'rd-toast';
+            t.setAttribute('role', 'status');
+            t.textContent = msg;
+            document.body.appendChild(t);
+            setTimeout(function(){ t.classList.add('show'); }, 10);
+            setTimeout(function(){ t.classList.remove('show'); }, 4500);
+            setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 5000);
+          }catch(e){}
+        }
+        boot();
+      }
     })();
   } else { boot(); }
 })();

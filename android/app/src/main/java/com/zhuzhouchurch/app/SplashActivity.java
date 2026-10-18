@@ -9,6 +9,7 @@ import android.os.Looper;
 import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 /**
@@ -25,7 +26,14 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /* 全屏沉浸：隐藏状态栏与导航栏，启动页仅保留图片（防御性 try-catch，任何机型不因沉浸崩溃） */
+        /* 全屏第一保险：FLAG_FULLSCREEN 隐藏状态栏（最老的 API，所有 ROM 都生效） */
+        try {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        } catch (Exception ignored) {
+        }
+
+        /* 全屏第二保险：沉浸模式隐藏状态栏与导航栏（防御性 try-catch，任何机型不因沉浸崩溃） */
         try {
             if (Build.VERSION.SDK_INT >= 30) {
                 WindowInsetsController c = getWindow().getInsetsController();
