@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16281C">
+<title>mustardseed · 交流</title>
+<meta name="description" content="株洲教会（株州の教会）Webサイト — mustardseed ディスカッション：喜びを分かち合い、質問に応えましょう。">
+<meta name="keywords" content="株洲教会,株洲家庭教会,株洲家教会,株洲家庭小组教会,株州の教会,ホームチャーチ,説教,証し,mustardseed">
+<meta property="og:title" content="mustardseed · 交流">
+<meta property="og:description" content="株洲教会（株州の教会）Webサイト — mustardseed ディスカッション：喜びを分かち合い、質問に応えましょう。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mustardseed">
+<meta property="og:locale" content="ja_JP">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=Noto+Sans+SC:wght@300;400;500&amp;family=Noto+Sans:wght@300;400;500&amp;family=Noto+Serif:wght@400;600;700&amp;family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media=\'all\'">
+<link rel="stylesheet" href="../src/site.css">
+
+  <link rel="canonical" href="https://www.zhuzhouchurch.com/ja/discussion.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.zhuzhouchurch.com/discussion.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.zhuzhouchurch.com/zh-Hant/discussion.html">
+  <link rel="alternate" hreflang="en" href="https://www.zhuzhouchurch.com/en/discussion.html">
+  <link rel="alternate" hreflang="fr" href="https://www.zhuzhouchurch.com/fr/discussion.html">
+  <link rel="alternate" hreflang="it" href="https://www.zhuzhouchurch.com/it/discussion.html">
+  <link rel="alternate" hreflang="ja" href="https://www.zhuzhouchurch.com/ja/discussion.html">
+  <link rel="alternate" hreflang="ko" href="https://www.zhuzhouchurch.com/ko/discussion.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.zhuzhouchurch.com/">
+</head>
+<body class="page-discussion no-chap">
+<div class="page">
+
+  <!-- ===== 顶部：文字 logo + 语言切换 ===== -->
+  <header class="site-header">
+    <span class="logo" id="siteLogo"></span>
+    <div class="lang-bar" id="langBar" role="group" data-i18n-aria="lang.label" aria-label="言語">
+      </div>
+  </header>
+
+  <!-- ===== Hero：嫩芽 + 主标题 ===== -->
+  <section class="hero">
+    <div class="sprout" aria-hidden="true"></div>
+    <h1 data-i18n="hero.title">今日、おしゃべりしましょう</h1>
+    <p class="hero-verse" data-i18n="hero.sub">お茶二杯分の時間。うれしかったことを話したり、大胆な夢を語り合ったりしましょう</p>
+    <div class="hero-rule"></div>
+  </section>
+
+  <!-- ===== 支持与合作 ===== -->
+  <div class="contact-row">
+    <a class="contact-link" href="mailto:xiaodongdaniel@icloud.com" data-i18n-aria="contact.label" aria-label="支援・協力">
+      <span class="contact-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
+      <span data-i18n="contact.label">支援・協力</span>
+    </a>
+  <div class="ms-player" id="msPlayer">
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="BGMを再生">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" id="siteNav" aria-label="サイトナビゲーション"></nav>
+
+  <!-- ===== 朗读条：固定于主导航与正文之间（非悬浮） ===== -->
+  <div class="rd-strip" id="rdBar" role="region" data-i18n-aria="rd.control" aria-label="朗读控制">
+    <button class="rd-btn" id="rdBtn" data-i18n-aria="rd.play" aria-label="朗读全文">
+      <svg class="ic-play" viewBox="0 0 24 24"><path d="M7 4.6v14.8L20 12z" fill="currentColor"/></svg>
+      <svg class="ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-info">
+      <span class="rd-title" data-i18n="rd.title">読み上げ</span>
+    </div>
+    <button class="rd-set" id="rdSet" data-i18n-aria="rd.set" aria-label="朗读设置" aria-expanded="false">
+      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-panel" id="rdSettings">
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.rate">速度</span>
+        <input class="rd-slider" id="rdRate" type="range" min="0.5" max="1.5" step="0.05" value="1.15" data-i18n-aria="rd.rate" aria-label="速度">
+        <span class="rd-val" id="rdRateVal">1.15</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.pitch">音程</span>
+        <input class="rd-slider" id="rdPitch" type="range" min="0.5" max="1.5" step="0.05" value="1" data-i18n-aria="rd.pitch" aria-label="音程">
+        <span class="rd-val" id="rdPitchVal">1.00</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.voice">声</span>
+        <button class="rd-voice" id="rdVoiceName" data-i18n="rd.voice.default" data-i18n-aria="rd.voice.aria" aria-label="音声を切り替える">システム既定</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 十个讨论题（倒序：新题在前） ===== -->
+  <div class="topics">
+    <!-- Q1（新）：天国と地獄 -->
+    <section class="topic-card" aria-labelledby="q-heaven-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3c3.2 3.2 5.5 6 5.5 9.2A5.5 5.5 0 1 1 6.5 12.2C6.5 9 8.8 6.2 12 3z"/><path d="M12 3v14"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q1</span>
+        <span class="card-label" data-i18n="card6.label">天国と地獄</span>
+      </div>
+      <h2 id="q-heaven-title" data-i18n="card6.q">「反抗する子が親の愛を拒む」というたとえを用いて、「神は慈愛に満ちているのに、神を拒む者は苦しみ/地獄に陰る」という難しさを、どうすれば人々に理解してもらえるでしょうか。</h2>
+      <p class="prompt" data-i18n="card6.prompt">神が人を苦しめるのではなく、愛を拒むことが苦しみの中に置くのです。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-heaven-hints">
+        <span data-i18n="hint.toggle">思いつかない？小さなヒントを開いてみよう</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-heaven-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card6.hint1">たとえの中で、子どもの苦しみはどこから来るのでしょうか。</li>
+            <li data-i18n="card6.hint2">親が「引き止めない」ことは、残酷さなのか、それとも別の愛なのでしょうか。</li>
+            <li data-i18n="card6.hint3">私たちの周りに「地獄の味を先に味わっている」人はいないでしょうか。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2（新）：五つの言葉 -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q-words-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q2</span>
+        <span class="card-label" data-i18n="card7.label">五つの言葉</span>
+      </div>
+      <h2 id="q-words-title" data-i18n="card7.q">「ヒンノムの谷」「タルタロス」「陰間/ハデス」「楽園」と「火の池」の違いを理解した後、これは死後の裁きと神の救いについてのあなたの認識に、どんな新しい明確さをもたらしますか。</h2>
+      <p class="prompt" data-i18n="card7.prompt">言葉がはっきり見えてくると、神が救おうとされておられるものが分かります。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-words-hints">
+        <span data-i18n="hint.toggle">思いつかない？小さなヒントを開いてみよう</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-words-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card7.hint1">その中のどの言葉が、「地獄」について新しい認識を与えてくれましたか。</li>
+            <li data-i18n="card7.hint2">楽園と火の池は、それぞれ誰の行き先でしょうか。</li>
+            <li data-i18n="card7.hint3">違いが分かった今、神の裁きと救いをどう見ますか。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q3（新）：神の国 -->
+    <section class="topic-card" aria-labelledby="q-kingdom-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 8l3 4 4-6 4 6 3-4v9H5z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q3</span>
+        <span class="card-label" data-i18n="card8.label">神の国</span>
+      </div>
+      <h2 id="q-kingdom-title" data-i18n="card8.q">イエスは「神の国はあなたたちのうちにある」と言われました。日常生活や教会での互いの愛の中で、神が支配される平安と天国の実際を、どうすれば本当に体験できるでしょうか。</h2>
+      <p class="prompt" data-i18n="card8.prompt">神の国は遠くにあるのではなく、あなたの心の中で支配しています。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-kingdom-hints">
+        <span data-i18n="hint.toggle">思いつかない？小さなヒントを開いてみよう</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-kingdom-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card8.hint1">「神が支配しておられる」と最も強く感じるのはどんな時ですか。</li>
+            <li data-i18n="card8.hint2">教会での互いに愛し合う瞬間で、天国のように感じたのはいつですか。</li>
+            <li data-i18n="card8.hint3">今日、どこで神の国を少しだけ現実にできますか。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q4（新）：赦し -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q-forgive-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 20c-5-3-8-6-8-9.5A4 4 0 0 1 12 7a4 4 0 0 1 8 3.5C20 14 17 17 12 20z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q4</span>
+        <span class="card-label" data-i18n="card9.label">赦し</span>
+      </div>
+      <h2 id="q-forgive-title" data-i18n="card9.q">憎しみと苦々しさの中で生きることは「地獄の味を先に味わう」ようなものです。関係の中での傷に対して、キリストの愛によって赦しの第一歩を踏み出すにはどうしたらよいでしょうか。</h2>
+      <p class="prompt" data-i18n="card9.prompt">赦すことは忘れることではなく、裁きを愛に委ねることです。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-forgive-hints">
+        <span data-i18n="hint.toggle">思いつかない？小さなヒントを開いてみよう</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-forgive-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card9.hint1">まず心の苦々しさを神に話してみませんか。</li>
+            <li data-i18n="card9.hint2">キリストはどのように先に私たちを赦してくださいましたか。</li>
+            <li data-i18n="card9.hint3">赦しの第一歩は、どこまで小さくてもよいのでしょうか。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+      <!-- Q1（新）：关于医治 -->
+    <section class="topic-card" aria-labelledby="q6-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v11M12 14l-4-4M12 14l4-4M12 20c-3.5 0-6.5-2-6.5-5.5V11M18.5 11v3.5c0 3.5-3 5.5-6.5 5.5"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q5</span>
+        <span class="card-label" data-i18n="card4.label">癒しについて</span>
+      </div>
+      <h2 id="q6-title" data-i18n="card4.q">あなたの心の中で、神はどのような人を癒されると思いますか。なぜ神は私たちを癒されるのでしょうか。</h2>
+      <p class="prompt" data-i18n="card4.prompt">癒された命の一つひとつは、神が私たちを愛している証です。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q6-hints">
+        <span data-i18n="hint.toggle">まだ決まらない？ヒントを開いてみよう</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q6-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card4.hint1">神の癒しに「条件」はあると思いますか。</li>
+            <li data-i18n="card4.hint2">神は私たちがふさわしいから癒すのではなく、憐れみゆえに癒されるのでしょうか。</li>
+            <li data-i18n="card4.hint3">聞いたり見たりした癒しを思い返すとき、最も心を動かされるのは何ですか。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2（新）：关于见证 -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q5-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l2.1 5.1L19.5 10l-5.4 1.9L12 17l-2.1-5.1L4.5 10l5.4-1.9z"/>
+        <path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q6</span>
+        <span class="card-label" data-i18n="card5.label">証しについて</span>
+      </div>
+      <h2 id="q5-title" data-i18n="card5.q">癒された後、なぜ証しをするのでしょうか。誰かが神に癒されるのを耳で聞き、目で見るとき、あなたはどのような気持ちになり、何を思いますか。</h2>
+      <p class="prompt" data-i18n="card5.prompt">証しは私たちの手柄ではなく、癒し主に栄光を帰すことです。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q5-hints">
+        <span data-i18n="hint.toggle">まだ決まらない？ヒントを開いてみよう</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q5-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card5.hint1">証しをすることは、私たち自身にとってどんな助けになりますか。</li>
+            <li data-i18n="card5.hint2">人の証しを聞いて、信仰に火がついたことはありますか。</li>
+            <li data-i18n="card5.hint3">もし一人の人に神があなたの人生になさったことを分かち合うなら、何と言いますか。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+      <!-- Q3（撑船） -->
+    <section class="topic-card" aria-labelledby="q4-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 21h18M12 5v11M12 16l-4.2-4.2M12 16l4.2-4.2"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q7</span>
+        <span class="card-label" data-i18n="card0.label">舟を出すことについて</span>
+      </div>
+      <h2 id="q4-title" data-i18n="card0.q">疲れ果てて弱っているとき、一晩中働いても何も捕れなかったペテロのように、それでもイエスのために舟を出す用意はありますか。あなたの思いを聞かせてください。</h2>
+      <p class="prompt" data-i18n="card0.prompt">一晩中何も捕れなかった後も、イエスはもう一度あなたを深みへ漕ぎ出すよう招いておられます。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q4-hints">
+        <span data-i18n="hint.toggle">まだ決まらない？ヒントを開いてみよう</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q4-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card0.hint1">一晩中働いても何も得られなかったという時を経験したことがありますか？</li>
+            <li data-i18n="card0.hint2">イエスがもう一度やってみるようお願いされるとき、あなたの心は進んで従うのか、それともためらいがあるのか。</li>
+            <li data-i18n="card0.hint3">イエスのために舟を出すことは、あなたにとって何を意味しますか？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q4（呼召） -->
+    <section class="topic-card" aria-labelledby="q0-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v13M12 21c-4.2 0-7-3-7-7.2M12 21c4.2 0 7-3 7-7.2M5 7h14"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q8</span>
+        <span class="card-label" data-i18n="card1.label">召しについて</span>
+      </div>
+      <h2 id="q0-title" data-i18n="card1.q">イエスがペテロたちに魚を捕ることを二度教えられたときのことを思うとき、この二つのよく似た出来事があなたの記憶の中で重なるとき、あなたの心はどんな思いですか。</h2>
+      <p class="prompt" data-i18n="card1.prompt">似た二つの深みは、変わらない愛と忍耐をもって語られるイエスの召しです。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q0-hints">
+        <span data-i18n="hint.toggle">まだ決まらない？ヒントを開いてみよう</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q0-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card1.hint1">この二つの漁の出来事で、どんな細部を覚えていますか？</li>
+            <li data-i18n="card1.hint2">この二つの出来事で、イエスのペテロへの応えはどのように違っていましたか？</li>
+            <li data-i18n="card1.hint3">二つの場面があなたの心の中で重なるとき、最初に思い浮かぶのは何ですか？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q5（梦想） -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q2-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l2.1 5.1L19.5 10l-5.4 1.9L12 17l-2.1-5.1L4.5 10l5.4-1.9z"/>
+        <path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q9</span>
+        <span class="card-label" data-i18n="card2.label">夢について</span>
+      </div>
+      <h2 id="q2-title" data-i18n="card2.q">もしお金がいくらでもあったら、いちばん何がしたい？</h2>
+      <p class="prompt" data-i18n="card2.prompt">使わなければ、お金はただの数字の羅列。それで何と交換したい？</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q2-hints">
+        <span data-i18n="hint.toggle">まだ決まらない？ヒントを開いてみよう</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q2-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card2.hint1">現実はいったん脇に置いて、最初にやりたいことは何？</li>
+            <li data-i18n="card2.hint2">だれのためにそのお金を使って、だれの人生を変えたい？</li>
+            <li data-i18n="card2.hint3">ずっと前から考えているのに、まだやっていないことはある？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  <!-- Q6（开心） -->
+    <section class="topic-card" aria-labelledby="q1-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+        <path d="M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/>
+        <circle cx="12" cy="12" r="3.4"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q10</span>
+        <span class="card-label" data-i18n="card3.label">うれしさについて</span>
+      </div>
+      <h2 id="q1-title" data-i18n-html="card3.q">最近いちばん<br>うれしかったことは？</h2>
+      <p class="prompt" data-i18n="card3.prompt">うれしさは案外小さなことの中に隠れているもの。声に出して話した瞬間、それはもっと輝きだします。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q1-hints">
+        <span data-i18n="hint.toggle">まだ決まらない？ヒントを開いてみよう</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q1-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card3.hint1">最近、声を上げて笑ったのはどんなこと？</li>
+            <li data-i18n="card3.hint2">それはどこで起きたの？そのとき、だれが一緒だった？</li>
+            <li data-i18n="card3.hint3">その気持ちをひとことで言うとしたら、何て言う？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== 参与方式 ===== -->
+  <section class="rules" data-i18n-aria="rules.aria" aria-label="参加のしかた">
+    <span class="rule" data-i18n="rule1">ていねいに聴く</span>
+    <span class="rule" data-i18n="rule2">さえぎらない</span>
+    <span class="rule" data-i18n="rule3">順番に分かち合う</span>
+  </section>
+
+  <!-- ===== 留言区：直接留言 + 显示留言 ===== -->
+  <section class="gb-section" data-gb-page="discussion">
+    <h2 class="gb-section-title" data-i18n="gb.section">ゲストブック</h2>
+    <form class="gb-form" id="gbForm">
+      <label class="gb-label" for="gbName" data-i18n="gb.name.label">お名前</label>
+      <input class="gb-input" id="gbName" name="name" maxlength="20" placeholder="怎么称呼你？" autocomplete="off">
+      <label class="gb-label" for="gbContent" data-i18n="gb.content.label">メッセージ</label>
+      <textarea class="gb-textarea" id="gbContent" name="content" maxlength="500" placeholder="写下你想分享的话…（最长 500 字）"></textarea>
+      <p class="gb-hint" data-i18n="gb.hint">すべての分かち合いを大切に読みます</p>
+      <button class="gb-submit" type="submit" data-i18n="gb.submit">送信</button>
+      <p class="gb-msg" id="gbMsg" role="status"></p>
+    </form>
+
+    <h3 class="gb-head"><span data-i18n="gb.count">メッセージ</span></h3>
+    <ul class="gb-list" id="gbList">
+      <li class="gb-loading" data-i18n="gb.loading">メッセージを読み込み中…</li>
+    </ul>
+    <p class="gb-foot" data-i18n="gb.foot">メッセージは公開されます。個人情報はご記入をお控えください</p>
+  </section>
+
+    <footer>
+    <nav id="siteNavFoot" class="foot-nav"></nav>mustard<span class="seed">·</span>seed — <span data-i18n="footer.tag">すべての分かち合いが、種のように土に落ちますように</span> <a class="foot-privacy" href="../privacy.html" data-i18n="footer.privacy">隐私政策</a></footer>
+
+</div>
+
+<!-- ===== script 区 ===== -->
+<script>
+(function () {
+  document.querySelectorAll('.hint-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var list = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!list) return;
+      var open = list.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.classList.toggle('is-open', open);
+    });
+  });
+})();
+</script>
+
+  <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
+
+<script>/* ===== 语言字典（仅 ja） ===== */window.I18N = {"ja":{"title":"mustardseed · 交流","card4.label":"癒しについて","card4.q":"あなたの心の中で、神はどのような人を癒されると思いますか。なぜ神は私たちを癒されるのでしょうか。","card4.prompt":"癒された命の一つひとつは、神が私たちを愛している証です。","card4.hint1":"神の癒しに「条件」はあると思いますか。","card4.hint2":"神は私たちがふさわしいから癒すのではなく、憐れみゆえに癒されるのでしょうか。","card4.hint3":"聞いたり見たりした癒しを思い返すとき、最も心を動かされるのは何ですか。","card5.label":"証しについて","card5.q":"癒された後、なぜ証しをするのでしょうか。誰かが神に癒されるのを耳で聞き、目で見るとき、あなたはどのような気持ちになり、何を思いますか。","card5.prompt":"証しは私たちの手柄ではなく、癒し主に栄光を帰すことです。","card5.hint1":"証しをすることは、私たち自身にとってどんな助けになりますか。","card5.hint2":"人の証しを聞いて、信仰に火がついたことはありますか。","card5.hint3":"もし一人の人に神があなたの人生になさったことを分かち合うなら、何と言いますか。","hero.title":"今日、おしゃべりしましょう","card0.label":"舟を出すことについて","card0.q":"疲れ果てて弱っているとき、一晩中働いても何も捕れなかったペテロのように、それでもイエスのために舟を出す用意はありますか。あなたの思いを聞かせてください。","card0.prompt":"一晩中何も捕れなかった後も、イエスはもう一度あなたを深みへ漕ぎ出すよう招いておられます。","card0.hint1":"一晩中働いても何も得られなかったという時を経験したことがありますか？","card0.hint2":"イエスがもう一度やってみるようお願いされるとき、あなたの心は進んで従うのか、それともためらいがあるのか。","card0.hint3":"イエスのために舟を出すことは、あなたにとって何を意味しますか？","hero.sub":"お茶二杯分の時間。うれしかったことを話したり、大胆な夢を語り合ったりしましょう","card1.label":"召しについて","card1.q":"イエスがペテロたちに魚を捕ることを二度教えられたときのことを思うとき、この二つのよく似た出来事があなたの記憶の中で重なるとき、あなたの心はどんな思いですか。","card1.prompt":"似た二つの深みは、変わらない愛と忍耐をもって語られるイエスの召しです。","card1.hint1":"この二つの漁の出来事で、どんな細部を覚えていますか？","card1.hint2":"この二つの出来事で、イエスのペテロへの応えはどのように違っていましたか？","card1.hint3":"二つの場面があなたの心の中で重なるとき、最初に思い浮かぶのは何ですか？","card3.label":"うれしさについて","card3.q":"最近いちばん<br>うれしかったことは？","card3.prompt":"うれしさは案外小さなことの中に隠れているもの。声に出して話した瞬間、それはもっと輝きだします。","card3.hint1":"最近、声を上げて笑ったのはどんなこと？","card3.hint2":"それはどこで起きたの？そのとき、だれが一緒だった？","card3.hint3":"その気持ちをひとことで言うとしたら、何て言う？","card2.label":"夢について","card2.q":"もしお金がいくらでもあったら、いちばん何がしたい？","card2.prompt":"使わなければ、お金はただの数字の羅列。それで何と交換したい？","card2.hint1":"現実はいったん脇に置いて、最初にやりたいことは何？","card2.hint2":"だれのためにそのお金を使って、だれの人生を変えたい？","card2.hint3":"ずっと前から考えているのに、まだやっていないことはある？","hint.toggle":"まだ決まらない？ヒントを開いてみよう","rules.aria":"参加のしかた","rule1":"ていねいに聴く","rule2":"さえぎらない","rule3":"順番に分かち合う","gb.err.blocked":"メッセージに不適切な内容が含まれています。修正してもう一度お試しください","rd.voice.default":"システム既定","rd.voice.aria":"音声を切り替える","rd.rate":"速度","rd.pitch":"音程","rd.voice":"声","rd.title":"読み上げ","lang.label":"言語","nav.aria":"サイトナビゲーション","nav.home":"ホーム","nav.sermons":"説教","nav.discussion":"交流","nav.testimonies":"証し","nav.guestbook":"ゲストブック","nav.prayer":"祈りの壁","nav.about":"私たちについて","contact.label":"支援・協力","footer.tag":"すべての分かち合いが、種のように土に落ちますように","ms.play":"BGMを再生","ms.pause":"BGMを一時停止","gb.section":"ゲストブック","gb.name.label":"お名前","gb.name.placeholder":"何と呼びましょうか？","gb.content.label":"メッセージ","gb.content.placeholder":"あなたの思いを書いてください…（最大500文字）","gb.hint":"すべての分かち合いを大切に読みます","gb.submit":"送信","gb.sending":"送信中…","gb.loading":"メッセージを読み込み中…","gb.empty":"まだメッセージがありません。最初の分かち合いをどうぞ","gb.count":"メッセージ","gb.err.name":"お名前を入力してください","gb.err.content":"メッセージを入力してください","gb.err.send":"送信に失敗しました。後でもう一度お試しください","gb.err.load":"読み込みに失敗しました。後でもう一度お試しください","gb.ok":"送信しました。分かち合いに感謝します","gb.foot":"メッセージは公開されます。個人情報はご記入をお控えください","q.tag":"考えてみましょう","chap.intro":"序論","ms.list":"音楽を選択","card6.label":"天国と地獄","card6.q":"「反抗する子が親の愛を拒む」というたとえを用いて、「神は慈愛に満ちているのに、神を拒む者は苦しみ/地獄に陰る」という難しさを、どうすれば人々に理解してもらえるでしょうか。","card6.prompt":"神が人を苦しめるのではなく、愛を拒むことが苦しみの中に置くのです。","card6.hint1":"たとえの中で、子どもの苦しみはどこから来るのでしょうか。","card6.hint2":"親が「引き止めない」ことは、残酷さなのか、それとも別の愛なのでしょうか。","card6.hint3":"私たちの周りに「地獄の味を先に味わっている」人はいないでしょうか。","card7.label":"五つの言葉","card7.q":"「ヒンノムの谷」「タルタロス」「陰間/ハデス」「楽園」と「火の池」の違いを理解した後、これは死後の裁きと神の救いについてのあなたの認識に、どんな新しい明確さをもたらしますか。","card7.prompt":"言葉がはっきり見えてくると、神が救おうとされておられるものが分かります。","card7.hint1":"その中のどの言葉が、「地獄」について新しい認識を与えてくれましたか。","card7.hint2":"楽園と火の池は、それぞれ誰の行き先でしょうか。","card7.hint3":"違いが分かった今、神の裁きと救いをどう見ますか。","card8.label":"神の国","card8.q":"イエスは「神の国はあなたたちのうちにある」と言われました。日常生活や教会での互いの愛の中で、神が支配される平安と天国の実際を、どうすれば本当に体験できるでしょうか。","card8.prompt":"神の国は遠くにあるのではなく、あなたの心の中で支配しています。","card8.hint1":"「神が支配しておられる」と最も強く感じるのはどんな時ですか。","card8.hint2":"教会での互いに愛し合う瞬間で、天国のように感じたのはいつですか。","card8.hint3":"今日、どこで神の国を少しだけ現実にできますか。","card9.label":"赦し","card9.q":"憎しみと苦々しさの中で生きることは「地獄の味を先に味わう」ようなものです。関係の中での傷に対して、キリストの愛によって赦しの第一歩を踏み出すにはどうしたらよいでしょうか。","card9.prompt":"赦すことは忘れることではなく、裁きを愛に委ねることです。","card9.hint1":"まず心の苦々しさを神に話してみませんか。","card9.hint2":"キリストはどのように先に私たちを赦してくださいましたか。","card9.hint3":"赦しの第一歩は、どこまで小さくてもよいのでしょうか。"}};</script>
+<script>window.RD_SEL = ['.topic-card h2', '.prompt'];</script><script src="../src/shared.js"></script>
+</body>
+</html>

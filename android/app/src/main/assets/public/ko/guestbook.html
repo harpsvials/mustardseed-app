@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16281C">
+<title>mustardseed · 방명록</title>
+<meta name="description" content="주저우 교회(株洲教会) 웹사이트 — mustardseed 방명록: 나눔과 인사를 남겨 주세요.">
+<meta name="keywords" content="株洲教会,株洲家庭教会,株洲家教会,株洲家庭小组教会,주저우 교회,가정교회,설교,간증,mustardseed">
+<meta property="og:title" content="mustardseed · 방명록">
+<meta property="og:description" content="주저우 교회(株洲教会) 웹사이트 — mustardseed 방명록: 나눔과 인사를 남겨 주세요.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mustardseed">
+<meta property="og:locale" content="ko_KR">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=Noto+Sans+SC:wght@300;400;500&amp;family=Noto+Sans:wght@300;400;500&amp;family=Noto+Serif:wght@400;600;700&amp;family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media=\'all\'">
+<link rel="stylesheet" href="../src/site.css">
+
+  <link rel="canonical" href="https://www.zhuzhouchurch.com/ko/guestbook.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.zhuzhouchurch.com/guestbook.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.zhuzhouchurch.com/zh-Hant/guestbook.html">
+  <link rel="alternate" hreflang="en" href="https://www.zhuzhouchurch.com/en/guestbook.html">
+  <link rel="alternate" hreflang="fr" href="https://www.zhuzhouchurch.com/fr/guestbook.html">
+  <link rel="alternate" hreflang="it" href="https://www.zhuzhouchurch.com/it/guestbook.html">
+  <link rel="alternate" hreflang="ja" href="https://www.zhuzhouchurch.com/ja/guestbook.html">
+  <link rel="alternate" hreflang="ko" href="https://www.zhuzhouchurch.com/ko/guestbook.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.zhuzhouchurch.com/">
+</head>
+<body class="page-guestbook no-chap">
+<div class="page">
+
+  <!-- ===== 顶部：文字 logo + 语言切换 ===== -->
+  <header class="site-header">
+    <span class="logo" id="siteLogo"></span>
+    <div class="lang-bar" id="langBar" role="group" data-i18n-aria="lang.label" aria-label="언어">
+      </div>
+  </header>
+
+  <!-- ===== Hero：嫩芽 + 主标题 ===== -->
+  <section class="hero">
+    <div class="sprout" aria-hidden="true"></div>
+    <h1 data-i18n="hero.title">당신의 나눔을 남겨주세요</h1>
+    <p class="hero-verse" data-i18n="hero.sub">한 문장, 한 이야기가 누군가의 씨앗이 될 수 있습니다</p>
+    <div class="hero-rule"></div>
+  </section>
+
+  <!-- ===== 支持与合作 ===== -->
+  <div class="contact-row">
+    <a class="contact-link" href="mailto:xiaodongdaniel@icloud.com" data-i18n-aria="contact.label" aria-label="지원 및 협력">
+      <span class="contact-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
+      <span data-i18n="contact.label">지원 및 협력</span>
+    </a>
+  <div class="ms-player" id="msPlayer">
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="배경 음악 재생">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" id="siteNav" aria-label="사이트 내비게이션"></nav>
+
+  <!-- ===== 朗读条：固定于主导航与正文之间（非悬浮） ===== -->
+  <div class="rd-strip" id="rdBar" role="region" data-i18n-aria="rd.control" aria-label="朗读控制">
+    <button class="rd-btn" id="rdBtn" data-i18n-aria="rd.play" aria-label="朗读全文">
+      <svg class="ic-play" viewBox="0 0 24 24"><path d="M7 4.6v14.8L20 12z" fill="currentColor"/></svg>
+      <svg class="ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-info">
+      <span class="rd-title" data-i18n="rd.title">소리내어 읽기</span>
+    </div>
+    <button class="rd-set" id="rdSet" data-i18n-aria="rd.set" aria-label="朗读设置" aria-expanded="false">
+      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z" fill="currentColor"/></svg>
+    </button>
+    <div class="rd-panel" id="rdSettings">
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.rate">속도</span>
+        <input class="rd-slider" id="rdRate" type="range" min="0.5" max="1.5" step="0.05" value="1.15" data-i18n-aria="rd.rate" aria-label="속도">
+        <span class="rd-val" id="rdRateVal">1.15</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.pitch">음정</span>
+        <input class="rd-slider" id="rdPitch" type="range" min="0.5" max="1.5" step="0.05" value="1" data-i18n-aria="rd.pitch" aria-label="음정">
+        <span class="rd-val" id="rdPitchVal">1.00</span>
+      </div>
+      <div class="rd-row">
+        <span class="rd-row-label" data-i18n="rd.voice">음성</span>
+        <button class="rd-voice" id="rdVoiceName" data-i18n="rd.voice.default" data-i18n-aria="rd.voice.aria" aria-label="음성 전환">시스템 기본</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 留言区 ===== -->
+  <main class="gb-wrap">
+    <form class="gb-form" id="gbForm">
+      <label class="gb-label" for="gbName" data-i18n="gb.name.label">이름</label>
+      <input class="gb-input" id="gbName" name="name" maxlength="20" placeholder="怎么称呼你？" autocomplete="off">
+      <label class="gb-label" for="gbContent" data-i18n="gb.content.label">메시지</label>
+      <textarea class="gb-textarea" id="gbContent" name="content" maxlength="500" placeholder="写下你想分享的话…（最长 500 字）"></textarea>
+      <p class="gb-hint" data-i18n="gb.hint">모든 나눔을 소중히 읽겠습니다</p>
+      <button class="gb-submit" type="submit" data-i18n="gb.submit">보내기</button>
+      <p class="gb-msg" id="gbMsg" role="status"></p>
+    </form>
+
+    <h2 class="gb-head"><span data-i18n="gb.count">메시지</span></h2>
+    <ul class="gb-list" id="gbList">
+      <li class="gb-loading" data-i18n="gb.loading">메시지 불러오는 중…</li>
+    </ul>
+    <p class="gb-foot" data-i18n="gb.foot">메시지는 공개됩니다. 개인정보는 입력하지 마세요</p>
+  </main>
+
+    <footer>
+    <nav id="siteNavFoot" class="foot-nav"></nav>mustard<span class="seed">·</span>seed — <span data-i18n="footer.tag">모든 나눔이 씨앗처럼 흙에 떨어지기를</span> <a class="foot-privacy" href="../privacy.html" data-i18n="footer.privacy">隐私政策</a></footer>
+  </div>
+
+  <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
+
+<script>/* ===== 语言字典（仅 ko） ===== */window.I18N = {"ko":{"title":"mustardseed · 방명록","hero.title":"당신의 나눔을 남겨주세요","hero.sub":"한 문장, 한 이야기가 누군가의 씨앗이 될 수 있습니다","gb.err.blocked":"메시지에 부적절한 내용이 포함되어 있습니다. 수정 후 다시 시도해 주세요","rd.voice.default":"시스템 기본","rd.voice.aria":"음성 전환","rd.rate":"속도","rd.pitch":"음정","rd.voice":"음성","rd.title":"소리내어 읽기","lang.label":"언어","nav.aria":"사이트 내비게이션","nav.home":"홈","nav.sermons":"설교","nav.discussion":"교제","nav.testimonies":"간증","nav.guestbook":"방명록","nav.prayer":"기도의 벽","nav.about":"소개","contact.label":"지원 및 협력","footer.tag":"모든 나눔이 씨앗처럼 흙에 떨어지기를","ms.play":"배경 음악 재생","ms.pause":"배경 음악 일시정지","gb.section":"방명록","gb.name.label":"이름","gb.name.placeholder":"어떻게 불러드릴까요?","gb.content.label":"메시지","gb.content.placeholder":"나눌 이야기를 적어주세요… (최대 500자)","gb.hint":"모든 나눔을 소중히 읽겠습니다","gb.submit":"보내기","gb.sending":"보내는 중…","gb.loading":"메시지 불러오는 중…","gb.empty":"아직 메시지가 없습니다. 첫 번째 나눔을 남겨보세요","gb.count":"메시지","gb.err.name":"이름을 입력해 주세요","gb.err.content":"메시지를 입력해 주세요","gb.err.send":"전송에 실패했습니다. 잠시 후 다시 시도해 주세요","gb.err.load":"불러오기에 실패했습니다. 잠시 후 다시 시도해 주세요","gb.ok":"메시지를 보냈습니다. 나눔에 감사드립니다","gb.foot":"메시지는 공개됩니다. 개인정보는 입력하지 마세요","q.tag":"묵상","chap.intro":"서론","ms.list":"음악 선택"}};</script>
+<script>
+/* 留言逻辑：加载列表 + 提交留言（D1 接口） */
+(function(){
+  var list = document.getElementById('gbList');
+  var form = document.getElementById('gbForm');
+  var nameEl = document.getElementById('gbName');
+  var contentEl = document.getElementById('gbContent');
+  var msg = document.getElementById('gbMsg');
+  var submitBtn = form.querySelector('.gb-submit');
+
+  function dict(){ return (window.I18N && window.__lang && window.I18N[window.__lang.get()]) || {}; }
+
+  /* 留言来源页面标签（多语言映射） */
+  var PAGE_TEXT = {
+    'zh-CN': {home:'主页', discussion:'讨论', testimonies:'见证', guestbook:'留言板'},
+    'zh-Hant': {home:'主頁', discussion:'討論', testimonies:'見證', guestbook:'留言板'},
+    'en': {home:'Home', discussion:'Discussion', testimonies:'Testimony', guestbook:'Guestbook'},
+    'fr': {home:'Accueil', discussion:'Discussion', testimonies:'Témoignage', guestbook:"Livre d'or"},
+    'it': {home:'Home', discussion:'Discussione', testimonies:'Testimonianze', guestbook:'Guestbook'},
+    'ja': {home:'ホーム', discussion:'ディスカッション', testimonies:'証し', guestbook:'掲示板'},
+    'ko': {home:'홈', discussion:'토론', testimonies:'간증', guestbook:'방명록'}
+  };
+  function pageLabel(page){
+    var lang = (window.__lang && window.__lang.get()) || 'zh-CN';
+    var m = PAGE_TEXT[lang] || PAGE_TEXT['zh-CN'];
+    return m[page] || page || m['guestbook'];
+  }
+
+  function showMsg(text, isErr){
+    msg.textContent = text;
+    msg.className = 'gb-msg' + (isErr ? ' err' : '');
+    msg.style.display = 'block';
+  }
+
+  /* D1 存的 created_at 是 UTC，加 Z 转本地时间显示 */
+  function fmtTime(t){
+    var d = new Date(String(t).indexOf('Z') < 0 ? t + 'Z' : t);
+    if (isNaN(d)) return String(t);
+    function p(n){ return (n < 10 ? '0' : '') + n; }
+    return d.getFullYear() + '-' + p(d.getMonth()+1) + '-' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+
+  function render(items){
+    list.innerHTML = '';
+    if (!items || !items.length) {
+      var li = document.createElement('li');
+      li.className = 'gb-empty';
+      li.textContent = dict()['gb.empty'] || '还没有留言，来做第一个分享的人吧';
+      list.appendChild(li);
+      return;
+    }
+    for (var i = 0; i < items.length; i++) {
+      var it = items[i];
+      var li = document.createElement('li');
+      li.className = 'gb-item';
+      var top = document.createElement('div');
+      top.className = 'gb-top';
+      var nm = document.createElement('span');
+      nm.className = 'gb-name';
+      nm.textContent = it.name;
+      var pg = document.createElement('span');
+      pg.className = 'gb-page';
+      pg.textContent = pageLabel(it.page);
+      var tm = document.createElement('span');
+      tm.className = 'gb-time';
+      tm.textContent = fmtTime(it.created_at);
+      top.appendChild(nm); top.appendChild(pg); top.appendChild(tm);
+      var ct = document.createElement('div');
+      ct.className = 'gb-content';
+      ct.textContent = it.content;   /* textContent 渲染，天然防 XSS */
+      li.appendChild(top); li.appendChild(ct);
+      list.appendChild(li);
+    }
+  }
+
+  function renderErr(){
+    list.innerHTML = '';
+    var li = document.createElement('li');
+    li.className = 'gb-empty';
+    li.textContent = dict()['gb.err.load'] || '留言加载失败，请稍后再试';
+    list.appendChild(li);
+  }
+
+  /* 记录当前加载状态，语言切换时按新字典重渲染 */
+  var state = { items: null, failed: false };
+
+  function load(){
+    state.failed = false;
+    fetch('/api/comments', { cache: 'no-store' })
+      .then(function(r){ if (!r.ok) throw new Error('http'); return r.json(); })
+      .then(function(d){
+        if (!d.ok) throw new Error('api');
+        state.items = d.items || [];
+        render(state.items);
+      })
+      .catch(function(){
+        state.failed = true;
+        renderErr();
+      });
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var D = dict();
+    var name = nameEl.value.trim();
+    var content = contentEl.value.trim();
+    if (!name) { showMsg(D['gb.err.name'] || '请填写昵称', true); return; }
+    if (!content) { showMsg(D['gb.err.content'] || '请填写留言内容', true); return; }
+    if (window.__hasBlocked && (window.__hasBlocked(name) || window.__hasBlocked(content))) {
+      showMsg(D['gb.err.blocked'] || '留言包含不当内容，请修改后重试', true);
+      return;
+    }
+    showMsg(D['gb.sending'] || '发送中…', false);
+    submitBtn.disabled = true;
+    fetch('/api/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, content: content, page: 'guestbook' })
+    })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (d.ok) {
+          contentEl.value = '';
+          showMsg(D['gb.ok'] || '留言已发出，感谢你的分享', false);
+          load();
+        } else if (d.error === 'blocked') {
+          showMsg(D['gb.err.blocked'] || '留言包含不当内容，请修改后重试', true);
+        } else {
+          showMsg(D['gb.err.send'] || '发送失败，请稍后再试', true);
+        }
+        submitBtn.disabled = false;
+      })
+      .catch(function(){
+        showMsg(D['gb.err.send'] || '发送失败，请稍后再试', true);
+        submitBtn.disabled = false;
+      });
+  });
+
+  /* 语言切换：placeholder + 列表文本按新语言重渲染
+     （shared.js 不处理 placeholder；此钩子须在 shared.js 之前注册，
+       且 shared.js 已改为保留页面预注册的钩子） */
+  window.__langHooks = window.__langHooks || [];
+  window.__langHooks.push(function(cur, d){
+    if (nameEl) nameEl.placeholder = d['gb.name.placeholder'] || nameEl.placeholder;
+    if (contentEl) contentEl.placeholder = d['gb.content.placeholder'] || contentEl.placeholder;
+    if (state.failed) renderErr();
+    else if (state.items) render(state.items);
+  });
+
+  load();
+})();
+</script>
+<script>window.RD_SEL = ['.hero-verse', '.gb-hint'];</script><script src="../src/shared.js"></script>
+</body>
+</html>
