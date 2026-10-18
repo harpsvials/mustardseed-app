@@ -1,0 +1,13 @@
+# Cloudflare Workers Assets 忽略清单（wrangler deploy 上传时不包含这些文件）
+.git/
+node_modules/
+android/.gradle/
+android/build/
+android/app/build/
+android/app/.cxx/
+android/capacitor-cordova-android-plugins/build/
+android/.idea/
+_backup/
+_shots/
+.DS_Store
+*.apk
