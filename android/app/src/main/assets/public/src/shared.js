@@ -155,7 +155,22 @@
 
 /* ===== 5. 朗读条：播放/暂停 + 高亮跟读（SEL 由 window.RD_SEL 参数化） ===== */
 (function(){
+  /* 朗读设置面板开关：独立于朗读引擎立即绑定，任何情况下都可点开 */
+  function bindSet(){
+    var bar = document.getElementById('rdBar'), setBtn = document.getElementById('rdSet');
+    if(setBtn && bar && !setBtn.__bound){
+      setBtn.__bound = true;
+      setBtn.addEventListener('click', function(){
+        var open = bar.classList.toggle('open');
+        setBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  }
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', bindSet); }
+  else { bindSet(); }
+
   function rdMain(){
+  try{
   var SEL = window.RD_SEL || ['.para'];
   /* 原生 TTS 桥（Android App 内）：WebView 的 speechSynthesis 不可用，改用原生朗读 */
   var nativeTTS = !!(window.AndroidTTS && window.AndroidTTS.isReady());
@@ -319,9 +334,20 @@
     else { idx = -1; if(prog) prog.textContent = '0 / ' + total; }
   });
   rebuild();
+  }catch(e){}
   }
-  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', rdMain); }
-  else { rdMain(); }
+  function boot(){
+    if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', rdMain); }
+    else { rdMain(); }
+  }
+  /* 原生 TTS 初始化是异步的：等待就绪后再初始化朗读，避免误判为浏览器语音路径（WebView 里无声） */
+  if(window.AndroidTTS){
+    var _tries = 0;
+    (function wait(){
+      try{ if(window.AndroidTTS.isReady()){ boot(); return; } }catch(e){}
+      if(++_tries < 60){ setTimeout(wait, 200); } else { boot(); }
+    })();
+  } else { boot(); }
 })();
 
 /* ===== 5.1 支持与合作：App 内 mailto 不可用 → 点击复制邮箱 ===== */
