@@ -52,7 +52,24 @@
       <span data-i18n="contact.label">支持与合作</span>
     </a>
   <div class="ms-player" id="msPlayer">
-    
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="播放背景音乐">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" aria-label="站点导航" id="siteNav"></nav>
+
+  <!-- ===== 章节导航 ===== -->
+  
 
 <nav class="chap-nav" data-i18n-aria="chap.aria" aria-label="本页目录">
     <a class="chap is-active" href="#overview" data-i18n="chap.overview">引言</a>
@@ -162,8 +179,7 @@
   <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
 
 <script>/* ===== 语言字典（仅 en） ===== */window.I18N = {"en":{"title":"Privacy Policy · mustardseed","desc":"Privacy policy of the mustardseed website (Zhuzhou Church): how we collect, use and protect your information.","hero.title":"Privacy Policy","hero.sub":"We respect and protect your personal information","t.overview":"Introduction","p.overview.1":"This privacy policy explains how the mustardseed website (Zhuzhou Church, https://www.zhuzhouchurch.com) collects, uses and protects your information. By visiting or using this website, you acknowledge that you have read and agree to the terms of this policy.","p.overview.2":"We seek to handle your information in a simple and transparent way. If you have any questions, please contact us using the details at the bottom of this page.","t.collect":"Information we collect","p.collect.1":"Guestbook, testimonies and prayer wall: when you post a message, testimony or prayer, the name (optional) and content you voluntarily provide are saved and publicly displayed on the corresponding section of the website, so that brothers and sisters can share, encourage and pray for one another.","p.collect.2":"Email contact: when you contact us via the “Support & Cooperation” email, we receive your email address and the content of your message, used only to reply to you.","p.collect.3":"This website does not require an account. We do not collect your phone number, address, ID number or any other additional personal information.","t.use":"How we use your information","p.use.1":"We use your information to: publicly display the messages, testimonies and prayers you voluntarily post, for sharing and prayer among members; reply to questions you send by email; and maintain the normal operation and security of the website.","p.use.2":"We do not use your information for purposes unrelated to the above.","t.share":"Sharing and publicity","p.share.1":"Content you post on the guestbook, testimonies or prayer wall is publicly displayed on the website. Before posting, please do not include private or sensitive information such as phone numbers or addresses.","p.share.2":"We do not sell, rent or trade your personal information to any third party. We do not disclose your information to third parties except where required by law or necessary to protect the security of the website.","t.cookies":"Cookies and access logs","p.cookies.1":"This website does not use cookies to track your browsing, and does not serve any advertisements.","p.cookies.2":"The website is hosted by Cloudflare. Servers may automatically record basic access logs (such as IP address, browser type and access time) for security and site operations. The handling of this data also follows Cloudflare’s privacy policy.","t.children":"Children’s privacy","p.children.1":"This website welcomes visitors of all ages, but we do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe a child has provided us with personal information, please contact us to have it removed.","t.rights":"Your rights","p.rights.1":"You may contact us at any time to view, correct or delete the content you posted on the guestbook, testimonies or prayer wall.","p.rights.2":"We will process your request within a reasonable time.","t.contact":"Contact and policy updates","p.contact.1":"If you have any questions about this privacy policy, or need to delete content you posted, contact: xiaodongdaniel@icloud.com.","p.contact.2":"We may update this policy from time to time. Updates will be published on this page, along with the date below.","p.contact.3":"Last updated: 18 October 2026.","chap.overview":"引言","chap.collect":"我们收集的信息","chap.use":"信息的使用","chap.share":"共享与公开","chap.cookies":"Cookie 与访问日志","chap.children":"儿童隐私","chap.rights":"您的权利","chap.contact":"联系我们与政策更新"}};</script>
-<script src="../src/i18n.js"></script><script>window.RD_SEL = ['.para'];</script><script src="../src/shared.js"></script>
-
+<script src="../src/i18n.js"></script><script src="../src/shared.js"></script>
 
 </body>
 </html>

@@ -52,7 +52,24 @@
       <span data-i18n="contact.label">支持与合作</span>
     </a>
   <div class="ms-player" id="msPlayer">
-    
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="播放背景音乐">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" aria-label="站点导航" id="siteNav"></nav>
+
+  <!-- ===== 章节导航 ===== -->
+  
 
 <nav class="chap-nav" data-i18n-aria="chap.aria" aria-label="本页目录">
     <a class="chap is-active" href="#overview" data-i18n="chap.overview">引言</a>
@@ -162,8 +179,7 @@
   <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
 
 <script>/* ===== 语言字典（仅 ko） ===== */window.I18N = {"ko":{"title":"개인정보 처리방침 · mustardseed","desc":"mustardseed 웹사이트(주저우 교회)의 개인정보 처리방침: 정보 수집·이용·보호 방법 안내.","hero.title":"개인정보 처리방침","hero.sub":"우리는 여러분의 개인정보를 존중하고 보호합니다","t.overview":"소개","p.overview.1":"본 개인정보 처리방침은 mustardseed 웹사이트(주저우 교회, https://www.zhuzhouchurch.com)가 귀하의 정보를 어떻게 수집·이용·보호하는지 설명합니다. 본 사이트를 방문하거나 사용함으로써 귀하는 본 방침의 조건을 읽고 동의한 것으로 간주됩니다.","p.overview.2":"우리는 귀하의 정보를 간단하고 투명한 방식으로 처리하기 위해 노력합니다. 문의사항이 있으시면 이 페이지 하단의 연락처로 문의해 주십시오.","t.collect":"수집하는 정보","p.collect.1":"방명록, 간증, 기도벽: 메시지, 간증 또는 기도를 게시할 때 귀하가 자발적으로 입력한 이름(선택 사항)과 내용이 저장되어 웹사이트의 해당 섹션에 공개적으로 표시됩니다. 이는 형제자매들이 서로 나누고 격려하며 기도하기 위함입니다.","p.collect.2":"이메일 연락: \"후원 및 협력\" 이메일로 문의하시면 귀하의 이메일 주소와 메시지 내용을 받게 되며, 답변에만 사용됩니다.","p.collect.3":"본 사이트는 계정이 필요하지 않습니다. 전화번호, 주소, 주민등록번호 등의 추가 개인정보를 수집하지 않습니다.","t.use":"정보의 이용","p.use.1":"귀하의 정보는 다음 목적으로 사용됩니다: 귀하가 자발적으로 게시한 메시지, 간증, 기도를 공개적으로 표시하여 성도들 간의 나눔과 기도에 사용하고, 이메일로 보내주신 질문에 답변하며, 웹사이트의 정상적인 운영과 보안을 유지하기 위함입니다.","p.use.2":"우리는 위 목적과 무관한 용도로 귀하의 정보를 사용하지 않습니다.","t.share":"공유 및 공개","p.share.1":"방명록, 간증 또는 기도벽에 게시한 내용은 웹사이트에 공개적으로 표시됩니다. 게시 전에 전화번호나 주소 등 개인정보 또는 민감한 정보를 포함하지 마십시오.","p.share.2":"우리는 귀하의 개인정보를 제3자에게 판매·임대·거래하지 않습니다. 법률이 요구하거나 웹사이트 보안을 위해 필요한 경우를 제외하고 제3자에게 공개하지 않습니다.","t.cookies":"쿠키 및 접속 로그","p.cookies.1":"본 사이트는 귀하의 검색 행동을 추적하는 쿠키를 사용하지 않으며 광고도 게재하지 않습니다.","p.cookies.2":"본 사이트는 Cloudflare가 호스팅합니다. 서버는 보안 및 사이트 운영을 위해 기본 접속 로그(IP 주소, 브라우저 종류, 접속 시간 등)를 자동으로 기록할 수 있습니다. 이 데이터의 처리는 Cloudflare의 개인정보 처리방침을 따릅니다.","t.children":"아동의 개인정보 보호","p.children.1":"본 사이트는 모든 연령의 방문자를 환영하지만, 13세 미만 아동의 개인정보를 고의로 수집하지 않습니다. 보호자이시며 자녀가 개인정보를 제공했다고 생각되시면 삭제를 위해 연락해 주십시오.","t.rights":"귀하의 권리","p.rights.1":"방명록, 간증 또는 기도벽에 게시한 내용을 언제든지 열람·수정·삭제를 요청하실 수 있습니다.","p.rights.2":"합리적인 기간 내에 요청을 처리하겠습니다.","t.contact":"문의 및 방침 갱신","p.contact.1":"본 방침에 대한 문의사항이 있거나 게시한 내용을 삭제해야 하는 경우: xiaodongdaniel@icloud.com으로 연락해 주십시오.","p.contact.2":"본 방침은 수시로 갱신될 수 있습니다. 갱신 후에는 이 페이지에 공지하고 아래 날짜를 업데이트합니다.","p.contact.3":"최종 갱신일: 2026년 10월 18일.","chap.overview":"引言","chap.collect":"我们收集的信息","chap.use":"信息的使用","chap.share":"共享与公开","chap.cookies":"Cookie 与访问日志","chap.children":"儿童隐私","chap.rights":"您的权利","chap.contact":"联系我们与政策更新"}};</script>
-<script src="../src/i18n.js"></script><script>window.RD_SEL = ['.para'];</script><script src="../src/shared.js"></script>
-
+<script src="../src/i18n.js"></script><script src="../src/shared.js"></script>
 
 </body>
 </html>

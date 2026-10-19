@@ -52,7 +52,24 @@
       <span data-i18n="contact.label">支持与合作</span>
     </a>
   <div class="ms-player" id="msPlayer">
-    
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="播放背景音乐">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" aria-label="站点导航" id="siteNav"></nav>
+
+  <!-- ===== 章节导航 ===== -->
+  
 
 <nav class="chap-nav" data-i18n-aria="chap.aria" aria-label="本页目录">
     <a class="chap is-active" href="#overview" data-i18n="chap.overview">引言</a>
@@ -162,8 +179,7 @@
   <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
 
 <script>/* ===== 语言字典（仅 it） ===== */window.I18N = {"it":{"title":"Informativa sulla privacy · mustardseed","desc":"Informativa sulla privacy del sito mustardseed (Chiesa di Zhuzhou): come raccogliamo, utilizziamo e proteggiamo i tuoi dati.","hero.title":"Informativa sulla privacy","hero.sub":"Rispettiamo e proteggiamo i tuoi dati personali","t.overview":"Introduzione","p.overview.1":"La presente informativa sulla privacy spiega come il sito mustardseed (Chiesa di Zhuzhou, https://www.zhuzhouchurch.com) raccoglie, utilizza e protegge i tuoi dati. Visitando o utilizzando questo sito, dichiari di aver letto e accettato i termini della presente informativa.","p.overview.2":"Ci impegniamo a trattare i tuoi dati in modo semplice e trasparente. Per qualsiasi domanda, contattaci tramite i recapiti in fondo a questa pagina.","t.collect":"Dati che raccogliamo","p.collect.1":"Libro degli ospiti, testimonianze e muro della preghiera: quando pubblichi un messaggio, una testimonianza o una preghiera, il nome (facoltativo) e il contenuto che fornisci volontariamente vengono salvati e mostrati pubblicamente nella sezione corrispondente del sito, affinché i fratelli e le sorelle possano condividere, incoraggiarsi e pregare gli uni per gli altri.","p.collect.2":"Contatto via e-mail: quando ci contatti tramite l’e-mail “Supporto e Cooperazione”, riceviamo il tuo indirizzo e-mail e il contenuto del tuo messaggio, utilizzati solo per risponderti.","p.collect.3":"Questo sito non richiede un account. Non raccogliamo il tuo numero di telefono, indirizzo, numero di documento o altri dati personali aggiuntivi.","t.use":"Uso dei tuoi dati","p.use.1":"Utilizziamo i tuoi dati per: mostrare pubblicamente i messaggi, le testimonianze e le preghiere che pubblichi volontariamente, per la condivisione e la preghiera tra i membri; rispondere alle tue domande via e-mail; e garantire il normale funzionamento e la sicurezza del sito.","p.use.2":"Non utilizziamo i tuoi dati per finalità estranee a quanto sopra.","t.share":"Condivisione e pubblicità","p.share.1":"I contenuti che pubblichi sul libro degli ospiti, sulle testimonianze o sul muro della preghiera sono mostrati pubblicamente. Prima di pubblicare, evita di includere informazioni private o sensibili come numeri di telefono o indirizzi.","p.share.2":"Non vendiamo, affittiamo o scambiamo i tuoi dati personali con terze parti. Non li divulghiamo a terzi se non quando richiesto dalla legge o necessario per la sicurezza del sito.","t.cookies":"Cookie e log di accesso","p.cookies.1":"Questo sito non utilizza cookie per tracciare la tua navigazione e non mostra pubblicità.","p.cookies.2":"Il sito è ospitato su Cloudflare. I server possono registrare automaticamente log di accesso di base (indirizzo IP, tipo di browser, orario di accesso) per la sicurezza e il funzionamento del sito. Il trattamento di questi dati segue anche l’informativa sulla privacy di Cloudflare.","t.children":"Privacy dei minori","p.children.1":"Questo sito accoglie visitatori di tutte le età, ma non raccogliamo consapevolmente dati personali di bambini di età inferiore ai 13 anni. Se sei un genitore o tutore e ritieni che un bambino ci abbia fornito dati personali, contattaci per la rimozione.","t.rights":"I tuoi diritti","p.rights.1":"Puoi contattarci in qualsiasi momento per consultare, correggere o eliminare i contenuti che hai pubblicato sul libro degli ospiti, sulle testimonianze o sul muro della preghiera.","p.rights.2":"Elaboreremo la tua richiesta entro un tempo ragionevole.","t.contact":"Contatti e aggiornamenti","p.contact.1":"Per domande su questa informativa o per eliminare contenuti pubblicati, contatta: xiaodongdaniel@icloud.com.","p.contact.2":"Possiamo aggiornare periodicamente questa informativa. Gli aggiornamenti saranno pubblicati su questa pagina, con la data qui sotto.","p.contact.3":"Ultimo aggiornamento: 18 ottobre 2026.","chap.overview":"引言","chap.collect":"我们收集的信息","chap.use":"信息的使用","chap.share":"共享与公开","chap.cookies":"Cookie 与访问日志","chap.children":"儿童隐私","chap.rights":"您的权利","chap.contact":"联系我们与政策更新"}};</script>
-<script src="../src/i18n.js"></script><script>window.RD_SEL = ['.para'];</script><script src="../src/shared.js"></script>
-
+<script src="../src/i18n.js"></script><script src="../src/shared.js"></script>
 
 </body>
 </html>

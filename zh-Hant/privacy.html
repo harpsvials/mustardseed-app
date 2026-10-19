@@ -52,7 +52,24 @@
       <span data-i18n="contact.label">支持与合作</span>
     </a>
   <div class="ms-player" id="msPlayer">
-    
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="播放背景音乐">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" aria-label="站点导航" id="siteNav"></nav>
+
+  <!-- ===== 章节导航 ===== -->
+  
 
 <nav class="chap-nav" data-i18n-aria="chap.aria" aria-label="本页目录">
     <a class="chap is-active" href="#overview" data-i18n="chap.overview">引言</a>
@@ -162,8 +179,7 @@
   <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
 
 <script>/* ===== 语言字典（仅 zh-Hant） ===== */window.I18N = {"zh-Hant":{"title":"隱私政策 · mustardseed","desc":"株洲教會網站 mustardseed 隱私政策：我們如何收集、使用和保護您的信息。","hero.title":"隱私政策","hero.sub":"我們尊重並保護您的個人信息","t.overview":"引言","p.overview.1":"本隱私政策說明 mustardseed 網站（株洲教會，網址 https://www.zhuzhouchurch.com）如何收集、使用和保護您的信息。訪問或使用本網站，即表示您閱讀並同意本政策的條款。","p.overview.2":"我們努力以簡單、透明的方式處理您的信息。如有任何疑問，歡迎通過本頁底部的聯繫方式與我們聯繫。","t.collect":"我們收集的信息","p.collect.1":"留言板、見證與禱告牆：當您發佈留言、見證或禱告內容時，您自願填寫的暱稱（可選）和內容會被保存，並在網站對應欄目公開展示，以便弟兄姐妹彼此分享、鼓勵和代禱。","p.collect.2":"郵件聯繫：當您通過“支持與合作”郵件聯繫我們時，我們會收到您的郵箱地址和郵件內容，僅用於回覆您的問題。","p.collect.3":"本網站不需要註冊賬號，我們不會收集您的電話號碼、住址、證件號碼等額外個人信息。","t.use":"信息的使用","p.use.1":"我們使用您的信息是爲了：公開展示您自願發佈的留言、見證和禱告內容，用於肢體之間的分享與代禱；回覆您通過郵件提出的問題；維護網站的正常運行與安全。","p.use.2":"我們不會將您的信息用於與上述目的無關的用途。","t.share":"共享與公開","p.share.1":"您在留言板、見證分享或禱告牆發佈的內容會在網站公開展示，發佈前請勿包含電話、地址等個人隱私或敏感信息。","p.share.2":"我們不會向任何第三方出售、出租或交易您的個人信息；除非法律法規要求，或爲保護網站安全所必需，我們不會向第三方披露您的信息。","t.cookies":"Cookie 與訪問日誌","p.cookies.1":"本網站不使用 Cookie 追蹤您的瀏覽行爲，也不投放任何廣告。","p.cookies.2":"網站由 Cloudflare 提供託管，服務器可能自動記錄基礎的訪問日誌（如 IP 地址、瀏覽器類型、訪問時間），僅用於安全和網站運營。這些信息的處理同時遵循 Cloudflare 的隱私政策。","t.children":"兒童隱私","p.children.1":"本網站面向所有年齡的訪客，但我們不會故意收集未滿 13 週歲兒童的個人信息。如果您是家長或監護人，並發現兒童向我們提供了個人信息，請聯繫我們刪除。","t.rights":"您的權利","p.rights.1":"您可以隨時聯繫我們，要求查看、修改或刪除您在留言板、見證分享或禱告牆發佈的內容。","p.rights.2":"我們會在合理的時間內處理您的請求。","t.contact":"聯繫我們與政策更新","p.contact.1":"如對本隱私政策有任何疑問，或需要刪除您發佈的內容，請聯繫：xiaodongdaniel@icloud.com。","p.contact.2":"我們可能不時更新本政策。更新後會在本頁面公佈，並更新下方的日期。","p.contact.3":"本政策最後更新日期：2026年10月18日。","chap.overview":"引言","chap.collect":"我们收集的信息","chap.use":"信息的使用","chap.share":"共享与公开","chap.cookies":"Cookie 与访问日志","chap.children":"儿童隐私","chap.rights":"您的权利","chap.contact":"联系我们与政策更新"}};</script>
-<script src="../src/i18n.js"></script><script>window.RD_SEL = ['.para'];</script><script src="../src/shared.js"></script>
-
+<script src="../src/i18n.js"></script><script src="../src/shared.js"></script>
 
 </body>
 </html>

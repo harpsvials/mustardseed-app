@@ -52,7 +52,24 @@
       <span data-i18n="contact.label">支持与合作</span>
     </a>
   <div class="ms-player" id="msPlayer">
-    
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="播放背景音乐">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" aria-label="站点导航" id="siteNav"></nav>
+
+  <!-- ===== 章节导航 ===== -->
+  
 
 <nav class="chap-nav" data-i18n-aria="chap.aria" aria-label="本页目录">
     <a class="chap is-active" href="#overview" data-i18n="chap.overview">引言</a>
@@ -162,8 +179,7 @@
   <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
 
 <script>/* ===== 语言字典（仅 fr） ===== */window.I18N = {"fr":{"title":"Politique de confidentialité · mustardseed","desc":"Politique de confidentialité du site mustardseed (Église de Zhuzhou) : comment nous collectons, utilisons et protégeons vos informations.","hero.title":"Politique de confidentialité","hero.sub":"Nous respectons et protégeons vos informations personnelles","t.overview":"Introduction","p.overview.1":"La présente politique de confidentialité explique comment le site mustardseed (Église de Zhuzhou, https://www.zhuzhouchurch.com) collecte, utilise et protège vos informations. En visitant ou en utilisant ce site, vous reconnaissez avoir lu et accepté les termes de cette politique.","p.overview.2":"Nous nous efforçons de traiter vos informations de manière simple et transparente. Pour toute question, veuillez nous contacter via les coordonnées en bas de cette page.","t.collect":"Informations que nous collectons","p.collect.1":"Livre d’or, témoignages et mur de prière : lorsque vous publiez un message, un témoignage ou une prière, le nom (facultatif) et le contenu que vous fournissez volontairement sont enregistrés et affichés publiquement dans la section correspondante du site, afin que les frères et sœurs puissent partager, s’encourager et prier les uns pour les autres.","p.collect.2":"Contact par e-mail : lorsque vous nous contactez via l’e-mail « Soutien & Coopération », nous recevons votre adresse e-mail et le contenu de votre message, utilisés uniquement pour vous répondre.","p.collect.3":"Ce site ne nécessite pas de compte. Nous ne collectons ni votre numéro de téléphone, ni votre adresse, ni votre numéro d’identité, ni toute autre information personnelle supplémentaire.","t.use":"Utilisation de vos informations","p.use.1":"Nous utilisons vos informations pour : afficher publiquement les messages, témoignages et prières que vous publiez volontairement, pour le partage et la prière entre membres ; répondre à vos questions par e-mail ; et assurer le fonctionnement normal et la sécurité du site.","p.use.2":"Nous n’utilisons pas vos informations à des fins sans rapport avec ce qui précède.","t.share":"Partage et publicité","p.share.1":"Le contenu que vous publiez sur le livre d’or, les témoignages ou le mur de prière est affiché publiquement. Avant de publier, veuillez ne pas inclure d’informations privées ou sensibles telles que numéros de téléphone ou adresses.","p.share.2":"Nous ne vendons, ne louons ni n’échangeons vos informations personnelles avec des tiers. Nous ne les divulguons à des tiers que si la loi l’exige ou si cela est nécessaire à la sécurité du site.","t.cookies":"Cookies et journaux d’accès","p.cookies.1":"Ce site n’utilise pas de cookies pour suivre votre navigation et ne diffuse aucune publicité.","p.cookies.2":"Le site est hébergé par Cloudflare. Les serveurs peuvent enregistrer automatiquement des journaux d’accès de base (adresse IP, type de navigateur, heure d’accès) pour la sécurité et l’exploitation du site. Le traitement de ces données suit également la politique de confidentialité de Cloudflare.","t.children":"Confidentialité des enfants","p.children.1":"Ce site accueille des visiteurs de tous âges, mais nous ne collectons pas sciemment d’informations personnelles auprès d’enfants de moins de 13 ans. Si vous êtes parent ou tuteur et pensez qu’un enfant nous a fourni des informations personnelles, veuillez nous contacter pour les supprimer.","t.rights":"Vos droits","p.rights.1":"Vous pouvez nous contacter à tout moment pour consulter, corriger ou supprimer le contenu que vous avez publié sur le livre d’or, les témoignages ou le mur de prière.","p.rights.2":"Nous traiterons votre demande dans un délai raisonnable.","t.contact":"Contact et mises à jour","p.contact.1":"Pour toute question sur cette politique, ou pour supprimer un contenu publié, contactez : xiaodongdaniel@icloud.com.","p.contact.2":"Nous pouvons mettre à jour cette politique de temps à autre. Les mises à jour seront publiées sur cette page, avec la date ci-dessous.","p.contact.3":"Dernière mise à jour : 18 octobre 2026.","chap.overview":"引言","chap.collect":"我们收集的信息","chap.use":"信息的使用","chap.share":"共享与公开","chap.cookies":"Cookie 与访问日志","chap.children":"儿童隐私","chap.rights":"您的权利","chap.contact":"联系我们与政策更新"}};</script>
-<script src="../src/i18n.js"></script><script>window.RD_SEL = ['.para'];</script><script src="../src/shared.js"></script>
-
+<script src="../src/i18n.js"></script><script src="../src/shared.js"></script>
 
 </body>
 </html>

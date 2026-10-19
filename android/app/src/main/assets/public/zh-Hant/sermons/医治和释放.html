@@ -52,7 +52,24 @@
       <span data-i18n="contact.label">支持與合作</span>
     </a>
   <div class="ms-player" id="msPlayer">
-    
+    <div class="ms-chip">
+      <span class="ms-name">Alleluia</span>
+      <span class="ms-time" id="msTime">0:00</span>
+    </div>
+    <button class="ms-btn" id="msPlay" data-i18n-aria="ms.play" aria-label="播放背景音樂">
+            <span class="ms-btn-inner">
+        <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+        <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </div>
+  </div>
+
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" data-i18n-aria="nav.aria" id="siteNav" aria-label="站點導航"></nav>
+
+  <!-- ===== 章节导航 ===== -->
+  
 
 <nav class="chap-nav" data-i18n-aria="chap.aria" aria-label="講章目錄">
     <a class="chap is-active" href="#exp" data-i18n="chap.exp">經歷</a>
@@ -65,8 +82,6 @@
   </nav>
 
   <main>
-
-
 
     <!-- ===== 一、讲员经历（时间轴） ===== -->
     <section class="chapter" id="exp">
@@ -226,11 +241,9 @@
 })();
 </script>
 <script>/* ===== 语言字典（仅 zh-Hant） ===== */window.I18N = {"zh-Hant":{"title":"醫治和釋放 · mustardseed","hero.title":"醫治和釋放","hero.verse":"因祂受的鞭傷，你們便得了醫治<small>彼得前書 2:24<\/small>","chap.aria":"講章目錄","chap.exp":"經歷","chap.dna":"教會的DNA","chap.believe":"相信的力量","chap.glory":"看見神的榮耀","chap.receive":"信是得著","chap.thief":"屬靈的盜賊","chap.prayer":"決志禱告","t.exp":"我自己經歷到神醫治的經驗","tl.exp.1.period":"神學院期間","tl.exp.1.text":"有一位白內障和耳聾得到醫治，還有一些其他疾病得到醫治的。","tl.exp.2.period":"公辦教會期間","tl.exp.2.text":"特別多的病人得到醫治：住在河西醫院附近的一位阿姨腎病得到醫治，河東的一位阿姨心臟病得到醫治，還有一些神經性的耳聾和疼痛病得到醫治。","tl.exp.3.period":"溫州家庭教會期間","tl.exp.3.text":"沒有特別的醫治聚會，但也是看過很多病人被主醫治，和2-3位污鬼轄制人得到釋放。","tl.exp.4.period":"現在教會期間","tl.exp.4.text":"師母的癌症、鄒芳姐妹的腰椎，還有一些來到我們中間的朋友得到了醫治。","t.dna":"教會的DNA","p.dna.1":"在我們教會，我們會發現上帝醫治人的疾病。我們曾經宣告「凡來到我們中間的病人都要得到醫治。」正在不斷地實現。","t.believe":"相信的力量","p.believe.1":"相信是有力量的！那我們要相信什麼，才能獲得醫治和釋放呢？要相信聖經關於醫治和釋放的應許。","v.believe.1.label":"聖經 · 彼得前書 2:24","v.believe.1.text":"祂被掛在木頭上，親身擔當了我們的罪，使我們既然在罪上死，就得以在義上活。因祂受的鞭傷，你們便得了醫治。","t.glory":"你若信，就必看見神的榮耀","v.glory.1.label":"聖經 · 約翰福音 11:40","v.glory.1.text":"耶穌說：「我不是對你說過，你若信，就必看見　神的榮耀嗎？」","t.receive":"信是得著，就必得著","v.receive.1.label":"聖經 · 馬可福音 11:24","v.receive.1.text":"所以我告訴你們：凡你們禱告祈求的，無論是什麼，只要信是得著的，就必得著。","t.thief":"疾病出於屬靈空間的盜賊","p.thief.1":"疾病出於屬靈空間的盜賊，也就是聖經說的「魔鬼」。","v.thief.1.label":"聖經 · 約翰福音 10:9","v.thief.1.text":"我就是門，凡從我進來的，必然得救，並且出入得草吃。","v.thief.2.label":"聖經 · 約翰福音 10:10","v.thief.2.text":"盜賊來，無非要偷竊、殺害、毀壞；我來了，是要叫羊（或作「人」）得生命，並且得的更豐盛。","p.thief.2":"當出於聖經、忠於聖經的教導，就是從耶穌來的，而從耶穌來的，必然得救、並且能夠被餵養的健康、豐盛。","p.thief.3":"否認耶穌，就是認為耶穌的話語或者聖經已經成為過時的教導，另外發展出一套信仰體系出來，就是在否認耶穌。而否認耶穌的教導，就是出於盜賊，要偷竊、殺害、毀壞我們的健康和財務，甚至是毀壞我們的靈性生命。","p.thief.4":"而我們要想領受超自然的健康和財務的興盛，就要棄絕盜賊的迷惑、棄絕出於鬼魔的教導。","v.thief.3.label":"聖經 · 哥林多前書 10:20–21","v.thief.3.text":"我乃是說：外邦人所獻的祭是祭鬼，不是祭　神，我不願意你們與鬼相交。你們不能喝主的杯，又喝鬼的杯；不能吃主的筵席，又吃鬼的筵席。","p.thief.5":"保羅說，不信上帝的人所獻祭是給鬼，你不能和鬼交往。你祭拜鬼魔的時候，就是與鬼魔交往。所以，很多人因此生命中帶下鬼魔的轄制，常常莫名的懼怕或者經常性意外事故。我們奉耶穌的名宣告：「我要棄絕，我所祭拜、跪拜過的鬼魔。」「從此，我因為信耶穌，我是屬於耶穌的人。」","v.thief.4.label":"聖經 · 約翰一書 3:8","v.thief.4.text":"犯罪的是屬魔鬼，因為魔鬼從起初就犯罪。　神的兒子顯現出來，為要除滅魔鬼的作為。","p.thief.6":"聖經說，神的兒子顯現出來，是為了要除滅魔鬼的作為！感謝主，我們信了耶穌之後，耶穌要除滅我們生命中魔鬼的作為。","p.thief.7":"魔鬼是超自然屬靈的靈體，而聖經中「靈」這個字有一個意思是「氣息」。所以，在動漫和超自然的影視作品中，邪惡的鬼魔，常常伴隨著一片黑色（或者其他顏色）的氣體。現實中，被魔鬼轄制的人，一般來說，你是無法看到顏色的。但影視作品中為了描述出來，就有了顏色。","p.thief.8":"耶穌來到你的生命中，其中有一個恩典會幫助你趕出魔鬼的權勢。而途徑就託付給了教會。很多人以為趕鬼只需要一分鐘，但其實趕鬼和醫治一樣，都是一個過程，只是有的過程短，有的過程長。區別在於是否處理了魔鬼依附的條件。","p.thief.9":"魔鬼依附在人的身上，通常是因為：對人的苦毒、性淫亂和拜偶像。對人的苦毒需要原諒饒恕，淫亂需要悔改，改變自己的行為，偶像需要棄絕。這樣驅除魔鬼的轄制會比較容易，魔鬼帶來的疾病也會比較容易得到醫治。","prayer.tag":"若你願意，可以跟我一同禱告","prayer.title":"決志禱告","prayer.text":"「主耶穌啊！我需要祢。感謝祢為我的罪死在十字架上。我願意打開心門接受祢作我的救主和生命的主。感謝祢赦免我的罪並賜給我永生，求祢管理我的一生，使我成為祢所喜悅的人。奉主耶穌的名禱告，阿們。」","rd.control":"朗讀控制","rd.play":"朗讀全文","rd.stop":"停止朗讀","rd.set":"朗讀設置","rd.rate":"語速","rd.pitch":"音調","rd.voice":"語音","rd.default":"系統默認","rd.voice.default":"系統預設","rd.voice.aria":"切換語音","rd.title":"朗讀全文","lang.label":"語言","nav.aria":"站點導航","nav.home":"主頁","nav.sermons":"講道","nav.discussion":"討論","nav.testimonies":"見證","nav.guestbook":"留言","nav.prayer":"禱告牆","nav.about":"關於","contact.label":"支持與合作","footer.tag":"讓每個分享都像種子，落進土壤","ms.play":"播放背景音樂","ms.pause":"暫停背景音樂","gb.section":"留言板","gb.name.label":"暱稱","gb.name.placeholder":"怎麼稱呼你？","gb.content.label":"留言","gb.content.placeholder":"寫下你想分享的話…（最長 500 字）","gb.hint":"每一則分享都會被認真閱讀與珍藏","gb.submit":"發送留言","gb.sending":"發送中…","gb.loading":"留言載入中…","gb.empty":"還沒有留言，來做第一個分享的人吧","gb.count":"留言","gb.err.name":"請填寫暱稱","gb.err.content":"請填寫留言內容","gb.err.send":"發送失敗，請稍後再試","gb.err.load":"留言載入失敗，請稍後再試","gb.err.blocked":"留言包含不當內容（色情/暴力/辱罵/廣告），請修改後重試","gb.ok":"留言已送出，感謝你的分享","gb.foot":"留言會公開顯示，請勿填寫隱私資訊","q.tag":"思考 · Question","chap.intro":"引言","ms.list":"選擇音樂"}};</script>
-<script>window.RD_SEL = ['.para', '.verse-text'];</script><script src="../../src/shared.js"></script>
-
+<script src="../../src/shared.js"></script>
 
 <audio id="msAudio" src="../../mp3/Alleluia.mp3" preload="metadata" loop></audio>
-
 
 </body>
 </html>
