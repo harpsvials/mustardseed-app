@@ -51,7 +51,15 @@ jobs:
             -PRELEASE_STORE_FILE=$GITHUB_WORKSPACE/release-key.jks \
             -PRELEASE_STORE_PASSWORD="${{ secrets.KEYSTORE_PASSWORD }}" \
             -PRELEASE_KEY_ALIAS="${{ secrets.KEY_ALIAS }}" \
-            -PRELEASE_KEY_PASSWORD="${{ secrets.KEY_PASSWORD }}"
+            -PRELEASE_KEY_PASSWORD="${{ secrets.KEY_PASSWORD }}" 2>&1 | tee gradle.log
+          exit ${PIPESTATUS[0]}
+
+      - name: Upload gradle log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gradle-log
+          path: android/gradle.log
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
