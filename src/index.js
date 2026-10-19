@@ -185,6 +185,19 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
+    // —— CORS：允许 App 内置页面（https://localhost）与第三方站点跨域调用 API ——
+    if (request.method === 'OPTIONS') {
+      return new Response(null, {
+        status: 204,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Max-Age': '86400'
+        }
+      });
+    }
+
     // —— 留言接口 ——
     if (url.pathname === '/api/comments') {
       if (request.method === 'GET') return getComments(env, url);
@@ -360,7 +373,8 @@ function json(data, status) {
     status: status || 200,
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
-      'Cache-Control': 'no-store'
+      'Cache-Control': 'no-store',
+      'Access-Control-Allow-Origin': '*'
     }
   });
 }

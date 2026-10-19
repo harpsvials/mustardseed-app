@@ -23,12 +23,8 @@ public class MainActivity extends BridgeActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        // 联网时加载线上最新网站，无网络时使用内置资源（先连线上，无网络再调用本地）
-        if (isOnline()) {
-            CapConfig.Builder configBuilder = new CapConfig.Builder(getApplicationContext());
-            configBuilder.setServerUrl("https://zhuzhouchurch.com");
-            this.config = configBuilder.create();
-        }
+        // 纯本地优先：始终加载 App 内置的网页文件（assets/public），秒开不依赖网络；
+        // 留言板 / 祷告墙等动态数据在联网时通过 https://zhuzhouchurch.com/api/... 读写线上数据库（Worker 已开放 CORS）
         super.onCreate(savedInstanceState);
         // 注入原生 TTS 桥：Android WebView 的 speechSynthesis 不可用，网页朗读走原生引擎
         try {

@@ -156,7 +156,7 @@
   var state = { items: null, failed: false };
   function load(){
     state.failed = false;
-    fetch('/api/prayers', { cache: 'no-store' })
+    fetch('https://zhuzhouchurch.com/api/prayers', { cache: 'no-store' })
       .then(function(r){ if (!r.ok) throw new Error('http'); return r.json(); })
       .then(function(d){
         if (!d.ok) throw new Error('api');
@@ -178,7 +178,7 @@
     }
     showMsg(D['pw.sending'] || '发布中…', false);
     submitBtn.disabled = true;
-    fetch('/api/prayers', {
+    fetch('https://zhuzhouchurch.com/api/prayers', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: name, content: content })
