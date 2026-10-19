@@ -1,13 +1,6 @@
 /* i18n.js — mustardseed 全站公共翻译键（7 语言）。页面加载顺序：页面 I18N（特有键）→ i18n.js（补公共键）→ shared.js */
 window.I18N_COMMON = {
 'zh-CN':{
-  'rd.voice.default':'系统默认',
-  'rd.voice.aria':'切换语音',
-  'rd.rate':'语速',
-  'rd.pitch':'音调',
-  'rd.voice':'声音',
-  'rd.title':'朗读全文',
-  'rd.engine.missing':'语音引擎未就绪，请在系统设置中安装文字转语音语音包',
   'lang.label':'语言',
   'nav.aria':'站点导航',
   'nav.home':'主页',
@@ -46,13 +39,6 @@ window.I18N_COMMON = {
   'ms.list':'选择音乐'
 },
 'zh-Hant':{
-  'rd.voice.default':'系統預設',
-  'rd.voice.aria':'切換語音',
-  'rd.rate':'語速',
-  'rd.pitch':'音調',
-  'rd.voice':'聲音',
-  'rd.title':'朗讀全文',
-  'rd.engine.missing':'語音引擎未就緒，請在系統設定中安裝文字轉語音語音包',
   'lang.label':'語言',
   'nav.aria':'站點導航',
   'nav.home':'主頁',
@@ -91,13 +77,6 @@ window.I18N_COMMON = {
   'ms.list':'選擇音樂'
 },
 'en':{
-  'rd.voice.default':'System default',
-  'rd.voice.aria':'Switch voice',
-  'rd.rate':'Speed',
-  'rd.pitch':'Pitch',
-  'rd.voice':'Voice',
-  'rd.title':'Read Aloud',
-  'rd.engine.missing':'Text-to-speech engine not ready. Please install a TTS voice pack in system settings',
   'lang.label':'Language',
   'nav.aria':'Site navigation',
   'nav.home':'Home',
@@ -136,13 +115,6 @@ window.I18N_COMMON = {
   'ms.list':'Choose music'
 },
 'fr':{
-  'rd.voice.default':'Par défaut',
-  'rd.voice.aria':'Changer de voix',
-  'rd.rate':'Vitesse',
-  'rd.pitch':'Ton',
-  'rd.voice':'Voix',
-  'rd.title':'Lecture à voix haute',
-  'rd.engine.missing':'Moteur de synthèse vocale indisponible. Installez un pack vocal dans les réglages système',
   'lang.label':'Langue',
   'nav.aria':'Navigation du site',
   'nav.home':'Accueil',
@@ -181,13 +153,6 @@ window.I18N_COMMON = {
   'ms.list':'Choisir la musique'
 },
 'it':{
-  'rd.voice.default':'Predefinito',
-  'rd.voice.aria':'Cambia voce',
-  'rd.rate':'Velocità',
-  'rd.pitch':'Tono',
-  'rd.voice':'Voce',
-  'rd.title':'Leggi ad alta voce',
-  'rd.engine.missing':'Motore TTS non pronto. Installa un pacchetto vocale nelle impostazioni di sistema',
   'lang.label':'Lingua',
   'nav.aria':'Navigazione del sito',
   'nav.home':'Home',
@@ -226,13 +191,6 @@ window.I18N_COMMON = {
   'ms.list':'Scegli la musica'
 },
 'ja':{
-  'rd.voice.default':'システム既定',
-  'rd.voice.aria':'音声を切り替える',
-  'rd.rate':'速度',
-  'rd.pitch':'音程',
-  'rd.voice':'声',
-  'rd.title':'読み上げ',
-  'rd.engine.missing':'音声エンジンが準備できていません。システム設定で音声パックをインストールしてください',
   'lang.label':'言語',
   'nav.aria':'サイトナビゲーション',
   'nav.home':'ホーム',
@@ -271,13 +229,6 @@ window.I18N_COMMON = {
   'ms.list':'音楽を選択'
 },
 'ko':{
-  'rd.voice.default':'시스템 기본',
-  'rd.voice.aria':'음성 전환',
-  'rd.rate':'속도',
-  'rd.pitch':'음정',
-  'rd.voice':'음성',
-  'rd.title':'소리내어 읽기',
-  'rd.engine.missing':'음성 엔진이 준비되지 않았습니다. 시스템 설정에서 음성 팩을 설치해 주세요',
   'lang.label':'언어',
   'nav.aria':'사이트 내비게이션',
   'nav.home':'홈',

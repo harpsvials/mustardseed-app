@@ -1,12 +1,19 @@
 package com.zhuzhouchurch.app;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.webkit.JavascriptInterface;
@@ -15,7 +22,14 @@ import android.webkit.WebView;
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.CapConfig;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends BridgeActivity {
 
@@ -31,6 +45,86 @@ public class MainActivity extends BridgeActivity {
             ttsBridge = new AppTTS(this);
             WebView wv = getBridge().getWebView();
             wv.addJavascriptInterface(ttsBridge, "AndroidTTS");
+        } catch (Exception ignored) {
+        }
+        // 延迟检查 GitHub 新版本（后台线程，不阻塞启动）
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                checkForUpdate();
+            }
+        }, 3000);
+    }
+
+    /** 自动检查更新：读取 GitHub 最新 Release 版本号，比内置版本高则弹窗提示 */
+    private void checkForUpdate() {
+        final int curCode = BuildConfig.VERSION_CODE;
+        if (curCode <= 1) return;
+        final SharedPreferences prefs = getSharedPreferences("app_updates", MODE_PRIVATE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL("https://api.github.com/repos/harpsvials/mustardseed-app/releases/latest");
+                    HttpURLConnection c = (HttpURLConnection) url.openConnection();
+                    c.setConnectTimeout(8000);
+                    c.setReadTimeout(8000);
+                    c.setRequestProperty("User-Agent", "mustardseed-app");
+                    c.setRequestProperty("Accept", "application/vnd.github+json");
+                    if (c.getResponseCode() != 200) return;
+                    InputStream is = c.getInputStream();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) sb.append(line);
+                    Matcher m = Pattern.compile("\"tag_name\":\"v(\\d+)\"").matcher(sb.toString());
+                    if (!m.find()) return;
+                    final int latest = Integer.parseInt(m.group(1));
+                    if (latest <= curCode) return;
+                    if (prefs.getInt("ignored_version", 0) == latest) return;
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            showUpdateDialog(latest, prefs);
+                        }
+                    });
+                } catch (Exception ignored) {
+                }
+            }
+        }).start();
+    }
+
+    private void showUpdateDialog(final int latest, final SharedPreferences prefs) {
+        try {
+            new AlertDialog.Builder(this)
+                .setTitle("发现新版本 v" + latest)
+                .setMessage("检测到芥菜种教会 App 有新版本，是否前往下载更新？")
+                .setPositiveButton("立即更新", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface d, int w) {
+                        try {
+                            Intent i = new Intent(Intent.ACTION_VIEW,
+                                Uri.parse("https://github.com/harpsvials/mustardseed-app/releases/download/v" + latest + "/app-release.apk"));
+                            startActivity(i);
+                        } catch (Exception e) {
+                            prefs.edit().putInt("ignored_version", latest).apply();
+                        }
+                    }
+                })
+                .setNegativeButton("以后再说", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface d, int w) {
+                        prefs.edit().putInt("ignored_version", latest).apply();
+                    }
+                })
+                .setCancelable(true)
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface d) {
+                        prefs.edit().putInt("ignored_version", latest).apply();
+                    }
+                })
+                .show();
         } catch (Exception ignored) {
         }
     }
