@@ -68,13 +68,19 @@ public class MainActivity extends BridgeActivity {
                 checkForUpdate();
             }
         }, 3000);
-        // 延迟拉取教会最新通知（后台线程，启动即检查一次）
+        // 延迟拉取教会最新通知（后台线程，启动即检查；5 秒和 15 秒各查一次，兼顾慢网络）
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
                 checkForNotice();
             }
         }, 5000);
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                checkForNotice();
+            }
+        }, 15000);
     }
 
     /** 自动检查更新：读取 GitHub 最新 Release 版本号，比内置版本高则弹窗提示 */
@@ -145,7 +151,10 @@ public class MainActivity extends BridgeActivity {
 
     /** 拉取式通知：读取 GitHub 仓库根目录 notice.json，有新消息则在通知栏弹出（每次打开 App 检查一次） */
     private void checkForNotice() {
-        if (!isOnline()) return;
+        if (!isOnline()) {
+            android.util.Log.i("ChurchNotice", "checkForNotice: 网络不可用，跳过");
+            return;
+        }
         final SharedPreferences prefs = getSharedPreferences("app_notices", MODE_PRIVATE);
         new Thread(new Runnable() {
             @Override
@@ -154,8 +163,10 @@ public class MainActivity extends BridgeActivity {
                     /* 多源拉取：优先 api.github.com（大陆可访问），失败再走 jsDelivr CDN（有国内节点） */
                     String json = httpGet("https://api.github.com/repos/harpsvials/mustardseed-app/contents/notice.json",
                             "application/vnd.github.raw");
+                    android.util.Log.i("ChurchNotice", "api.github.com 拉取结果: " + (json != null ? "成功(" + json.length() + "字符)" : "失败"));
                     if (json == null) {
                         json = httpGet("https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/notice.json", null);
+                        android.util.Log.i("ChurchNotice", "jsDelivr 拉取结果: " + (json != null ? "成功(" + json.length() + "字符)" : "失败"));
                     }
                     if (json == null) return;
                     JSONObject root = new JSONObject(json);
@@ -164,7 +175,9 @@ public class MainActivity extends BridgeActivity {
                     JSONObject last = arr.getJSONObject(arr.length() - 1);
                     final int id = last.optInt("id", 0);
                     if (id <= 0) return;
-                    if (id <= prefs.getInt("last_notice_id", 0)) return;
+                    final int lastId = prefs.getInt("last_notice_id", 0);
+                    android.util.Log.i("ChurchNotice", "最新通知 id=" + id + "，已处理 id=" + lastId);
+                    if (id <= lastId) return;
                     final String title = last.optString("title", "芥菜种教会");
                     final String message = last.optString("message", "教会发布了一条新通知");
                     runOnUiThread(new Runnable() {
@@ -173,7 +186,8 @@ public class MainActivity extends BridgeActivity {
                             showNoticeNotification(title, message, id, prefs);
                         }
                     });
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+                    android.util.Log.i("ChurchNotice", "拉取异常: " + e.toString());
                 }
             }
         }).start();
@@ -330,7 +344,9 @@ public class MainActivity extends BridgeActivity {
                     return false;
                 }
                 NetworkCapabilities caps = cm.getNetworkCapabilities(network);
-                return caps != null && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+                /* 放宽判断：有活动网络即视为在线（避免受限/共享网络缺 INTERNET 能力被误判离线）；
+                   真正的请求失败由 httpGet 的异常捕获兜底 */
+                return caps != null;
             } else {
                 NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
                 return activeNetwork != null && activeNetwork.isConnected();
