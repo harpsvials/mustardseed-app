@@ -1,10 +1,15 @@
 package com.zhuzhouchurch.app;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -21,6 +26,9 @@ import android.webkit.WebView;
 
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.CapConfig;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -54,6 +62,13 @@ public class MainActivity extends BridgeActivity {
                 checkForUpdate();
             }
         }, 3000);
+        // 延迟拉取教会最新通知（后台线程，启动即检查一次）
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                checkForNotice();
+            }
+        }, 5000);
     }
 
     /** 自动检查更新：读取 GitHub 最新 Release 版本号，比内置版本高则弹窗提示 */
@@ -98,6 +113,83 @@ public class MainActivity extends BridgeActivity {
                 }
             }
         }).start();
+    }
+
+    /** 拉取式通知：读取 GitHub 仓库根目录 notice.json，有新消息则在通知栏弹出（每次打开 App 检查一次） */
+    private void checkForNotice() {
+        if (!isOnline()) return;
+        final SharedPreferences prefs = getSharedPreferences("app_notices", MODE_PRIVATE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL("https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/notice.json");
+                    HttpURLConnection c = (HttpURLConnection) url.openConnection();
+                    c.setConnectTimeout(8000);
+                    c.setReadTimeout(8000);
+                    c.setRequestProperty("User-Agent", "mustardseed-app");
+                    if (c.getResponseCode() != 200) return;
+                    InputStream is = c.getInputStream();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) sb.append(line);
+                    JSONObject root = new JSONObject(sb.toString());
+                    JSONArray arr = root.optJSONArray("notices");
+                    if (arr == null || arr.length() == 0) return;
+                    JSONObject last = arr.getJSONObject(arr.length() - 1);
+                    final int id = last.optInt("id", 0);
+                    if (id <= 0) return;
+                    if (id <= prefs.getInt("last_notice_id", 0)) return;
+                    final String title = last.optString("title", "芥菜种教会");
+                    final String message = last.optString("message", "教会发布了一条新通知");
+                    prefs.edit().putInt("last_notice_id", id).apply();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            showNoticeNotification(title, message);
+                        }
+                    });
+                } catch (Exception ignored) {
+                }
+            }
+        }).start();
+    }
+
+    private void showNoticeNotification(String title, String message) {
+        try {
+            if (Build.VERSION.SDK_INT >= 33
+                    && checkSelfPermission("android.permission.POST_NOTIFICATIONS") != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1001);
+                return;
+            }
+            NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (nm == null) return;
+            String chId = "church_notices";
+            if (Build.VERSION.SDK_INT >= 26) {
+                NotificationChannel ch = new NotificationChannel(chId, "教会通知", NotificationManager.IMPORTANCE_DEFAULT);
+                ch.setDescription("芥菜种教会 App 发布的最新通知");
+                nm.createNotificationChannel(ch);
+            }
+            Intent intent = new Intent(this, MainActivity.class);
+            PendingIntent pi = PendingIntent.getActivity(this, 0, intent,
+                    PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+            Notification.Builder builder;
+            if (Build.VERSION.SDK_INT >= 26) {
+                builder = new Notification.Builder(this, chId);
+            } else {
+                builder = new Notification.Builder(this);
+            }
+            Notification n = builder
+                    .setContentTitle(title)
+                    .setContentText(message)
+                    .setSmallIcon(R.drawable.ic_notify)
+                    .setAutoCancel(true)
+                    .setContentIntent(pi)
+                    .build();
+            nm.notify(1002, n);
+        } catch (Exception ignored) {
+        }
     }
 
     private void showUpdateDialog(final String latestTag, final int latest, final SharedPreferences prefs) {
