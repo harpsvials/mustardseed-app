@@ -43,6 +43,12 @@ public class MainActivity extends BridgeActivity {
 
     private AppTTS ttsBridge;
 
+    /* 待发通知（等待用户授权通知权限后弹出） */
+    private String pendingNoticeTitle = null;
+    private String pendingNoticeMessage = null;
+    private int pendingNoticeId = 0;
+    private SharedPreferences pendingNoticePrefs = null;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // 纯本地优先：始终加载 App 内置的网页文件（assets/public），秒开不依赖网络；
@@ -145,18 +151,14 @@ public class MainActivity extends BridgeActivity {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/notice.json");
-                    HttpURLConnection c = (HttpURLConnection) url.openConnection();
-                    c.setConnectTimeout(8000);
-                    c.setReadTimeout(8000);
-                    c.setRequestProperty("User-Agent", "mustardseed-app");
-                    if (c.getResponseCode() != 200) return;
-                    InputStream is = c.getInputStream();
-                    BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-                    while ((line = br.readLine()) != null) sb.append(line);
-                    JSONObject root = new JSONObject(sb.toString());
+                    /* 多源拉取：优先 api.github.com（大陆可访问），失败再走 jsDelivr CDN（有国内节点） */
+                    String json = httpGet("https://api.github.com/repos/harpsvials/mustardseed-app/contents/notice.json",
+                            "application/vnd.github.raw");
+                    if (json == null) {
+                        json = httpGet("https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/notice.json", null);
+                    }
+                    if (json == null) return;
+                    JSONObject root = new JSONObject(json);
                     JSONArray arr = root.optJSONArray("notices");
                     if (arr == null || arr.length() == 0) return;
                     JSONObject last = arr.getJSONObject(arr.length() - 1);
@@ -165,11 +167,10 @@ public class MainActivity extends BridgeActivity {
                     if (id <= prefs.getInt("last_notice_id", 0)) return;
                     final String title = last.optString("title", "芥菜种教会");
                     final String message = last.optString("message", "教会发布了一条新通知");
-                    prefs.edit().putInt("last_notice_id", id).apply();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            showNoticeNotification(title, message);
+                            showNoticeNotification(title, message, id, prefs);
                         }
                     });
                 } catch (Exception ignored) {
@@ -178,13 +179,48 @@ public class MainActivity extends BridgeActivity {
         }).start();
     }
 
-    private void showNoticeNotification(String title, String message) {
+    /** 简单的 HTTP GET 工具：成功返回响应文本，失败返回 null */
+    private String httpGet(String urlStr, String accept) {
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection c = (HttpURLConnection) url.openConnection();
+            c.setConnectTimeout(8000);
+            c.setReadTimeout(8000);
+            c.setRequestProperty("User-Agent", "mustardseed-app");
+            if (accept != null) c.setRequestProperty("Accept", accept);
+            if (c.getResponseCode() != 200) return null;
+            InputStream is = c.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) sb.append(line);
+            return sb.toString();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /** 弹出通知；Android 13+ 未授权时先请求权限，授权成功后再真正弹出 */
+    private void showNoticeNotification(String title, String message, int id, SharedPreferences prefs) {
         try {
             if (Build.VERSION.SDK_INT >= 33
                     && checkSelfPermission("android.permission.POST_NOTIFICATIONS") != PackageManager.PERMISSION_GRANTED) {
+                /* 未授权：保存待发通知，请求权限；不标记已读，授权成功后再弹 */
+                pendingNoticeTitle = title;
+                pendingNoticeMessage = message;
+                pendingNoticeId = id;
+                pendingNoticePrefs = prefs;
                 requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1001);
                 return;
             }
+            /* 已授权（或系统版本 < 33）：真正弹出并标记已读 */
+            deliverNotice(title, message, id, prefs);
+        } catch (Exception ignored) {
+        }
+    }
+
+    private void deliverNotice(String title, String message, int id, SharedPreferences prefs) {
+        try {
             NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             if (nm == null) return;
             String chId = "church_notices";
@@ -210,6 +246,31 @@ public class MainActivity extends BridgeActivity {
                     .setContentIntent(pi)
                     .build();
             nm.notify(1002, n);
+            /* 只有真正弹出通知（或已获授权）才标记已读，避免消息丢失 */
+            prefs.edit().putInt("last_notice_id", id).apply();
+        } catch (Exception ignored) {
+        }
+    }
+
+    /** 通知权限请求结果：授权成功则补发待发通知；拒绝则标记已读（避免每次打开都重复请求权限） */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        try {
+            if (requestCode != 1001) return;
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (pendingNoticeId > 0 && pendingNoticePrefs != null) {
+                    deliverNotice(pendingNoticeTitle, pendingNoticeMessage, pendingNoticeId, pendingNoticePrefs);
+                }
+            } else {
+                if (pendingNoticeId > 0 && pendingNoticePrefs != null) {
+                    pendingNoticePrefs.edit().putInt("last_notice_id", pendingNoticeId).apply();
+                }
+            }
+            pendingNoticeTitle = null;
+            pendingNoticeMessage = null;
+            pendingNoticeId = 0;
+            pendingNoticePrefs = null;
         } catch (Exception ignored) {
         }
     }
