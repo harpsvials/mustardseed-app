@@ -47,11 +47,11 @@ jobs:
           echo "vcode=$(date +%s)" >> $GITHUB_OUTPUT
           echo "vname=v$(TZ=Asia/Shanghai date +%Y.%m.%d.%H%M)" >> $GITHUB_OUTPUT
 
-      - name: Build release APK & AAB
+      - name: Build release APK
         working-directory: android
         run: |
           chmod +x gradlew
-          ./gradlew assembleRelease bundleRelease --no-daemon \
+          ./gradlew assembleRelease --no-daemon \
             -PVERSION_CODE=${{ steps.ver.outputs.vcode }} \
             -PVERSION_NAME=${{ steps.ver.outputs.vname }} \
             -PRELEASE_STORE_FILE=$GITHUB_WORKSPACE/release-key.jks \
@@ -73,25 +73,17 @@ jobs:
           name: mustardseed-apk
           path: android/app/build/outputs/apk/release/app-release.apk
 
-      - name: Upload AAB (Google Play)
-        uses: actions/upload-artifact@v4
-        with:
-          name: mustardseed-aab
-          path: android/app/build/outputs/bundle/release/app-release.aab
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
             android/app/build/outputs/apk/release/app-release.apk
-            android/app/build/outputs/bundle/release/app-release.aab
           tag_name: ${{ steps.ver.outputs.vname }}
           name: 芥菜种教会 ${{ steps.ver.outputs.vname }}
           body: |
             自动打包的安卓安装包（Release 签名版）
             - 版本号：${{ steps.ver.outputs.vname }}（时间版本号）
             - APK：直接安装使用（GitHub 直链 / 平板安装）
-            - AAB：Google Play 商店上架专用格式
             - 包名：com.zhuzhouchurch.app
             - 内置完整多语言网站，支持离线浏览
           generate_release_notes: true

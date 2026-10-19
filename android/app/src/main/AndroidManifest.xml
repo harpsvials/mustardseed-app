@@ -10,26 +10,17 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|navigation|density"
-            android:exported="true"
+            android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBarLaunch">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTask"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-
-        <activity
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|navigation|density"
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBarLaunch"
-            android:launchMode="singleTask"
-            android:exported="true">
 
         </activity>
 

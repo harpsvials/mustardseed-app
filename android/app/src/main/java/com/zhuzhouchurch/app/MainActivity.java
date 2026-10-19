@@ -100,19 +100,41 @@ public class MainActivity extends BridgeActivity {
                     Matcher m = Pattern.compile("\"tag_name\":\"v([\\d.]+)\"").matcher(sb.toString());
                     if (!m.find()) return;
                     final String latestTag = m.group(1);
-                    final int latest = Integer.parseInt(latestTag.replace(".", ""));
-                    if (latest <= curCode) return;
-                    if (prefs.getInt("ignored_version", 0) == latest) return;
+                    String curName = "";
+                    try {
+                        curName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+                    } catch (Exception ignored) {
+                    }
+                    if (curName.startsWith("v")) curName = curName.substring(1);
+                    if (compareVersion(latestTag, curName) <= 0) return;
+                    if (latestTag.equals(prefs.getString("ignored_version", ""))) return;
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            showUpdateDialog(latestTag, latest, prefs);
+                            showUpdateDialog(latestTag, prefs);
                         }
                     });
                 } catch (Exception ignored) {
                 }
             }
         }).start();
+    }
+
+    /** 版本号比较："2026.10.19.1953" 形式，逐段数字比较，避免整串转 int 溢出 */
+    private int compareVersion(String a, String b) {
+        try {
+            String[] as = a.split("\\.");
+            String[] bs = b.split("\\.");
+            int n = Math.max(as.length, bs.length);
+            for (int i = 0; i < n; i++) {
+                long x = i < as.length ? Long.parseLong(as[i]) : 0;
+                long y = i < bs.length ? Long.parseLong(bs[i]) : 0;
+                if (x != y) return x < y ? -1 : 1;
+            }
+            return 0;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     /** 拉取式通知：读取 GitHub 仓库根目录 notice.json，有新消息则在通知栏弹出（每次打开 App 检查一次） */
@@ -192,7 +214,7 @@ public class MainActivity extends BridgeActivity {
         }
     }
 
-    private void showUpdateDialog(final String latestTag, final int latest, final SharedPreferences prefs) {
+    private void showUpdateDialog(final String latestTag, final SharedPreferences prefs) {
         try {
             new AlertDialog.Builder(this)
                 .setTitle("发现新版本 v" + latestTag)
@@ -205,21 +227,21 @@ public class MainActivity extends BridgeActivity {
                                 Uri.parse("https://github.com/harpsvials/mustardseed-app/releases/download/v" + latestTag + "/app-release.apk"));
                             startActivity(i);
                         } catch (Exception e) {
-                            prefs.edit().putInt("ignored_version", latest).apply();
+                            prefs.edit().putString("ignored_version", latestTag).apply();
                         }
                     }
                 })
                 .setNegativeButton("以后再说", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface d, int w) {
-                        prefs.edit().putInt("ignored_version", latest).apply();
+                        prefs.edit().putString("ignored_version", latestTag).apply();
                     }
                 })
                 .setCancelable(true)
                 .setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface d) {
-                        prefs.edit().putInt("ignored_version", latest).apply();
+                        prefs.edit().putString("ignored_version", latestTag).apply();
                     }
                 })
                 .show();
