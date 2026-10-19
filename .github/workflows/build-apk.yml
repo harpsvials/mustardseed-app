@@ -41,11 +41,11 @@ jobs:
       - name: Decode signing keystore
         run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > release-key.jks
 
-      - name: Build release APK
+      - name: Build release APK & AAB
         working-directory: android
         run: |
           chmod +x gradlew
-          ./gradlew assembleRelease --no-daemon \
+          ./gradlew assembleRelease bundleRelease --no-daemon \
             -PVERSION_CODE=${{ github.run_number }} \
             -PVERSION_NAME=v${{ github.run_number }} \
             -PRELEASE_STORE_FILE=$GITHUB_WORKSPACE/release-key.jks \
@@ -67,14 +67,24 @@ jobs:
           name: mustardseed-apk
           path: android/app/build/outputs/apk/release/app-release.apk
 
+      - name: Upload AAB (Google Play)
+        uses: actions/upload-artifact@v4
+        with:
+          name: mustardseed-aab
+          path: android/app/build/outputs/bundle/release/app-release.aab
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: android/app/build/outputs/apk/release/app-release.apk
+          files: |
+            android/app/build/outputs/apk/release/app-release.apk
+            android/app/build/outputs/bundle/release/app-release.aab
           tag_name: v${{ github.run_number }}
           name: 芥菜种教会 v${{ github.run_number }}
           body: |
             自动打包的安卓安装包（Release 签名版）
+            - APK：直接安装使用（GitHub 直链 / 平板安装）
+            - AAB：Google Play 商店上架专用格式
             - 包名：com.zhuzhouchurch.app
             - 内置完整多语言网站，支持离线浏览
           generate_release_notes: true
