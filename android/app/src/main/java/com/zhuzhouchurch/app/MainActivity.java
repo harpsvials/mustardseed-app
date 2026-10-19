@@ -82,15 +82,16 @@ public class MainActivity extends BridgeActivity {
                     StringBuilder sb = new StringBuilder();
                     String line;
                     while ((line = br.readLine()) != null) sb.append(line);
-                    Matcher m = Pattern.compile("\"tag_name\":\"v(\\d+)\"").matcher(sb.toString());
+                    Matcher m = Pattern.compile("\"tag_name\":\"v([\\d.]+)\"").matcher(sb.toString());
                     if (!m.find()) return;
-                    final int latest = Integer.parseInt(m.group(1));
+                    final String latestTag = m.group(1);
+                    final int latest = Integer.parseInt(latestTag.replace(".", ""));
                     if (latest <= curCode) return;
                     if (prefs.getInt("ignored_version", 0) == latest) return;
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            showUpdateDialog(latest, prefs);
+                            showUpdateDialog(latestTag, latest, prefs);
                         }
                     });
                 } catch (Exception ignored) {
@@ -99,17 +100,17 @@ public class MainActivity extends BridgeActivity {
         }).start();
     }
 
-    private void showUpdateDialog(final int latest, final SharedPreferences prefs) {
+    private void showUpdateDialog(final String latestTag, final int latest, final SharedPreferences prefs) {
         try {
             new AlertDialog.Builder(this)
-                .setTitle("发现新版本 v" + latest)
+                .setTitle("发现新版本 v" + latestTag)
                 .setMessage("检测到芥菜种教会 App 有新版本，是否前往下载更新？")
                 .setPositiveButton("立即更新", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface d, int w) {
                         try {
                             Intent i = new Intent(Intent.ACTION_VIEW,
-                                Uri.parse("https://github.com/harpsvials/mustardseed-app/releases/download/v" + latest + "/app-release.apk"));
+                                Uri.parse("https://github.com/harpsvials/mustardseed-app/releases/download/v" + latestTag + "/app-release.apk"));
                             startActivity(i);
                         } catch (Exception e) {
                             prefs.edit().putInt("ignored_version", latest).apply();

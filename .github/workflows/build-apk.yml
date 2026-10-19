@@ -41,13 +41,19 @@ jobs:
       - name: Decode signing keystore
         run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > release-key.jks
 
+      - name: Set version (time-based)
+        id: ver
+        run: |
+          echo "vcode=$(date +%Y%m%d)" >> $GITHUB_OUTPUT
+          echo "vname=v$(date +%Y.%m.%d)" >> $GITHUB_OUTPUT
+
       - name: Build release APK & AAB
         working-directory: android
         run: |
           chmod +x gradlew
           ./gradlew assembleRelease bundleRelease --no-daemon \
-            -PVERSION_CODE=${{ github.run_number }} \
-            -PVERSION_NAME=v${{ github.run_number }} \
+            -PVERSION_CODE=${{ steps.ver.outputs.vcode }} \
+            -PVERSION_NAME=${{ steps.ver.outputs.vname }} \
             -PRELEASE_STORE_FILE=$GITHUB_WORKSPACE/release-key.jks \
             -PRELEASE_STORE_PASSWORD="${{ secrets.KEYSTORE_PASSWORD }}" \
             -PRELEASE_KEY_ALIAS="${{ secrets.KEY_ALIAS }}" \
@@ -79,10 +85,11 @@ jobs:
           files: |
             android/app/build/outputs/apk/release/app-release.apk
             android/app/build/outputs/bundle/release/app-release.aab
-          tag_name: v${{ github.run_number }}
-          name: 芥菜种教会 v${{ github.run_number }}
+          tag_name: ${{ steps.ver.outputs.vname }}
+          name: 芥菜种教会 ${{ steps.ver.outputs.vname }}
           body: |
             自动打包的安卓安装包（Release 签名版）
+            - 版本号：${{ steps.ver.outputs.vname }}（时间版本号）
             - APK：直接安装使用（GitHub 直链 / 平板安装）
             - AAB：Google Play 商店上架专用格式
             - 包名：com.zhuzhouchurch.app
