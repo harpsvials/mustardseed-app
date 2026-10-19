@@ -149,13 +149,12 @@ public class MainActivity extends BridgeActivity {
         }
     }
 
-    /** 拉取式通知：读取 GitHub 仓库根目录 notice.json，有新消息则在通知栏弹出（每次打开 App 检查一次） */
+    /** 拉取式通知：每次打开 App 强制读取 notice.json 并在通知栏推送（不去重、不失效） */
     private void checkForNotice() {
         if (!isOnline()) {
             android.util.Log.i("ChurchNotice", "checkForNotice: 网络不可用，跳过");
             return;
         }
-        final SharedPreferences prefs = getSharedPreferences("app_notices", MODE_PRIVATE);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -172,18 +171,13 @@ public class MainActivity extends BridgeActivity {
                     JSONObject root = new JSONObject(json);
                     JSONArray arr = root.optJSONArray("notices");
                     if (arr == null || arr.length() == 0) return;
-                    JSONObject last = arr.getJSONObject(arr.length() - 1);
-                    final int id = last.optInt("id", 0);
-                    if (id <= 0) return;
-                    final int lastId = prefs.getInt("last_notice_id", 0);
-                    android.util.Log.i("ChurchNotice", "最新通知 id=" + id + "，已处理 id=" + lastId);
-                    if (id <= lastId) return;
-                    final String title = last.optString("title", "芥菜种教会");
-                    final String message = last.optString("message", "教会发布了一条新通知");
+                    JSONObject notice = arr.getJSONObject(0);
+                    final String title = notice.optString("title", "芥菜种教会");
+                    final String message = notice.optString("message", "教会发布了一条新通知");
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            showNoticeNotification(title, message, id, prefs);
+                            showNoticeNotification(title, message);
                         }
                     });
                 } catch (Exception e) {
@@ -215,25 +209,24 @@ public class MainActivity extends BridgeActivity {
     }
 
     /** 弹出通知；Android 13+ 未授权时先请求权限，授权成功后再真正弹出 */
-    private void showNoticeNotification(String title, String message, int id, SharedPreferences prefs) {
+    private void showNoticeNotification(String title, String message) {
         try {
             if (Build.VERSION.SDK_INT >= 33
                     && checkSelfPermission("android.permission.POST_NOTIFICATIONS") != PackageManager.PERMISSION_GRANTED) {
-                /* 未授权：保存待发通知，请求权限；不标记已读，授权成功后再弹 */
+                /* 未授权：保存待发通知，请求权限；每次打开都尝试，不标记已读 */
                 pendingNoticeTitle = title;
                 pendingNoticeMessage = message;
-                pendingNoticeId = id;
-                pendingNoticePrefs = prefs;
+                pendingNoticePrefs = null;
                 requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1001);
                 return;
             }
-            /* 已授权（或系统版本 < 33）：真正弹出并标记已读 */
-            deliverNotice(title, message, id, prefs);
+            /* 已授权（或系统版本 < 33）：真正弹出 */
+            deliverNotice(title, message);
         } catch (Exception ignored) {
         }
     }
 
-    private void deliverNotice(String title, String message, int id, SharedPreferences prefs) {
+    private void deliverNotice(String title, String message) {
         try {
             NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             if (nm == null) return;
@@ -260,25 +253,19 @@ public class MainActivity extends BridgeActivity {
                     .setContentIntent(pi)
                     .build();
             nm.notify(1002, n);
-            /* 只有真正弹出通知（或已获授权）才标记已读，避免消息丢失 */
-            prefs.edit().putInt("last_notice_id", id).apply();
         } catch (Exception ignored) {
         }
     }
 
-    /** 通知权限请求结果：授权成功则补发待发通知；拒绝则标记已读（避免每次打开都重复请求权限） */
+    /** 通知权限请求结果：授权成功则补发待发通知；拒绝则清空待发（下次打开 App 会再次尝试） */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         try {
             if (requestCode != 1001) return;
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (pendingNoticeId > 0 && pendingNoticePrefs != null) {
-                    deliverNotice(pendingNoticeTitle, pendingNoticeMessage, pendingNoticeId, pendingNoticePrefs);
-                }
-            } else {
-                if (pendingNoticeId > 0 && pendingNoticePrefs != null) {
-                    pendingNoticePrefs.edit().putInt("last_notice_id", pendingNoticeId).apply();
+                if (pendingNoticeMessage != null) {
+                    deliverNotice(pendingNoticeTitle, pendingNoticeMessage);
                 }
             }
             pendingNoticeTitle = null;

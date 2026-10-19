@@ -83,6 +83,7 @@ jobs:
           body: |
             自动打包的安卓安装包（Release 签名版）
             - 版本号：${{ steps.ver.outputs.vname }}（时间版本号）
+            - 本次更新：${{ github.event.head_commit.message }}
             - APK：直接安装使用（GitHub 直链 / 平板安装）
             - 包名：com.zhuzhouchurch.app
             - 内置完整多语言网站，支持离线浏览
