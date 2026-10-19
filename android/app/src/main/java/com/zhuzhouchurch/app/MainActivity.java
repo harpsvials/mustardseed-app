@@ -58,7 +58,12 @@ public class MainActivity extends BridgeActivity {
 
     /** 自动检查更新：读取 GitHub 最新 Release 版本号，比内置版本高则弹窗提示 */
     private void checkForUpdate() {
-        final int curCode = BuildConfig.VERSION_CODE;
+        int curCode = 1;
+        try {
+            curCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+        } catch (Exception ignored) {
+            return;
+        }
         if (curCode <= 1) return;
         final SharedPreferences prefs = getSharedPreferences("app_updates", MODE_PRIVATE);
         new Thread(new Runnable() {
