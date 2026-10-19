@@ -320,6 +320,33 @@ body.page-prayer #pwList .gb-item .gb-time{color:#6f6147;}
 body.page-prayer #pwList .gb-item .gb-content{color:#33301f;font-size:14px;}
 body.page-prayer #pwList .gb-empty,body.page-prayer #pwList .gb-loading{grid-column:1/-1;}
 
+/* ===== 留言板：贴纸样式（与祷告墙一致） ===== */
+body.page-guestbook #gbList{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+body.page-guestbook #gbList .gb-item{
+  position:relative;margin:0;padding:14px 15px 18px;
+  border:none;border-radius:14px;
+  box-shadow:0 4px 12px rgba(0,0,0,.22),0 1px 2px rgba(0,0,0,.16);
+  display:flex;flex-direction:column;gap:7px;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+body.page-guestbook #gbList .gb-item:hover{transform:rotate(0deg) translateY(-2px);box-shadow:0 7px 16px rgba(0,0,0,.26);}
+body.page-guestbook #gbList .gb-item::after{
+  content:"";position:absolute;top:0;right:0;width:16px;height:16px;
+  background:linear-gradient(225deg,rgba(46,52,38,.16) 0 50%,rgba(46,52,38,0) 50%);
+  border-top-right-radius:14px;
+}
+body.page-guestbook #gbList .gb-item:nth-child(6n+1){background:#e7dab2;transform:rotate(-1deg);}
+body.page-guestbook #gbList .gb-item:nth-child(6n+2){background:#e4cbc4;transform:rotate(1.2deg);}
+body.page-guestbook #gbList .gb-item:nth-child(6n+3){background:#c9dae4;transform:rotate(-1.4deg);}
+body.page-guestbook #gbList .gb-item:nth-child(6n+4){background:#cbdfc6;transform:rotate(1deg);}
+body.page-guestbook #gbList .gb-item:nth-child(6n+5){background:#d6cbe1;transform:rotate(-.8deg);}
+body.page-guestbook #gbList .gb-item:nth-child(6n+6){background:#e9d5b4;transform:rotate(1.3deg);}
+body.page-guestbook #gbList .gb-item .gb-name{color:#3e5138;}
+body.page-guestbook #gbList .gb-item .gb-time{color:#6f6147;}
+body.page-guestbook #gbList .gb-item .gb-page{color:#3e5138;border-color:rgba(62,81,56,.35);}
+body.page-guestbook #gbList .gb-item .gb-content{color:#33301f;font-size:14px;}
+body.page-guestbook #gbList .gb-empty,body.page-guestbook #gbList .gb-loading{grid-column:1/-1;}
+
 /* ===== 16. 软件资源页 ===== */
 .app-wrap{max-width:720px;margin:0 auto;padding:6px 0 8px;}
 .page-apps .app-wrap{margin-top:12px;}
