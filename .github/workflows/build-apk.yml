@@ -44,7 +44,7 @@ jobs:
       - name: Set version (time-based)
         id: ver
         run: |
-          echo "vcode=$(TZ=Asia/Shanghai date +%Y%m%d%H%M)" >> $GITHUB_OUTPUT
+          echo "vcode=$(date +%s)" >> $GITHUB_OUTPUT
           echo "vname=v$(TZ=Asia/Shanghai date +%Y.%m.%d.%H%M)" >> $GITHUB_OUTPUT
 
       - name: Build release APK & AAB
