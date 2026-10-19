@@ -151,6 +151,46 @@
   nav.innerHTML = html;
   var foot = document.getElementById('siteNavFoot');
   if(foot) foot.innerHTML = html;   /* 页脚导航与顶部共用一套注入 */
+
+  /* ---- 手机 App 底部 Tab 栏：6 个核心入口（主页/讲道/见证/讨论/留言/祷告墙），固定底部，当前页高亮 ---- */
+  var TABS = [
+    ['nav.home','index.html','主页','<path d="M3.5 11 12 4.5 20.5 11"/><path d="M5 11v9h14v-9"/><path d="M9.5 20v-4.5h5V20"/>'],
+    ['nav.sermons','sermons.html','讲道','<path d="M12 5.5v13"/><path d="M12 5.5C10.6 4.4 7.8 4.1 4.8 4.5v13.6c3-.4 5.8-.1 7.2.9z"/><path d="M12 5.5c1.4-1.1 4.2-1.4 7.2-1v13.6c-3-.4-5.8-.1-7.2.9z"/>'],
+    ['nav.testimonies','testimonies.html','见证','<path d="M12 20s-7-4.5-9.5-9C1 8 3 5 6.5 5c2 0 3.5 1.2 4.5 2.8C12 6.2 13.5 5 15.5 5 19 5 21 8 19.5 11c-2.5 4.5-7.5 9-7.5 9z"/>'],
+    ['nav.discussion','discussion.html','讨论','<path d="M4 5h16v10H8l-4 4V5z"/><path d="M8 9h8"/><path d="M8 12h5"/>'],
+    ['nav.guestbook','guestbook.html','留言','<path d="M4.5 19.5V16.8L16.3 5a1.84 1.84 0 0 1 2.6 2.6L7.1 19.4 4.5 19.5z"/><path d="M14.8 6.5l2.6 2.6"/>'],
+    ['nav.prayer','prayer.html','祷告墙','<path d="M6.5 4h11a2.5 2.5 0 0 1 2.5 2.5v11a2.5 2.5 0 0 1-2.5 2.5h-11a2.5 2.5 0 0 1-2.5-2.5V6.5A2.5 2.5 0 0 1 6.5 4z"/><path d="M12 8v8"/><path d="M8.5 12h7"/>']
+  ];
+  var TAB_MAP = [0,1,3,2,4,5];   /* 底部 6 个 tab 对应 NAV 的索引：主页0 讲道1 见证3 讨论2 留言4 祷告墙5 */
+  var tabActive = -1;
+  for(var ti=0;ti<TAB_MAP.length;ti++){ if(TAB_MAP[ti] === activeIdx){ tabActive = ti; break; } }
+  var tb = document.createElement('nav');
+  tb.className = 'app-tabbar';
+  tb.setAttribute('data-i18n-aria','nav.aria');
+  tb.setAttribute('aria-label', (d['nav.aria'] != null) ? d['nav.aria'] : '站点导航');
+  var th = '';
+  for(var tj=0;tj<TABS.length;tj++){
+    var tk = TABS[tj][0];
+    var thr = (lang === 'zh-CN') ? base + TABS[tj][1] : base + lang + '/' + TABS[tj][1];
+    var tn = (d[tk] != null) ? d[tk] : TABS[tj][2];
+    var ta = (tj === tabActive) ? ' is-current' : '';
+    th += '<a class="app-tab' + ta + '" href="' + thr + '" data-i18n="' + tk + '">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + TABS[tj][3] + '</svg>' +
+          '<span>' + tn + '</span></a>';
+  }
+  tb.innerHTML = th;
+  document.body.appendChild(tb);
+})();
+
+/* ===== 4c. App 化：统一状态栏/浏览器主题色（与品牌深绿一致） ===== */
+(function(){
+  var m = document.querySelector('meta[name="theme-color"]');
+  if(!m){
+    m = document.createElement('meta');
+    m.setAttribute('name','theme-color');
+    document.head.appendChild(m);
+  }
+  m.setAttribute('content','#16281C');
 })();
 
 /* ===== 5.1 支持与合作：App 内 mailto 不可用 → 点击复制邮箱 ===== */

@@ -8,4 +8,5 @@ android_old/
 .DS_Store
 _shots/
 _backup/
+newapp/
 *.log
