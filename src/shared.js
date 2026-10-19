@@ -504,3 +504,44 @@ window.__hasBlocked = (function(){
   /* 语言切换后按钮文字变化可能导致导航换行，同步刷新吸顶高度 */
   if(window.__langHooks){ window.__langHooks.push(function(){ setTimeout(syncStickyTops, 80); }); }
 })();
+
+/* ===== 通知提示：拉取 notice.json，网页打开时弹出小窗口（与 App 通知共用同一份消息） ===== */
+(function(){
+  /* 仅在 HTTP(S) 环境尝试：file:// 与本机 App 内置离线下 fetch 必然失败，静默跳过（App 系统通知由原生处理，不重复弹） */
+  if (location.protocol !== 'http:' && location.protocol !== 'https:') return;
+  var shownKey = 'ms_notice_shown';
+  try { if (sessionStorage.getItem(shownKey)) return; } catch (e) { return; }
+  var sc = document.currentScript && document.currentScript.src;
+  var base = sc ? sc.substring(0, sc.lastIndexOf('/') + 1) : '';
+  base = base.replace(/(^|\/)src\/$/, '$1');   /* shared.js 位于 src/，资源基准回到项目根（notice.json 在根目录） */
+  fetch(base + 'notice.json', { cache: 'no-store' })
+    .then(function(r){ if (!r.ok) throw new Error('http'); return r.json(); })
+    .then(function(d){
+      var list = d && d.notices;
+      if (!list || !list.length) return;
+      var n = list[0];
+      if (!n || !n.message) return;
+      try { sessionStorage.setItem(shownKey, '1'); } catch (e) {}
+      showNotice(n.title || '', n.message);
+    })
+    .catch(function(){ /* 离线或网络异常：静默，不打扰浏览 */ });
+  function showNotice(title, message){
+    var el = document.createElement('div');
+    el.className = 'notice-pop';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-label', '通知');
+    el.innerHTML =
+      '<button class="notice-pop-x" type="button" aria-label="关闭">×</button>' +
+      (title ? '<p class="notice-pop-title"></p>' : '') +
+      '<p class="notice-pop-msg"></p>';
+    if (title) el.querySelector('.notice-pop-title').textContent = title;
+    el.querySelector('.notice-pop-msg').textContent = message;
+    el.querySelector('.notice-pop-x').addEventListener('click', function(){ dismiss(); });
+    document.body.appendChild(el);
+    requestAnimationFrame(function(){ el.classList.add('show'); });
+    function dismiss(){
+      el.classList.remove('show');
+      setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 300);
+    }
+  }
+})();
