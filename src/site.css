@@ -103,7 +103,7 @@ footer .seed{color:var(--sprout);}
   transition:color .2s ease,background .2s ease;-webkit-tap-highlight-color:transparent;
 }
 .app-tab svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
-.app-tab span{font-family:var(--font-sans);font-size:10.5px;letter-spacing:.02em;white-space:nowrap;}
+.app-tab span{font-family:var(--font-sans);font-size:10.5px;letter-spacing:.02em;line-height:1.25;text-align:center;white-space:normal;overflow-wrap:break-word;word-break:break-word;display:block;max-width:100%;padding:0 2px;}
 .app-tab:hover{color:var(--mustard,#E0AE33);}
 .app-tab:active{transform:scale(.94);}
 .app-tab.is-current{color:var(--mustard,#E0AE33);background:rgba(224,174,51,.15);font-weight:500;}
