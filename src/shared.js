@@ -509,6 +509,9 @@ window.__hasBlocked = (function(){
 (function(){
   /* 仅在 HTTP(S) 环境尝试：file:// 与本机 App 内置离线下 fetch 必然失败，静默跳过（App 系统通知由原生处理，不重复弹） */
   if (location.protocol !== 'http:' && location.protocol !== 'https:') return;
+  /* 域名白名单：只在线上网站显示；App 内 WebView（localhost）与本地文件一律不弹，避免与原生通知重复 */
+  var host = (location.hostname || '').toLowerCase();
+  if (host !== 'zhuzhouchurch.com' && host !== 'www.zhuzhouchurch.com') return;
   var shownKey = 'ms_notice_shown';
   try { if (sessionStorage.getItem(shownKey)) return; } catch (e) { return; }
   var sc = document.currentScript && document.currentScript.src;
