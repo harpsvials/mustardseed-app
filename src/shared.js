@@ -537,6 +537,22 @@ window.__hasBlocked = (function(){
   }
   window.addEventListener('load', syncStickyTops);
   window.addEventListener('resize', syncStickyTops);
+
+  /* 悬浮按钮贴合底部导航栏：以导航栏实际高度（含安全区、含换行后增高的 tab 文字）定位，
+     任何设备/语言下都与导航栏无缝贴合 */
+  function syncFloatBtns(){
+    var tb = document.querySelector('.app-tabbar');
+    var row = document.querySelector('.contact-row');
+    if(!row) return;
+    if(tb && tb.offsetHeight > 0){ row.style.bottom = tb.offsetHeight + 'px'; }
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(syncFloatBtns, 80); });
+  } else {
+    setTimeout(syncFloatBtns, 80);
+  }
+  window.addEventListener('load', function(){ setTimeout(syncFloatBtns, 50); });
+  window.addEventListener('resize', syncFloatBtns);
   /* 语言切换后按钮文字变化可能导致导航换行，同步刷新吸顶高度 */
   if(window.__langHooks){ window.__langHooks.push(function(){ setTimeout(syncStickyTops, 80); }); }
 })();

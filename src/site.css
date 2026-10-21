@@ -141,7 +141,7 @@ footer .seed{color:var(--sprout);}
 .contact-link:active{transform:scale(.97);background:rgba(224,174,51,.14);}
 .contact-link:focus-visible{border-color:var(--mustard);}
 .contact-link:hover .contact-ic{border-color:var(--mustard);color:var(--mustard);background:rgba(224,174,51,.08);}
-.contact-row{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 20px calc(10px + env(safe-area-inset-bottom));background:transparent;border:0;pointer-events:none; -webkit-transform:translateZ(0);transform:translateZ(0);}
+.contact-row{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 20px 6px;background:transparent;border:0;pointer-events:none; -webkit-transform:translateZ(0);transform:translateZ(0);}
 /* 悬浮条已精简为两个独立圆形按钮：支持与合作（仅图标）+ 音乐播放器，无背景条 */
 .contact-link,.ms-player{pointer-events:auto;}
 .contact-link [data-i18n="contact.label"]{display:none;}
