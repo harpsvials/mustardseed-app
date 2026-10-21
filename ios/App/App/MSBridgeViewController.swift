@@ -1,8 +1,9 @@
 import UIKit
 import Capacitor
 
-/* 深绿主题 #16281C 作为 WKWebView 原生背景：
-   页面导航/加载瞬间（CSS 尚未接管）显示深绿而非白色，彻底消除切导航白闪 */
+/* 深绿主题 #16281C：根视图直接铺深绿，WKWebView 设为透明，
+   页面导航间隙（旧页卸载、新页 CSS 未接管）及滚动弹跳区域都露出根视图的深绿，
+   从根源消除切换导航白闪 */
 class MSBridgeViewController: CAPBridgeViewController {
 
     private static let themeBackground = UIColor(
@@ -11,14 +12,17 @@ class MSBridgeViewController: CAPBridgeViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+        /* 根视图立即铺深绿（不依赖 webView 是否已创建） */
+        self.view.backgroundColor = MSBridgeViewController.themeBackground
+
+        DispatchQueue.main.async { [weak self] in
             guard let wv = self?.webView else { return }
-            wv.backgroundColor = MSBridgeViewController.themeBackground
+            wv.isOpaque = false
+            wv.backgroundColor = UIColor.clear
+            wv.scrollView.backgroundColor = UIColor.clear
             if #available(iOS 15.0, *) {
-                wv.underPageBackgroundColor = MSBridgeViewController.themeBackground
+                wv.underPageBackgroundColor = UIColor.clear
             }
-            /* 保持不透明：导航期间用原生背景色渲染，避免露出窗口白底 */
-            wv.isOpaque = true
         }
     }
 }
