@@ -193,6 +193,28 @@
   m.setAttribute('content','#16281C');
 })();
 
+/* ===== 4d. iOS 端不全屏：移除 viewport-fit=cover，视口避开底部手势条安全区，
+     悬浮按钮与底部导航不再被手势条区域挤压；安卓端保持全屏不受影响 ===== */
+(function(){
+  if(window.Capacitor && window.Capacitor.isNativePlatform && /iPhone|iPad|iPod/i.test(navigator.userAgent)){
+    var vm = document.querySelector('meta[name="viewport"]');
+    if(vm && vm.getAttribute('content') && vm.getAttribute('content').indexOf('viewport-fit=cover') !== -1){
+      vm.setAttribute('content','width=device-width, initial-scale=1');
+    }
+  }
+})();
+
+/* ===== 4e. Service Worker 注册：App 内启用 GitHub 在线内容更新
+     （改 GitHub 推送后，App 打开自动拉取最新页面内容，无需重新安装；
+       网页端不注册，避免缓存影响线上站点） ===== */
+(function(){
+  if (!('serviceWorker' in navigator)) return;
+  if (!window.Capacitor) return;
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(function(){});
+  });
+})();
+
 /* ===== 5.1 支持与合作：App 内 mailto 不可用 → 点击复制邮箱 ===== */
 (function(){
   var contact = document.querySelector('.contact-link');
@@ -302,6 +324,12 @@
         itemEls[k].setAttribute('aria-selected', k === i ? 'true' : 'false');
       }
     }
+    /* 跨导航续播：把曲目/进度/播放状态写入 localStorage，页面切换（导航跳转）后自动恢复 */
+    function saveState(){
+      try {
+        localStorage.setItem('ms_state', JSON.stringify({ cur: cur, time: a.currentTime || 0, playing: playing }));
+      } catch (e) {}
+    }
     function playTrack(i){
       if(i === cur && playing){ a.pause(); return; }
       if(i !== cur){
@@ -335,12 +363,13 @@
     document.addEventListener('click', function(e){
       if(listOpen && !pl.contains(e.target)) setListOpen(false);
     });
-    a.addEventListener('play', function(){ setPlaying(true); });
-    a.addEventListener('pause', function(){ setPlaying(false); });
+    a.addEventListener('play', function(){ setPlaying(true); saveState(); });
+    a.addEventListener('pause', function(){ setPlaying(false); saveState(); });
     a.addEventListener('timeupdate', function(){
       if(tm) tm.textContent = fmt(a.currentTime);
       var pct = a.duration ? (a.currentTime / a.duration * 100) : 0;
       btn.style.setProperty('--p', pct.toFixed(2));
+      saveState();
     });
     if(document.querySelector('.rd-bar')) pl.classList.add('pos-up');
     window.__langHooks.push(function(){
@@ -349,6 +378,20 @@
         : lbl(playing));
     });
     setCur(cur);
+    /* 跨导航续播：读取上次播放状态，若正在播放则自动恢复曲目与进度 */
+    var saved = null;
+    try { saved = JSON.parse(localStorage.getItem('ms_state') || 'null'); } catch (e) {}
+    if (saved && typeof saved.cur === 'number' && TRACKS[saved.cur]) {
+      setCur(saved.cur);
+      if (saved.playing) {
+        a.src = base + TRACKS[saved.cur].file;
+        a.load();
+        try { a.currentTime = Math.max(0, saved.time || 0); } catch (e) {}
+        if (tm) tm.textContent = fmt(saved.time || 0);
+        var pr = a.play();
+        if (pr && pr.catch) pr.catch(function(){ /* 部分环境（如 iOS 无手势）自动播放会被拒：保留状态，用户点击播放即续播 */ });
+      }
+    }
   }
   if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', msMain); }
   else { msMain(); }
@@ -507,27 +550,47 @@ window.__hasBlocked = (function(){
 
 /* ===== 通知提示：拉取 notice.json，网页打开时弹出小窗口（与 App 通知共用同一份消息） ===== */
 (function(){
-  /* 仅在 HTTP(S) 环境尝试：file:// 与本机 App 内置离线下 fetch 必然失败，静默跳过（App 系统通知由原生处理，不重复弹） */
-  if (location.protocol !== 'http:' && location.protocol !== 'https:') return;
-  /* 域名白名单：只在线上网站显示；App 内 WebView（localhost）与本地文件一律不弹，避免与原生通知重复 */
+  /* 运行环境判定：
+     - 线上网页：仅在白名单域名（zhuzhouchurch.com / www.zhuzhouchurch.com）显示；
+     - App 内 WebView（Capacitor 的 capacitor:// 或 https://localhost，UA 含 Capacitor）：显示（无原生通知，靠网页弹窗）；
+     - 其他网页域名、file:// 直开：不弹（file:// 下 fetch 必失败，静默跳过）。 */
   var host = (location.hostname || '').toLowerCase();
-  if (host !== 'zhuzhouchurch.com' && host !== 'www.zhuzhouchurch.com') return;
+  var protocol = (location.protocol || '').toLowerCase();
+  var isAppEnv = (protocol !== 'http:' && protocol !== 'https:') ||
+                 /capacitor/i.test(navigator.userAgent);
+  var inWhitelist = host === 'zhuzhouchurch.com' || host === 'www.zhuzhouchurch.com';
+  if (!isAppEnv && !inWhitelist) return;
   var shownKey = 'ms_notice_shown';
   try { if (sessionStorage.getItem(shownKey)) return; } catch (e) { return; }
   var sc = document.currentScript && document.currentScript.src;
   var base = sc ? sc.substring(0, sc.lastIndexOf('/') + 1) : '';
   base = base.replace(/(^|\/)src\/$/, '$1');   /* shared.js 位于 src/，资源基准回到项目根（notice.json 在根目录） */
-  fetch(base + 'notice.json', { cache: 'no-store' })
-    .then(function(r){ if (!r.ok) throw new Error('http'); return r.json(); })
-    .then(function(d){
-      var list = d && d.notices;
-      if (!list || !list.length) return;
-      var n = list[0];
-      if (!n || !n.message) return;
-      try { sessionStorage.setItem(shownKey, '1'); } catch (e) {}
-      showNotice(n.title || '', n.message);
-    })
-    .catch(function(){ /* 离线或网络异常：静默，不打扰浏览 */ });
+  /* App 内：优先从 GitHub 拉取线上最新 notice.json（多源依次尝试），失败回退内置快照，
+     实现"App 从 GitHub 更新数据、不用重新安装"；网页端 base 即线上文件，天然最新 */
+  var sources = isAppEnv
+    ? [
+        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/notice.json',
+        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/notice.json',
+        'https://zhuzhouchurch.com/notice.json',
+        base + 'notice.json'
+      ]
+    : [base + 'notice.json'];
+  function tryFetch(i, cb){
+    if (i >= sources.length) { cb(null); return; }
+    fetch(sources[i], { cache: 'no-store' })
+      .then(function(r){ if (!r.ok) throw new Error('http'); return r.json(); })
+      .then(function(d){ cb(d); })
+      .catch(function(){ tryFetch(i + 1, cb); });
+  }
+  tryFetch(0, function(d){
+    if (!d) return;
+    var list = d && d.notices;
+    if (!list || !list.length) return;
+    var n = list[0];
+    if (!n || !n.message) return;
+    try { sessionStorage.setItem(shownKey, '1'); } catch (e) {}
+    showNotice(n.title || '', n.message);
+  });
   function showNotice(title, message){
     var el = document.createElement('div');
     el.className = 'notice-pop';
