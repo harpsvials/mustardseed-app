@@ -8,7 +8,7 @@
 */
 'use strict';
 
-var CACHE = 'ms-content-v1';
+var CACHE = 'ms-content-v2';
 var REMOTE_BASES = [
   'https://zhuzhouchurch.com',
   'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main',
@@ -69,8 +69,32 @@ async function fetchRemote(path){
 /* 后台刷新：拉远程最新版写入缓存，失败静默（不影响当前页面） */
 function refresh(cache, req, path){
   fetchRemote(path).then(function(r){
-    if (r && r.ok) return cache.put(req, r.clone());
+    if (r && r.ok) return cache.put(req, normalize(r, path).clone());
   }).catch(function(){});
+}
+
+/* Content-Type 归一化：raw.githubusercontent 等源把 .html/.css/.js 返回 text/plain，
+   直接缓存会让页面把 HTML 当源代码显示；按扩展名重建正确的 Content-Type */
+var MIME = {
+  '.html':'text/html; charset=utf-8', '.htm':'text/html; charset=utf-8',
+  '.css':'text/css; charset=utf-8',
+  '.js':'application/javascript; charset=utf-8', '.mjs':'application/javascript; charset=utf-8',
+  '.json':'application/json; charset=utf-8',
+  '.svg':'image/svg+xml', '.png':'image/png', '.jpg':'image/jpeg', '.jpeg':'image/jpeg',
+  '.webp':'image/webp', '.ico':'image/x-icon', '.gif':'image/gif', '.woff2':'font/woff2'
+};
+function normalize(r, path){
+  var m = path.match(/\.([a-zA-Z0-9]+)$/);
+  if (!m) return r;
+  var want = MIME['.' + m[1].toLowerCase()];
+  if (!want) return r;
+  var got = (r.headers.get('content-type') || '').toLowerCase().split(';')[0].trim();
+  if (got === want.split(';')[0].trim()) return r;   /* 类型已正确，直接用 */
+  try {
+    var h = new Headers(r.headers);
+    h.set('Content-Type', want);
+    return new Response(r.body, { status: r.status, statusText: r.statusText, headers: h });
+  } catch (e) { return r; }
 }
 
 async function handle(req, url){
