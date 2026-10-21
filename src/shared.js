@@ -193,16 +193,9 @@
   m.setAttribute('content','#16281C');
 })();
 
-/* ===== 4d. iOS 端不全屏：移除 viewport-fit=cover，视口避开底部手势条安全区，
-     悬浮按钮与底部导航不再被手势条区域挤压；安卓端保持全屏不受影响 ===== */
-(function(){
-  if(window.Capacitor && window.Capacitor.isNativePlatform && /iPhone|iPad|iPod/i.test(navigator.userAgent)){
-    var vm = document.querySelector('meta[name="viewport"]');
-    if(vm && vm.getAttribute('content') && vm.getAttribute('content').indexOf('viewport-fit=cover') !== -1){
-      vm.setAttribute('content','width=device-width, initial-scale=1');
-    }
-  }
-})();
+/* ===== 4d. iOS 安全区适配：保留 viewport-fit=cover（env(safe-area-inset-*) 生效的前提），
+     顶部标题栏与底部悬浮条通过 site.css 的安全区变量自动避开灵动岛与底部手势条；
+     网页端不受影响（env() 在无安全区的设备上为 0） ===== */
 
 /* ===== 4e. Service Worker 注册：App 内启用 GitHub 在线内容更新
      （改 GitHub 推送后，App 打开自动拉取最新页面内容，无需重新安装；
