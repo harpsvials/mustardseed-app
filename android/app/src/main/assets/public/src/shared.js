@@ -151,6 +151,61 @@
   nav.innerHTML = html;
   var foot = document.getElementById('siteNavFoot');
   if(foot) foot.innerHTML = html;   /* 页脚导航与顶部共用一套注入 */
+
+  /* ---- 手机 App 底部 Tab 栏：6 个核心入口（主页/讲道/见证/讨论/留言/祷告墙），固定底部，当前页高亮 ---- */
+  var TABS = [
+    ['nav.home','index.html','主页','<path d="M3.5 11 12 4.5 20.5 11"/><path d="M5 11v9h14v-9"/><path d="M9.5 20v-4.5h5V20"/>'],
+    ['nav.sermons','sermons.html','讲道','<path d="M12 5.5v13"/><path d="M12 5.5C10.6 4.4 7.8 4.1 4.8 4.5v13.6c3-.4 5.8-.1 7.2.9z"/><path d="M12 5.5c1.4-1.1 4.2-1.4 7.2-1v13.6c-3-.4-5.8-.1-7.2.9z"/>'],
+    ['nav.testimonies','testimonies.html','见证','<path d="M12 20s-7-4.5-9.5-9C1 8 3 5 6.5 5c2 0 3.5 1.2 4.5 2.8C12 6.2 13.5 5 15.5 5 19 5 21 8 19.5 11c-2.5 4.5-7.5 9-7.5 9z"/>'],
+    ['nav.discussion','discussion.html','讨论','<path d="M4 5h16v10H8l-4 4V5z"/><path d="M8 9h8"/><path d="M8 12h5"/>'],
+    ['nav.guestbook','guestbook.html','留言','<path d="M4.5 19.5V16.8L16.3 5a1.84 1.84 0 0 1 2.6 2.6L7.1 19.4 4.5 19.5z"/><path d="M14.8 6.5l2.6 2.6"/>'],
+    ['nav.prayer','prayer.html','祷告墙','<path d="M6.5 4h11a2.5 2.5 0 0 1 2.5 2.5v11a2.5 2.5 0 0 1-2.5 2.5h-11a2.5 2.5 0 0 1-2.5-2.5V6.5A2.5 2.5 0 0 1 6.5 4z"/><path d="M12 8v8"/><path d="M8.5 12h7"/>']
+  ];
+  var TAB_MAP = [0,1,3,2,4,5];   /* 底部 6 个 tab 对应 NAV 的索引：主页0 讲道1 见证3 讨论2 留言4 祷告墙5 */
+  var tabActive = -1;
+  for(var ti=0;ti<TAB_MAP.length;ti++){ if(TAB_MAP[ti] === activeIdx){ tabActive = ti; break; } }
+  var tb = document.createElement('nav');
+  tb.className = 'app-tabbar';
+  tb.setAttribute('data-i18n-aria','nav.aria');
+  tb.setAttribute('aria-label', (d['nav.aria'] != null) ? d['nav.aria'] : '站点导航');
+  var th = '';
+  for(var tj=0;tj<TABS.length;tj++){
+    var tk = TABS[tj][0];
+    var thr = (lang === 'zh-CN') ? base + TABS[tj][1] : base + lang + '/' + TABS[tj][1];
+    var tn = (d[tk] != null) ? d[tk] : TABS[tj][2];
+    var ta = (tj === tabActive) ? ' is-current' : '';
+    th += '<a class="app-tab' + ta + '" href="' + thr + '" data-i18n="' + tk + '">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + TABS[tj][3] + '</svg>' +
+          '<span>' + tn + '</span></a>';
+  }
+  tb.innerHTML = th;
+  document.body.appendChild(tb);
+})();
+
+/* ===== 4c. App 化：统一状态栏/浏览器主题色（与品牌深绿一致） ===== */
+(function(){
+  var m = document.querySelector('meta[name="theme-color"]');
+  if(!m){
+    m = document.createElement('meta');
+    m.setAttribute('name','theme-color');
+    document.head.appendChild(m);
+  }
+  m.setAttribute('content','#16281C');
+})();
+
+/* ===== 4d. iOS 安全区适配：保留 viewport-fit=cover（env(safe-area-inset-*) 生效的前提），
+     顶部标题栏与底部悬浮条通过 site.css 的安全区变量自动避开灵动岛与底部手势条；
+     网页端不受影响（env() 在无安全区的设备上为 0） ===== */
+
+/* ===== 4e. Service Worker 注册：App 内启用 GitHub 在线内容更新
+     （改 GitHub 推送后，App 打开自动拉取最新页面内容，无需重新安装；
+       网页端不注册，避免缓存影响线上站点） ===== */
+(function(){
+  if (!('serviceWorker' in navigator)) return;
+  if (!window.Capacitor) return;
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(function(){});
+  });
 })();
 
 /* ===== 5.1 支持与合作：App 内 mailto 不可用 → 点击复制邮箱 ===== */
@@ -262,6 +317,12 @@
         itemEls[k].setAttribute('aria-selected', k === i ? 'true' : 'false');
       }
     }
+    /* 跨导航续播：把曲目/进度/播放状态写入 localStorage，页面切换（导航跳转）后自动恢复 */
+    function saveState(){
+      try {
+        localStorage.setItem('ms_state', JSON.stringify({ cur: cur, time: a.currentTime || 0, playing: playing }));
+      } catch (e) {}
+    }
     function playTrack(i){
       if(i === cur && playing){ a.pause(); return; }
       if(i !== cur){
@@ -295,12 +356,13 @@
     document.addEventListener('click', function(e){
       if(listOpen && !pl.contains(e.target)) setListOpen(false);
     });
-    a.addEventListener('play', function(){ setPlaying(true); });
-    a.addEventListener('pause', function(){ setPlaying(false); });
+    a.addEventListener('play', function(){ setPlaying(true); saveState(); });
+    a.addEventListener('pause', function(){ setPlaying(false); saveState(); });
     a.addEventListener('timeupdate', function(){
       if(tm) tm.textContent = fmt(a.currentTime);
       var pct = a.duration ? (a.currentTime / a.duration * 100) : 0;
       btn.style.setProperty('--p', pct.toFixed(2));
+      saveState();
     });
     if(document.querySelector('.rd-bar')) pl.classList.add('pos-up');
     window.__langHooks.push(function(){
@@ -309,6 +371,20 @@
         : lbl(playing));
     });
     setCur(cur);
+    /* 跨导航续播：读取上次播放状态，若正在播放则自动恢复曲目与进度 */
+    var saved = null;
+    try { saved = JSON.parse(localStorage.getItem('ms_state') || 'null'); } catch (e) {}
+    if (saved && typeof saved.cur === 'number' && TRACKS[saved.cur]) {
+      setCur(saved.cur);
+      if (saved.playing) {
+        a.src = base + TRACKS[saved.cur].file;
+        a.load();
+        try { a.currentTime = Math.max(0, saved.time || 0); } catch (e) {}
+        if (tm) tm.textContent = fmt(saved.time || 0);
+        var pr = a.play();
+        if (pr && pr.catch) pr.catch(function(){ /* 部分环境（如 iOS 无手势）自动播放会被拒：保留状态，用户点击播放即续播 */ });
+      }
+    }
   }
   if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', msMain); }
   else { msMain(); }
@@ -461,6 +537,86 @@ window.__hasBlocked = (function(){
   }
   window.addEventListener('load', syncStickyTops);
   window.addEventListener('resize', syncStickyTops);
+
+  /* 悬浮按钮贴合底部导航栏：以导航栏实际高度（含安全区、含换行后增高的 tab 文字）定位，
+     任何设备/语言下都与导航栏无缝贴合 */
+  function syncFloatBtns(){
+    var tb = document.querySelector('.app-tabbar');
+    var row = document.querySelector('.contact-row');
+    if(!row) return;
+    if(tb && tb.offsetHeight > 0){ row.style.bottom = tb.offsetHeight + 'px'; }
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(syncFloatBtns, 80); });
+  } else {
+    setTimeout(syncFloatBtns, 80);
+  }
+  window.addEventListener('load', function(){ setTimeout(syncFloatBtns, 50); });
+  window.addEventListener('resize', syncFloatBtns);
   /* 语言切换后按钮文字变化可能导致导航换行，同步刷新吸顶高度 */
   if(window.__langHooks){ window.__langHooks.push(function(){ setTimeout(syncStickyTops, 80); }); }
+})();
+
+/* ===== 通知提示：拉取 notice.json，网页打开时弹出小窗口（与 App 通知共用同一份消息） ===== */
+(function(){
+  /* 运行环境判定：
+     - 线上网页：仅在白名单域名（zhuzhouchurch.com / www.zhuzhouchurch.com）显示；
+     - App 内 WebView（Capacitor 的 capacitor:// 或 https://localhost，UA 含 Capacitor）：显示（无原生通知，靠网页弹窗）；
+     - 其他网页域名、file:// 直开：不弹（file:// 下 fetch 必失败，静默跳过）。 */
+  var host = (location.hostname || '').toLowerCase();
+  var protocol = (location.protocol || '').toLowerCase();
+  var isAppEnv = (protocol !== 'http:' && protocol !== 'https:') ||
+                 /capacitor/i.test(navigator.userAgent);
+  var inWhitelist = host === 'zhuzhouchurch.com' || host === 'www.zhuzhouchurch.com';
+  if (!isAppEnv && !inWhitelist) return;
+  var shownKey = 'ms_notice_shown';
+  try { if (sessionStorage.getItem(shownKey)) return; } catch (e) { return; }
+  var sc = document.currentScript && document.currentScript.src;
+  var base = sc ? sc.substring(0, sc.lastIndexOf('/') + 1) : '';
+  base = base.replace(/(^|\/)src\/$/, '$1');   /* shared.js 位于 src/，资源基准回到项目根（notice.json 在根目录） */
+  /* App 内：优先从 GitHub 拉取线上最新 notice.json（多源依次尝试），失败回退内置快照，
+     实现"App 从 GitHub 更新数据、不用重新安装"；网页端 base 即线上文件，天然最新 */
+  var sources = isAppEnv
+    ? [
+        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/notice.json',
+        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/notice.json',
+        'https://zhuzhouchurch.com/notice.json',
+        base + 'notice.json'
+      ]
+    : [base + 'notice.json'];
+  function tryFetch(i, cb){
+    if (i >= sources.length) { cb(null); return; }
+    fetch(sources[i], { cache: 'no-store' })
+      .then(function(r){ if (!r.ok) throw new Error('http'); return r.json(); })
+      .then(function(d){ cb(d); })
+      .catch(function(){ tryFetch(i + 1, cb); });
+  }
+  tryFetch(0, function(d){
+    if (!d) return;
+    var list = d && d.notices;
+    if (!list || !list.length) return;
+    var n = list[0];
+    if (!n || !n.message) return;
+    try { sessionStorage.setItem(shownKey, '1'); } catch (e) {}
+    showNotice(n.title || '', n.message);
+  });
+  function showNotice(title, message){
+    var el = document.createElement('div');
+    el.className = 'notice-pop';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-label', '通知');
+    el.innerHTML =
+      '<button class="notice-pop-x" type="button" aria-label="关闭">×</button>' +
+      (title ? '<p class="notice-pop-title"></p>' : '') +
+      '<p class="notice-pop-msg"></p>';
+    if (title) el.querySelector('.notice-pop-title').textContent = title;
+    el.querySelector('.notice-pop-msg').textContent = message;
+    el.querySelector('.notice-pop-x').addEventListener('click', function(){ dismiss(); });
+    document.body.appendChild(el);
+    requestAnimationFrame(function(){ el.classList.add('show'); });
+    function dismiss(){
+      el.classList.remove('show');
+      setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 300);
+    }
+  }
 })();
