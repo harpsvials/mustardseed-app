@@ -206,6 +206,15 @@
   window.addEventListener('load', function(){
     navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(function(){});
   });
+  /* 收到 SW “内容已更新”广播 → 自动重载本页（10 秒内最多一次，避免循环刷新） */
+  var lastReload = 0;
+  navigator.serviceWorker.addEventListener('message', function(e){
+    if (!e.data || e.data.type !== 'MS_UPDATE') return;
+    var now = Date.now();
+    if (now - lastReload < 10000) return;
+    lastReload = now;
+    location.reload();
+  });
 })();
 
 /* ===== 5.1 支持与合作：App 内 mailto 不可用 → 点击复制邮箱 ===== */
