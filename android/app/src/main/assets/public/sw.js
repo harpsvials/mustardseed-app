@@ -2,7 +2,7 @@
    策略：stale-while-revalidate（统一）
    - 命中缓存：立即返回缓存，同时后台从远程源拉最新并更新缓存 → 完成后通知页面自动刷新，当次打开即新版
    - 未命中缓存：在线优先，先等远程拉最新（限时 4 秒）写缓存并返回；远程不可用再回本地内置 → 新文件首次即可打开
-   - 远程源顺序：raw.githubusercontent（发布即最新）→ jsDelivr GitHub CDN → 官网 zhuzhouchurch.com（部署即最新）
+   - 远程源顺序：GitHub Pages（每次 push 自动部署、不重定向、大陆可访问）→ 官网 zhuzhouchurch.com（部署即最新）→ jsDelivr GitHub CDN → raw.githubusercontent（兜底）
    - 每源限时 3 秒（Promise.race，不依赖 AbortController）
    说明：mp3 等媒体不经过缓存（直接用本地内置）；网页端不注册本脚本，仅 App 内 WebView 使用
 */
@@ -10,9 +10,10 @@
 
 var CACHE = 'ms-content-v2';
 var REMOTE_BASES = [
-  'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main',
+  'https://harpsvials.github.io/mustardseed-app',
+  'https://zhuzhouchurch.com',
   'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main',
-  'https://zhuzhouchurch.com'
+  'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main'
 ];
 var CACHEABLE = /\.(html?|css|js|json|png|jpe?g|svg|webp|ico|gif|woff2?)$/i;
 
