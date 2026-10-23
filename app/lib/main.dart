@@ -8,6 +8,10 @@ import 'pages/testimonies_page.dart';
 import 'pages/discussion_page.dart';
 import 'pages/guestbook_page.dart';
 import 'pages/prayer_page.dart';
+import 'services/audio_controller.dart';
+import 'services/notice_fetcher.dart';
+import 'services/update_checker.dart';
+import 'widgets/music_player_bar.dart';
 
 /// 全局数据控制器：内置数据立即可用，GitHub 远程版本成功后热替换
 class AppDataController extends ChangeNotifier {
@@ -42,19 +46,30 @@ class MustardSeedApp extends StatefulWidget {
 
 class _MustardSeedAppState extends State<MustardSeedApp> {
   final AppDataController _controller = AppDataController();
+  final AudioController _audio = AudioController();
   int _tab = 0;
 
   @override
   void initState() {
     super.initState();
-    _controller.init();
+    _controller.init().then((_) => _checkStartupDialogs());
     AppLocale.current.addListener(() => setState(() {}));
+  }
+
+  Future<void> _checkStartupDialogs() async {
+    // 等首帧稳定后依次弹：通知 → 更新
+    await Future.delayed(const Duration(milliseconds: 600));
+    if (!mounted) return;
+    await NoticeFetcher.showIfAny(context);
+    if (!mounted) return;
+    await UpdateChecker.showIfAny(context);
   }
 
   @override
   void dispose() {
     AppLocale.current.removeListener(() => setState(() {}));
     _controller.dispose();
+    _audio.dispose();
     super.dispose();
   }
 
@@ -77,6 +92,7 @@ class _MustardSeedAppState extends State<MustardSeedApp> {
           }
           return _Shell(
             data: data,
+            audio: _audio,
             usingRemote: _controller.usingRemote,
             tab: _tab,
             onTab: (i) => setState(() => _tab = i),
@@ -89,12 +105,14 @@ class _MustardSeedAppState extends State<MustardSeedApp> {
 
 class _Shell extends StatelessWidget {
   final AppData data;
+  final AudioController audio;
   final bool usingRemote;
   final int tab;
   final ValueChanged<int> onTab;
 
   const _Shell({
     required this.data,
+    required this.audio,
     required this.usingRemote,
     required this.tab,
     required this.onTab,
@@ -130,7 +148,12 @@ class _Shell extends StatelessWidget {
           const SizedBox(width: 6),
         ],
       ),
-      body: IndexedStack(index: tab, children: pages),
+      body: Column(
+        children: [
+          Expanded(child: IndexedStack(index: tab, children: pages)),
+          MusicPlayerBar(audio: audio),
+        ],
+      ),
       bottomNavigationBar: _BottomNav(tab: tab, onTab: onTab, data: data),
     );
   }
