@@ -52,6 +52,22 @@ class AppData {
 
   static AppData fromJson(Map<String, dynamic> json) => AppData._(json);
 
+  /// 容错转换：String → {zh,en} 同文；Map → cast；null/其他 → null
+  static Map<String, dynamic>? strMap(dynamic v) {
+    if (v == null) return null;
+    if (v is Map) return (v as Map).cast<String, dynamic>();
+    if (v is String && v.isNotEmpty) return {'zh': v, 'en': v};
+    return null;
+  }
+
+  /// 合并 zh/en 双语字段（缺失一侧用另一侧补齐）
+  static Map<String, dynamic>? biMap(Map? zh, Map? en, String key) {
+    final zv = zh?[key];
+    final ev = en?[key];
+    if (zv is String && ev is String) return {'zh': zv, 'en': ev};
+    return strMap(zv) ?? strMap(ev);
+  }
+
   /// 从内置 assets 加载（同步基线）
   static Future<AppData> loadBuiltIn() async {
     final s = await rootBundle.loadString('assets/appdata.json');
@@ -110,11 +126,11 @@ class Sermon {
         id: (j['id'] ?? '').toString(),
         no: (j['no'] is int) ? j['no'] as int : int.tryParse('${j['no']}') ?? 0,
         slug: (j['slug'] ?? '').toString(),
-        title: (j['title'] as Map?)?.cast<String, dynamic>() ?? {},
-        verse: (j['verse'] as Map?)?.cast<String, dynamic>(),
-        verseText: (j['verseText'] as Map?)?.cast<String, dynamic>(),
-        verseRef: (j['verseRef'] as Map?)?.cast<String, dynamic>(),
-        summary: (j['summary'] as Map?)?.cast<String, dynamic>(),
+        title: AppData.strMap(j['title']) ?? {},
+        verse: AppData.strMap(j['verse']),
+        verseText: AppData.strMap(j['verseText']),
+        verseRef: AppData.strMap(j['verseRef']),
+        summary: AppData.strMap(j['summary']),
         tags: (j['tags'] as List?)?.map((e) => e.toString()).toList() ?? [],
         body: (j['body'] as List?)
                 ?.map((e) => Chapter.fromJson(e as Map<String, dynamic>))
@@ -155,10 +171,12 @@ class Block {
   factory Block.fromJson(Map<String, dynamic> j) {
     final t = (j['type'] ?? 'p').toString();
     if (t == 'verse') {
+      final zh = (j['zh'] as Map?)?.cast<String, dynamic>();
+      final en = (j['en'] as Map?)?.cast<String, dynamic>();
       return Block(
         type: t,
-        label: (j['label'] as Map?)?.cast<String, dynamic>(),
-        text: (j['text'] as Map?)?.cast<String, dynamic>(),
+        label: AppData.biMap(zh, en, 'label'),
+        text: AppData.biMap(zh, en, 'text'),
       );
     }
     return Block(type: t, zh: j['zh']?.toString(), en: j['en']?.toString());
@@ -173,9 +191,9 @@ class Questions {
   Questions({this.tag, this.title, this.text});
 
   factory Questions.fromJson(Map<String, dynamic> j) => Questions(
-        tag: (j['tag'] as Map?)?.cast<String, dynamic>(),
-        title: (j['title'] as Map?)?.cast<String, dynamic>(),
-        text: (j['text'] as Map?)?.cast<String, dynamic>(),
+        tag: AppData.strMap(j['tag']),
+        title: AppData.strMap(j['title']),
+        text: AppData.strMap(j['text']),
       );
 }
 
@@ -187,9 +205,9 @@ class Topic {
   Topic({required this.label, required this.q, this.prompt});
 
   factory Topic.fromJson(Map<String, dynamic> j) => Topic(
-        label: (j['label'] as Map?)?.cast<String, dynamic>() ?? {},
-        q: (j['q'] as Map?)?.cast<String, dynamic>() ?? {},
-        prompt: (j['prompt'] as Map?)?.cast<String, dynamic>(),
+        label: AppData.strMap(j['label']) ?? {},
+        q: AppData.strMap(j['q']) ?? {},
+        prompt: AppData.strMap(j['prompt']),
       );
 }
 
@@ -208,8 +226,8 @@ class Period {
 
   factory Period.fromJson(Map<String, dynamic> j) => Period(
         id: (j['id'] ?? '').toString(),
-        period: (j['period'] as Map?)?.cast<String, dynamic>() ?? {},
-        sub: (j['sub'] as Map?)?.cast<String, dynamic>(),
+        period: AppData.strMap(j['period']) ?? {},
+        sub: AppData.strMap(j['sub']),
         paras: (j['paras'] as List?)
                 ?.map((e) => (e as Map).cast<String, dynamic>())
                 .toList() ??

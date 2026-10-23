@@ -22,7 +22,12 @@ class AppDataController extends ChangeNotifier {
   bool get usingRemote => _usingRemote;
 
   Future<void> init() async {
-    _data = await AppData.loadBuiltIn();
+    try {
+      _data = await AppData.loadBuiltIn();
+    } catch (_) {
+      // 兜底：内置数据异常时用空数据渲染，避免启动卡在加载页
+      _data = AppData.fromJson({});
+    }
     notifyListeners();
     final remote = await AppData.fetchRemote();
     if (remote != null) {
