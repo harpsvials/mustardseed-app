@@ -217,6 +217,73 @@
   });
 })();
 
+/* ===== 4f. 页面级在线内容更新兜底（App 内）：
+     iOS WKWebView 中 capacitor:// 不是安全上下文，Service Worker 无法注册，
+     在线更新因此失效；本块在页面层直接拉取 GitHub 最新内容，不依赖 SW。
+     流程：打开页面 → 读取内置副本文本与远程同名文件 → 指纹一致（无更新）不动作；
+           指纹不同（GitHub 有新内容）→ 整页替换为远程最新版，origin 不变。
+     60 秒内至多替换一次，避免循环刷新；网页端不执行。 ===== */
+(function(){
+  if(!window.Capacitor) return;
+  var REMOTE = [
+    'https://harpsvials.github.io/mustardseed-app',
+    'https://zhuzhouchurch.com',
+    'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main',
+    'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main'
+  ];
+  function curPath(){
+    var p = location.pathname || '/';
+    if(p === '/' || p.charAt(p.length-1) === '/') p += 'index.html';
+    return p;
+  }
+  function fetchOne(url, ms){
+    return Promise.race([
+      fetch(url, { mode:'cors', cache:'no-store' }),
+      new Promise(function(res, rej){ setTimeout(function(){ rej(new Error('timeout')); }, ms || 4000); })
+    ]);
+  }
+  function fetchRemote(path){
+    var chain = Promise.reject(new Error('start'));
+    for(var i = 0; i < REMOTE.length; i++){
+      (function(base){
+        chain = chain.catch(function(){
+          return fetchOne(base + path).then(function(r){
+            if(r.ok) return r.text();
+            throw new Error('bad status ' + r.status);
+          });
+        });
+      })(REMOTE[i]);
+    }
+    return chain;
+  }
+  function fp(s){
+    var h = 0;
+    for(var i = 0; i < s.length; i++){ h = ((h << 5) - h + s.charCodeAt(i)) | 0; }
+    return h;
+  }
+  window.addEventListener('load', function(){
+    var last = 0;
+    try { last = parseInt(sessionStorage.getItem('ms_remote_ts') || '0', 10) || 0; } catch(e){}
+    if (Date.now() - last < 60000) return;   /* 60 秒内至多替换一次 */
+    setTimeout(function(){
+      var path = curPath();
+      fetch(path, { cache: 'no-store' }).then(function(lr){
+        return lr.ok ? lr.text() : null;
+      }).then(function(localTxt){
+        if(localTxt == null) return;              /* 本地读取失败：不动作 */
+        return fetchRemote(path).then(function(remoteTxt){
+          if(!remoteTxt) return;
+          if(fp(localTxt) === fp(remoteTxt)) return;   /* 与内置一致：无更新 */
+          try { sessionStorage.setItem('ms_remote_ts', String(Date.now())); } catch(e){}
+          document.open('text/html', 'replace');
+          document.write(remoteTxt);
+          document.close();
+        });
+      }).catch(function(){});
+    }, 1500);
+  });
+})();
+
 /* ===== 5.1 支持与合作：App 内 mailto 不可用 → 点击复制邮箱 ===== */
 (function(){
   var contact = document.querySelector('.contact-link');
