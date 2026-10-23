@@ -1,13 +1,19 @@
 import 'package:flutter/foundation.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-/// 曲目（GitHub raw 直链 + jsDelivr 备源）
+/// 曲目（内置 assets 优先，GitHub raw + jsDelivr 在线兜底）
 class Track {
   final String title;
   final String sub;
+  final String? asset; // 内置文件（相对 assets/ 目录）
   final List<String> urls;
 
-  const Track({required this.title, required this.sub, required this.urls});
+  const Track({
+    required this.title,
+    required this.sub,
+    this.asset,
+    required this.urls,
+  });
 }
 
 class MusicTracks {
@@ -15,6 +21,7 @@ class MusicTracks {
     Track(
       title: 'Alleluia',
       sub: '芥菜种教会',
+      asset: 'music/Alleluia.mp3',
       urls: [
         'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/Alleluia.mp3',
         'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/Alleluia.mp3',
@@ -23,6 +30,7 @@ class MusicTracks {
     Track(
       title: 'Healing In Your Presence',
       sub: '芥菜种教会',
+      asset: 'music/Healing In Your Presence.mp3',
       urls: [
         'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/Healing%20In%20Your%20Presence.mp3',
         'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/Healing%20In%20Your%20Presence.mp3',
@@ -55,12 +63,23 @@ class AudioController extends ChangeNotifier {
       _index = index;
       await _player.stop();
       var ok = false;
-      for (final url in current.urls) {
+      // 优先播内置文件，避免在线流卡顿
+      if (current.asset != null) {
         try {
-          await _player.play(UrlSource(url));
+          await _player.play(AssetSource(current.asset!));
           ok = true;
-          break;
-        } catch (_) {}
+        } catch (_) {
+          ok = false;
+        }
+      }
+      if (!ok) {
+        for (final url in current.urls) {
+          try {
+            await _player.play(UrlSource(url));
+            ok = true;
+            break;
+          } catch (_) {}
+        }
       }
       _ready = ok;
     } else {

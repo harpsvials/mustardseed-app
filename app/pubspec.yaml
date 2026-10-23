@@ -28,3 +28,4 @@ flutter:
   assets:
     - assets/appdata.json
     - assets/logo.png
+    - assets/music/
