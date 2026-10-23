@@ -16,25 +16,31 @@ class NotificationService {
   /// 初始化通知插件并请求权限（Android 13+ 需要 POST_NOTIFICATIONS）
   Future<void> init() async {
     if (_inited) return;
-    const settings = InitializationSettings(
-      android: AndroidInitializationSettings('ic_notification'),
-      iOS: DarwinInitializationSettings(
-        requestAlertPermission: false,
-        requestBadgePermission: false,
-        requestSoundPermission: false,
-        // App 在前台时也展示横幅通知
-        defaultPresentAlert: true,
-        defaultPresentBadge: true,
-        defaultPresentSound: true,
-      ),
-      macOS: DarwinInitializationSettings(
-        requestAlertPermission: false,
-        requestBadgePermission: false,
-        requestSoundPermission: false,
-      ),
-    );
-    await _plugin.initialize(settings: settings);
-    _inited = true;
+    try {
+      const settings = InitializationSettings(
+        // ic_notification 为 drawable 类型；已通过 AndroidManifest meta-data 静态引用确保打包
+        android: AndroidInitializationSettings('ic_notification'),
+        iOS: DarwinInitializationSettings(
+          requestAlertPermission: false,
+          requestBadgePermission: false,
+          requestSoundPermission: false,
+          // App 在前台时也展示横幅通知
+          defaultPresentAlert: true,
+          defaultPresentBadge: true,
+          defaultPresentSound: true,
+        ),
+        macOS: DarwinInitializationSettings(
+          requestAlertPermission: false,
+          requestBadgePermission: false,
+          requestSoundPermission: false,
+        ),
+      );
+      await _plugin.initialize(settings: settings);
+      _inited = true;
+    } catch (_) {
+      // 初始化失败（如图标资源异常）不阻断启动流程，应用内弹窗仍可用
+      _inited = true;
+    }
   }
 
   /// 请求系统通知权限（Android 首次弹窗）

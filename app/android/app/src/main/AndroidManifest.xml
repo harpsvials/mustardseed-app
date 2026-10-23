@@ -59,6 +59,10 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- 静态引用通知图标资源，防止资源优化将其从 APK 中剔除（flutter_local_notifications 运行时按名查找） -->
+        <meta-data
+            android:name="mustardseed_notification_icon"
+            android:resource="@drawable/ic_notification" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and
