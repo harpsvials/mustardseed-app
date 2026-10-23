@@ -70,11 +70,28 @@ class _MustardSeedAppState extends State<MustardSeedApp> {
     if (notice != null) {
       // 通知栏级系统推送（每次打开软件强制推送，消息不失效）
       await NotificationService.instance.init();
-      await NotificationService.instance.requestPermission();
+      final granted = await NotificationService.instance.requestPermission();
       await NotificationService.instance.show(
         notice.title.isEmpty ? '芥菜种教会' : notice.title,
         notice.message,
       );
+      // 通知权限未授权时给出引导（iOS 拒绝后需到系统设置开启）
+      if (!granted && mounted) {
+        await showDialog<void>(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: const Text('开启通知提醒'),
+            content: const Text(
+                '为了让您及时收到教会消息，请到 系统设置 → 通知 → mustardseed 中允许通知，然后重新打开本应用。'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(ctx).pop(),
+                child: const Text('知道了'),
+              ),
+            ],
+          ),
+        );
+      }
     }
     if (!mounted) return;
     await NoticeFetcher.showIfAny(context, cached: notice);
