@@ -8,7 +8,7 @@
 */
 'use strict';
 
-var CACHE = 'ms-content-v2';
+var CACHE = 'ms-content-v3';
 var REMOTE_BASES = [
   'https://harpsvials.github.io/mustardseed-app',
   'https://zhuzhouchurch.com',
