@@ -22,6 +22,10 @@ class NotificationService {
         requestAlertPermission: false,
         requestBadgePermission: false,
         requestSoundPermission: false,
+        // App 在前台时也展示横幅通知
+        defaultPresentAlert: true,
+        defaultPresentBadge: true,
+        defaultPresentSound: true,
       ),
       macOS: DarwinInitializationSettings(
         requestAlertPermission: false,

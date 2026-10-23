@@ -30,7 +30,8 @@ class NoticeFetcher {
           if (list == null || list.isEmpty) return null;
           final last = (list.last as Map).cast<String, dynamic>();
           final title = (last['title'] ?? '').toString();
-          final message = (last['message'] ?? '').toString();
+          // notice.json 实际字段为 text；兼容 title/message 历史格式
+          final message = (last['text'] ?? last['message'] ?? '').toString();
           if (title.isEmpty && message.isEmpty) return null;
           return Notice(
             id: last['id']?.toString(),
