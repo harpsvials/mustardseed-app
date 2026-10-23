@@ -52,6 +52,8 @@ class AudioController extends ChangeNotifier {
   Track get current => MusicTracks.list[_index];
 
   AudioController() {
+    // stop 模式下资源不释放，切歌/暂停后 resume 立即有声
+    _player.setReleaseMode(ReleaseMode.stop);
     // 后台/锁屏播放：iOS 用 playback 音频会话，Android 保持媒体焦点
     _player.setAudioContext(AudioContext(
       iOS: AudioContextIOS(category: AVAudioSessionCategory.playback),
@@ -67,14 +69,18 @@ class AudioController extends ChangeNotifier {
   }
 
   Future<void> play(int index) async {
-    if (index != _index) {
+    // 初始 _index=0：用户第一次点第一首时 index 与 _index 相同，
+    // 但播放器尚未加载任何源，必须走完整加载流程，不能直接 resume
+    if (index != _index || !_ready) {
       _index = index;
       await _player.stop();
       var ok = false;
-      // 优先播内置文件，避免在线流卡顿
+      // 优先播内置文件，避免在线流卡顿；
+      // 先 setSource 等待加载完成再 resume，保证首次播放立即出声
       if (current.asset != null) {
         try {
-          await _player.play(AssetSource(current.asset!));
+          await _player.setSource(AssetSource(current.asset!));
+          await _player.resume();
           ok = true;
         } catch (_) {
           ok = false;
@@ -83,7 +89,8 @@ class AudioController extends ChangeNotifier {
       if (!ok) {
         for (final url in current.urls) {
           try {
-            await _player.play(UrlSource(url));
+            await _player.setSource(UrlSource(url));
+            await _player.resume();
             ok = true;
             break;
           } catch (_) {}

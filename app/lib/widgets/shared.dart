@@ -188,34 +188,9 @@ class BlockView extends StatelessWidget {
           child: VerseCard(text: text, ref: label),
         );
       case 'question':
-        final text = AppLocale.t(block.text);
-        return Container(
-          width: double.infinity,
-          margin: const EdgeInsets.symmetric(vertical: 8),
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: AppColors.terra.withValues(alpha: .12),
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColors.terra.withValues(alpha: .4)),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Icon(Icons.help_outline, color: AppColors.terra, size: 20),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  text,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    height: 1.7,
-                    color: AppColors.cream,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
+        // 讨论题统一由页面底部的 QuestionsView 卡片渲染，
+        // 正文中重复的 question 块直接跳过，避免出现多余的问号条
+        return const SizedBox.shrink();
       default:
         final text = AppLocale.t({'zh': block.zh, 'en': block.en});
         return Padding(
