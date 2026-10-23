@@ -212,6 +212,9 @@
     if (!e.data || e.data.type !== 'MS_UPDATE') return;
     var now = Date.now();
     if (now - lastReload < 10000) return;
+    var top = (window.pageYOffset !== undefined) ? window.pageYOffset :
+              (document.documentElement.scrollTop || document.body.scrollTop || 0);
+    if (top > 60) return;   /* 用户正在浏览页面下方：本次不刷新（新内容已写入 SW 缓存，下次打开即最新） */
     lastReload = now;
     location.reload();
   });
@@ -274,6 +277,9 @@
         return fetchRemote(path).then(function(remoteTxt){
           if(!remoteTxt) return;
           if(fp(localTxt) === fp(remoteTxt)) return;   /* 与内置一致：无更新 */
+          var top = (window.pageYOffset !== undefined) ? window.pageYOffset :
+                    (document.documentElement.scrollTop || document.body.scrollTop || 0);
+          if (top > 60) return;   /* 用户正在浏览页面下方：本次不替换，避免滚动位置被重置打断阅读 */
           try { sessionStorage.setItem('ms_remote_ts', String(Date.now())); } catch(e){}
           document.open('text/html', 'replace');
           document.write(remoteTxt);
