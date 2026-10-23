@@ -223,7 +223,7 @@ class _BottomNav extends StatelessWidget {
       'testimonies' => Icons.favorite_border,
       'discussion' => Icons.forum_outlined,
       'guestbook' => Icons.mail_outlined,
-      'prayer' => Icons.front_hand_outlined,
+      'prayer' => Icons.add_box_outlined,
       _ => Icons.circle,
     };
     final IconData activeIcon = switch (key) {
@@ -232,7 +232,7 @@ class _BottomNav extends StatelessWidget {
       'testimonies' => Icons.favorite,
       'discussion' => Icons.forum,
       'guestbook' => Icons.mail,
-      'prayer' => Icons.front_hand,
+      'prayer' => Icons.add_box,
       _ => Icons.circle,
     };
     return BottomNavigationBarItem(

@@ -207,7 +207,7 @@ class _PrayerCard extends StatelessWidget {
                   border: Border.all(
                       color: AppColors.sprout.withValues(alpha: .35)),
                 ),
-                child: const Icon(Icons.front_hand,
+                child: const Icon(Icons.add_box,
                     color: AppColors.sprout, size: 16),
               ),
               const SizedBox(width: 8),
