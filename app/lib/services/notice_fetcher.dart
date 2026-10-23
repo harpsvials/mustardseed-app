@@ -18,6 +18,11 @@ class NoticeFetcher {
     'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/notice.json',
   ];
 
+  // 云端不可达时的内置兜底消息，保证每次打开都强制推送、消息不失效
+  static const _fallbackTitle = '芥菜种教会';
+  static const _fallbackMessage =
+      '亲爱的弟兄姐妹，祝福您平安喜乐，身体健壮、凡事兴盛，正如你的灵魂兴盛一样。';
+
   static Future<Notice?> fetch() async {
     for (final url in _sources) {
       try {
@@ -27,12 +32,12 @@ class NoticeFetcher {
         if (res.statusCode == 200) {
           final data = jsonDecode(res.body) as Map<String, dynamic>;
           final list = data['notices'] as List?;
-          if (list == null || list.isEmpty) return null;
+          if (list == null || list.isEmpty) continue;
           final last = (list.last as Map).cast<String, dynamic>();
           final title = (last['title'] ?? '').toString();
           // notice.json 实际字段为 text；兼容 title/message 历史格式
           final message = (last['text'] ?? last['message'] ?? '').toString();
-          if (title.isEmpty && message.isEmpty) return null;
+          if (title.isEmpty && message.isEmpty) continue;
           return Notice(
             id: last['id']?.toString(),
             title: title,
@@ -41,7 +46,8 @@ class NoticeFetcher {
         }
       } catch (_) {}
     }
-    return null;
+    // 网络拉取全部失败时回退到内置消息，避免 iOS 等弱网环境收不到推送
+    return const Notice(title: _fallbackTitle, message: _fallbackMessage);
   }
 
   /// 弹窗展示通知（可复用已拉取结果，避免重复请求）
