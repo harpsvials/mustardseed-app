@@ -25,7 +25,6 @@ class HomePage extends StatelessWidget {
         HeroHeader(
           title: AppLocale.t(hero),
           sub: AppLocale.t(heroSub),
-          trailing: const _SeedLine(),
         ),
         const SizedBox(height: 16),
         Padding(
@@ -66,23 +65,6 @@ class HomePage extends StatelessWidget {
       default:
         break;
     }
-  }
-}
-
-class _SeedLine extends StatelessWidget {
-  const _SeedLine();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text(
-      'mustard · seed — 让每个分享都像种子，落进土壤',
-      style: TextStyle(
-        fontSize: 12,
-        color: AppColors.sprout,
-        letterSpacing: .3,
-        height: 1.4,
-      ),
-    );
   }
 }
 
