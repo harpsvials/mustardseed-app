@@ -254,15 +254,15 @@ class _ProgressRingPainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = size.width / 2 - 1.5;
 
-    // 暗色轨道圆环
+    // 暗色轨道圆环 → 柠檬黄半透明外圈（未播放时清晰可见）
     final track = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2
-      ..color = AppColors.lineStrong.withValues(alpha: 0.85);
+      ..color = AppColors.mustard.withValues(alpha: 0.38);
     canvas.drawCircle(center, radius, track);
 
     if (playing) {
-      // 光圈主弧：从 12 点方向顺时针按播放进度扫过
+      // 光圈主弧：从 12 点方向顺时针按播放进度扫过（柠檬黄不透明）
       final sweep = progress.clamp(0.0, 1.0) * 2 * 3.1415926;
       final arc = Paint()
         ..style = PaintingStyle.stroke
@@ -286,7 +286,7 @@ class _ProgressRingPainter extends CustomPainter {
       canvas.drawCircle(
         head,
         2.6,
-        Paint()..color = AppColors.mustard.withValues(alpha: 0.95),
+        Paint()..color = AppColors.mustard,
       );
       canvas.drawCircle(
         head,
