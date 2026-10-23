@@ -135,11 +135,20 @@ class AudioController extends ChangeNotifier {
   int _index = 0;
   bool _playing = false;
   bool _ready = false;
+  Duration _position = Duration.zero;
+  Duration _duration = Duration.zero;
 
   int get index => _index;
   bool get playing => _playing;
   bool get ready => _ready;
   Track get current => MusicTracks.list[_index];
+
+  /// 播放进度 0.0~1.0（用于播放按钮外围的转动光圈）
+  double get progress {
+    final ms = _duration.inMilliseconds;
+    if (ms <= 0) return 0;
+    return (_position.inMilliseconds / ms).clamp(0.0, 1.0);
+  }
 
   AudioController() {
     // stop 模式下资源不释放，切歌/暂停后 resume 立即有声
@@ -154,6 +163,14 @@ class AudioController extends ChangeNotifier {
     ));
     _player.onPlayerStateChanged.listen((state) {
       _playing = state == PlayerState.playing;
+      notifyListeners();
+    });
+    _player.onPositionChanged.listen((p) {
+      _position = p;
+      notifyListeners();
+    });
+    _player.onDurationChanged.listen((d) {
+      _duration = d;
       notifyListeners();
     });
   }
@@ -211,6 +228,7 @@ class AudioController extends ChangeNotifier {
     await _player.stop();
     _playing = false;
     _ready = false;
+    _position = Duration.zero;
     notifyListeners();
   }
 

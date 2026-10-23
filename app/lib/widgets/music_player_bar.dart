@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../i18n.dart';
@@ -97,13 +98,28 @@ class MusicPlayerBar extends StatelessWidget {
                       ],
                     ),
                   ),
-                  IconButton(
-                    icon: Icon(
-                      audio.playing ? Icons.pause_circle : Icons.play_circle,
-                      color: AppColors.mustard,
-                      size: 30,
-                    ),
-                    onPressed: audio.toggle,
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // 播放按钮外围的转动光圈：轨道 + 随播放时间向前转动的光弧
+                      CustomPaint(
+                        size: const Size(42, 42),
+                        painter: _ProgressRingPainter(
+                          progress: audio.progress,
+                          playing: audio.playing,
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          audio.playing
+                              ? Icons.pause_circle
+                              : Icons.play_circle,
+                          color: AppColors.mustard,
+                          size: 30,
+                        ),
+                        onPressed: audio.toggle,
+                      ),
+                    ],
                   ),
                   IconButton(
                     icon: const Icon(Icons.skip_next,
@@ -224,4 +240,63 @@ class MusicPlayerBar extends StatelessWidget {
       },
     );
   }
+}
+
+/// 播放按钮外围的转动光圈：暗色轨道 + 随播放时间向前转动的光弧
+class _ProgressRingPainter extends CustomPainter {
+  final double progress;
+  final bool playing;
+
+  _ProgressRingPainter({required this.progress, required this.playing});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = size.width / 2 - 1.5;
+
+    // 暗色轨道圆环
+    final track = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2
+      ..color = AppColors.lineStrong.withValues(alpha: 0.85);
+    canvas.drawCircle(center, radius, track);
+
+    if (playing) {
+      // 光圈主弧：从 12 点方向顺时针按播放进度扫过
+      final sweep = progress.clamp(0.0, 1.0) * 2 * 3.1415926;
+      final arc = Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 3.5
+        ..strokeCap = StrokeCap.round
+        ..color = AppColors.mustard;
+      canvas.drawArc(
+        Rect.fromCircle(center: center, radius: radius),
+        -3.1415926 / 2,
+        sweep,
+        false,
+        arc,
+      );
+
+      // 弧头光点：跟随转动，强化"光圈在转"的感觉
+      final angle = -3.1415926 / 2 + sweep;
+      final head = Offset(
+        center.dx + radius * 0.92 * cos(angle),
+        center.dy + radius * 0.92 * sin(angle),
+      );
+      canvas.drawCircle(
+        head,
+        2.6,
+        Paint()..color = AppColors.mustard.withValues(alpha: 0.95),
+      );
+      canvas.drawCircle(
+        head,
+        5,
+        Paint()..color = AppColors.mustard.withValues(alpha: 0.18),
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(_ProgressRingPainter old) =>
+      old.progress != progress || old.playing != playing;
 }
