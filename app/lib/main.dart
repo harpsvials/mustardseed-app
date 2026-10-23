@@ -146,7 +146,7 @@ class _Shell extends StatelessWidget {
         title: Text(titles[tab]),
         leading: const Padding(
           padding: EdgeInsets.only(left: 14),
-          child: _AppLogo(size: 26),
+          child: _AppLogo(size: 22),
         ),
         actions: [
           _LangButton(data: data),
