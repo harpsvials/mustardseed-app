@@ -14,52 +14,74 @@ import '../theme.dart';
 class UpdateChecker {
   static const _repo =
       'https://api.github.com/repos/harpsvials/mustardseed-app/releases/latest';
-  static const _fallback = 'https://github.com/harpsvials/mustardseed-app/releases/latest';
+  // 弱网/国内网络下 api.github.com 不可达时的兜底源（version.json 由 CI 每次构建后自动更新）
+  static const _rawVersion =
+      'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/version.json';
+  static const _jsdelivrVersion =
+      'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/version.json';
+  static const _fallback =
+      'https://github.com/harpsvials/mustardseed-app/releases/latest';
 
   static const _installerChannel = MethodChannel('mustardseed/installer');
 
   /// 返回 [tag, 下载地址]（APK 直链优先，Release 页面兜底），无更新或失败返回 null
   static Future<(String, String)?> check() async {
-    try {
-      final info = await PackageInfo.fromPlatform();
-      final local = info.version;
-      final res = await http
-          .get(Uri.parse(_repo),
-              headers: {
-                'Accept': 'application/vnd.github+json',
-                'User-Agent': 'mustardseed-app',
-              })
-          .timeout(const Duration(seconds: 10));
-      if (res.statusCode != 200) return null;
-      final data = jsonDecode(res.body) as Map<String, dynamic>;
-      final tag = (data['tag_name'] ?? '').toString();
-      if (tag.isEmpty) return null;
-      // 本地版本也以 vYYYY.MM.DD.HHMM 构建时，字符串比较即可
-      final remoteKey = tag.replaceFirst(RegExp(r'^v'), '');
-      final localKey = local.replaceFirst(RegExp(r'^v'), '');
-      if (remoteKey.isEmpty || localKey.isEmpty) return null;
-      final remoteNum =
-          int.tryParse(remoteKey.replaceAll(RegExp(r'[^\d]'), '')) ?? 0;
-      final localNum =
-          int.tryParse(localKey.replaceAll(RegExp(r'[^\d]'), '')) ?? 0;
-      if (remoteNum <= localNum) return null;
-      // 优先取 APK 安装包直链
-      String? apkUrl;
-      final assets = data['assets'] as List?;
-      if (assets != null) {
-        for (final a in assets) {
-          final m = a?['name']?.toString() ?? '';
-          if (m.endsWith('.apk')) {
-            apkUrl = a?['browser_download_url']?.toString();
-            break;
+    final info = await PackageInfo.fromPlatform();
+    final local = info.version;
+    // 多源依次尝试：GitHub API → raw → jsDelivr，任一成功即可
+    for (final src in [_repo, _rawVersion, _jsdelivrVersion]) {
+      try {
+        final res = await http
+            .get(
+                Uri.parse(src),
+                headers: {
+                  'Accept': 'application/vnd.github+json',
+                  'User-Agent': 'mustardseed-app',
+                })
+            .timeout(const Duration(seconds: 10));
+        if (res.statusCode != 200) continue;
+        final data = jsonDecode(res.body) as Map<String, dynamic>;
+        final isApi = src == _repo;
+        final tag = (isApi
+                ? (data['tag_name'] ?? '')
+                : (data['version'] ?? ''))
+            .toString();
+        if (tag.isEmpty) continue;
+        // 本地版本也以 vYYYY.MM.DD.HHMM 构建时，字符串比较即可
+        final remoteKey = tag.replaceFirst(RegExp(r'^v'), '');
+        final localKey = local.replaceFirst(RegExp(r'^v'), '');
+        if (remoteKey.isEmpty || localKey.isEmpty) continue;
+        final remoteNum =
+            int.tryParse(remoteKey.replaceAll(RegExp(r'[^\d]'), '')) ?? 0;
+        final localNum =
+            int.tryParse(localKey.replaceAll(RegExp(r'[^\d]'), '')) ?? 0;
+        if (remoteNum <= localNum) return null;
+        // 优先取 APK 安装包直链
+        String? apkUrl;
+        String? pageUrl;
+        if (isApi) {
+          final assets = data['assets'] as List?;
+          if (assets != null) {
+            for (final a in assets) {
+              final m = a?['name']?.toString() ?? '';
+              if (m.endsWith('.apk')) {
+                apkUrl = a?['browser_download_url']?.toString();
+                break;
+              }
+            }
           }
+          pageUrl = data['html_url']?.toString();
+        } else {
+          apkUrl = data['apk']?.toString();
+          pageUrl = data['url']?.toString();
         }
+        final url = (apkUrl ?? pageUrl ?? _fallback).toString();
+        return (tag, url);
+      } catch (_) {
+        // 该源失败，继续尝试下一个源
       }
-      final url = (apkUrl ?? data['html_url'] ?? _fallback).toString();
-      return (tag, url);
-    } catch (_) {
-      return null;
     }
+    return null;
   }
 
   /// 弹窗询问，确认后 Android 直接下载并引导安装，iOS 打开 Release 页面

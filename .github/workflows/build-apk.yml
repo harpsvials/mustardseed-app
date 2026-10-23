@@ -73,3 +73,15 @@ jobs:
             - 包名：com.zhuzhouchurch.mustardseed_app
             - 内置完整多语言网站，支持离线浏览
           generate_release_notes: true
+
+      - name: Update version.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          printf '{"version":"%s","apk":"%s","url":"%s"}\n' \
+            "${{ steps.ver.outputs.vname }}" \
+            "https://github.com/harpsvials/mustardseed-app/releases/download/${{ steps.ver.outputs.vname }}/app-release.apk" \
+            "https://github.com/harpsvials/mustardseed-app/releases/tag/${{ steps.ver.outputs.vname }}" > version.json
+          git add version.json
+          git commit -m "chore(release): update version.json [skip ci]" || echo "no change"
+          git push "https://x-access-token:${{ github.token }}@github.com/harpsvials/mustardseed-app.git" main
