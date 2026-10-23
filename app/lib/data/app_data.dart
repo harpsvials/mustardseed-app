@@ -52,11 +52,19 @@ class AppData {
 
   static AppData fromJson(Map<String, dynamic> json) => AppData._(json);
 
+  /// 剥离字符串中的 HTML 标签（如 <small>、<strong> 等），防止被当成文字显示
+  static String clean(String s) => s.replaceAll(RegExp(r'<[^>]+>'), '');
+
   /// 容错转换：String → {zh,en} 同文；Map → cast；null/其他 → null
   static Map<String, dynamic>? strMap(dynamic v) {
     if (v == null) return null;
-    if (v is Map) return (v as Map).cast<String, dynamic>();
-    if (v is String && v.isNotEmpty) return {'zh': v, 'en': v};
+    if (v is Map) {
+      return (v as Map).map<String, dynamic>((k, val) => MapEntry(
+            k.toString(),
+            val is String ? clean(val) : val,
+          ));
+    }
+    if (v is String && v.isNotEmpty) return {'zh': clean(v), 'en': clean(v)};
     return null;
   }
 
@@ -151,7 +159,7 @@ class Chapter {
 
   factory Chapter.fromJson(Map<String, dynamic> j) => Chapter(
         id: (j['id'] ?? '').toString(),
-        title: (j['title'] as Map?)?.cast<String, dynamic>(),
+        title: AppData.strMap(j['title']),
         blocks: (j['blocks'] as List?)
                 ?.map((e) => Block.fromJson(e as Map<String, dynamic>))
                 .toList() ??
@@ -179,7 +187,10 @@ class Block {
         text: AppData.biMap(zh, en, 'text'),
       );
     }
-    return Block(type: t, zh: j['zh']?.toString(), en: j['en']?.toString());
+    return Block(
+        type: t,
+        zh: j['zh'] == null ? null : AppData.clean(j['zh'].toString()),
+        en: j['en'] == null ? null : AppData.clean(j['en'].toString()));
   }
 }
 
@@ -229,7 +240,7 @@ class Period {
         period: AppData.strMap(j['period']) ?? {},
         sub: AppData.strMap(j['sub']),
         paras: (j['paras'] as List?)
-                ?.map((e) => (e as Map).cast<String, dynamic>())
+                ?.map((e) => AppData.strMap(e) ?? <String, dynamic>{})
                 .toList() ??
             [],
       );
@@ -244,7 +255,7 @@ class Section {
   factory Section.fromJson(Map<String, dynamic> j) => Section(
         id: (j['id'] ?? '').toString(),
         blocks: (j['blocks'] as List?)
-                ?.map((e) => (e as Map).cast<String, dynamic>())
+                ?.map((e) => AppData.strMap(e) ?? <String, dynamic>{})
                 .toList() ??
             [],
       );

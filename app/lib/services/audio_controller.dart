@@ -52,6 +52,14 @@ class AudioController extends ChangeNotifier {
   Track get current => MusicTracks.list[_index];
 
   AudioController() {
+    // 后台/锁屏播放：iOS 用 playback 音频会话，Android 保持媒体焦点
+    _player.setAudioContext(AudioContext(
+      iOS: AudioContextIOS(category: AVAudioSessionCategory.playback),
+      android: AudioContextAndroid(
+        audioFocus: AndroidAudioFocus.gain,
+        isSpeakerphoneOn: false,
+      ),
+    ));
     _player.onPlayerStateChanged.listen((state) {
       _playing = state == PlayerState.playing;
       notifyListeners();
