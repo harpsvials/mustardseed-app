@@ -10,6 +10,7 @@ import 'pages/guestbook_page.dart';
 import 'pages/prayer_page.dart';
 import 'services/audio_controller.dart';
 import 'services/notice_fetcher.dart';
+import 'services/notification_service.dart';
 import 'services/update_checker.dart';
 import 'widgets/music_player_bar.dart';
 
@@ -62,10 +63,21 @@ class _MustardSeedAppState extends State<MustardSeedApp> {
   }
 
   Future<void> _checkStartupDialogs() async {
-    // 等首帧稳定后依次弹：通知 → 更新
+    // 等首帧稳定后：通知栏推送 → 通知弹窗 → 更新弹窗
     await Future.delayed(const Duration(milliseconds: 600));
     if (!mounted) return;
-    await NoticeFetcher.showIfAny(context);
+    final notice = await NoticeFetcher.fetch();
+    if (notice != null) {
+      // 通知栏级系统推送（每次打开软件强制推送，消息不失效）
+      await NotificationService.instance.init();
+      await NotificationService.instance.requestPermission();
+      await NotificationService.instance.show(
+        notice.title.isEmpty ? '芥菜种教会' : notice.title,
+        notice.message,
+      );
+    }
+    if (!mounted) return;
+    await NoticeFetcher.showIfAny(context, cached: notice);
     if (!mounted) return;
     await UpdateChecker.showIfAny(context);
   }

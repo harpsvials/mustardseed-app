@@ -52,8 +52,8 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assembleRelease --no-daemon \
-            -PVERSION_CODE=${{ steps.ver.outputs.vcode }} \
-            -PVERSION_NAME=${{ steps.ver.outputs.vname }} \
+            -Pflutter.versionCode=${{ steps.ver.outputs.vcode }} \
+            -Pflutter.versionName=${{ steps.ver.outputs.vname }} \
             -PRELEASE_STORE_FILE=$GITHUB_WORKSPACE/release-key.jks \
             -PRELEASE_STORE_PASSWORD="${{ secrets.KEYSTORE_PASSWORD }}" \
             -PRELEASE_KEY_ALIAS="${{ secrets.KEY_ALIAS }}" \

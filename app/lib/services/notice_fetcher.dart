@@ -43,10 +43,11 @@ class NoticeFetcher {
     return null;
   }
 
-  /// 弹窗展示通知
-  static Future<void> showIfAny(BuildContext context) async {
-    final notice = await fetch();
-    if (notice == null || !context.mounted) return;
+  /// 弹窗展示通知（可复用已拉取结果，避免重复请求）
+  static Future<void> showIfAny(BuildContext context, {Notice? cached}) async {
+    final n = cached ?? await fetch();
+    if (n == null || !context.mounted) return;
+    final notice = n;
     if (!context.mounted) return;
     showDialog(
       context: context,

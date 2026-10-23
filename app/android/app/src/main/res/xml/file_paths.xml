@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FileProvider 共享路径：缓存目录下的 update.apk 安装包 -->
+<paths>
+    <cache-path name="cache" path="update/"/>
+</paths>

@@ -36,6 +36,96 @@ class MusicTracks {
         'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/Healing%20In%20Your%20Presence.mp3',
       ],
     ),
+    Track(
+      title: '点燃 / Rest On Us · Holy Spirit',
+      sub: '2026 吉隆坡烈火特会',
+      asset: 'music/kl01_RestOnUs.mp3',
+      urls: [
+        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/kl01_RestOnUs.mp3',
+        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/kl01_RestOnUs.mp3',
+      ],
+    ),
+    Track(
+      title: 'GO',
+      sub: '2026 吉隆坡烈火特会',
+      asset: 'music/kl02_GO.mp3',
+      urls: [
+        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/kl02_GO.mp3',
+        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/kl02_GO.mp3',
+      ],
+    ),
+    Track(
+      title: '大山你算什么',
+      sub: '2026 吉隆坡烈火特会',
+      asset: 'music/kl03_Dashan.mp3',
+      urls: [
+        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/kl03_Dashan.mp3',
+        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/kl03_Dashan.mp3',
+      ],
+    ),
+    Track(
+      title: 'Every Giant Will Fall',
+      sub: '2026 吉隆坡烈火特会',
+      asset: 'music/kl04_GiantWillFall.mp3',
+      urls: [
+        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/kl04_GiantWillFall.mp3',
+        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/kl04_GiantWillFall.mp3',
+      ],
+    ),
+    Track(
+      title: 'Echoes',
+      sub: '2026 吉隆坡烈火特会',
+      asset: 'music/kl05_Echoes.mp3',
+      urls: [
+        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/kl05_Echoes.mp3',
+        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/kl05_Echoes.mp3',
+      ],
+    ),
+    Track(
+      title: 'Last Battle',
+      sub: '2026 吉隆坡烈火特会',
+      asset: 'music/kl06_LastBattle.mp3',
+      urls: [
+        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/kl06_LastBattle.mp3',
+        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/kl06_LastBattle.mp3',
+      ],
+    ),
+    Track(
+      title: '大声敬拜',
+      sub: '2026 吉隆坡烈火特会',
+      asset: 'music/kl07_Dasheng.mp3',
+      urls: [
+        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/kl07_Dasheng.mp3',
+        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/kl07_Dasheng.mp3',
+      ],
+    ),
+    Track(
+      title: '我们是神军队 / Upside Down',
+      sub: '2026 吉隆坡烈火特会',
+      asset: 'music/kl08_GodsArmy.mp3',
+      urls: [
+        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/kl08_GodsArmy.mp3',
+        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/kl08_GodsArmy.mp3',
+      ],
+    ),
+    Track(
+      title: '满有能力',
+      sub: '2026 吉隆坡烈火特会',
+      asset: 'music/kl09_FullPower.mp3',
+      urls: [
+        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/kl09_FullPower.mp3',
+        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/kl09_FullPower.mp3',
+      ],
+    ),
+    Track(
+      title: '将天敞开',
+      sub: '2026 吉隆坡烈火特会',
+      asset: 'music/kl10_OpenHeaven.mp3',
+      urls: [
+        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/kl10_OpenHeaven.mp3',
+        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/kl10_OpenHeaven.mp3',
+      ],
+    ),
   ];
 }
 
