@@ -14,32 +14,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Sync website to Android assets
-        run: |
-          rsync -a --delete ./ android/app/src/main/assets/public/ \
-            --exclude 'android/' --exclude 'android_old/' --exclude 'ios/' \
-            --exclude '.git/' --exclude '.github/' --exclude 'node_modules/' \
-            --exclude '.DS_Store' --exclude '_backup/' --exclude '_shots/' \
-            --exclude '*.jks' --exclude 'package.json' --exclude 'package-lock.json' \
-            --exclude 'push-indexnow.py' --exclude '.assetsignore' --exclude '.gitignore' \
-            --exclude 'indexnow-*.txt'
-
-      - name: Setup JDK 21
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
+          channel: stable
+          cache: true
 
       - name: Decode signing keystore
-        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > release-key.jks
+        run: |
+          mkdir -p app/android/app
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > app/android/app/release-key.jks
+          cat > app/android/key.properties <<EOF
+          storePassword=${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword=${{ secrets.KEY_PASSWORD }}
+          keyAlias=${{ secrets.KEY_ALIAS }}
+          storeFile=release-key.jks
+          EOF
 
       - name: Set version (time-based)
         id: ver
@@ -47,44 +37,39 @@ jobs:
           echo "vcode=$(date +%s)" >> $GITHUB_OUTPUT
           echo "vname=v$(TZ=Asia/Shanghai date +%Y.%m.%d.%H%M)" >> $GITHUB_OUTPUT
 
+      - name: Flutter pub get
+        working-directory: app
+        run: flutter pub get
+
       - name: Build release APK
-        working-directory: android
-        run: |
-          chmod +x gradlew
-          ./gradlew assembleRelease --no-daemon \
-            -Pflutter.versionCode=${{ steps.ver.outputs.vcode }} \
-            -Pflutter.versionName=${{ steps.ver.outputs.vname }} \
-            -PRELEASE_STORE_FILE=$GITHUB_WORKSPACE/release-key.jks \
-            -PRELEASE_STORE_PASSWORD="${{ secrets.KEYSTORE_PASSWORD }}" \
-            -PRELEASE_KEY_ALIAS="${{ secrets.KEY_ALIAS }}" \
-            -PRELEASE_KEY_PASSWORD="${{ secrets.KEY_PASSWORD }}" 2>&1 | tee gradle.log
-          exit ${PIPESTATUS[0]}
+        working-directory: app
+        run: flutter build apk --release --build-name ${{ steps.ver.outputs.vname }} --build-number ${{ steps.ver.outputs.vcode }}
 
       - name: Upload gradle log on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: gradle-log
-          path: android/gradle.log
+          path: app/build
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: mustardseed-apk
-          path: android/app/build/outputs/apk/release/app-release.apk
+          path: app/build/app/outputs/flutter-apk/app-release.apk
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            android/app/build/outputs/apk/release/app-release.apk
+            app/build/app/outputs/flutter-apk/app-release.apk
           tag_name: ${{ steps.ver.outputs.vname }}
           name: 芥菜种教会 ${{ steps.ver.outputs.vname }}
           body: |
-            自动打包的安卓安装包（Release 签名版）
+            Flutter 版安卓安装包（Release 签名版）
             - 版本号：${{ steps.ver.outputs.vname }}（时间版本号）
             - 本次更新：${{ github.event.head_commit.message }}
             - APK：直接安装使用（GitHub 直链 / 平板安装）
-            - 包名：com.zhuzhouchurch.app
+            - 包名：com.zhuzhouchurch.mustardseed_app
             - 内置完整多语言网站，支持离线浏览
           generate_release_notes: true
