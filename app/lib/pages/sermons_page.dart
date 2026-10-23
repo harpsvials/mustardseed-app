@@ -21,6 +21,7 @@ class SermonsPage extends StatelessWidget {
           title: AppLocale.t(hero),
           sub: AppLocale.t(sub),
         ),
+        const SizedBox(height: 16),
         for (final s in data.sermons) _SermonTile(sermon: s),
         const SizedBox(height: 20),
       ],

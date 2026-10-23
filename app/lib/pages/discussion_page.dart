@@ -20,6 +20,7 @@ class DiscussionPage extends StatelessWidget {
           title: AppLocale.t(hero),
           sub: AppLocale.t(sub),
         ),
+        const SizedBox(height: 16),
         for (final t in data.topics) _TopicCard(topic: t),
         const SizedBox(height: 20),
       ],

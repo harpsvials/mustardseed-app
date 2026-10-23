@@ -20,6 +20,7 @@ class TestimoniesPage extends StatelessWidget {
           title: AppLocale.t(hero),
           sub: AppLocale.t(sub),
         ),
+        const SizedBox(height: 16),
         for (final p in data.periods) _PeriodCard(period: p),
         const SizedBox(height: 20),
       ],

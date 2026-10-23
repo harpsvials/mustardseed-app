@@ -47,6 +47,7 @@ class _PrayerPageState extends State<PrayerPage> {
           sub: AppLocale.t(sub),
           trailing: ComposeButton(onPressed: _compose),
         ),
+        const SizedBox(height: 16),
         if (_loading)
           const Padding(
             padding: EdgeInsets.all(40),
