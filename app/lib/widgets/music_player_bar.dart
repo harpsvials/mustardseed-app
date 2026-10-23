@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
+import '../i18n.dart';
 import '../services/audio_controller.dart';
 
 /// 迷你音乐播放条：悬浮在底部导航上方，跨 Tab 显示
@@ -14,7 +15,44 @@ class MusicPlayerBar extends StatelessWidget {
       animation: audio,
       builder: (context, _) {
         if (!audio.ready && !audio.playing) {
-          return const SizedBox.shrink();
+          // 常驻入口：未播放时显示音乐播放器条，点击打开曲目列表
+          return Material(
+            color: AppColors.bgRaised,
+            child: InkWell(
+              onTap: () => _showTrackList(context),
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                decoration: const BoxDecoration(
+                  border: Border(
+                    top: BorderSide(color: AppColors.lineStrong),
+                    bottom: BorderSide(color: AppColors.lineStrong),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.music_note,
+                        color: AppColors.mustard, size: 20),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        AppLocale.value == 'en'
+                            ? 'Music Player'
+                            : '音乐播放器',
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.cream,
+                        ),
+                      ),
+                    ),
+                    const Icon(Icons.play_circle,
+                        color: AppColors.mustard, size: 26),
+                  ],
+                ),
+              ),
+            ),
+          );
         }
         final track = audio.current;
         return Material(
@@ -97,11 +135,11 @@ class MusicPlayerBar extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(14),
+            Padding(
+              padding: const EdgeInsets.all(14),
               child: Text(
-                '音乐播放器',
-                style: TextStyle(
+                AppLocale.value == 'en' ? 'Music Player' : '音乐播放器',
+                style: const TextStyle(
                   color: AppColors.cream,
                   fontWeight: FontWeight.w700,
                   fontSize: 16,

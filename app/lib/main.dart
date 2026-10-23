@@ -146,7 +146,7 @@ class _Shell extends StatelessWidget {
         title: Text(titles[tab]),
         leading: const Padding(
           padding: EdgeInsets.only(left: 14),
-          child: SeedlingLogo(size: 26),
+          child: _AppLogo(size: 26),
         ),
         actions: [
           _LangButton(data: data),
@@ -222,7 +222,7 @@ class _BottomNav extends StatelessWidget {
       'sermons' => Icons.menu_book_outlined,
       'testimonies' => Icons.favorite_border,
       'discussion' => Icons.forum_outlined,
-      'guestbook' => Icons.edit_outlined,
+      'guestbook' => Icons.mail_outlined,
       'prayer' => Icons.front_hand_outlined,
       _ => Icons.circle,
     };
@@ -231,7 +231,7 @@ class _BottomNav extends StatelessWidget {
       'sermons' => Icons.menu_book,
       'testimonies' => Icons.favorite,
       'discussion' => Icons.forum,
-      'guestbook' => Icons.edit,
+      'guestbook' => Icons.mail,
       'prayer' => Icons.front_hand,
       _ => Icons.circle,
     };
@@ -244,60 +244,20 @@ class _BottomNav extends StatelessWidget {
 }
 
 /// 小嫩苗 logo（与启动图标一致的幼苗样式，无底部弧线）
-class SeedlingLogo extends StatelessWidget {
+class _AppLogo extends StatelessWidget {
   final double size;
-  const SeedlingLogo({super.key, this.size = 26});
+  const _AppLogo({this.size = 26});
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      size: Size.square(size),
-      painter: _SeedlingPainter(AppColors.sprout),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(size * 0.22),
+      child: Image.asset(
+        'assets/logo.png',
+        width: size,
+        height: size,
+        fit: BoxFit.cover,
+      ),
     );
   }
-}
-
-class _SeedlingPainter extends CustomPainter {
-  final Color color;
-  const _SeedlingPainter(this.color);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final w = size.width;
-    final h = size.height;
-    final fill = Paint()
-      ..color = color
-      ..style = PaintingStyle.fill;
-    final stem = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = w * 0.085
-      ..strokeCap = StrokeCap.round;
-
-    // 茎：从底部向上到叶分叉点
-    canvas.drawLine(Offset(w * .5, h * .86), Offset(w * .5, h * .46), stem);
-
-    // 左叶：从茎部向左上方展开的嫩叶
-    final left = Path()
-      ..moveTo(w * .5, h * .62)
-      ..quadraticBezierTo(w * .12, h * .64, w * .14, h * .30)
-      ..quadraticBezierTo(w * .36, h * .38, w * .5, h * .46)
-      ..close();
-    canvas.drawPath(left, fill);
-
-    // 右叶：从茎部向右上方展开的嫩叶
-    final right = Path()
-      ..moveTo(w * .5, h * .46)
-      ..quadraticBezierTo(w * .66, h * .36, w * .86, h * .14)
-      ..quadraticBezierTo(w * .92, h * .42, w * .5, h * .60)
-      ..close();
-    canvas.drawPath(right, fill);
-
-    // 顶芽：小叶尖上的圆点
-    canvas.drawCircle(Offset(w * .88, h * .13), w * .045, fill);
-  }
-
-  @override
-  bool shouldRepaint(_SeedlingPainter oldDelegate) =>
-      oldDelegate.color != color;
 }
