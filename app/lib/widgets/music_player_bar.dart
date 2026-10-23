@@ -125,64 +125,103 @@ class MusicPlayerBar extends StatelessWidget {
   }
 
   void _showTrackList(BuildContext context) {
+    final scrollCtrl = ScrollController();
+    const itemH = 72.0; // ListTile 两行固定高度
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.bgRaised,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (ctx) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(14),
-              child: Text(
-                AppLocale.value == 'en' ? 'Music Player' : '音乐播放器',
-                style: const TextStyle(
-                  color: AppColors.cream,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            for (var i = 0; i < MusicTracks.list.length; i++)
-              ListTile(
-                leading: Icon(
-                  audio.index == i ? Icons.equalizer : Icons.music_note,
-                  color: audio.index == i
-                      ? AppColors.mustard
-                      : AppColors.creamDim,
-                ),
-                title: Text(
-                  MusicTracks.list[i].title,
-                  style: TextStyle(
-                    color: audio.index == i
-                        ? AppColors.mustard
-                        : AppColors.cream,
-                    fontWeight:
-                        audio.index == i ? FontWeight.w700 : FontWeight.w400,
+      builder: (ctx) {
+        // 打开时自动滚动到当前播放的曲目
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (audio.ready && scrollCtrl.hasClients) {
+            final pos = (audio.index * itemH) - 100;
+            scrollCtrl.animateTo(
+              pos.clamp(0, scrollCtrl.position.maxScrollExtent),
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeOut,
+            );
+          }
+        });
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(14),
+                child: Text(
+                  AppLocale.value == 'en' ? 'Music Player' : '音乐播放器',
+                  style: const TextStyle(
+                    color: AppColors.cream,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
                   ),
                 ),
-                subtitle: Text(
-                  MusicTracks.list[i].sub,
-                  style: const TextStyle(color: AppColors.creamFaint),
-                ),
-                trailing: audio.index == i
-                    ? IconButton(
-                        icon: Icon(
-                          audio.playing ? Icons.pause : Icons.play_arrow,
-                          color: AppColors.mustard,
-                        ),
-                        onPressed: audio.toggle,
-                      )
-                    : null,
-                onTap: () => audio.play(i),
               ),
-            const SizedBox(height: 8),
-          ],
-        ),
-      ),
+              Flexible(
+                child: ListenableBuilder(
+                  listenable: audio,
+                  builder: (context, _) => ListView.builder(
+                    controller: scrollCtrl,
+                    itemExtent: itemH,
+                    shrinkWrap: true,
+                    itemCount: MusicTracks.list.length,
+                    itemBuilder: (context, i) {
+                      final active = audio.index == i;
+                      return ListTile(
+                        leading: Icon(
+                          active ? Icons.equalizer : Icons.music_note,
+                          color:
+                              active ? AppColors.mustard : AppColors.creamDim,
+                        ),
+                        title: Text(
+                          MusicTracks.list[i].title,
+                          style: TextStyle(
+                            color:
+                                active ? AppColors.mustard : AppColors.cream,
+                            fontWeight:
+                                active ? FontWeight.w700 : FontWeight.w400,
+                          ),
+                        ),
+                        subtitle: Text(
+                          MusicTracks.list[i].sub,
+                          style: const TextStyle(color: AppColors.creamFaint),
+                        ),
+                        trailing: active
+                            ? IconButton(
+                                icon: Icon(
+                                  audio.playing
+                                      ? Icons.pause
+                                      : Icons.play_arrow,
+                                  color: AppColors.mustard,
+                                ),
+                                onPressed: audio.toggle,
+                              )
+                            : null,
+                        onTap: () {
+                          audio.play(i);
+                          // 点击后立刻滚动到该曲目，并即时高亮为正在播放
+                          if (scrollCtrl.hasClients) {
+                            final pos = (i * itemH) - 100;
+                            scrollCtrl.animateTo(
+                              pos.clamp(0, scrollCtrl.position.maxScrollExtent),
+                              duration: const Duration(milliseconds: 250),
+                              curve: Curves.easeOut,
+                            );
+                          }
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
+        );
+      },
     );
   }
 }
