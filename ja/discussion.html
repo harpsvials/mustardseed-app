@@ -72,13 +72,67 @@
 
   <!-- ===== 十个讨论题（倒序：新题在前） ===== -->
   <div class="topics">
+    <!-- Q1（新）：关于两个王 -->
+    <section class="topic-card" aria-labelledby="q-kings-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 19h16M5 19l1-12 6 4 6-4 1 12z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q1</span>
+        <span class="card-label" data-i18n="card10.label">二人の王</span>
+      </div>
+      <h2 id="q-kings-title" data-i18n="card10.q">自分の心に二人の王がいるように感じることはありますか？もしあるなら、どちらの王があなたの人生でより強くはたらいていますか？人生の様々な王は、私たちの選択と内なる戦いにどのように影響するでしょうか？</h2>
+      <p class="prompt" data-i18n="card10.prompt">心の王は、あなたが歩む道と心の平安を決めます。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-kings-hints">
+        <span data-i18n="hint.toggle">思いつかない？小さなヒントを開いてみよう</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-kings-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card10.hint1">あなたの人生で、よく支配権を争っている「王」はどの二人ですか？</li>
+            <li data-i18n="card10.hint2">イエスという王に支配していただくとき、あなたの選択はどう変わりますか？</li>
+            <li data-i18n="card10.hint3">心が引き裂かれた最後の時、あなたはどちらの王に支配させましたか？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2（新）：关于争战 -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q-battle-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 2c3 3.5 5 6 5 9a5 5 0 1 1-10 0c0-3 2-5.5 5-9z"/>
+        <path d="M12 15a2.5 2.5 0 0 0 2.5-2.5"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q2</span>
+        <span class="card-label" data-i18n="card11.label">内なる戦い</span>
+      </div>
+      <h2 id="q-battle-title" data-i18n="card11.q">私たちは内側の葛薾や戦いにどう向き合い、どう扱えばよいでしょうか？最近あなたが戦っていることを一つ分かち合ってください。</h2>
+      <p class="prompt" data-i18n="card11.prompt">戦いは恥ではありません。それは、あなたの心を正直に神の前に置く始まりです。</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-battle-hints">
+        <span data-i18n="hint.toggle">思いつかない？小さなヒントを開いてみよう</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-battle-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card11.hint1">内なる葛薾が激しいとき、あなたはまず誰に打ち明けたいと思いますか？</li>
+            <li data-i18n="card11.hint2">戦いを神の前に持って行くことと、一人で抱え込むことの違いは何ですか？</li>
+            <li data-i18n="card11.hint3">最近あなたが戦っていたことは、その後どうなりましたか？</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
     <!-- Q1（新）：天国と地獄 -->
     <section class="topic-card" aria-labelledby="q-heaven-title">
       <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M12 3c3.2 3.2 5.5 6 5.5 9.2A5.5 5.5 0 1 1 6.5 12.2C6.5 9 8.8 6.2 12 3z"/><path d="M12 3v14"/>
       </svg>
       <div class="card-top">
-        <span class="badge">Q1</span>
+        <span class="badge">Q3</span>
         <span class="card-label" data-i18n="card6.label">天国と地獄</span>
       </div>
       <h2 id="q-heaven-title" data-i18n="card6.q">「反抗する子が親の愛を拒む」というたとえを用いて、「神は慈愛に満ちているのに、神を拒む者は苦しみ/地獄に陰る」という難しさを、どうすれば人々に理解してもらえるでしょうか。</h2>
@@ -104,7 +158,7 @@
         <path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/>
       </svg>
       <div class="card-top">
-        <span class="badge badge--warm">Q2</span>
+        <span class="badge badge--warm">Q4</span>
         <span class="card-label" data-i18n="card7.label">五つの言葉</span>
       </div>
       <h2 id="q-words-title" data-i18n="card7.q">「ヒンノムの谷」「タルタロス」「陰間/ハデス」「楽園」と「火の池」の違いを理解した後、これは死後の裁きと神の救いについてのあなたの認識に、どんな新しい明確さをもたらしますか。</h2>
@@ -130,7 +184,7 @@
         <path d="M5 8l3 4 4-6 4 6 3-4v9H5z"/>
       </svg>
       <div class="card-top">
-        <span class="badge">Q3</span>
+        <span class="badge">Q5</span>
         <span class="card-label" data-i18n="card8.label">神の国</span>
       </div>
       <h2 id="q-kingdom-title" data-i18n="card8.q">イエスは「神の国はあなたたちのうちにある」と言われました。日常生活や教会での互いの愛の中で、神が支配される平安と天国の実際を、どうすれば本当に体験できるでしょうか。</h2>
@@ -156,7 +210,7 @@
         <path d="M12 20c-5-3-8-6-8-9.5A4 4 0 0 1 12 7a4 4 0 0 1 8 3.5C20 14 17 17 12 20z"/>
       </svg>
       <div class="card-top">
-        <span class="badge badge--warm">Q4</span>
+        <span class="badge badge--warm">Q6</span>
         <span class="card-label" data-i18n="card9.label">赦し</span>
       </div>
       <h2 id="q-forgive-title" data-i18n="card9.q">憎しみと苦々しさの中で生きることは「地獄の味を先に味わう」ようなものです。関係の中での傷に対して、キリストの愛によって赦しの第一歩を踏み出すにはどうしたらよいでしょうか。</h2>
@@ -182,7 +236,7 @@
         <path d="M12 3v11M12 14l-4-4M12 14l4-4M12 20c-3.5 0-6.5-2-6.5-5.5V11M18.5 11v3.5c0 3.5-3 5.5-6.5 5.5"/>
       </svg>
       <div class="card-top">
-        <span class="badge">Q5</span>
+        <span class="badge">Q7</span>
         <span class="card-label" data-i18n="card4.label">癒しについて</span>
       </div>
       <h2 id="q6-title" data-i18n="card4.q">あなたの心の中で、神はどのような人を癒されると思いますか。なぜ神は私たちを癒されるのでしょうか。</h2>
@@ -209,7 +263,7 @@
         <path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>
       </svg>
       <div class="card-top">
-        <span class="badge badge--warm">Q6</span>
+        <span class="badge badge--warm">Q8</span>
         <span class="card-label" data-i18n="card5.label">証しについて</span>
       </div>
       <h2 id="q5-title" data-i18n="card5.q">癒された後、なぜ証しをするのでしょうか。誰かが神に癒されるのを耳で聞き、目で見るとき、あなたはどのような気持ちになり、何を思いますか。</h2>
@@ -235,7 +289,7 @@
         <path d="M3 21h18M12 5v11M12 16l-4.2-4.2M12 16l4.2-4.2"/>
       </svg>
       <div class="card-top">
-        <span class="badge">Q7</span>
+        <span class="badge">Q9</span>
         <span class="card-label" data-i18n="card0.label">舟を出すことについて</span>
       </div>
       <h2 id="q4-title" data-i18n="card0.q">疲れ果てて弱っているとき、一晩中働いても何も捕れなかったペテロのように、それでもイエスのために舟を出す用意はありますか。あなたの思いを聞かせてください。</h2>
@@ -261,7 +315,7 @@
         <path d="M12 3v13M12 21c-4.2 0-7-3-7-7.2M12 21c4.2 0 7-3 7-7.2M5 7h14"/>
       </svg>
       <div class="card-top">
-        <span class="badge">Q8</span>
+        <span class="badge">Q10</span>
         <span class="card-label" data-i18n="card1.label">召しについて</span>
       </div>
       <h2 id="q0-title" data-i18n="card1.q">イエスがペテロたちに魚を捕ることを二度教えられたときのことを思うとき、この二つのよく似た出来事があなたの記憶の中で重なるとき、あなたの心はどんな思いですか。</h2>
@@ -288,7 +342,7 @@
         <path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>
       </svg>
       <div class="card-top">
-        <span class="badge badge--warm">Q9</span>
+        <span class="badge badge--warm">Q11</span>
         <span class="card-label" data-i18n="card2.label">夢について</span>
       </div>
       <h2 id="q2-title" data-i18n="card2.q">もしお金がいくらでもあったら、いちばん何がしたい？</h2>
@@ -316,7 +370,7 @@
         <circle cx="12" cy="12" r="3.4"/>
       </svg>
       <div class="card-top">
-        <span class="badge">Q10</span>
+        <span class="badge">Q12</span>
         <span class="card-label" data-i18n="card3.label">うれしさについて</span>
       </div>
       <h2 id="q1-title" data-i18n-html="card3.q">最近いちばん<br>うれしかったことは？</h2>
@@ -370,7 +424,7 @@
 
   <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
 
-<script>/* ===== 语言字典（仅 ja） ===== */window.I18N = {"ja":{"title":"mustardseed · 交流","card4.label":"癒しについて","card4.q":"あなたの心の中で、神はどのような人を癒されると思いますか。なぜ神は私たちを癒されるのでしょうか。","card4.prompt":"癒された命の一つひとつは、神が私たちを愛している証です。","card4.hint1":"神の癒しに「条件」はあると思いますか。","card4.hint2":"神は私たちがふさわしいから癒すのではなく、憐れみゆえに癒されるのでしょうか。","card4.hint3":"聞いたり見たりした癒しを思い返すとき、最も心を動かされるのは何ですか。","card5.label":"証しについて","card5.q":"癒された後、なぜ証しをするのでしょうか。誰かが神に癒されるのを耳で聞き、目で見るとき、あなたはどのような気持ちになり、何を思いますか。","card5.prompt":"証しは私たちの手柄ではなく、癒し主に栄光を帰すことです。","card5.hint1":"証しをすることは、私たち自身にとってどんな助けになりますか。","card5.hint2":"人の証しを聞いて、信仰に火がついたことはありますか。","card5.hint3":"もし一人の人に神があなたの人生になさったことを分かち合うなら、何と言いますか。","hero.title":"今日、おしゃべりしましょう","card0.label":"舟を出すことについて","card0.q":"疲れ果てて弱っているとき、一晩中働いても何も捕れなかったペテロのように、それでもイエスのために舟を出す用意はありますか。あなたの思いを聞かせてください。","card0.prompt":"一晩中何も捕れなかった後も、イエスはもう一度あなたを深みへ漕ぎ出すよう招いておられます。","card0.hint1":"一晩中働いても何も得られなかったという時を経験したことがありますか？","card0.hint2":"イエスがもう一度やってみるようお願いされるとき、あなたの心は進んで従うのか、それともためらいがあるのか。","card0.hint3":"イエスのために舟を出すことは、あなたにとって何を意味しますか？","hero.sub":"お茶二杯分の時間。うれしかったことを話したり、大胆な夢を語り合ったりしましょう","card1.label":"召しについて","card1.q":"イエスがペテロたちに魚を捕ることを二度教えられたときのことを思うとき、この二つのよく似た出来事があなたの記憶の中で重なるとき、あなたの心はどんな思いですか。","card1.prompt":"似た二つの深みは、変わらない愛と忍耐をもって語られるイエスの召しです。","card1.hint1":"この二つの漁の出来事で、どんな細部を覚えていますか？","card1.hint2":"この二つの出来事で、イエスのペテロへの応えはどのように違っていましたか？","card1.hint3":"二つの場面があなたの心の中で重なるとき、最初に思い浮かぶのは何ですか？","card3.label":"うれしさについて","card3.q":"最近いちばん<br>うれしかったことは？","card3.prompt":"うれしさは案外小さなことの中に隠れているもの。声に出して話した瞬間、それはもっと輝きだします。","card3.hint1":"最近、声を上げて笑ったのはどんなこと？","card3.hint2":"それはどこで起きたの？そのとき、だれが一緒だった？","card3.hint3":"その気持ちをひとことで言うとしたら、何て言う？","card2.label":"夢について","card2.q":"もしお金がいくらでもあったら、いちばん何がしたい？","card2.prompt":"使わなければ、お金はただの数字の羅列。それで何と交換したい？","card2.hint1":"現実はいったん脇に置いて、最初にやりたいことは何？","card2.hint2":"だれのためにそのお金を使って、だれの人生を変えたい？","card2.hint3":"ずっと前から考えているのに、まだやっていないことはある？","hint.toggle":"まだ決まらない？ヒントを開いてみよう","rules.aria":"参加のしかた","rule1":"ていねいに聴く","rule2":"さえぎらない","rule3":"順番に分かち合う","gb.err.blocked":"メッセージに不適切な内容が含まれています。修正してもう一度お試しください","lang.label":"言語","nav.aria":"サイトナビゲーション","nav.home":"ホーム","nav.sermons":"説教","nav.discussion":"交流","nav.testimonies":"証し","nav.guestbook":"ゲストブック","nav.prayer":"祈りの壁","nav.about":"私たちについて","contact.label":"支援・協力","footer.tag":"すべての分かち合いが、種のように土に落ちますように","ms.play":"BGMを再生","ms.pause":"BGMを一時停止","gb.section":"ゲストブック","gb.name.label":"お名前","gb.name.placeholder":"何と呼びましょうか？","gb.content.label":"メッセージ","gb.content.placeholder":"あなたの思いを書いてください…（最大500文字）","gb.hint":"すべての分かち合いを大切に読みます","gb.submit":"送信","gb.sending":"送信中…","gb.loading":"メッセージを読み込み中…","gb.empty":"まだメッセージがありません。最初の分かち合いをどうぞ","gb.count":"メッセージ","gb.err.name":"お名前を入力してください","gb.err.content":"メッセージを入力してください","gb.err.send":"送信に失敗しました。後でもう一度お試しください","gb.err.load":"読み込みに失敗しました。後でもう一度お試しください","gb.ok":"送信しました。分かち合いに感謝します","gb.foot":"メッセージは公開されます。個人情報はご記入をお控えください","q.tag":"考えてみましょう","chap.intro":"序論","ms.list":"音楽を選択","card6.label":"天国と地獄","card6.q":"「反抗する子が親の愛を拒む」というたとえを用いて、「神は慈愛に満ちているのに、神を拒む者は苦しみ/地獄に陰る」という難しさを、どうすれば人々に理解してもらえるでしょうか。","card6.prompt":"神が人を苦しめるのではなく、愛を拒むことが苦しみの中に置くのです。","card6.hint1":"たとえの中で、子どもの苦しみはどこから来るのでしょうか。","card6.hint2":"親が「引き止めない」ことは、残酷さなのか、それとも別の愛なのでしょうか。","card6.hint3":"私たちの周りに「地獄の味を先に味わっている」人はいないでしょうか。","card7.label":"五つの言葉","card7.q":"「ヒンノムの谷」「タルタロス」「陰間/ハデス」「楽園」と「火の池」の違いを理解した後、これは死後の裁きと神の救いについてのあなたの認識に、どんな新しい明確さをもたらしますか。","card7.prompt":"言葉がはっきり見えてくると、神が救おうとされておられるものが分かります。","card7.hint1":"その中のどの言葉が、「地獄」について新しい認識を与えてくれましたか。","card7.hint2":"楽園と火の池は、それぞれ誰の行き先でしょうか。","card7.hint3":"違いが分かった今、神の裁きと救いをどう見ますか。","card8.label":"神の国","card8.q":"イエスは「神の国はあなたたちのうちにある」と言われました。日常生活や教会での互いの愛の中で、神が支配される平安と天国の実際を、どうすれば本当に体験できるでしょうか。","card8.prompt":"神の国は遠くにあるのではなく、あなたの心の中で支配しています。","card8.hint1":"「神が支配しておられる」と最も強く感じるのはどんな時ですか。","card8.hint2":"教会での互いに愛し合う瞬間で、天国のように感じたのはいつですか。","card8.hint3":"今日、どこで神の国を少しだけ現実にできますか。","card9.label":"赦し","card9.q":"憎しみと苦々しさの中で生きることは「地獄の味を先に味わう」ようなものです。関係の中での傷に対して、キリストの愛によって赦しの第一歩を踏み出すにはどうしたらよいでしょうか。","card9.prompt":"赦すことは忘れることではなく、裁きを愛に委ねることです。","card9.hint1":"まず心の苦々しさを神に話してみませんか。","card9.hint2":"キリストはどのように先に私たちを赦してくださいましたか。","card9.hint3":"赦しの第一歩は、どこまで小さくてもよいのでしょうか。"}};</script>
+<script>/* ===== 语言字典（仅 ja） ===== */window.I18N = {"ja":{"title":"mustardseed · 交流","card10.label":"二人の王","card10.q":"自分の心に二人の王がいるように感じることはありますか？もしあるなら、どちらの王があなたの人生でより強くはたらいていますか？人生の様々な王は、私たちの選択と内なる戦いにどのように影響するでしょうか？","card10.prompt":"心の王は、あなたが歩む道と心の平安を決めます。","card10.hint1":"あなたの人生で、よく支配権を争っている「王」はどの二人ですか？","card10.hint2":"イエスという王に支配していただくとき、あなたの選択はどう変わりますか？","card10.hint3":"心が引き裂かれた最後の時、あなたはどちらの王に支配させましたか？","card11.label":"内なる戦い","card11.q":"私たちは内側の葛薾や戦いにどう向き合い、どう扱えばよいでしょうか？最近あなたが戦っていることを一つ分かち合ってください。","card11.prompt":"戦いは恥ではありません。それは、あなたの心を正直に神の前に置く始まりです。","card11.hint1":"内なる葛薾が激しいとき、あなたはまず誰に打ち明けたいと思いますか？","card11.hint2":"戦いを神の前に持って行くことと、一人で抱え込むことの違いは何ですか？","card11.hint3":"最近あなたが戦っていたことは、その後どうなりましたか？","card4.label":"癒しについて","card4.q":"あなたの心の中で、神はどのような人を癒されると思いますか。なぜ神は私たちを癒されるのでしょうか。","card4.prompt":"癒された命の一つひとつは、神が私たちを愛している証です。","card4.hint1":"神の癒しに「条件」はあると思いますか。","card4.hint2":"神は私たちがふさわしいから癒すのではなく、憐れみゆえに癒されるのでしょうか。","card4.hint3":"聞いたり見たりした癒しを思い返すとき、最も心を動かされるのは何ですか。","card5.label":"証しについて","card5.q":"癒された後、なぜ証しをするのでしょうか。誰かが神に癒されるのを耳で聞き、目で見るとき、あなたはどのような気持ちになり、何を思いますか。","card5.prompt":"証しは私たちの手柄ではなく、癒し主に栄光を帰すことです。","card5.hint1":"証しをすることは、私たち自身にとってどんな助けになりますか。","card5.hint2":"人の証しを聞いて、信仰に火がついたことはありますか。","card5.hint3":"もし一人の人に神があなたの人生になさったことを分かち合うなら、何と言いますか。","hero.title":"今日、おしゃべりしましょう","card0.label":"舟を出すことについて","card0.q":"疲れ果てて弱っているとき、一晩中働いても何も捕れなかったペテロのように、それでもイエスのために舟を出す用意はありますか。あなたの思いを聞かせてください。","card0.prompt":"一晩中何も捕れなかった後も、イエスはもう一度あなたを深みへ漕ぎ出すよう招いておられます。","card0.hint1":"一晩中働いても何も得られなかったという時を経験したことがありますか？","card0.hint2":"イエスがもう一度やってみるようお願いされるとき、あなたの心は進んで従うのか、それともためらいがあるのか。","card0.hint3":"イエスのために舟を出すことは、あなたにとって何を意味しますか？","hero.sub":"お茶二杯分の時間。うれしかったことを話したり、大胆な夢を語り合ったりしましょう","card1.label":"召しについて","card1.q":"イエスがペテロたちに魚を捕ることを二度教えられたときのことを思うとき、この二つのよく似た出来事があなたの記憶の中で重なるとき、あなたの心はどんな思いですか。","card1.prompt":"似た二つの深みは、変わらない愛と忍耐をもって語られるイエスの召しです。","card1.hint1":"この二つの漁の出来事で、どんな細部を覚えていますか？","card1.hint2":"この二つの出来事で、イエスのペテロへの応えはどのように違っていましたか？","card1.hint3":"二つの場面があなたの心の中で重なるとき、最初に思い浮かぶのは何ですか？","card3.label":"うれしさについて","card3.q":"最近いちばん<br>うれしかったことは？","card3.prompt":"うれしさは案外小さなことの中に隠れているもの。声に出して話した瞬間、それはもっと輝きだします。","card3.hint1":"最近、声を上げて笑ったのはどんなこと？","card3.hint2":"それはどこで起きたの？そのとき、だれが一緒だった？","card3.hint3":"その気持ちをひとことで言うとしたら、何て言う？","card2.label":"夢について","card2.q":"もしお金がいくらでもあったら、いちばん何がしたい？","card2.prompt":"使わなければ、お金はただの数字の羅列。それで何と交換したい？","card2.hint1":"現実はいったん脇に置いて、最初にやりたいことは何？","card2.hint2":"だれのためにそのお金を使って、だれの人生を変えたい？","card2.hint3":"ずっと前から考えているのに、まだやっていないことはある？","hint.toggle":"まだ決まらない？ヒントを開いてみよう","rules.aria":"参加のしかた","rule1":"ていねいに聴く","rule2":"さえぎらない","rule3":"順番に分かち合う","gb.err.blocked":"メッセージに不適切な内容が含まれています。修正してもう一度お試しください","lang.label":"言語","nav.aria":"サイトナビゲーション","nav.home":"ホーム","nav.sermons":"説教","nav.discussion":"交流","nav.testimonies":"証し","nav.guestbook":"ゲストブック","nav.prayer":"祈りの壁","nav.about":"私たちについて","contact.label":"支援・協力","footer.tag":"すべての分かち合いが、種のように土に落ちますように","ms.play":"BGMを再生","ms.pause":"BGMを一時停止","gb.section":"ゲストブック","gb.name.label":"お名前","gb.name.placeholder":"何と呼びましょうか？","gb.content.label":"メッセージ","gb.content.placeholder":"あなたの思いを書いてください…（最大500文字）","gb.hint":"すべての分かち合いを大切に読みます","gb.submit":"送信","gb.sending":"送信中…","gb.loading":"メッセージを読み込み中…","gb.empty":"まだメッセージがありません。最初の分かち合いをどうぞ","gb.count":"メッセージ","gb.err.name":"お名前を入力してください","gb.err.content":"メッセージを入力してください","gb.err.send":"送信に失敗しました。後でもう一度お試しください","gb.err.load":"読み込みに失敗しました。後でもう一度お試しください","gb.ok":"送信しました。分かち合いに感謝します","gb.foot":"メッセージは公開されます。個人情報はご記入をお控えください","q.tag":"考えてみましょう","chap.intro":"序論","ms.list":"音楽を選択","card6.label":"天国と地獄","card6.q":"「反抗する子が親の愛を拒む」というたとえを用いて、「神は慈愛に満ちているのに、神を拒む者は苦しみ/地獄に陰る」という難しさを、どうすれば人々に理解してもらえるでしょうか。","card6.prompt":"神が人を苦しめるのではなく、愛を拒むことが苦しみの中に置くのです。","card6.hint1":"たとえの中で、子どもの苦しみはどこから来るのでしょうか。","card6.hint2":"親が「引き止めない」ことは、残酷さなのか、それとも別の愛なのでしょうか。","card6.hint3":"私たちの周りに「地獄の味を先に味わっている」人はいないでしょうか。","card7.label":"五つの言葉","card7.q":"「ヒンノムの谷」「タルタロス」「陰間/ハデス」「楽園」と「火の池」の違いを理解した後、これは死後の裁きと神の救いについてのあなたの認識に、どんな新しい明確さをもたらしますか。","card7.prompt":"言葉がはっきり見えてくると、神が救おうとされておられるものが分かります。","card7.hint1":"その中のどの言葉が、「地獄」について新しい認識を与えてくれましたか。","card7.hint2":"楽園と火の池は、それぞれ誰の行き先でしょうか。","card7.hint3":"違いが分かった今、神の裁きと救いをどう見ますか。","card8.label":"神の国","card8.q":"イエスは「神の国はあなたたちのうちにある」と言われました。日常生活や教会での互いの愛の中で、神が支配される平安と天国の実際を、どうすれば本当に体験できるでしょうか。","card8.prompt":"神の国は遠くにあるのではなく、あなたの心の中で支配しています。","card8.hint1":"「神が支配しておられる」と最も強く感じるのはどんな時ですか。","card8.hint2":"教会での互いに愛し合う瞬間で、天国のように感じたのはいつですか。","card8.hint3":"今日、どこで神の国を少しだけ現実にできますか。","card9.label":"赦し","card9.q":"憎しみと苦々しさの中で生きることは「地獄の味を先に味わう」ようなものです。関係の中での傷に対して、キリストの愛によって赦しの第一歩を踏み出すにはどうしたらよいでしょうか。","card9.prompt":"赦すことは忘れることではなく、裁きを愛に委ねることです。","card9.hint1":"まず心の苦々しさを神に話してみませんか。","card9.hint2":"キリストはどのように先に私たちを赦してくださいましたか。","card9.hint3":"赦しの第一歩は、どこまで小さくてもよいのでしょうか。"}};</script>
 <script src="../src/shared.js"></script>
 </body>
 </html>

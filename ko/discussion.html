@@ -72,13 +72,67 @@
 
   <!-- ===== 十个讨论题（倒序：新题在前） ===== -->
   <div class="topics">
+    <!-- Q1（新）：关于两个王 -->
+    <section class="topic-card" aria-labelledby="q-kings-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 19h16M5 19l1-12 6 4 6-4 1 12z"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge">Q1</span>
+        <span class="card-label" data-i18n="card10.label">두 왕</span>
+      </div>
+      <h2 id="q-kings-title" data-i18n="card10.q">당신의 마음에 두 왕이 있다고 느껄 적이 있나요? 그렇다면 지금 당신의 삶에서 어느 왕이 더 강하게 다스리고 있나요? 삶 속의 서로 다른 왕들은 우리의 선택과 마음의 싸움에 어떤 영향을 미치고 있나요?</h2>
+      <p class="prompt" data-i18n="card10.prompt">마음의 왕이 당신이 걸어가는 길과 마음의 평안을 결정합니다.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-kings-hints">
+        <span data-i18n="hint.toggle">생각이 안 나요? 작은 힌트를 열어 보세요</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-kings-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card10.hint1">당신의 삶에서 자주 통치권을 두고 다투는 '왕'은 누구인가요?</li>
+            <li data-i18n="card10.hint2">예수라는 왕이 다스리게 할 때, 당신의 선택은 어떻게 다른가요?</li>
+            <li data-i18n="card10.hint3">마음이 분렬하던 지난번, 당신은 어느 왕에게 다스림을 릡겨왔나요?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2（新）：关于争战 -->
+    <section class="topic-card topic-card--warm" aria-labelledby="q-battle-title">
+      <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 2c3 3.5 5 6 5 9a5 5 0 1 1-10 0c0-3 2-5.5 5-9z"/>
+        <path d="M12 15a2.5 2.5 0 0 0 2.5-2.5"/>
+      </svg>
+      <div class="card-top">
+        <span class="badge badge--warm">Q2</span>
+        <span class="card-label" data-i18n="card11.label">마음의 싸움</span>
+      </div>
+      <h2 id="q-battle-title" data-i18n="card11.q">우리는 마음속 갈등과 싸움을 어떻게 마주하고 다루어야 할까요? 최근 당신이 싸우고 있는 일 한 가지를 나눍 주세요.</h2>
+      <p class="prompt" data-i18n="card11.prompt">싸움은 부꺳럼이 아닙니다. 그것은 당신의 마음을 술직하게 하나님 앞에 두는 시작입니다.</p>
+      <button class="hint-toggle" type="button" aria-expanded="false" aria-controls="q-battle-hints">
+        <span data-i18n="hint.toggle">생각이 안 나요? 작은 힌트를 열어 보세요</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="hints" id="q-battle-hints">
+        <div class="hints-inner">
+          <ul>
+            <li data-i18n="card11.hint1">마음의 갈등이 가장 심할 때, 가장 먼저 누구에게 말하고 싸다고 생각하나요?</li>
+            <li data-i18n="card11.hint2">싸움을 하나님 앞에 가져가는 것과 혼자 짖어지는 것의 차이는 무엇인가요?</li>
+            <li data-i18n="card11.hint3">최근 당신이 싸우던 일은 나중에 어떻게 되었나요?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
     <!-- Q1（新）：천국과 지옥 -->
     <section class="topic-card" aria-labelledby="q-heaven-title">
       <svg class="card-deco" viewBox="0 0 24 24" fill="none" stroke="var(--mustard)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M12 3c3.2 3.2 5.5 6 5.5 9.2A5.5 5.5 0 1 1 6.5 12.2C6.5 9 8.8 6.2 12 3z"/><path d="M12 3v14"/>
       </svg>
       <div class="card-top">
-        <span class="badge">Q1</span>
+        <span class="badge">Q3</span>
         <span class="card-label" data-i18n="card6.label">천국과 지옥</span>
       </div>
       <h2 id="q-heaven-title" data-i18n="card6.q">부모의 사랑을 거부하는 반항적인 아이 비유를 사용하여, "하나님은 사랑이 많으신데, 그분을 거부하는 사람은 고통/지옥에 빠진다"는 어려웄음을 어떻게 이해하도록 도와줄 수 있을까요?</h2>
@@ -104,7 +158,7 @@
         <path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/>
       </svg>
       <div class="card-top">
-        <span class="badge badge--warm">Q2</span>
+        <span class="badge badge--warm">Q4</span>
         <span class="card-label" data-i18n="card7.label">다섯 단어</span>
       </div>
       <h2 id="q-words-title" data-i18n="card7.q">"힘놀의 골찌기", "타르타로스", "음부/하데스", "낙원"과 "불못"의 차이를 이해한 후, 이것이 사후 심판과 하나님의 구원에 대한 이해에 어떤 새로운 명확함을 줄 수 있나요?</h2>
@@ -130,7 +184,7 @@
         <path d="M5 8l3 4 4-6 4 6 3-4v9H5z"/>
       </svg>
       <div class="card-top">
-        <span class="badge">Q3</span>
+        <span class="badge">Q5</span>
         <span class="card-label" data-i18n="card8.label">하나님의 나라</span>
       </div>
       <h2 id="q-kingdom-title" data-i18n="card8.q">예수님은 "하나님의 나라는 너희 안에 있다"고 말씀하셨습니다. 일상생활이나 교회에서 서로 사랑함 가운데, 하나님이 다스리시는 평안과 천국의 실제를 어떻게 진짜로 경험할 수 있을까요?</h2>
@@ -156,7 +210,7 @@
         <path d="M12 20c-5-3-8-6-8-9.5A4 4 0 0 1 12 7a4 4 0 0 1 8 3.5C20 14 17 17 12 20z"/>
       </svg>
       <div class="card-top">
-        <span class="badge badge--warm">Q4</span>
+        <span class="badge badge--warm">Q6</span>
         <span class="card-label" data-i18n="card9.label">용서</span>
       </div>
       <h2 id="q-forgive-title" data-i18n="card9.q">증오와 쓰라림 가운데 사는 것은 "지옥의 맛을 먼저 보는" 것과 같습니다. 관계 속의 상처 앞에서, 우리는 그리스도의 사랑으로 어떻게 용서의 첫걸음을 내디딥 수 있을까요?</h2>
@@ -182,7 +236,7 @@
         <path d="M12 3v11M12 14l-4-4M12 14l4-4M12 20c-3.5 0-6.5-2-6.5-5.5V11M18.5 11v3.5c0 3.5-3 5.5-6.5 5.5"/>
       </svg>
       <div class="card-top">
-        <span class="badge">Q5</span>
+        <span class="badge">Q7</span>
         <span class="card-label" data-i18n="card4.label">치유에 관하여</span>
       </div>
       <h2 id="q6-title" data-i18n="card4.q">여러분 마음속에, 하나님이 어떤 사람을 치유하실까요? 하나님이 왜 우리를 치유하실까요?</h2>
@@ -209,7 +263,7 @@
         <path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>
       </svg>
       <div class="card-top">
-        <span class="badge badge--warm">Q6</span>
+        <span class="badge badge--warm">Q8</span>
         <span class="card-label" data-i18n="card5.label">간증에 관하여</span>
       </div>
       <h2 id="q5-title" data-i18n="card5.q">치유받은 후에 왜 간증을 해야 할까요? 다른 사람이 하나님께 치유받는 것을 직접 듣고 볼 때, 어떤 느낌과 생각이 드나요?</h2>
@@ -235,7 +289,7 @@
         <path d="M3 21h18M12 5v11M12 16l-4.2-4.2M12 16l4.2-4.2"/>
       </svg>
       <div class="card-top">
-        <span class="badge">Q7</span>
+        <span class="badge">Q9</span>
         <span class="card-label" data-i18n="card0.label">배를 저어 나가기에 대하여</span>
       </div>
       <h2 id="q4-title" data-i18n="card0.q">피곤하고 약해진 가운데 있을 때, 밤새 수고했지만 아무것도 잡지 못한 베드로처럼, 그래도 예수님을 위해 배를 저어 나가시겠습니까? 느낌을 들려주세요.</h2>
@@ -261,7 +315,7 @@
         <path d="M12 3v13M12 21c-4.2 0-7-3-7-7.2M12 21c4.2 0 7-3 7-7.2M5 7h14"/>
       </svg>
       <div class="card-top">
-        <span class="badge">Q8</span>
+        <span class="badge">Q10</span>
         <span class="card-label" data-i18n="card1.label">부르심에 대하여</span>
       </div>
       <h2 id="q0-title" data-i18n="card1.q">예수님께서 베드로와 그들의 고기를 잡는 일을 두 번 가르치신 것을 생각할 때, 이 두 번의 비슷한 사건이 당신의 기억 속에서 겹쳐질 때, 당신의 마음은 어떠한가요?</h2>
@@ -288,7 +342,7 @@
         <path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>
       </svg>
       <div class="card-top">
-        <span class="badge badge--warm">Q9</span>
+        <span class="badge badge--warm">Q11</span>
         <span class="card-label" data-i18n="card2.label">꿈에 대하여</span>
       </div>
       <h2 id="q2-title" data-i18n="card2.q">돈이 끝없이 많다면 가장 하고 싶은 일은 무엇인가요?</h2>
@@ -316,7 +370,7 @@
         <circle cx="12" cy="12" r="3.4"/>
       </svg>
       <div class="card-top">
-        <span class="badge">Q10</span>
+        <span class="badge">Q12</span>
         <span class="card-label" data-i18n="card3.label">기쁨에 대하여</span>
       </div>
       <h2 id="q1-title" data-i18n-html="card3.q">최근 가장 기뻤던<br>일을 나눠 주세요?</h2>
@@ -370,7 +424,7 @@
 
   <audio id="msAudio" src="../mp3/Alleluia.mp3" preload="metadata" loop></audio>
 
-<script>/* ===== 语言字典（仅 ko） ===== */window.I18N = {"ko":{"title":"mustardseed · 교제","card4.label":"치유에 관하여","card4.q":"여러분 마음속에, 하나님이 어떤 사람을 치유하실까요? 하나님이 왜 우리를 치유하실까요?","card4.prompt":"치유받은 생명 하나하나는 하나님이 우리를 사랑하신다는 증거입니다.","card4.hint1":"하나님의 치유에 '조건'이 있다고 생각하나요?","card4.hint2":"하나님이 우리를 치유하시는 것은 우리가 자격이 있어서인가요, 그분의 자비 때문인가요?","card4.hint3":"듣거나 본 치유를 떠올릴 때, 가장 마음이 움직이는 것은 무엇인가요?","card5.label":"간증에 관하여","card5.q":"치유받은 후에 왜 간증을 해야 할까요? 다른 사람이 하나님께 치유받는 것을 직접 듣고 볼 때, 어떤 느낌과 생각이 드나요?","card5.prompt":"간증은 우리의 공로가 아니라, 치유하시는 분께 영광을 돌리는 것입니다.","card5.hint1":"간증하는 것이 우리 자신에게 어떤 도움이 되나요?","card5.hint2":"다른 사람의 간증을 들을 때 믿음에 불이 붙은 적이 있나요?","card5.hint3":"한 사람에게 하나님이 당신의 삶에 행하신 일을 나눈다면 무엇이라고 말하겠나요?","hero.title":"오늘, 이야기 나눠요","card0.label":"배를 저어 나가기에 대하여","card0.q":"피곤하고 약해진 가운데 있을 때, 밤새 수고했지만 아무것도 잡지 못한 베드로처럼, 그래도 예수님을 위해 배를 저어 나가시겠습니까? 느낌을 들려주세요.","card0.prompt":"밤새 아무것도 잡지 못한 후에도, 예수님은 다시 한번 깊은 곳으로 배를 저어 나가라고 초대하십니다.","card0.hint1":"밤새 수고해도 아무것도 얻지 못했던 때를 경험해 보셨나요?","card0.hint2":"예수님께서 다시 한번 시도해 보라고 하실 때, 당신의 마음은 기꺼운가요, 아니면 망설여지나요?","card0.hint3":"예수님을 위해 배를 저어 나가는 것은 당신에게 어떤 의미인가요?","hero.sub":"차 두 잔 마시는 시간, 기쁜 일도 이야기하고 대담한 꿈도 나눠 보아요","card1.label":"부르심에 대하여","card1.q":"예수님께서 베드로와 그들의 고기를 잡는 일을 두 번 가르치신 것을 생각할 때, 이 두 번의 비슷한 사건이 당신의 기억 속에서 겹쳐질 때, 당신의 마음은 어떠한가요?","card1.prompt":"두 번의 비슷한 깊은 물은 변함없는 사랑과 인내의 예수님의 부르심입니다.","card1.hint1":"이 두 번의 고기 잡는 사건에서 어떤 세부 사항을 기억하나요?","card1.hint2":"이 두 사건에서 예수님의 베드로에 대한 응답은 어떻게 달랐나요?","card1.hint3":"두 장면이 당신의 마음속에서 겹쳐질 때, 가장 먼저 떠오르는 것은 무엇인가요?","card3.label":"기쁨에 대하여","card3.q":"최근 가장 기뻤던<br>일을 나눠 주세요?","card3.prompt":"기쁨은 대개 아주 작은 일 속에 숨어 있어요. 입 밖에 내는 순간, 그 빛이 더 밝아집니다.","card3.hint1":"가장 크게 웃었던 일은 무엇이었나요?","card3.hint2":"그 일은 어디에서 있었나요? 그때 누가 함께 있었나요?","card3.hint3":"그 느낌을 한 단어로 표현한다면 무엇을 고르겠어요?","card2.label":"꿈에 대하여","card2.q":"돈이 끝없이 많다면 가장 하고 싶은 일은 무엇인가요?","card2.prompt":"쓰지 않는 돈은 그저 숫자에 불과해요—무엇과 바꾸고 싶나요?","card2.hint1":"현실은 잠시 잊고, 가장 먼저 하고 싶은 일은 무엇인가요?","card2.hint2":"누구에게 이 돈을 써서, 누구의 삶을 달라지게 하고 싶나요?","card2.hint3":"오랫동안 생각만 하고 아직 해 보지 못한 일이 있나요?","hint.toggle":"아직 못 정했다면? 힌트 펼쳐 보기","rules.aria":"참여 방식","rule1":"경청하기","rule2":"끼어들지 않기","rule3":"번갈아 나누기","gb.err.blocked":"메시지에 부적절한 내용이 포함되어 있습니다. 수정 후 다시 시도해 주세요","lang.label":"언어","nav.aria":"사이트 내비게이션","nav.home":"홈","nav.sermons":"설교","nav.discussion":"교제","nav.testimonies":"간증","nav.guestbook":"방명록","nav.prayer":"기도의 벽","nav.about":"소개","contact.label":"지원 및 협력","footer.tag":"모든 나눔이 씨앗처럼 흙에 떨어지기를","ms.play":"배경 음악 재생","ms.pause":"배경 음악 일시정지","gb.section":"방명록","gb.name.label":"이름","gb.name.placeholder":"어떻게 불러드릴까요?","gb.content.label":"메시지","gb.content.placeholder":"나눌 이야기를 적어주세요… (최대 500자)","gb.hint":"모든 나눔을 소중히 읽겠습니다","gb.submit":"보내기","gb.sending":"보내는 중…","gb.loading":"메시지 불러오는 중…","gb.empty":"아직 메시지가 없습니다. 첫 번째 나눔을 남겨보세요","gb.count":"메시지","gb.err.name":"이름을 입력해 주세요","gb.err.content":"메시지를 입력해 주세요","gb.err.send":"전송에 실패했습니다. 잠시 후 다시 시도해 주세요","gb.err.load":"불러오기에 실패했습니다. 잠시 후 다시 시도해 주세요","gb.ok":"메시지를 보냈습니다. 나눔에 감사드립니다","gb.foot":"메시지는 공개됩니다. 개인정보는 입력하지 마세요","q.tag":"묵상","chap.intro":"서론","ms.list":"음악 선택","card6.label":"천국과 지옥","card6.q":"부모의 사랑을 거부하는 반항적인 아이 비유를 사용하여, \"하나님은 사랑이 많으신데, 그분을 거부하는 사람은 고통/지옥에 빠진다\"는 어려웄음을 어떻게 이해하도록 도와줄 수 있을까요?","card6.prompt":"하나님이 사람을 고통받게 하시는 것이 아니라, 사랑을 거부하는 것이 고통 가운데 머무르게 합니다.","card6.hint1":"비유에서 아이의 고통은 어디서 오는 것일까요?","card6.hint2":"부모가 \"붙잡지 않는 것\"은 잔인함일까요, 다른 사랑일까요?","card6.hint3":"우리 주변에 \"지옥의 맛을 먼저 보는\" 사람은 없을까요?","card7.label":"다섯 단어","card7.q":"\"힘놀의 골찌기\", \"타르타로스\", \"음부/하데스\", \"낙원\"과 \"불못\"의 차이를 이해한 후, 이것이 사후 심판과 하나님의 구원에 대한 이해에 어떤 새로운 명확함을 줄 수 있나요?","card7.prompt":"단어가 분명해지면, 하나님이 구원하시려고 오신 것이 무엇인지 보입니다.","card7.hint1":"그중 어느 단어가 \"지옥\"에 대한 새로운 이해를 주었나요?","card7.hint2":"낙원과 불못은 각각 누구의 행선지인가요?","card7.hint3":"차이가 분명해진 지금, 하나님의 심판과 구원을 어떻게 보나요?","card8.label":"하나님의 나라","card8.q":"예수님은 \"하나님의 나라는 너희 안에 있다\"고 말씀하셨습니다. 일상생활이나 교회에서 서로 사랑함 가운데, 하나님이 다스리시는 평안과 천국의 실제를 어떻게 진짜로 경험할 수 있을까요?","card8.prompt":"하나님의 나라는 먼 곳에 있는 것이 아니라, 당신의 마음 안에서 다스립니다.","card8.hint1":"\"하나님이 다스리신다\"고 가장 강하게 느끄는 때는 언제인가요?","card8.hint2":"교회에서 서로 사랑하는 순간 중 천국 같았던 때는 언제였나요?","card8.hint3":"오늘, 어디서 하나님의 나라를 조금 더 실제로 만들 수 있을까요?","card9.label":"용서","card9.q":"증오와 쓰라림 가운데 사는 것은 \"지옥의 맛을 먼저 보는\" 것과 같습니다. 관계 속의 상처 앞에서, 우리는 그리스도의 사랑으로 어떻게 용서의 첫걸음을 내디딥 수 있을까요?","card9.prompt":"용서는 잊는 것이 아니라, 심판을 사랑에게 릡기는 것입니다.","card9.hint1":"먼저 마음의 쓰라림을 하나님께 말씀드릴 의향이 있나요?","card9.hint2":"그리스도가 어떻게 먼저 우리를 용서해 주셨나요?","card9.hint3":"용서의 첫걸음은 얼마나 작아도 될까요?"}};</script>
+<script>/* ===== 语言字典（仅 ko） ===== */window.I18N = {"ko":{"title":"mustardseed · 교제","card10.label":"두 왕","card10.q":"당신의 마음에 두 왕이 있다고 느껄 적이 있나요? 그렇다면 지금 당신의 삶에서 어느 왕이 더 강하게 다스리고 있나요? 삶 속의 서로 다른 왕들은 우리의 선택과 마음의 싸움에 어떤 영향을 미치고 있나요?","card10.prompt":"마음의 왕이 당신이 걸어가는 길과 마음의 평안을 결정합니다.","card10.hint1":"당신의 삶에서 자주 통치권을 두고 다투는 '왕'은 누구인가요?","card10.hint2":"예수라는 왕이 다스리게 할 때, 당신의 선택은 어떻게 다른가요?","card10.hint3":"마음이 분렬하던 지난번, 당신은 어느 왕에게 다스림을 릡겨왔나요?","card11.label":"마음의 싸움","card11.q":"우리는 마음속 갈등과 싸움을 어떻게 마주하고 다루어야 할까요? 최근 당신이 싸우고 있는 일 한 가지를 나눍 주세요.","card11.prompt":"싸움은 부꺳럼이 아닙니다. 그것은 당신의 마음을 술직하게 하나님 앞에 두는 시작입니다.","card11.hint1":"마음의 갈등이 가장 심할 때, 가장 먼저 누구에게 말하고 싶다고 생각하나요?","card11.hint2":"싸움을 하나님 앞에 가져가는 것과 혼자 짖어지는 것의 차이는 무엇인가요?","card11.hint3":"최근 당신이 싸우던 일은 나중에 어떻게 되었나요?","card4.label":"치유에 관하여","card4.q":"여러분 마음속에, 하나님이 어떤 사람을 치유하실까요? 하나님이 왜 우리를 치유하실까요?","card4.prompt":"치유받은 생명 하나하나는 하나님이 우리를 사랑하신다는 증거입니다.","card4.hint1":"하나님의 치유에 '조건'이 있다고 생각하나요?","card4.hint2":"하나님이 우리를 치유하시는 것은 우리가 자격이 있어서인가요, 그분의 자비 때문인가요?","card4.hint3":"듣거나 본 치유를 떠올릴 때, 가장 마음이 움직이는 것은 무엇인가요?","card5.label":"간증에 관하여","card5.q":"치유받은 후에 왜 간증을 해야 할까요? 다른 사람이 하나님께 치유받는 것을 직접 듣고 볼 때, 어떤 느낌과 생각이 드나요?","card5.prompt":"간증은 우리의 공로가 아니라, 치유하시는 분께 영광을 돌리는 것입니다.","card5.hint1":"간증하는 것이 우리 자신에게 어떤 도움이 되나요?","card5.hint2":"다른 사람의 간증을 들을 때 믿음에 불이 붙은 적이 있나요?","card5.hint3":"한 사람에게 하나님이 당신의 삶에 행하신 일을 나눈다면 무엇이라고 말하겠나요?","hero.title":"오늘, 이야기 나눠요","card0.label":"배를 저어 나가기에 대하여","card0.q":"피곤하고 약해진 가운데 있을 때, 밤새 수고했지만 아무것도 잡지 못한 베드로처럼, 그래도 예수님을 위해 배를 저어 나가시겠습니까? 느낌을 들려주세요.","card0.prompt":"밤새 아무것도 잡지 못한 후에도, 예수님은 다시 한번 깊은 곳으로 배를 저어 나가라고 초대하십니다.","card0.hint1":"밤새 수고해도 아무것도 얻지 못했던 때를 경험해 보셨나요?","card0.hint2":"예수님께서 다시 한번 시도해 보라고 하실 때, 당신의 마음은 기꺼운가요, 아니면 망설여지나요?","card0.hint3":"예수님을 위해 배를 저어 나가는 것은 당신에게 어떤 의미인가요?","hero.sub":"차 두 잔 마시는 시간, 기쁜 일도 이야기하고 대담한 꿈도 나눠 보아요","card1.label":"부르심에 대하여","card1.q":"예수님께서 베드로와 그들의 고기를 잡는 일을 두 번 가르치신 것을 생각할 때, 이 두 번의 비슷한 사건이 당신의 기억 속에서 겹쳐질 때, 당신의 마음은 어떠한가요?","card1.prompt":"두 번의 비슷한 깊은 물은 변함없는 사랑과 인내의 예수님의 부르심입니다.","card1.hint1":"이 두 번의 고기 잡는 사건에서 어떤 세부 사항을 기억하나요?","card1.hint2":"이 두 사건에서 예수님의 베드로에 대한 응답은 어떻게 달랐나요?","card1.hint3":"두 장면이 당신의 마음속에서 겹쳐질 때, 가장 먼저 떠오르는 것은 무엇인가요?","card3.label":"기쁨에 대하여","card3.q":"최근 가장 기뻤던<br>일을 나눠 주세요?","card3.prompt":"기쁨은 대개 아주 작은 일 속에 숨어 있어요. 입 밖에 내는 순간, 그 빛이 더 밝아집니다.","card3.hint1":"가장 크게 웃었던 일은 무엇이었나요?","card3.hint2":"그 일은 어디에서 있었나요? 그때 누가 함께 있었나요?","card3.hint3":"그 느낌을 한 단어로 표현한다면 무엇을 고르겠어요?","card2.label":"꿈에 대하여","card2.q":"돈이 끝없이 많다면 가장 하고 싶은 일은 무엇인가요?","card2.prompt":"쓰지 않는 돈은 그저 숫자에 불과해요—무엇과 바꾸고 싶나요?","card2.hint1":"현실은 잠시 잊고, 가장 먼저 하고 싶은 일은 무엇인가요?","card2.hint2":"누구에게 이 돈을 써서, 누구의 삶을 달라지게 하고 싶나요?","card2.hint3":"오랫동안 생각만 하고 아직 해 보지 못한 일이 있나요?","hint.toggle":"아직 못 정했다면? 힌트 펼쳐 보기","rules.aria":"참여 방식","rule1":"경청하기","rule2":"끼어들지 않기","rule3":"번갈아 나누기","gb.err.blocked":"메시지에 부적절한 내용이 포함되어 있습니다. 수정 후 다시 시도해 주세요","lang.label":"언어","nav.aria":"사이트 내비게이션","nav.home":"홈","nav.sermons":"설교","nav.discussion":"교제","nav.testimonies":"간증","nav.guestbook":"방명록","nav.prayer":"기도의 벽","nav.about":"소개","contact.label":"지원 및 협력","footer.tag":"모든 나눔이 씨앗처럼 흙에 떨어지기를","ms.play":"배경 음악 재생","ms.pause":"배경 음악 일시정지","gb.section":"방명록","gb.name.label":"이름","gb.name.placeholder":"어떻게 불러드릴까요?","gb.content.label":"메시지","gb.content.placeholder":"나눌 이야기를 적어주세요… (최대 500자)","gb.hint":"모든 나눔을 소중히 읽겠습니다","gb.submit":"보내기","gb.sending":"보내는 중…","gb.loading":"메시지 불러오는 중…","gb.empty":"아직 메시지가 없습니다. 첫 번째 나눔을 남겨보세요","gb.count":"메시지","gb.err.name":"이름을 입력해 주세요","gb.err.content":"메시지를 입력해 주세요","gb.err.send":"전송에 실패했습니다. 잠시 후 다시 시도해 주세요","gb.err.load":"불러오기에 실패했습니다. 잠시 후 다시 시도해 주세요","gb.ok":"메시지를 보냈습니다. 나눔에 감사드립니다","gb.foot":"메시지는 공개됩니다. 개인정보는 입력하지 마세요","q.tag":"묵상","chap.intro":"서론","ms.list":"음악 선택","card6.label":"천국과 지옥","card6.q":"부모의 사랑을 거부하는 반항적인 아이 비유를 사용하여, \"하나님은 사랑이 많으신데, 그분을 거부하는 사람은 고통/지옥에 빠진다\"는 어려웄음을 어떻게 이해하도록 도와줄 수 있을까요?","card6.prompt":"하나님이 사람을 고통받게 하시는 것이 아니라, 사랑을 거부하는 것이 고통 가운데 머무르게 합니다.","card6.hint1":"비유에서 아이의 고통은 어디서 오는 것일까요?","card6.hint2":"부모가 \"붙잡지 않는 것\"은 잔인함일까요, 다른 사랑일까요?","card6.hint3":"우리 주변에 \"지옥의 맛을 먼저 보는\" 사람은 없을까요?","card7.label":"다섯 단어","card7.q":"\"힘놀의 골찌기\", \"타르타로스\", \"음부/하데스\", \"낙원\"과 \"불못\"의 차이를 이해한 후, 이것이 사후 심판과 하나님의 구원에 대한 이해에 어떤 새로운 명확함을 줄 수 있나요?","card7.prompt":"단어가 분명해지면, 하나님이 구원하시려고 오신 것이 무엇인지 보입니다.","card7.hint1":"그중 어느 단어가 \"지옥\"에 대한 새로운 이해를 주었나요?","card7.hint2":"낙원과 불못은 각각 누구의 행선지인가요?","card7.hint3":"차이가 분명해진 지금, 하나님의 심판과 구원을 어떻게 보나요?","card8.label":"하나님의 나라","card8.q":"예수님은 \"하나님의 나라는 너희 안에 있다\"고 말씀하셨습니다. 일상생활이나 교회에서 서로 사랑함 가운데, 하나님이 다스리시는 평안과 천국의 실제를 어떻게 진짜로 경험할 수 있을까요?","card8.prompt":"하나님의 나라는 먼 곳에 있는 것이 아니라, 당신의 마음 안에서 다스립니다.","card8.hint1":"\"하나님이 다스리신다\"고 가장 강하게 느끄는 때는 언제인가요?","card8.hint2":"교회에서 서로 사랑하는 순간 중 천국 같았던 때는 언제였나요?","card8.hint3":"오늘, 어디서 하나님의 나라를 조금 더 실제로 만들 수 있을까요?","card9.label":"용서","card9.q":"증오와 쓰라림 가운데 사는 것은 \"지옥의 맛을 먼저 보는\" 것과 같습니다. 관계 속의 상처 앞에서, 우리는 그리스도의 사랑으로 어떻게 용서의 첫걸음을 내디딥 수 있을까요?","card9.prompt":"용서는 잊는 것이 아니라, 심판을 사랑에게 릡기는 것입니다.","card9.hint1":"먼저 마음의 쓰라림을 하나님께 말씀드릴 의향이 있나요?","card9.hint2":"그리스도가 어떻게 먼저 우리를 용서해 주셨나요?","card9.hint3":"용서의 첫걸음은 얼마나 작아도 될까요?"}};</script>
 <script src="../src/shared.js"></script>
 </body>
 </html>
