@@ -14,6 +14,7 @@ class Notice {
 /// notice.json 拉取：每次打开 App 强制推送，不失效
 class NoticeFetcher {
   static const _sources = [
+    'https://harpsvials.github.io/mustardseed-app/notice.json',
     'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/notice.json',
     'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/notice.json',
   ];

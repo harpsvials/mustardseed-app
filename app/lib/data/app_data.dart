@@ -85,6 +85,7 @@ class AppData {
   /// 从 GitHub 拉取最新内容；失败返回 null（调用方回退内置）
   static Future<AppData?> fetchRemote() async {
     const sources = [
+      'https://harpsvials.github.io/mustardseed-app/appdata/appdata.json',
       'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/appdata/appdata.json',
       'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/appdata/appdata.json',
     ];

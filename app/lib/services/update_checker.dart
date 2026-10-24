@@ -16,7 +16,7 @@ class UpdateChecker {
       'https://api.github.com/repos/harpsvials/mustardseed-app/releases/latest';
   // 弱网/国内网络下 api.github.com 不可达时的兜底源（version.json 由 CI 每次构建后自动更新）
   static const _rawVersion =
-      'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/version.json';
+      'https://harpsvials.github.io/mustardseed-app/version.json';
   static const _jsdelivrVersion =
       'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/version.json';
   static const _fallback =
