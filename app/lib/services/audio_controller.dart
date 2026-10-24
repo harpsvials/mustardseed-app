@@ -39,7 +39,6 @@ class MusicTracks {
     Track(
       title: '点燃 / Rest On Us · Holy Spirit',
       sub: '2026 吉隆坡烈火特会',
-      asset: 'music/kl01_RestOnUs.mp3',
       urls: [
         'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/kl01_RestOnUs.mp3',
         'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/kl01_RestOnUs.mp3',
