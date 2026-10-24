@@ -378,8 +378,8 @@ body.page-guestbook #gbList .gb-empty,body.page-guestbook #gbList .gb-loading{gr
 
 /* ===== 18. 页脚 ===== */
 footer{text-align:center;margin-top:36px; font-size:12px;letter-spacing:.08em; color:var(--cream-faint);}
-footer .foot-privacy{color:var(--cream-faint);text-decoration:none;margin-left:10px;letter-spacing:.06em;transition:color .2s;}
-footer .foot-privacy:hover{color:var(--mustard);}
+footer .foot-privacy,footer .foot-app{color:var(--cream-faint);text-decoration:none;margin-left:10px;letter-spacing:.06em;transition:color .2s;}
+footer .foot-privacy:hover,footer .foot-app:hover{color:var(--mustard);}
 .foot-nav{display:flex; flex-wrap:wrap; justify-content:center; gap:8px 10px; padding:10px 16px 14px;}
 .foot-nav .site-link{flex:none; background:rgba(0,0,0,.45); -webkit-backdrop-filter:blur(36px) saturate(1.9) brightness(1.05); backdrop-filter:blur(36px) saturate(1.9) brightness(1.05); border:1px solid rgba(255,255,255,.35); border-radius:var(--r-btn); box-shadow:var(--shadow-pop); min-height:32px; padding:0 12px; color:#fff; display:inline-flex;align-items:center; -webkit-tap-highlight-color:transparent; white-space:nowrap; transition:border-color .2s, color .2s, background .2s;}
 .foot-nav .site-link:hover{border-color:var(--mustard);color:var(--mustard);background:rgba(0,0,0,.45);}
