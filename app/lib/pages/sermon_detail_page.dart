@@ -165,7 +165,7 @@ class _QuestionsView extends StatelessWidget {
           Text(
             qText,
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 17,
               height: 1.8,
               color: AppColors.cream,
             ),

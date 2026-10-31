@@ -89,7 +89,7 @@ class _PeriodCard extends StatelessWidget {
               child: Text(
                 AppLocale.t(para.cast<String, dynamic>()),
                 style: TextStyle(
-                  fontSize: 14.5,
+                  fontSize: 17,
                   height: 1.75,
                   color: AppColors.cream,
                 ),

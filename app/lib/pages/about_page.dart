@@ -82,7 +82,7 @@ class _SectionCard extends StatelessWidget {
               child: Text(
                 AppLocale.t(p.cast<String, dynamic>()),
                 style: TextStyle(
-                  fontSize: 14.5,
+                  fontSize: 17,
                   height: 1.75,
                   color: AppColors.cream,
                 ),

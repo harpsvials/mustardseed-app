@@ -231,7 +231,7 @@ class _CommentCard extends StatelessWidget {
           Text(
             content,
             style: TextStyle(
-              fontSize: 14.5,
+              fontSize: 17,
               height: 1.7,
               color: AppColors.cream,
             ),

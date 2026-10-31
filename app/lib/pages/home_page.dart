@@ -131,7 +131,7 @@ class _HomeCard extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: 11.5,
+                  fontSize: 17,
                   color: AppColors.creamFaint,
                   height: 1.4,
                 ),

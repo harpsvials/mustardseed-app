@@ -62,7 +62,7 @@ class _TopicCard extends StatelessWidget {
           Text(
             q,
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 17,
               height: 1.65,
               color: AppColors.cream,
             ),

@@ -100,7 +100,7 @@ class _SermonTile extends StatelessWidget {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                fontSize: 13,
+                                fontSize: 17,
                                 color: AppColors.creamDim,
                                 height: 1.5,
                               ),

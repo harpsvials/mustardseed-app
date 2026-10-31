@@ -48,7 +48,7 @@ class _TestifyPageState extends State<TestifyPage> {
             Text(
               AppLocale.t(sub),
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 17,
                 color: AppColors.creamDim,
                 height: 1.5,
               ),
@@ -65,7 +65,7 @@ class _TestifyPageState extends State<TestifyPage> {
               child: Text(
                 AppLocale.t(text),
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 17,
                   height: 1.7,
                   color: AppColors.cream,
                 ),
