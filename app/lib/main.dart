@@ -66,11 +66,12 @@ class _MustardSeedAppState extends State<MustardSeedApp> {
     _loadTheme();
   }
 
-  /// 恢复持久化的主题选择（默认暗色）
+  /// 恢复持久化的主题选择；未选择时按设备本地时间自动决定（白天 6:00-17:59 浅色，夜晚深色）
   Future<void> _loadTheme() async {
     try {
       final sp = await SharedPreferences.getInstance();
-      final light = sp.getBool(_themeKey) ?? false;
+      final hour = DateTime.now().hour;
+      final light = sp.getBool(_themeKey) ?? (hour >= 6 && hour < 18);
       if (!mounted) return;
       setState(() {
         _light = light;

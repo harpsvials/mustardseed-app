@@ -75,14 +75,32 @@
 
   /* 主题切换按钮：注入语言栏首位；明亮/暗色切换 + localStorage 记忆 + meta theme-color 同步 */
   var KEY = 'ms-theme';
-  var savedTheme = 'dark';
-  try { savedTheme = localStorage.getItem(KEY) || 'dark'; } catch (e) {}
+  var savedTheme = null;
+  try { savedTheme = localStorage.getItem(KEY); } catch (e) {}
+  if (!savedTheme) {
+    /* 未手动选择过：按浏览器本地时间自动决定——白天(6:00-17:59)浅色，夜晚深色 */
+    var nowHour = new Date().getHours();
+    savedTheme = (nowHour >= 6 && nowHour < 18) ? 'light' : 'dark';
+  }
   document.documentElement.setAttribute('data-theme', savedTheme);
   var themeMeta = document.querySelector('meta[name="theme-color"]');
   function syncThemeMeta(t) {
     if (themeMeta) themeMeta.setAttribute('content', t === 'light' ? '#F6F0E2' : '#16281C');
   }
   syncThemeMeta(savedTheme);
+  /* 未手动选择时，按浏览器本地时间自动切换主题（每分钟检查一次） */
+  function followDayTime() {
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) {}
+    if (stored) return; // 用户手动选择过，不自动覆盖
+    var h = new Date().getHours();
+    var want = (h >= 6 && h < 18) ? 'light' : 'dark';
+    if (document.documentElement.getAttribute('data-theme') !== want) {
+      document.documentElement.setAttribute('data-theme', want);
+      syncThemeMeta(want);
+    }
+  }
+  setInterval(followDayTime, 60000);
   var tBtn = document.createElement('button');
   tBtn.type = 'button';
   tBtn.className = 'theme-toggle';
