@@ -432,40 +432,32 @@ body.page-home,body.page-404,body.page-sermons,body.page-discussion{scroll-behav
   .sermon-title,.chapter-title{font-size:22px;}
   .page-testimonies .tl-period{font-size:15px;}
 }
-/* 见证/关于页：标题一个框、每段文字一个框，平铺不嵌套 */
-.page-about .hero h1,
-.page-testimonies .hero h1{
-  background:var(--bg-card);
-  border:1px solid var(--line);
-  border-radius:var(--r-card);
-  padding:14px 26px;
-  box-shadow:var(--shadow-card);
-  display:inline-block;
-}
+/* 见证/关于页：每段文字一个框，平铺不嵌套（标题不加框） */
 .page-about .para,
 .page-about .creed-item,
 .page-testimonies .intro-para,
 .page-testimonies .testimony,
-.page-testimonies .t-closing,
-.page-testimonies .t-note{
+.page-testimonies .t-closing{
   background:var(--bg-card);
   border:1px solid var(--line);
   border-radius:var(--r-card);
   padding:20px 18px;
   box-shadow:var(--shadow-card);
 }
-/* 框间间距 */
+/* 框间间距（相邻框仅留空隙，每框四边完整） */
 .page-about .para{margin:16px 0 0;}
 .page-about .creed-item{margin:14px 0 0;}
 .page-testimonies .intro-para{margin:0 0 14px;}
 .page-testimonies .testimony{margin:0 0 14px;}
 .page-testimonies .t-closing{margin:14px 0 0;}
-.page-testimonies .t-note{margin:14px 0 0;}
-/* 防套框：信经条目框内经文引用不保留独立边框（保留金文标注，融入框内） */
+/* 消除相邻框之间的虚线残留（框间距由上面的 margin 控制，内距保持统一 20px） */
+.page-about .creed-item + .creed-item{margin-top:14px;}
+.page-testimonies .testimony + .testimony{margin-top:0;}
+/* 防套框：信经条目框内经文引用不保留独立边框；见证附注融入所在段落框内 */
 .page-about .creed-item blockquote.verse{border:0;background:transparent;padding:8px 0 0;margin:10px 0 0;}
-/* 原虚线分隔改为卡片间距 */
-.page-about .creed-item + .creed-item{border-top:0;margin-top:14px;}
-.page-testimonies .testimony + .testimony{border-top:0;padding-top:0;margin-top:0;}
+.page-testimonies .t-note{border:0;background:transparent;padding:6px 0 0;margin:8px 0 0;color:var(--cream-dim);}
+/* 时间轴条目间原虚线分隔去掉（每段已有框） */
+.page-testimonies .tl-item + .tl-item{border-top:0;}
 /* 小屏：单列网格 */
 @media (max-width:380px){
   .milestones,.values-grid{grid-template-columns:1fr;}
@@ -569,6 +561,9 @@ html[data-theme="light"] .testimony + .testimony,
 html[data-theme="light"] .witness + .witness,
 html[data-theme="light"] .tl-item + .tl-item,
 html[data-theme="light"] .creed-item + .creed-item{border-top-color:rgba(36,48,27,.09);}
+/* 浅色相邻段落框顶边保持金棕（与整框一致，不被旧分隔线颜色覆盖） */
+html[data-theme="light"] .page-testimonies .testimony + .testimony,
+html[data-theme="light"] .page-about .creed-item + .creed-item{border-top-color:rgba(176,138,42,.22);}
 
 /* 音乐播放器 */
 html[data-theme="light"] .ms-btn{background:rgba(36,48,27,.05);border-color:rgba(36,48,27,.20);color:var(--cream);}
@@ -622,15 +617,11 @@ html[data-theme="light"] .theme-toggle .ic-sun{display:block;}
 html[data-theme="light"] .theme-toggle .ic-moon{display:none;}
 
 /* ===== 26. 亮色正文白底衬（讲道文字稿 / 见证 / 关于，对齐首页白卡片） ===== */
-/* 讲道详情页章节、关于各章等正文容器 → 白色卡片 */
-html[data-theme="light"] .chapter{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-card);padding:22px 20px;box-shadow:var(--shadow-card);}
-html[data-theme="light"] .chapter + .chapter{margin-top:16px;}
+/* 章节容器与深色一致：不加卡片框（避免与段落框嵌套套框）；仅保留标题间距 */
 html[data-theme="light"] .chapter .chapter-title{margin-top:18px;}
 html[data-theme="light"] .chapter > .chapter-title:first-child{margin-top:0;}
 html[data-theme="light"] .chapter .chapter-sub{margin-top:16px;}
 html[data-theme="light"] .chapter .chapter-sub:first-child{margin-top:0;}
-/* 见证时间轴条目 → 白色卡片 */
-html[data-theme="light"] .timeline .testimony{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-card);padding:16px 18px;box-shadow:var(--shadow-card);}
-html[data-theme="light"] .testimony + .testimony{border-top:none;padding-top:0;margin-top:14px;}
+/* 见证/关于页段落框统一由「每段一框」规则控制（浅色经 --bg-card/--line 变量自动适配，与深色一致） */
 /* 讲道详情页结尾思考题 → 白底浅绿 */
 html[data-theme="light"] .question{background:linear-gradient(180deg,rgba(143,191,95,.12),rgba(143,191,95,.05));border-color:rgba(143,191,95,.42);}
