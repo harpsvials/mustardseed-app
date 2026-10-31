@@ -576,3 +576,17 @@ html[data-theme="light"] .theme-toggle{background:rgba(36,48,27,.05);border-colo
 .theme-toggle .ic-moon{display:block;}
 html[data-theme="light"] .theme-toggle .ic-sun{display:block;}
 html[data-theme="light"] .theme-toggle .ic-moon{display:none;}
+
+/* ===== 26. 亮色正文白底衬（讲道文字稿 / 见证 / 关于，对齐首页白卡片） ===== */
+/* 讲道详情页章节、关于各章等正文容器 → 白色卡片 */
+html[data-theme="light"] .chapter{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-card);padding:22px 20px;box-shadow:var(--shadow-card);}
+html[data-theme="light"] .chapter + .chapter{margin-top:16px;}
+html[data-theme="light"] .chapter .chapter-title{margin-top:18px;}
+html[data-theme="light"] .chapter > .chapter-title:first-child{margin-top:0;}
+html[data-theme="light"] .chapter .chapter-sub{margin-top:16px;}
+html[data-theme="light"] .chapter .chapter-sub:first-child{margin-top:0;}
+/* 见证时间轴条目 → 白色卡片 */
+html[data-theme="light"] .timeline .testimony{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-card);padding:16px 18px;box-shadow:var(--shadow-card);}
+html[data-theme="light"] .testimony + .testimony{border-top:none;padding-top:0;margin-top:14px;}
+/* 讲道详情页结尾思考题 → 白底浅绿 */
+html[data-theme="light"] .question{background:linear-gradient(180deg,rgba(143,191,95,.12),rgba(143,191,95,.05));border-color:rgba(143,191,95,.42);}
