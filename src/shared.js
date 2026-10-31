@@ -725,4 +725,23 @@ window.__hasBlocked = (function(){
       setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 300);
     }
   }
+
+  // 辅助导航：鼠标悬停到被横向裁切的章节按钮时，平滑滚动使其居中可见
+  var chapNavs = document.querySelectorAll('.chap-nav');
+  for (var ci = 0; ci < chapNavs.length; ci++){
+    (function(nav){
+      var chips = nav.querySelectorAll('.chap');
+      for (var cj = 0; cj < chips.length; cj++){
+        (function(chip){
+          chip.addEventListener('mouseenter', function(){
+            var l = chip.offsetLeft, r = l + chip.offsetWidth;
+            var sl = nav.scrollLeft, sr = sl + nav.clientWidth;
+            if (l < sl - 1 || r > sr + 1){
+              nav.scrollTo({left: Math.round(l - (nav.clientWidth - chip.offsetWidth) / 2), behavior: 'smooth'});
+            }
+          });
+        })(chips[cj]);
+      }
+    })(chapNavs[ci]);
+  }
 })();
