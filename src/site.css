@@ -432,8 +432,40 @@ body.page-home,body.page-404,body.page-sermons,body.page-discussion{scroll-behav
   .sermon-title,.chapter-title{font-size:22px;}
   .page-testimonies .tl-period{font-size:15px;}
 }
-/* 见证/关于页参考讲道文字稿风格：正文自由排版（无段落框）、经文引用框与附注虚线框保留 */
-.page-testimonies .t-note{border:1px dashed rgba(243,235,216,.18);border-radius:var(--r-card);padding:14px 16px;}
+/* 见证/关于页：标题一个框、每段文字一个框，平铺不嵌套 */
+.page-about .hero h1,
+.page-testimonies .hero h1{
+  background:var(--bg-card);
+  border:1px solid var(--line);
+  border-radius:var(--r-card);
+  padding:14px 26px;
+  box-shadow:var(--shadow-card);
+  display:inline-block;
+}
+.page-about .para,
+.page-about .creed-item,
+.page-testimonies .intro-para,
+.page-testimonies .testimony,
+.page-testimonies .t-closing,
+.page-testimonies .t-note{
+  background:var(--bg-card);
+  border:1px solid var(--line);
+  border-radius:var(--r-card);
+  padding:20px 18px;
+  box-shadow:var(--shadow-card);
+}
+/* 框间间距 */
+.page-about .para{margin:16px 0 0;}
+.page-about .creed-item{margin:14px 0 0;}
+.page-testimonies .intro-para{margin:0 0 14px;}
+.page-testimonies .testimony{margin:0 0 14px;}
+.page-testimonies .t-closing{margin:14px 0 0;}
+.page-testimonies .t-note{margin:14px 0 0;}
+/* 防套框：信经条目框内经文引用不保留独立边框（保留金文标注，融入框内） */
+.page-about .creed-item blockquote.verse{border:0;background:transparent;padding:8px 0 0;margin:10px 0 0;}
+/* 原虚线分隔改为卡片间距 */
+.page-about .creed-item + .creed-item{border-top:0;margin-top:14px;}
+.page-testimonies .testimony + .testimony{border-top:0;padding-top:0;margin-top:0;}
 /* 小屏：单列网格 */
 @media (max-width:380px){
   .milestones,.values-grid{grid-template-columns:1fr;}
