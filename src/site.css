@@ -471,3 +471,108 @@ body.page-home,body.page-404,body.page-sermons,body.page-discussion{scroll-behav
 @media (max-width:520px){
   .notice-pop{right:12px;left:12px;bottom:calc(var(--tb-h) + 76px);max-width:none;}
 }
+
+/* ===== 24. 明亮主题（html[data-theme="light"] 一键切换，变量覆盖 + 硬编码覆盖） ===== */
+html[data-theme="light"]{
+  --bg:#F6F0E2; --bg-raised:#EFE8D6; --bg-card:#FFFDF7;
+  --line:rgba(176,138,42,.22); --line-strong:rgba(176,138,42,.42);
+  --cream:#24301B; --cream-dim:rgba(36,48,27,.72); --cream-faint:rgba(36,48,27,.46);
+  --mustard:#B98A1C; --mustard-soft:#C79A2E; --terra:#C87B45; --terra-soft:#D6935E; --sprout:#6E9A45;
+  --glass-bg:rgba(255,255,255,.62); --glass-bg-strong:rgba(255,255,255,.86);
+  --glass-ink:#24301B; --glass-ink-soft:rgba(36,48,27,.7); --glass-border:rgba(36,48,27,.16);
+  --shadow-card:0 2px 10px rgba(84,62,24,.10), inset 0 1px 0 rgba(255,255,255,.55);
+  --shadow-pop:0 8px 28px rgba(84,62,24,.16), inset 0 1px 0 rgba(255,255,255,.55);
+}
+html[data-theme="light"] body{background:radial-gradient(120% 46% at 50% -4%, rgba(224,174,51,.15), rgba(224,174,51,0) 62%), var(--bg);}
+html[data-theme="light"] body::before{opacity:.028;}
+html[data-theme="light"] ::selection{background:rgba(224,174,51,.30);}
+html[data-theme="light"] footer .seed{color:var(--sprout);}
+
+/* 语言栏 / 导航链接（原白色玻璃 → 深色细线） */
+html[data-theme="light"] .lang-btn{color:var(--cream);background:rgba(36,48,27,.05);border-color:rgba(36,48,27,.26);}
+html[data-theme="light"] .lang-btn:hover{background:rgba(224,174,51,.12);border-color:var(--mustard);color:var(--mustard);}
+html[data-theme="light"] .lang-btn.is-active{color:var(--mustard);background:rgba(224,174,51,.16);border-color:rgba(224,174,51,.55);}
+html[data-theme="light"] .site-link{color:var(--cream);background:rgba(36,48,27,.04);border-color:rgba(36,48,27,.26);}
+html[data-theme="light"] .site-link:hover{border-color:var(--mustard);color:var(--mustard);background:rgba(224,174,51,.08);}
+html[data-theme="light"] .site-nav{border-bottom:1px solid rgba(36,48,27,.12);}
+
+/* 底部 Tab 栏 */
+html[data-theme="light"] .app-tabbar{background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(28px) saturate(1.8);backdrop-filter:blur(28px) saturate(1.8);border-top:1px solid rgba(36,48,27,.12);box-shadow:0 -6px 24px rgba(84,62,24,.12);}
+html[data-theme="light"] .app-tab{color:rgba(36,48,27,.52);}
+html[data-theme="light"] .app-tab.is-current{color:var(--mustard);background:rgba(224,174,51,.15);}
+
+/* 正文硬编码奶油白 → 深墨绿 */
+html[data-theme="light"] .para,
+html[data-theme="light"] blockquote.quote,
+html[data-theme="light"] .verse-text,
+html[data-theme="light"] .sermon-summary,
+html[data-theme="light"] .t-text,
+html[data-theme="light"] .t-closing,
+html[data-theme="light"] .talk-text,
+html[data-theme="light"] .witness-text,
+html[data-theme="light"] .tl-text,
+html[data-theme="light"] .creed-body,
+html[data-theme="light"] .intro-para,
+html[data-theme="light"] .gb-content,
+html[data-theme="light"] .question-text,
+html[data-theme="light"] .prayer-text,
+html[data-theme="light"] .notice-pop-msg{color:rgba(36,48,27,.86);}
+html[data-theme="light"] .tag,
+html[data-theme="light"] .note,
+html[data-theme="light"] .rule{border-color:rgba(36,48,27,.18);}
+html[data-theme="light"] .hints ul{border-top-color:rgba(36,48,27,.14);}
+html[data-theme="light"] .testimony + .testimony,
+html[data-theme="light"] .witness + .witness,
+html[data-theme="light"] .tl-item + .tl-item,
+html[data-theme="light"] .creed-item + .creed-item{border-top-color:rgba(36,48,27,.09);}
+
+/* 音乐播放器 */
+html[data-theme="light"] .ms-btn{background:rgba(36,48,27,.05);border-color:rgba(36,48,27,.20);color:var(--cream);}
+html[data-theme="light"] .ms-btn:hover{background:rgba(224,174,51,.12);border-color:var(--mustard);color:var(--mustard);}
+html[data-theme="light"] .ms-time{color:var(--cream);}
+html[data-theme="light"] .ms-name{color:var(--cream);}
+html[data-theme="light"] .ms-player.playing .ms-chip{background:rgba(255,255,255,.96);color:var(--cream);border-color:rgba(36,48,27,.20);box-shadow:var(--shadow-pop);}
+html[data-theme="light"] .ms-list{background:rgba(255,255,255,.97);color:var(--cream);border-color:rgba(36,48,27,.20);box-shadow:var(--shadow-pop);}
+html[data-theme="light"] .ms-item{color:var(--cream);}
+html[data-theme="light"] .ms-item:hover{background:rgba(224,174,51,.12);color:var(--mustard);}
+
+/* 朗读条 / 章节导航 */
+html[data-theme="light"] .rd-title{color:var(--cream);}
+html[data-theme="light"] .rd-val,html[data-theme="light"] .rd-voice{color:var(--cream);}
+html[data-theme="light"] .chap-nav{background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(28px) saturate(1.8);backdrop-filter:blur(28px) saturate(1.8);border-bottom:1px solid rgba(36,48,27,.10);}
+html[data-theme="light"] .chap{color:var(--cream);background:rgba(36,48,27,.04);border-color:rgba(36,48,27,.22);}
+html[data-theme="light"] .chap:hover{background:rgba(36,48,27,.08);border-color:rgba(36,48,27,.42);color:var(--glass-ink);}
+
+/* 交互小控件 */
+html[data-theme="light"] .hint-toggle{background:rgba(36,48,27,.04);color:var(--mustard-soft);}
+html[data-theme="light"] .hint-toggle:hover{border-color:rgba(176,138,42,.5);background:rgba(224,174,51,.08);}
+html[data-theme="light"] .contact-link{background:rgba(36,48,27,.05);border-color:rgba(36,48,27,.22);}
+html[data-theme="light"] .contact-link:hover .contact-ic{color:var(--mustard);background:rgba(224,174,51,.08);}
+html[data-theme="light"] .gb-input,html[data-theme="light"] .gb-textarea{background:rgba(36,48,27,.05);color:var(--cream);}
+html[data-theme="light"] .gb-input::placeholder,html[data-theme="light"] .gb-textarea::placeholder{color:var(--cream-faint);}
+
+/* 页脚导航 */
+html[data-theme="light"] .foot-nav .site-link{color:var(--cream);background:rgba(36,48,27,.05);border-color:rgba(36,48,27,.26);box-shadow:var(--shadow-pop);}
+html[data-theme="light"] .foot-nav .site-link:hover,
+html[data-theme="light"] .foot-nav .site-link:active,
+html[data-theme="light"] .foot-nav .site-link.is-current,
+html[data-theme="light"] .foot-nav .site-link.is-current:hover{background:rgba(36,48,27,.05);}
+
+/* 讨论页局部变量覆盖 */
+html[data-theme="light"] .page-discussion{--cream-dim:rgba(36,48,27,.64);}
+
+/* 通知弹窗 */
+html[data-theme="light"] .notice-pop{background:rgba(255,255,255,.97);color:var(--cream);border-color:rgba(176,138,42,.35);}
+html[data-theme="light"] .notice-pop-x{color:var(--cream-faint);}
+html[data-theme="light"] .notice-pop-x:hover{color:var(--cream);background:rgba(36,48,27,.06);}
+
+/* ===== 25. 主题切换按钮（明亮 / 暗色） ===== */
+.theme-toggle{flex:none;width:40px;height:40px;min-height:40px;padding:0;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.35);color:var(--cream);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .2s,color .2s,background .2s;}
+.theme-toggle svg{width:18px;height:18px;display:block;}
+.theme-toggle:hover{border-color:var(--mustard);color:var(--mustard);background:rgba(224,174,51,.08);}
+.theme-toggle:active{opacity:.7;}
+html[data-theme="light"] .theme-toggle{background:rgba(36,48,27,.05);border-color:rgba(36,48,27,.26);color:var(--cream);}
+.theme-toggle .ic-sun{display:none;}
+.theme-toggle .ic-moon{display:block;}
+html[data-theme="light"] .theme-toggle .ic-sun{display:block;}
+html[data-theme="light"] .theme-toggle .ic-moon{display:none;}

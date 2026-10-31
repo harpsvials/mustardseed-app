@@ -72,6 +72,30 @@
     html += '<a class="lang-btn' + act + '" data-lang="' + LANGS[i][0] + '" href="' + href + '" aria-label="' + LANGS[i][1] + '">' + LANGS[i][2] + '</a>';
   }
   bar.innerHTML = html;
+
+  /* 主题切换按钮：注入语言栏首位；明亮/暗色切换 + localStorage 记忆 + meta theme-color 同步 */
+  var KEY = 'ms-theme';
+  var savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem(KEY) || 'dark'; } catch (e) {}
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  function syncThemeMeta(t) {
+    if (themeMeta) themeMeta.setAttribute('content', t === 'light' ? '#F6F0E2' : '#16281C');
+  }
+  syncThemeMeta(savedTheme);
+  var tBtn = document.createElement('button');
+  tBtn.type = 'button';
+  tBtn.className = 'theme-toggle';
+  tBtn.setAttribute('aria-label', '切换明亮模式');
+  tBtn.setAttribute('title', '切换明亮模式');
+  tBtn.innerHTML = '<svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  tBtn.addEventListener('click', function () {
+    var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    syncThemeMeta(next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  });
+  if (bar && !bar.querySelector('.theme-toggle')) bar.insertBefore(tBtn, bar.firstChild);
 })();
 
 /* ===== 3. i18n 语言核心（URL 权威：/<lang>/ 决定当前语言；静态化页面无需本地改写） ===== */
