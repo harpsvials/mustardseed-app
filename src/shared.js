@@ -737,7 +737,22 @@ window.__hasBlocked = (function(){
             var l = chip.offsetLeft, r = l + chip.offsetWidth;
             var sl = nav.scrollLeft, sr = sl + nav.clientWidth;
             if (l < sl - 1 || r > sr + 1){
-              nav.scrollTo({left: Math.round(l - (nav.clientWidth - chip.offsetWidth) / 2), behavior: 'smooth'});
+              var to = Math.round(l - (nav.clientWidth - chip.offsetWidth) / 2);
+              var max = nav.scrollWidth - nav.clientWidth;
+              to = Math.max(0, Math.min(to, max));
+              var from = nav.scrollLeft;
+              if (to === from) return;
+              if (nav._raf) cancelAnimationFrame(nav._raf);
+              var start = null;
+              var step = function(ts){
+                if (start === null) start = ts;
+                var p = Math.min(1, (ts - start) / 2000);
+                var e = 1 - Math.pow(1 - p, 3);
+                nav.scrollLeft = from + (to - from) * e;
+                if (p < 1){ nav._raf = requestAnimationFrame(step); }
+                else { nav._raf = null; }
+              };
+              nav._raf = requestAnimationFrame(step);
             }
           });
         })(chips[cj]);
