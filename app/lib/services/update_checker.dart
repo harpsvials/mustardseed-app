@@ -96,21 +96,21 @@ class UpdateChecker {
         backgroundColor: AppColors.bgRaised,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18),
-          side: const BorderSide(color: AppColors.lineStrong),
+          side: BorderSide(color: AppColors.lineStrong),
         ),
-        title: const Text(
+        title: Text(
           '发现新版本',
           style: TextStyle(color: AppColors.cream, fontWeight: FontWeight.w700),
         ),
         content: Text(
           '最新版本 $tag 已发布，是否立即下载并更新？',
-          style: const TextStyle(color: AppColors.cream, height: 1.6),
+          style: TextStyle(color: AppColors.cream, height: 1.6),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
             child:
-                const Text('暂不', style: TextStyle(color: AppColors.creamFaint)),
+                Text('暂不', style: TextStyle(color: AppColors.creamFaint)),
           ),
           TextButton(
             onPressed: () async {
@@ -122,7 +122,7 @@ class UpdateChecker {
                     mode: LaunchMode.externalApplication);
               }
             },
-            child: const Text('立即更新',
+            child: Text('立即更新',
                 style: TextStyle(color: AppColors.mustard)),
           ),
         ],
@@ -139,7 +139,7 @@ class UpdateChecker {
       showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (ctx) => const AlertDialog(
+        builder: (ctx) => AlertDialog(
           backgroundColor: AppColors.bgRaised,
           content: Row(
             children: [
@@ -173,7 +173,7 @@ class UpdateChecker {
       if (context.mounted) Navigator.of(context, rootNavigator: true).pop();
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text('下载失败，请稍后重试',
                 style: TextStyle(color: AppColors.cream)),
             backgroundColor: AppColors.bgRaised,

@@ -51,7 +51,7 @@ class _TopicCard extends StatelessWidget {
         children: [
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12,
               letterSpacing: 1.2,
               color: AppColors.mustard,
@@ -61,7 +61,7 @@ class _TopicCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             q,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 15,
               height: 1.65,
               color: AppColors.cream,
@@ -79,7 +79,7 @@ class _TopicCard extends StatelessWidget {
               ),
               child: Text(
                 prompt,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 13,
                   height: 1.6,
                   color: AppColors.sprout,

@@ -49,14 +49,14 @@ class _PrayerPageState extends State<PrayerPage> {
         ),
         const SizedBox(height: 16),
         if (_loading)
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(40),
             child: Center(
               child: CircularProgressIndicator(color: AppColors.mustard),
             ),
           )
         else if (_items.isEmpty)
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(40),
             child: Center(
               child: Text(
@@ -122,15 +122,15 @@ class _ComposeDialogState extends State<_ComposeDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.bgRaised,
-      title: const Text('发送祷告',
+      title: Text('发送祷告',
           style: TextStyle(color: AppColors.cream, fontSize: 17)),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             controller: widget.nameCtrl,
-            style: const TextStyle(color: AppColors.cream),
-            decoration: const InputDecoration(
+            style: TextStyle(color: AppColors.cream),
+            decoration: InputDecoration(
               labelText: '名字',
               labelStyle: TextStyle(color: AppColors.creamDim),
               enabledBorder: UnderlineInputBorder(
@@ -141,8 +141,8 @@ class _ComposeDialogState extends State<_ComposeDialog> {
           TextField(
             controller: widget.contentCtrl,
             maxLines: 4,
-            style: const TextStyle(color: AppColors.cream),
-            decoration: const InputDecoration(
+            style: TextStyle(color: AppColors.cream),
+            decoration: InputDecoration(
               labelText: '祷告内容',
               labelStyle: TextStyle(color: AppColors.creamDim),
               enabledBorder: UnderlineInputBorder(
@@ -154,7 +154,7 @@ class _ComposeDialogState extends State<_ComposeDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('取消', style: TextStyle(color: AppColors.creamFaint)),
+          child: Text('取消', style: TextStyle(color: AppColors.creamFaint)),
         ),
         TextButton(
           onPressed: () {
@@ -167,7 +167,7 @@ class _ComposeDialogState extends State<_ComposeDialog> {
               widget.contentCtrl.text.trim(),
             ));
           },
-          child: const Text('发送', style: TextStyle(color: AppColors.mustard)),
+          child: Text('发送', style: TextStyle(color: AppColors.mustard)),
         ),
       ],
     );
@@ -207,14 +207,14 @@ class _PrayerCard extends StatelessWidget {
                   border: Border.all(
                       color: AppColors.sprout.withValues(alpha: .35)),
                 ),
-                child: const Icon(Icons.add_box,
+                child: Icon(Icons.add_box,
                     color: AppColors.sprout, size: 16),
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   name,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13.5,
                     fontWeight: FontWeight.w600,
                     color: AppColors.cream,
@@ -224,7 +224,7 @@ class _PrayerCard extends StatelessWidget {
               if (created.isNotEmpty)
                 Text(
                   created,
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 11, color: AppColors.creamFaint),
                 ),
             ],
@@ -232,14 +232,14 @@ class _PrayerCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             content,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14.5,
               height: 1.7,
               color: AppColors.cream,
             ),
           ),
           const SizedBox(height: 8),
-          const Text(
+          Text(
             '✝ 阿们',
             style: TextStyle(fontSize: 12, color: AppColors.sprout),
           ),

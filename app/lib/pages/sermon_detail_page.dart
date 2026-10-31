@@ -57,7 +57,7 @@ class _SermonDetailPageState extends State<SermonDetailPage> {
       appBar: AppBar(
         title: Text(title),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.cream),
+          icon: Icon(Icons.arrow_back, color: AppColors.cream),
           onPressed: () => Navigator.of(context).maybePop(),
         ),
         actions: [
@@ -76,7 +76,7 @@ class _SermonDetailPageState extends State<SermonDetailPage> {
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w700,
               color: AppColors.mustard,
@@ -143,7 +143,7 @@ class _QuestionsView extends StatelessWidget {
           if (tag.isNotEmpty)
             Text(
               tag,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 12,
                 letterSpacing: 1.2,
                 color: AppColors.mustard,
@@ -154,7 +154,7 @@ class _QuestionsView extends StatelessWidget {
             const SizedBox(height: 6),
             Text(
               qTitle,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
                 color: AppColors.cream,
@@ -164,7 +164,7 @@ class _QuestionsView extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             qText,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 15,
               height: 1.8,
               color: AppColors.cream,

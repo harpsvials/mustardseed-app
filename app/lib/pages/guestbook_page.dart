@@ -49,14 +49,14 @@ class _GuestbookPageState extends State<GuestbookPage> {
         ),
         const SizedBox(height: 16),
         if (_loading)
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(40),
             child: Center(
               child: CircularProgressIndicator(color: AppColors.mustard),
             ),
           )
         else if (_items.isEmpty)
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(40),
             child: Center(
               child: Text(
@@ -124,15 +124,15 @@ class _ComposeDialogState extends State<_ComposeDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.bgRaised,
-      title: const Text('留下你的分享',
+      title: Text('留下你的分享',
           style: TextStyle(color: AppColors.cream, fontSize: 17)),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             controller: widget.nameCtrl,
-            style: const TextStyle(color: AppColors.cream),
-            decoration: const InputDecoration(
+            style: TextStyle(color: AppColors.cream),
+            decoration: InputDecoration(
               labelText: '名字',
               labelStyle: TextStyle(color: AppColors.creamDim),
               enabledBorder: UnderlineInputBorder(
@@ -143,8 +143,8 @@ class _ComposeDialogState extends State<_ComposeDialog> {
           TextField(
             controller: widget.contentCtrl,
             maxLines: 4,
-            style: const TextStyle(color: AppColors.cream),
-            decoration: const InputDecoration(
+            style: TextStyle(color: AppColors.cream),
+            decoration: InputDecoration(
               labelText: '内容',
               labelStyle: TextStyle(color: AppColors.creamDim),
               enabledBorder: UnderlineInputBorder(
@@ -156,7 +156,7 @@ class _ComposeDialogState extends State<_ComposeDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('取消', style: TextStyle(color: AppColors.creamFaint)),
+          child: Text('取消', style: TextStyle(color: AppColors.creamFaint)),
         ),
         TextButton(
           onPressed: () {
@@ -169,7 +169,7 @@ class _ComposeDialogState extends State<_ComposeDialog> {
               widget.contentCtrl.text.trim(),
             ));
           },
-          child: const Text('提交', style: TextStyle(color: AppColors.mustard)),
+          child: Text('提交', style: TextStyle(color: AppColors.mustard)),
         ),
       ],
     );
@@ -204,7 +204,7 @@ class _CommentCard extends StatelessWidget {
                 backgroundColor: AppColors.mustard.withValues(alpha: .2),
                 child: Text(
                   name.characters.first.toUpperCase(),
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 12, color: AppColors.mustard),
                 ),
               ),
@@ -212,7 +212,7 @@ class _CommentCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   name,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13.5,
                     fontWeight: FontWeight.w600,
                     color: AppColors.cream,
@@ -222,7 +222,7 @@ class _CommentCard extends StatelessWidget {
               if (created.isNotEmpty)
                 Text(
                   created,
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 11, color: AppColors.creamFaint),
                 ),
             ],
@@ -230,7 +230,7 @@ class _CommentCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             content,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14.5,
               height: 1.7,
               color: AppColors.cream,

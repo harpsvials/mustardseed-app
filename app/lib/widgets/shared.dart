@@ -15,7 +15,7 @@ class ComposeButton extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: FilledButton.icon(
         onPressed: onPressed,
-        icon: const Icon(Icons.edit_outlined, size: 18),
+        icon: Icon(Icons.edit_outlined, size: 18),
         label: const Text('写一条'),
         style: FilledButton.styleFrom(
           backgroundColor: AppColors.mustard,
@@ -44,14 +44,14 @@ class HeroHeader extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(20, 22, 20, 20),
       decoration: BoxDecoration(
         color: AppColors.bgRaised,
-        border: const Border(bottom: BorderSide(color: AppColors.lineStrong)),
+        border: Border(bottom: BorderSide(color: AppColors.lineStrong)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w700,
               color: AppColors.mustard,
@@ -63,7 +63,7 @@ class HeroHeader extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               sub!,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 14,
                 color: AppColors.creamDim,
                 height: 1.5,
@@ -99,7 +99,7 @@ class VerseCard extends StatelessWidget {
         children: [
           Text(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 15,
               height: 1.7,
               color: AppColors.cream,
@@ -109,7 +109,7 @@ class VerseCard extends StatelessWidget {
             const SizedBox(height: 6),
             Text(
               ref!,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 13,
                 color: AppColors.mustard,
                 fontWeight: FontWeight.w600,
@@ -157,7 +157,7 @@ class ChapterTitle extends StatelessWidget {
           Expanded(
             child: Text(
               title,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
                 color: AppColors.cream,
@@ -197,7 +197,7 @@ class BlockView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 6),
           child: Text(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 15.5,
               height: 1.75,
               color: AppColors.cream,

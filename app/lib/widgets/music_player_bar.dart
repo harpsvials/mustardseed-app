@@ -24,7 +24,7 @@ class MusicPlayerBar extends StatelessWidget {
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   border: Border(
                     top: BorderSide(color: AppColors.lineStrong),
                     bottom: BorderSide(color: AppColors.lineStrong),
@@ -32,7 +32,7 @@ class MusicPlayerBar extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.music_note,
+                    Icon(Icons.music_note,
                         color: AppColors.mustard, size: 20),
                     const SizedBox(width: 8),
                     Expanded(
@@ -40,14 +40,14 @@ class MusicPlayerBar extends StatelessWidget {
                         AppLocale.value == 'en'
                             ? 'Music Player'
                             : '音乐播放器',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
                           color: AppColors.cream,
                         ),
                       ),
                     ),
-                    const Icon(Icons.play_circle,
+                    Icon(Icons.play_circle,
                         color: AppColors.mustard, size: 26),
                   ],
                 ),
@@ -63,7 +63,7 @@ class MusicPlayerBar extends StatelessWidget {
             child: Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 border: Border(
                   top: BorderSide(color: AppColors.lineStrong),
                   bottom: BorderSide(color: AppColors.lineStrong),
@@ -71,7 +71,7 @@ class MusicPlayerBar extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.music_note, color: AppColors.mustard, size: 18),
+                  Icon(Icons.music_note, color: AppColors.mustard, size: 18),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Column(
@@ -82,7 +82,7 @@ class MusicPlayerBar extends StatelessWidget {
                           track.title,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
                             color: AppColors.cream,
@@ -90,7 +90,7 @@ class MusicPlayerBar extends StatelessWidget {
                         ),
                         Text(
                           track.sub,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 11,
                             color: AppColors.creamFaint,
                           ),
@@ -122,12 +122,12 @@ class MusicPlayerBar extends StatelessWidget {
                     ],
                   ),
                   IconButton(
-                    icon: const Icon(Icons.skip_next,
+                    icon: Icon(Icons.skip_next,
                         color: AppColors.creamDim, size: 22),
                     onPressed: audio.next,
                   ),
                   IconButton(
-                    icon: const Icon(Icons.close,
+                    icon: Icon(Icons.close,
                         color: AppColors.creamFaint, size: 18),
                     onPressed: audio.stop,
                   ),
@@ -169,7 +169,7 @@ class MusicPlayerBar extends StatelessWidget {
                 padding: const EdgeInsets.all(14),
                 child: Text(
                   AppLocale.value == 'en' ? 'Music Player' : '音乐播放器',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.cream,
                     fontWeight: FontWeight.w700,
                     fontSize: 16,
@@ -203,7 +203,7 @@ class MusicPlayerBar extends StatelessWidget {
                         ),
                         subtitle: Text(
                           MusicTracks.list[i].sub,
-                          style: const TextStyle(color: AppColors.creamFaint),
+                          style: TextStyle(color: AppColors.creamFaint),
                         ),
                         trailing: active
                             ? IconButton(

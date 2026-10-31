@@ -72,7 +72,7 @@ class _SermonTile extends StatelessWidget {
                       ),
                       child: Text(
                         '${sermon.no}',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                           color: AppColors.mustard,
@@ -86,7 +86,7 @@ class _SermonTile extends StatelessWidget {
                         children: [
                           Text(
                             title,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.w700,
                               color: AppColors.cream,
@@ -99,7 +99,7 @@ class _SermonTile extends StatelessWidget {
                               summary,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 13,
                                 color: AppColors.creamDim,
                                 height: 1.5,
@@ -109,7 +109,7 @@ class _SermonTile extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Icon(Icons.chevron_right,
+                    Icon(Icons.chevron_right,
                         color: AppColors.creamFaint, size: 20),
                   ],
                 ),
@@ -126,7 +126,7 @@ class _SermonTile extends StatelessWidget {
                     ),
                     child: Text(
                       verse,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12.5,
                         color: AppColors.mustardSoft,
                         height: 1.5,

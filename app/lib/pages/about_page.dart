@@ -17,7 +17,7 @@ class AboutPage extends StatelessWidget {
         title: Text(AppLocale.t(
             data.nav['about'] as Map? ?? {'zh': '关于', 'en': 'About Us'})),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.cream),
+          icon: Icon(Icons.arrow_back, color: AppColors.cream),
           onPressed: () => Navigator.of(context).maybePop(),
         ),
       ),
@@ -67,7 +67,7 @@ class _SectionCard extends StatelessWidget {
           if (titleZh.isNotEmpty) ...[
             Text(
               AppLocale.t(titleBlock!.cast<String, dynamic>()),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
                 color: AppColors.mustard,
@@ -81,7 +81,7 @@ class _SectionCard extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 8),
               child: Text(
                 AppLocale.t(p.cast<String, dynamic>()),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 14.5,
                   height: 1.75,
                   color: AppColors.cream,

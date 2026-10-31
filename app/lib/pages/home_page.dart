@@ -108,7 +108,7 @@ class _HomeCard extends StatelessWidget {
                 ),
                 child: Text(
                   no,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
                     color: AppColors.mustard,
@@ -118,7 +118,7 @@ class _HomeCard extends StatelessWidget {
               const Spacer(),
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                   color: AppColors.cream,
@@ -130,7 +130,7 @@ class _HomeCard extends StatelessWidget {
                 summary,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 11.5,
                   color: AppColors.creamFaint,
                   height: 1.4,

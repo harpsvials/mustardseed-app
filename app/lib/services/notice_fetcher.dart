@@ -63,17 +63,17 @@ class NoticeFetcher {
         backgroundColor: AppColors.bgRaised,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18),
-          side: const BorderSide(color: AppColors.lineStrong),
+          side: BorderSide(color: AppColors.lineStrong),
         ),
         title: Row(
           children: [
-            const Icon(Icons.notifications_active,
+            Icon(Icons.notifications_active,
                 color: AppColors.mustard, size: 22),
             const SizedBox(width: 8),
             Expanded(
               child: Text(
                 notice.title.isEmpty ? '通知' : notice.title,
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.cream,
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
@@ -84,7 +84,7 @@ class NoticeFetcher {
         ),
         content: Text(
           notice.message,
-          style: const TextStyle(
+          style: TextStyle(
             color: AppColors.cream,
             fontSize: 15,
             height: 1.7,
@@ -93,7 +93,7 @@ class NoticeFetcher {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text('知道了',
+            child: Text('知道了',
                 style: TextStyle(color: AppColors.mustard)),
           ),
         ],

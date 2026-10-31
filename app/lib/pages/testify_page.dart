@@ -37,7 +37,7 @@ class _TestifyPageState extends State<TestifyPage> {
       appBar: AppBar(
         title: Text(AppLocale.t(hero)),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.cream),
+          icon: Icon(Icons.arrow_back, color: AppColors.cream),
           onPressed: () => Navigator.of(context).maybePop(),
         ),
       ),
@@ -47,7 +47,7 @@ class _TestifyPageState extends State<TestifyPage> {
           if (sub != null)
             Text(
               AppLocale.t(sub),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 14,
                 color: AppColors.creamDim,
                 height: 1.5,
@@ -64,7 +64,7 @@ class _TestifyPageState extends State<TestifyPage> {
               ),
               child: Text(
                 AppLocale.t(text),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 14,
                   height: 1.7,
                   color: AppColors.cream,
@@ -75,8 +75,8 @@ class _TestifyPageState extends State<TestifyPage> {
           const SizedBox(height: 18),
           TextField(
             controller: _nameCtrl,
-            style: const TextStyle(color: AppColors.cream),
-            decoration: const InputDecoration(
+            style: TextStyle(color: AppColors.cream),
+            decoration: InputDecoration(
               labelText: '名字',
               labelStyle: TextStyle(color: AppColors.creamDim),
               enabledBorder: UnderlineInputBorder(
@@ -89,8 +89,8 @@ class _TestifyPageState extends State<TestifyPage> {
           TextField(
             controller: _contentCtrl,
             maxLines: 7,
-            style: const TextStyle(color: AppColors.cream),
-            decoration: const InputDecoration(
+            style: TextStyle(color: AppColors.cream),
+            decoration: InputDecoration(
               labelText: '见证内容',
               labelStyle: TextStyle(color: AppColors.creamDim),
               enabledBorder: UnderlineInputBorder(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'theme.dart';
 import 'i18n.dart';
 import 'data/app_data.dart';
@@ -54,12 +55,40 @@ class _MustardSeedAppState extends State<MustardSeedApp> {
   final AppDataController _controller = AppDataController();
   final AudioController _audio = AudioController();
   int _tab = 0;
+  bool _light = false;
+  static const _themeKey = 'ms_theme_light';
 
   @override
   void initState() {
     super.initState();
     _controller.init().then((_) => _checkStartupDialogs());
     AppLocale.current.addListener(() => setState(() {}));
+    _loadTheme();
+  }
+
+  /// 恢复持久化的主题选择（默认暗色）
+  Future<void> _loadTheme() async {
+    try {
+      final sp = await SharedPreferences.getInstance();
+      final light = sp.getBool(_themeKey) ?? false;
+      if (!mounted) return;
+      setState(() {
+        _light = light;
+        AppColors.isLight = light;
+      });
+    } catch (_) {
+      AppColors.isLight = _light;
+    }
+  }
+
+  void _toggleTheme() {
+    setState(() {
+      _light = !_light;
+      AppColors.isLight = _light;
+    });
+    SharedPreferences.getInstance().then((sp) {
+      sp.setBool(_themeKey, _light);
+    }).catchError((_) {});
   }
 
   Future<void> _checkStartupDialogs() async {
@@ -118,7 +147,7 @@ class _MustardSeedAppState extends State<MustardSeedApp> {
         builder: (context, _) {
           final data = _controller.data;
           if (data == null) {
-            return const Scaffold(
+            return Scaffold(
               body: Center(
                 child: CircularProgressIndicator(color: AppColors.mustard),
               ),
@@ -130,6 +159,7 @@ class _MustardSeedAppState extends State<MustardSeedApp> {
             usingRemote: _controller.usingRemote,
             tab: _tab,
             onTab: (i) => setState(() => _tab = i),
+            onToggleTheme: _toggleTheme,
           );
         },
       ),
@@ -143,6 +173,7 @@ class _Shell extends StatelessWidget {
   final bool usingRemote;
   final int tab;
   final ValueChanged<int> onTab;
+  final VoidCallback onToggleTheme;
 
   const _Shell({
     required this.data,
@@ -150,6 +181,7 @@ class _Shell extends StatelessWidget {
     required this.usingRemote,
     required this.tab,
     required this.onTab,
+    required this.onToggleTheme,
   });
 
   @override
@@ -178,6 +210,7 @@ class _Shell extends StatelessWidget {
           child: _AppLogo(size: 10),
         ),
         actions: [
+          _ThemeButton(onToggle: onToggleTheme),
           _LangButton(data: data),
           const SizedBox(width: 6),
         ],
@@ -189,6 +222,25 @@ class _Shell extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: _BottomNav(tab: tab, onTab: onTab, data: data),
+    );
+  }
+}
+
+class _ThemeButton extends StatelessWidget {
+  final VoidCallback onToggle;
+  const _ThemeButton({required this.onToggle});
+
+  @override
+  Widget build(BuildContext context) {
+    final isLight = AppColors.isLight;
+    return IconButton(
+      onPressed: onToggle,
+      tooltip: isLight ? '切换到暗色' : '切换到明亮',
+      icon: Icon(
+        isLight ? Icons.dark_mode_outlined : Icons.light_mode_outlined,
+        color: AppColors.cream,
+      ),
+      color: AppColors.cream,
     );
   }
 }
@@ -206,7 +258,7 @@ class _LangButton extends StatelessWidget {
       },
       child: Text(
         isZh ? 'EN' : '中文',
-        style: const TextStyle(
+        style: TextStyle(
           color: AppColors.mustard,
           fontWeight: FontWeight.w600,
           letterSpacing: .5,

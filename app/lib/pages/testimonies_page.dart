@@ -61,7 +61,7 @@ class _PeriodCard extends StatelessWidget {
                 ),
                 child: Text(
                   periodText,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
                     color: AppColors.terraSoft,
@@ -73,7 +73,7 @@ class _PeriodCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     sub,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12.5,
                       color: AppColors.creamFaint,
                     ),
@@ -88,7 +88,7 @@ class _PeriodCard extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 10),
               child: Text(
                 AppLocale.t(para.cast<String, dynamic>()),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 14.5,
                   height: 1.75,
                   color: AppColors.cream,
