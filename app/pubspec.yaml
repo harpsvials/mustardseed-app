@@ -2,7 +2,7 @@ name: mustardseed_app
 description: "芥菜种教会 mustardseed · 双语 App"
 publish_to: 'none'
 
-version: 1.0.0+1793454217
+version: 1.0.0+1793944493
 
 environment:
   sdk: ^3.13.5
