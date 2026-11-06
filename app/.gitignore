@@ -46,3 +46,6 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# 构建产物目录（本地构建已指向 ~/m9build，避免 iCloud 扩展属性干扰 iOS 签名）
+/build
