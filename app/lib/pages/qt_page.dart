@@ -171,8 +171,8 @@ class _QtPageState extends State<QtPage> {
           const SizedBox(height: 6),
           Text(
             AppLocale.value == AppLocale.en
-                ? 'The Living Life today’s theme and reading in two stickers, then today’s RPG daily-verse card image.'
-                : '《活泼的生命》今日主题与经文范围两枚贴纸，再加一张 RPG 每日经文卡片图。',
+                ? 'The Living Life today’s theme and reading in two stickers, then today’s RPG daily-verse cards — scripture and prayer.'
+                : '《活泼的生命》今日主题与经文范围两枚贴纸，再加 RPG 每日经文两张卡片：经文与默想祷告。',
             style: TextStyle(
               fontSize: 14,
               color: AppColors.creamDim,
@@ -454,45 +454,15 @@ class _QtPageState extends State<QtPage> {
             ],
           ),
           const SizedBox(height: 12),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: Container(
-              color: const Color(0xFFFFFDF8),
-              child: AspectRatio(
-                aspectRatio: 1136 / 774,
-                child: Image.network(
-                  item.imageFor(d.base),
-                  fit: BoxFit.contain,
-                  loadingBuilder: (context, child, progress) {
-                    if (progress == null) return child;
-                    return const Center(
-                      child: SizedBox(
-                        width: 22,
-                        height: 22,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      ),
-                    );
-                  },
-                  errorBuilder: (context, error, stack) => Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(14),
-                      child: Text(
-                        isEn
-                            ? 'This card image is unavailable right now. Tap “View original” to open the source page.'
-                            : '暂时取不到这张卡片，点右下角「查看原页」到源站看。',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 13,
-                          height: 1.5,
-                          color: Color(0x992A2313),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+          if (item.hasVerse) ...[
+            _rpgTag(isEn ? 'SCRIPTURE' : '经文'),
+            const SizedBox(height: 7),
+            _rpgShot(item.verseFor(d.base), 890 / 501, isEn),
+            const SizedBox(height: 14),
+            _rpgTag(isEn ? 'REFLECTION · PRAYER' : '默想 · 祷告'),
+            const SizedBox(height: 7),
+          ],
+          _rpgShot(item.prayerFor(d.base), 1136 / 774, isEn),
           const SizedBox(height: 10),
           Row(
             children: [
@@ -531,8 +501,8 @@ class _QtPageState extends State<QtPage> {
           const SizedBox(height: 10),
           Text(
             isEn
-                ? 'Card images from RPG Revival Prayer Movement “RPG Daily Verse” (365 Revival Prayer Cards). Original images only, no reprint; all rights belong to the publisher.'
-                : '卡片原图取自 RPG 復興禱告總動員「每日經文」（365 復興禱告卡），只显示原图、不作转载，版权归原作者所有。',
+                ? 'Two card images per day: scripture on top, reflection and prayer below. Images from RPG Revival Prayer Movement “RPG Daily Verse” (365 Revival Prayer Cards). Original images only, no reprint; all rights belong to the publisher.'
+                : '每天两张卡片：上面是当日经文，下面是默想与祷告。原图取自 RPG 復興禱告總動員「每日經文」（365 復興禱告卡），只显示原图、不作转载，版权归原作者所有。',
             style: TextStyle(
               fontSize: 12,
               height: 1.6,
@@ -540,6 +510,68 @@ class _QtPageState extends State<QtPage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  /// 小标签：经文 / 默想 · 祷告
+  Widget _rpgTag(String text) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: const Color(0x29B08A2A),
+        borderRadius: BorderRadius.circular(3),
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 11.5,
+          letterSpacing: 1.2,
+          color: Color(0xFF6A4A12),
+        ),
+      ),
+    );
+  }
+
+  /// 一张卡片图，按原图比例留白，加载失败给一段提示
+  Widget _rpgShot(String url, double ratio, bool isEn) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(6),
+      child: Container(
+        color: const Color(0xFFFFFDF8),
+        child: AspectRatio(
+          aspectRatio: ratio,
+          child: Image.network(
+            url,
+            fit: BoxFit.contain,
+            loadingBuilder: (context, child, progress) {
+              if (progress == null) return child;
+              return const Center(
+                child: SizedBox(
+                  width: 22,
+                  height: 22,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+              );
+            },
+            errorBuilder: (context, error, stack) => Center(
+              child: Padding(
+                padding: const EdgeInsets.all(14),
+                child: Text(
+                  isEn
+                      ? 'This card image is unavailable right now. Tap “View original” to open the source page.'
+                      : '暂时取不到这张卡片，点右下角「查看原页」到源站看。',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    height: 1.5,
+                    color: Color(0x992A2313),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -566,7 +598,7 @@ class _QtPageState extends State<QtPage> {
               child: ClipRRect(
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(3)),
                 child: Image.network(
-                  it.imageFor(d.base),
+                  it.prayerFor(d.base),
                   fit: BoxFit.cover,
                   width: double.infinity,
                   errorBuilder: (context, error, stack) => const Center(
@@ -639,13 +671,15 @@ class _StampLine extends StatelessWidget {
   }
 }
 
-/// RPG 每日经文的一张卡片：只有图、日期与原页链接，不含 OCR 文字
+/// RPG 每日经文的两张卡片：经文卡 + 默想祷告卡，只有图、日期与原页链接，不含 OCR 文字
 class RpgItem {
   final String date;
   final String dateLabel;
   final String weekday;
-  final String image;
-  final String imageUrl;
+  final String verseImage;
+  final String verseImageUrl;
+  final String prayerImage;
+  final String prayerImageUrl;
   final String sourceUrl;
   final String title;
 
@@ -653,28 +687,42 @@ class RpgItem {
     required this.date,
     required this.dateLabel,
     required this.weekday,
-    required this.image,
-    required this.imageUrl,
+    required this.verseImage,
+    required this.verseImageUrl,
+    required this.prayerImage,
+    required this.prayerImageUrl,
     required this.sourceUrl,
     required this.title,
   });
 
-  factory RpgItem.fromJson(Map<String, dynamic> j) => RpgItem(
-        date: (j['date'] ?? '').toString(),
-        dateLabel: (j['dateLabel'] ?? j['date'] ?? '').toString(),
-        weekday: (j['weekday'] ?? '').toString(),
-        image: (j['image'] ?? '').toString(),
-        imageUrl: (j['imageUrl'] ?? '').toString(),
-        sourceUrl: (j['sourceUrl'] ?? '').toString(),
-        title: (j['title'] ?? '').toString(),
-      );
+  factory RpgItem.fromJson(Map<String, dynamic> j) {
+    // 兼容旧清单：只有 image / imageUrl（那张是默想祷告卡）
+    final legacyImage = (j['image'] ?? '').toString();
+    final legacyUrl = (j['imageUrl'] ?? '').toString();
+    return RpgItem(
+      date: (j['date'] ?? '').toString(),
+      dateLabel: (j['dateLabel'] ?? j['date'] ?? '').toString(),
+      weekday: (j['weekday'] ?? '').toString(),
+      verseImage: (j['verseImage'] ?? '').toString(),
+      verseImageUrl: (j['verseImageUrl'] ?? '').toString(),
+      prayerImage: (j['prayerImage'] ?? legacyImage).toString(),
+      prayerImageUrl: (j['prayerImageUrl'] ?? legacyUrl).toString(),
+      sourceUrl: (j['sourceUrl'] ?? '').toString(),
+      title: (j['title'] ?? '').toString(),
+    );
+  }
 
   /// 卡片下的日期行：2026年11月8日 · 星期日
   String get stamp => weekday.isEmpty ? dateLabel : '$dateLabel · $weekday';
 
+  bool get hasVerse => verseImage.isNotEmpty || verseImageUrl.isNotEmpty;
+
   /// 优先清单里的绝对地址；缺失时按读取源拼相对路径
-  String imageFor(String base) =>
-      imageUrl.isNotEmpty ? imageUrl : '${base}images/rpg/$image';
+  String verseFor(String base) =>
+      verseImageUrl.isNotEmpty ? verseImageUrl : '${base}images/rpg/$verseImage';
+
+  String prayerFor(String base) =>
+      prayerImageUrl.isNotEmpty ? prayerImageUrl : '${base}images/rpg/$prayerImage';
 }
 
 /// RPG 每日经文清单：与网站同源，读 rpg-data.json（Actions 每日抓取、只留 7 天）
@@ -710,7 +758,7 @@ class RpgData {
         final items = raw
             .whereType<Map<String, dynamic>>()
             .map(RpgItem.fromJson)
-            .where((e) => e.image.isNotEmpty || e.imageUrl.isNotEmpty)
+            .where((e) => e.prayerImage.isNotEmpty || e.prayerImageUrl.isNotEmpty)
             .toList();
         if (items.isEmpty) continue;
         final base = url.substring(0, url.lastIndexOf('/') + 1);

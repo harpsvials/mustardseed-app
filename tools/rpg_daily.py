@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""RPG 每日經文：只抓当天卡片图片，保留最近 7 天。
+"""RPG 每日經文：每天两张卡片图（经文卡 + 祷告卡），保留最近 7 天。
 
 来源：https://www.rpg-move.tw/category/rpg-daily/
-- 分类页列出最新 6 篇，每篇形如 /daily1108/
-- 单篇页里有 日期・2026-11-08 与图片 wp-content/uploads/daily_1108-2.jpg
-- 正文只在图片里，不 OCR，只存图 + 日期 + 原页链接
+- 分类页列出最新几篇，每篇形如 /daily1108/
+- 单篇页里有「日期・2026-11-08」
+- 正文是两张图：
+    daily_MMDD-1.jpg  经文卡（主视觉 / og:image，卡面是圣经节选 + 出处）
+    daily_MMDD-2.jpg  告白卡（正文那张，默想 + 祷告）
+- 不 OCR，只存图 + 日期 + 原页链接
 
 输出：
-- images/rpg/daily_YYYYMMDD.jpg   最近 7 天的卡片
-- rpg-data.json                   清单（供网页与 App 读取）
+- images/rpg/daily_YYYYMMDD-1.jpg / -2.jpg
+- rpg-data.json
 """
 
 import json
@@ -59,37 +62,53 @@ def to_simplified(text):
         return text
 
 
-def iso_date(y, m, d):
-    return date(y, m, d).isoformat()
+def download(url, path, min_bytes=15000):
+    """下载到 path；已存在且大小正常则跳过。成功返回 True。"""
+    if os.path.exists(path) and os.path.getsize(path) >= min_bytes:
+        return True
+    raw = fetch(url, binary=True)
+    if not raw or len(raw) < min_bytes:
+        return False
+    with open(path, 'wb') as f:
+        f.write(raw)
+    return True
 
 
 def parse_post(url, html):
-    """返回 {date, image, sourceUrl, title} 或 None。"""
+    """返回 {date, verseCands, prayerUrl, sourceUrl, title} 或 None。"""
     text = re.sub(r'<[^>]+>', ' ', html)
     m = re.search(r'日期\s*[・·:：]?\s*(\d{4})-(\d{2})-(\d{2})', text)
     if not m:
         return None
-    d = iso_date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+    d = date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+    mmdd = d.strftime('%m%d')
+    up = 'https://www.rpg-move.tw/wp-content/uploads/'
 
-    imgs = re.findall(r'src="([^"]*?/uploads/daily_[^"]*?\.jpg)"', html)
-    if not imgs:
-        imgs = re.findall(r'url\(([^)]*?/uploads/daily_[^)]*?\.jpg)\)', html)
-    if not imgs:
+    # 经文卡：页面里给的可能是带 -e<时间戳> 的编辑版，先试原图 daily_MMDD-1.jpg
+    verse_cands = [up + 'daily_%s-1.jpg' % mmdd]
+    pat = r'https://www\.rpg-move\.tw/wp-content/uploads/daily_%s-1(?:-[^"\') ]*)?\.jpg' % mmdd
+    for c in re.findall(pat, html):
+        if c not in verse_cands:
+            verse_cands.append(c)
+
+    # 祷告卡：正文那张 -2，排除 -768x523 之类缩放版
+    prayer = None
+    pat = r'https://www\.rpg-move\.tw/wp-content/uploads/daily_%s-2(?:-[^"\') ]*)?\.jpg' % mmdd
+    for c in re.findall(pat, html):
+        if re.search(r'-\d+x\d+\.jpg$', c):
+            continue
+        prayer = c
+        break
+    if not prayer:
         return None
-    # 优先不成 -1 缩略图后缀的原图（-2 或直接 daily_MMDD.jpg）
-    full = [u for u in imgs if '-1' not in os.path.basename(u)] or imgs
-    image_url = full[0]
 
     title = ''
     mt = re.search(r'<title>(.*?)</title>', html, re.S)
     if mt:
         title = re.split(r'[|｜]', re.sub(r'\s+', ' ', mt.group(1)).strip())[0].strip()
-    if not title:
-        mt = re.search(r'每日經文\s*\d{4}', text)
-        title = mt.group(0) if mt else ''
 
-    return {'date': d, 'imageUrl': image_url, 'sourceUrl': url,
-            'title': to_simplified(title)}
+    return {'date': d, 'verseCands': verse_cands, 'prayerUrl': prayer,
+            'sourceUrl': url, 'title': to_simplified(title) or '每日經文'}
 
 
 def main():
@@ -109,14 +128,20 @@ def main():
     os.makedirs(IMG_DIR, exist_ok=True)
 
     old = {}
+    prev_updated = prev_label = None
+    prev_items = None
     if os.path.exists(DATA_PATH):
         try:
             with open(DATA_PATH, encoding='utf-8') as f:
-                for it in json.load(f).get('items', []):
-                    if it.get('date'):
-                        old[it['date']] = it
+                prev = json.load(f)
+            prev_updated, prev_label = prev.get('updated'), prev.get('updatedLabel')
+            prev_items = [(i.get('date'), i.get('verseImage'), i.get('prayerImage'))
+                          for i in prev.get('items', [])]
+            for it in prev.get('items', []):
+                if it.get('date'):
+                    old[it['date']] = it
         except Exception:
-            old = {}
+            prev_items = None
 
     today_tpe = (datetime.now(timezone.utc) + timedelta(hours=8)).date()
     earliest = today_tpe - timedelta(days=KEEP_DAYS)
@@ -129,28 +154,38 @@ def main():
         parsed = parse_post(url, html)
         if not parsed:
             continue
-        d = date.fromisoformat(parsed['date'])
+        d = parsed['date']
         if d > today_tpe or d < earliest:
             continue
 
-        name = 'daily_%s.jpg' % d.strftime('%Y%m%d')
-        path = os.path.join(IMG_DIR, name)
-        if not os.path.exists(path) or os.path.getsize(path) < 20000:
-            raw = fetch(parsed['imageUrl'], binary=True)
-            if not raw or len(raw) < 20000:
-                print('图片下载失败:', parsed['imageUrl'], file=sys.stderr)
-                continue
-            with open(path, 'wb') as f:
-                f.write(raw)
+        base = 'daily_%s' % d.strftime('%Y%m%d')
+        verse_name, prayer_name = base + '-1.jpg', base + '-2.jpg'
+        verse_path = os.path.join(IMG_DIR, verse_name)
+        prayer_path = os.path.join(IMG_DIR, prayer_name)
 
-        items[parsed['date']] = {
-            'date': parsed['date'],
+        verse_ok = False
+        for u in parsed['verseCands']:
+            if download(u, verse_path):
+                verse_ok = True
+                break
+        if not verse_ok:
+            print('经文卡下载失败:', parsed['verseCands'][0], file=sys.stderr)
+        prayer_ok = download(parsed['prayerUrl'], prayer_path)
+        if not prayer_ok:
+            print('祷告卡下载失败:', parsed['prayerUrl'], file=sys.stderr)
+        if not verse_ok and not prayer_ok:
+            continue
+
+        items[d.isoformat()] = {
+            'date': d.isoformat(),
             'dateLabel': '%d年%d月%d日' % (d.year, d.month, d.day),
             'weekday': WEEKDAYS[d.weekday()],
-            'image': name,
-            'imageUrl': PAGES_URL + name,
+            'verseImage': verse_name if verse_ok else '',
+            'verseImageUrl': (PAGES_URL + verse_name) if verse_ok else '',
+            'prayerImage': prayer_name if prayer_ok else '',
+            'prayerImageUrl': (PAGES_URL + prayer_name) if prayer_ok else '',
             'sourceUrl': parsed['sourceUrl'],
-            'title': parsed['title'] or '每日经文',
+            'title': parsed['title'],
         }
 
     # 已有的近 7 天条目继续保留（避免某天抓不到时把清单清空）
@@ -159,53 +194,61 @@ def main():
             d = date.fromisoformat(d_str)
         except Exception:
             continue
-        if earliest <= d <= today_tpe and d_str not in items:
-            if os.path.exists(os.path.join(IMG_DIR, it.get('image', ''))):
-                items[d_str] = it
+        if not (earliest <= d <= today_tpe) or d_str in items:
+            continue
+        files = [it.get('verseImage'), it.get('prayerImage'), it.get('image')]
+        if not any(f and os.path.exists(os.path.join(IMG_DIR, f)) for f in files):
+            continue
+        verse = it.get('verseImage') or ''
+        prayer = it.get('prayerImage') or it.get('image') or ''
+        items[d_str] = {
+            'date': d_str,
+            'dateLabel': it.get('dateLabel', ''),
+            'weekday': it.get('weekday', ''),
+            'verseImage': verse,
+            'verseImageUrl': it.get('verseImageUrl') or ((PAGES_URL + verse) if verse else ''),
+            'prayerImage': prayer,
+            'prayerImageUrl': it.get('prayerImageUrl') or it.get('imageUrl') or ((PAGES_URL + prayer) if prayer else ''),
+            'sourceUrl': it.get('sourceUrl', ''),
+            'title': it.get('title', '每日經文'),
+        }
 
     keep = sorted(items.values(), key=lambda x: x['date'], reverse=True)[:KEEP_DAYS]
 
     # 清掉不在保留范围内的图片
-    names = {it['image'] for it in keep}
+    names = set()
+    for it in keep:
+        for key in ('verseImage', 'prayerImage'):
+            if it.get(key):
+                names.add(it[key])
     for f in os.listdir(IMG_DIR):
         if f.lower().endswith('.jpg') and f not in names:
             os.remove(os.path.join(IMG_DIR, f))
 
-    # 清单与上次完全一致时，沿用上次的更新时间，避免每趟都产生一次无意义提交
-    prev_updated = prev_label = None
-    if os.path.exists(DATA_PATH):
-        try:
-            prev = json.load(open(DATA_PATH, encoding='utf-8'))
-            prev_updated, prev_label = prev.get('updated'), prev.get('updatedLabel')
-            prev_items = [(i.get('date'), i.get('image')) for i in prev.get('items', [])]
-        except Exception:
-            prev_items = None
-    else:
-        prev_items = None
-    if prev_items == [(i['date'], i['image']) for i in keep] and prev_updated:
-        data = {
-            'updated': prev_updated,
-            'updatedLabel': prev_label,
-            'sourceUrl': CATEGORY_URL,
-            'keepDays': KEEP_DAYS,
-            'items': keep,
-        }
+    signature = [(i['date'], i.get('verseImage'), i.get('prayerImage')) for i in keep]
+    if prev_items == signature and prev_updated:
+        # 清单没变就沿用上次更新时间，避免每趟都产生一次无意义提交
+        updated, updated_label = prev_updated, prev_label
     else:
         now_tpe = datetime.now(timezone.utc) + timedelta(hours=8)
-        data = {
-            'updated': now_tpe.strftime('%Y-%m-%d %H:%M'),
-            'updatedLabel': '%d年%d月%d日 %s' % (now_tpe.year, now_tpe.month,
-                                                now_tpe.day, now_tpe.strftime('%H:%M')),
-            'sourceUrl': CATEGORY_URL,
-            'keepDays': KEEP_DAYS,
-            'items': keep,
-        }
+        updated = now_tpe.strftime('%Y-%m-%d %H:%M')
+        updated_label = '%d年%d月%d日 %s' % (now_tpe.year, now_tpe.month,
+                                            now_tpe.day, now_tpe.strftime('%H:%M'))
+
+    data = {
+        'updated': updated,
+        'updatedLabel': updated_label,
+        'sourceUrl': CATEGORY_URL,
+        'keepDays': KEEP_DAYS,
+        'items': keep,
+    }
     with open(DATA_PATH, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
         f.write('\n')
 
-    print('RPG 每日经文：%d 天，最新 %s' % (
-        len(keep), keep[0]['date'] if keep else '无'))
+    print('RPG 每日经文：%d 天，最新 %s，经文卡 %d 张' % (
+        len(keep), keep[0]['date'] if keep else '无',
+        sum(1 for i in keep if i.get('verseImage'))))
     return 0
 
 

@@ -142,6 +142,8 @@ html[data-theme="light"] .qt-rpg{
 .qt-rpg-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 14px;margin-bottom:clamp(14px,4vw,20px)}
 .qt-rpg .qt-kicker{color:var(--qt-terra)}
 
+.qt-rpg-figs{display:grid;gap:clamp(16px,4vw,20px)}
+
 .qt-figure{margin:0}
 .qt-figure > a{
   display:block;
@@ -161,6 +163,14 @@ html[data-theme="light"] .qt-rpg{
 .qt-figure figcaption .qt-dot{display:block;width:3px;height:3px;border-radius:50%;background:rgba(34,48,28,.4);flex:none}
 .qt-figure figcaption a{color:var(--qt-terra);text-decoration:underline;text-underline-offset:3px}
 .qt-figure figcaption a:hover{color:var(--qt-ink)}
+.qt-figure figcaption .qt-tag{
+  flex:none;font-size:11px;letter-spacing:.06em;
+  padding:2px 8px;border-radius:2px;
+  background:rgba(176,138,42,.16);color:#6A4A12;
+}
+html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,42,.18);color:#5C3F0C}
+.qt-figure-prayer > a{transform:rotate(.5deg)}
+.qt-figure-prayer > a:hover{transform:rotate(0) translateY(-2px)}
 
 .qt-thumbs{
   display:flex;gap:8px;
@@ -280,21 +290,34 @@ html[data-theme="light"] .qt-rpg{
           <span class="qt-day" id="rpgUpdated">2026年11月8日 22:52</span>
         </div>
 
-        <figure class="qt-figure">
-          <a id="rpgMainLink" href="https://www.rpg-move.tw/daily1108/" target="_blank" rel="noopener" aria-label="打开 RPG 每日经文原页">
-            <img id="rpgMainImg" src="images/rpg/daily_20261108.jpg" alt="RPG 每日经文卡片 2026年11月8日">
-          </a>
-          <figcaption>
-            <span id="rpgMainCap">2026年11月8日 · 星期日</span>
-            <i class="qt-dot"></i>
-            <a id="rpgMainSrc" href="https://www.rpg-move.tw/daily1108/" target="_blank" rel="noopener">查看原页</a>
-          </figcaption>
-        </figure>
+        <div class="qt-rpg-figs">
+          <figure class="qt-figure qt-figure-verse">
+            <a href="https://www.rpg-move.tw/daily1108/" target="_blank" rel="noopener" aria-label="打开 RPG 每日经文原页（经文卡）">
+              <img id="rpgVerseImg" src="images/rpg/daily_20261108-1.jpg" alt="RPG 每日经文卡 2026年11月8日 经文" width="890" height="501">
+            </a>
+            <figcaption>
+              <span class="qt-tag">经文</span>
+              <span class="qt-cap-date">圣经节选 · 出处见卡片</span>
+            </figcaption>
+          </figure>
+
+          <figure class="qt-figure qt-figure-prayer">
+            <a id="rpgMainLink" href="https://www.rpg-move.tw/daily1108/" target="_blank" rel="noopener" aria-label="打开 RPG 每日经文原页">
+              <img id="rpgMainImg" src="images/rpg/daily_20261108-2.jpg" alt="RPG 每日经文卡片 2026年11月8日 默想与祷告">
+            </a>
+            <figcaption>
+              <span class="qt-tag">默想 · 祷告</span>
+              <span id="rpgMainCap">2026年11月8日 · 星期日</span>
+              <i class="qt-dot"></i>
+              <a id="rpgMainSrc" href="https://www.rpg-move.tw/daily1108/" target="_blank" rel="noopener">查看原页</a>
+            </figcaption>
+          </figure>
+        </div>
 
         <div class="qt-thumbs" id="rpgThumbs" role="list" aria-label="最近 7 天的卡片"></div>
 
         <p class="qt-meta qt-rpg-meta">
-          <span>卡片原图取自 <a href="https://www.rpg-move.tw/category/rpg-daily/" target="_blank" rel="noopener">RPG 復興禱告總動員「每日經文」</a>（365 復興禱告卡），只显示原图、不作转载，版权归原作者所有。</span>
+          <span>每天两张卡片原图：上面是当日经文，下面是默想与祷告。原图取自 <a href="https://www.rpg-move.tw/category/rpg-daily/" target="_blank" rel="noopener">RPG 復興禱告總動員「每日經文」</a>（365 復興禱告卡），只显示原图、不作转载，版权归原作者所有。</span>
         </p>
       </section>
     </div>
@@ -321,14 +344,16 @@ html[data-theme="light"] .qt-rpg{
 </script>
 <script type="application/json" id="rpg-boot">
 {
-  "updatedLabel": "2026年11月8日 22:52",
+  "updatedLabel": "2026年11月8日 23:11",
   "items": [
     {
       "date": "2026-11-08",
       "dateLabel": "2026年11月8日",
       "weekday": "星期日",
-      "image": "daily_20261108.jpg",
-      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261108.jpg",
+      "verseImage": "daily_20261108-1.jpg",
+      "verseImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261108-1.jpg",
+      "prayerImage": "daily_20261108-2.jpg",
+      "prayerImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261108-2.jpg",
       "sourceUrl": "https://www.rpg-move.tw/daily1108/",
       "title": "每日经文1108 - RPG复兴祷告总动员"
     },
@@ -336,8 +361,10 @@ html[data-theme="light"] .qt-rpg{
       "date": "2026-11-07",
       "dateLabel": "2026年11月7日",
       "weekday": "星期六",
-      "image": "daily_20261107.jpg",
-      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261107.jpg",
+      "verseImage": "daily_20261107-1.jpg",
+      "verseImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261107-1.jpg",
+      "prayerImage": "daily_20261107-2.jpg",
+      "prayerImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261107-2.jpg",
       "sourceUrl": "https://www.rpg-move.tw/daily1107/",
       "title": "每日经文1107 - RPG复兴祷告总动员"
     },
@@ -345,8 +372,10 @@ html[data-theme="light"] .qt-rpg{
       "date": "2026-11-06",
       "dateLabel": "2026年11月6日",
       "weekday": "星期五",
-      "image": "daily_20261106.jpg",
-      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261106.jpg",
+      "verseImage": "daily_20261106-1.jpg",
+      "verseImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261106-1.jpg",
+      "prayerImage": "daily_20261106-2.jpg",
+      "prayerImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261106-2.jpg",
       "sourceUrl": "https://www.rpg-move.tw/daily1106/",
       "title": "每日经文1106 - RPG复兴祷告总动员"
     },
@@ -354,8 +383,10 @@ html[data-theme="light"] .qt-rpg{
       "date": "2026-11-05",
       "dateLabel": "2026年11月5日",
       "weekday": "星期四",
-      "image": "daily_20261105.jpg",
-      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261105.jpg",
+      "verseImage": "daily_20261105-1.jpg",
+      "verseImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261105-1.jpg",
+      "prayerImage": "daily_20261105-2.jpg",
+      "prayerImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261105-2.jpg",
       "sourceUrl": "https://www.rpg-move.tw/daily1105/",
       "title": "每日经文1105 - RPG复兴祷告总动员"
     },
@@ -363,8 +394,10 @@ html[data-theme="light"] .qt-rpg{
       "date": "2026-11-04",
       "dateLabel": "2026年11月4日",
       "weekday": "星期三",
-      "image": "daily_20261104.jpg",
-      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261104.jpg",
+      "verseImage": "daily_20261104-1.jpg",
+      "verseImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261104-1.jpg",
+      "prayerImage": "daily_20261104-2.jpg",
+      "prayerImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261104-2.jpg",
       "sourceUrl": "https://www.rpg-move.tw/daily1104/",
       "title": "每日经文1104 - RPG复兴祷告总动员"
     },
@@ -372,8 +405,10 @@ html[data-theme="light"] .qt-rpg{
       "date": "2026-11-03",
       "dateLabel": "2026年11月3日",
       "weekday": "星期二",
-      "image": "daily_20261103.jpg",
-      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261103.jpg",
+      "verseImage": "daily_20261103-1.jpg",
+      "verseImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261103-1.jpg",
+      "prayerImage": "daily_20261103-2.jpg",
+      "prayerImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261103-2.jpg",
       "sourceUrl": "https://www.rpg-move.tw/daily1103/",
       "title": "每日经文1103 - RPG复兴祷告总动员"
     }
@@ -451,24 +486,41 @@ html[data-theme="light"] .qt-rpg{
   try{ rpgBoot = JSON.parse(document.getElementById('rpg-boot').textContent); }catch(e){}
 
   function rpgImageSrc(it){
-    return it.imageUrl || ('images/rpg/' + it.image);
+    return it.prayerImageUrl || it.imageUrl || ('images/rpg/' + (it.prayerImage || it.image));
+  }
+  function rpgVerseSrc(it){
+    return it.verseImageUrl || (it.verseImage ? 'images/rpg/' + it.verseImage : '');
   }
 
   function setRpgMain(it, btn){
     if(!it) return;
     var img = document.getElementById('rpgMainImg');
     if(img){
+      var prayerFile = it.prayerImage || it.image;
       img.onerror = function(){
-        if(img.src.indexOf('/images/rpg/') < 0) img.src = 'images/rpg/' + it.image;
+        if(prayerFile && img.src.indexOf('/images/rpg/') < 0) img.src = 'images/rpg/' + prayerFile;
       };
       img.src = rpgImageSrc(it);
-      img.alt = 'RPG 每日经文卡片 ' + (it.dateLabel || '');
+      img.alt = 'RPG 每日经文卡片 ' + (it.dateLabel || '') + ' 默想与祷告';
+    }
+    var verseFig = document.querySelector('.qt-figure-verse');
+    var verseImg = document.getElementById('rpgVerseImg');
+    var verseSrc = rpgVerseSrc(it);
+    if(verseFig) verseFig.style.display = verseSrc ? '' : 'none';
+    if(verseImg && verseSrc){
+      verseImg.onerror = function(){
+        if(it.verseImage && verseImg.src.indexOf('/images/rpg/') < 0) verseImg.src = 'images/rpg/' + it.verseImage;
+      };
+      verseImg.src = verseSrc;
+      verseImg.alt = 'RPG 每日经文卡 ' + (it.dateLabel || '') + ' 经文';
     }
     setText('rpgMainCap', [it.dateLabel, it.weekday].filter(Boolean).join(' · '));
     var link = document.getElementById('rpgMainLink');
     if(link && it.sourceUrl) link.href = it.sourceUrl;
     var srcLink = document.getElementById('rpgMainSrc');
     if(srcLink && it.sourceUrl) srcLink.href = it.sourceUrl;
+    var verseLink = verseFig ? verseFig.querySelector('a') : null;
+    if(verseLink && it.sourceUrl) verseLink.href = it.sourceUrl;
     if(rpgThumbs){
       var kids = rpgThumbs.children;
       for(var i=0;i<kids.length;i++){
@@ -495,7 +547,7 @@ html[data-theme="light"] .qt-rpg{
         im.src = rpgImageSrc(it);
         im.alt = '';
         im.onerror = (function(ctx, el){
-          return function(){ if(el.src.indexOf('/images/rpg/') < 0) el.src = 'images/rpg/' + ctx.image; };
+          return function(){ if(el.src.indexOf('/images/rpg/') < 0) el.src = 'images/rpg/' + (ctx.prayerImage || ctx.image); };
         })(it, im);
         var sp = document.createElement('span');
         sp.textContent = String(it.dateLabel || '').replace(/^\d{4}年/, '');
