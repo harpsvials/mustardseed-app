@@ -171,15 +171,35 @@ def main():
         if f.lower().endswith('.jpg') and f not in names:
             os.remove(os.path.join(IMG_DIR, f))
 
-    now_tpe = datetime.now(timezone.utc) + timedelta(hours=8)
-    data = {
-        'updated': now_tpe.strftime('%Y-%m-%d %H:%M'),
-        'updatedLabel': '%d年%d月%d日 %s' % (now_tpe.year, now_tpe.month,
-                                            now_tpe.day, now_tpe.strftime('%H:%M')),
-        'sourceUrl': CATEGORY_URL,
-        'keepDays': KEEP_DAYS,
-        'items': keep,
-    }
+    # 清单与上次完全一致时，沿用上次的更新时间，避免每趟都产生一次无意义提交
+    prev_updated = prev_label = None
+    if os.path.exists(DATA_PATH):
+        try:
+            prev = json.load(open(DATA_PATH, encoding='utf-8'))
+            prev_updated, prev_label = prev.get('updated'), prev.get('updatedLabel')
+            prev_items = [(i.get('date'), i.get('image')) for i in prev.get('items', [])]
+        except Exception:
+            prev_items = None
+    else:
+        prev_items = None
+    if prev_items == [(i['date'], i['image']) for i in keep] and prev_updated:
+        data = {
+            'updated': prev_updated,
+            'updatedLabel': prev_label,
+            'sourceUrl': CATEGORY_URL,
+            'keepDays': KEEP_DAYS,
+            'items': keep,
+        }
+    else:
+        now_tpe = datetime.now(timezone.utc) + timedelta(hours=8)
+        data = {
+            'updated': now_tpe.strftime('%Y-%m-%d %H:%M'),
+            'updatedLabel': '%d年%d月%d日 %s' % (now_tpe.year, now_tpe.month,
+                                                now_tpe.day, now_tpe.strftime('%H:%M')),
+            'sourceUrl': CATEGORY_URL,
+            'keepDays': KEEP_DAYS,
+            'items': keep,
+        }
     with open(DATA_PATH, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
         f.write('\n')
