@@ -4,6 +4,7 @@ import 'theme.dart';
 import 'i18n.dart';
 import 'data/app_data.dart';
 import 'pages/home_page.dart';
+import 'pages/qt_page.dart';
 import 'pages/sermons_page.dart';
 import 'pages/testimonies_page.dart';
 import 'pages/discussion_page.dart';
@@ -188,8 +189,9 @@ class _Shell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pages = [
-      HomePage(data: data),
+      HomePage(data: data, onOpenTab: onTab),
       SermonsPage(data: data),
+      const QtPage(),
       TestimoniesPage(data: data),
       DiscussionPage(data: data),
       GuestbookPage(data: data),
@@ -198,6 +200,7 @@ class _Shell extends StatelessWidget {
     final titles = [
       AppLocale.t(data.nav['home'] as Map? ?? {'zh': '主页', 'en': 'Home'}),
       AppLocale.t(data.nav['sermons'] as Map? ?? {'zh': '讲道', 'en': 'Sermons'}),
+      AppLocale.t(data.nav['qt'] as Map? ?? {'zh': '灵修', 'en': 'Devotion'}),
       AppLocale.t(data.nav['testimonies'] as Map? ?? {'zh': '见证', 'en': 'Testimonies'}),
       AppLocale.t(data.nav['discussion'] as Map? ?? {'zh': '讨论', 'en': 'Discussion'}),
       AppLocale.t(data.nav['guestbook'] as Map? ?? {'zh': '留言', 'en': 'Guestbook'}),
@@ -281,6 +284,7 @@ class _BottomNav extends StatelessWidget {
     final items = [
       _navItem('home'),
       _navItem('sermons'),
+      _navItem('qt'),
       _navItem('testimonies'),
       _navItem('discussion'),
       _navItem('guestbook'),
@@ -302,6 +306,7 @@ class _BottomNav extends StatelessWidget {
     final IconData icon = switch (key) {
       'home' => Icons.home_outlined,
       'sermons' => Icons.menu_book_outlined,
+      'qt' => Icons.wb_sunny_outlined,
       'testimonies' => Icons.favorite_border,
       'discussion' => Icons.forum_outlined,
       'guestbook' => Icons.mail_outlined,
@@ -311,6 +316,7 @@ class _BottomNav extends StatelessWidget {
     final IconData activeIcon = switch (key) {
       'home' => Icons.home,
       'sermons' => Icons.menu_book,
+      'qt' => Icons.wb_sunny,
       'testimonies' => Icons.favorite,
       'discussion' => Icons.forum,
       'guestbook' => Icons.mail,

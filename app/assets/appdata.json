@@ -135,6 +135,10 @@
     "ms.list": {
       "zh": "选择音乐",
       "en": "Choose music"
+    },
+    "nav.qt": {
+      "zh": "灵修",
+      "en": "Devotion"
     }
   },
   "home": {
@@ -211,6 +215,19 @@
           "zh": "写下神在你生命中的作为，与弟兄姐妹分享你的见证。",
           "en": "Write down what God has done in your life and share it with brothers and sisters."
         }
+      },
+      {
+        "href": "qt.html",
+        "no": "06",
+        "titleKey": "nav.qt",
+        "title": {
+          "zh": "今日灵修",
+          "en": "Daily Devotion"
+        },
+        "summary": {
+          "zh": "《活泼的生命》每日灵修：今天的主题与经文范围，用两枚贴纸呈现、各自标注日期；只摘录这两行，全文请看原页。",
+          "en": "The Living Life daily devotion: today's theme and the reading range on two stickers, each stamped with its date—only these two lines, with a link to the full page."
+        }
       }
     ]
   },
@@ -246,6 +263,10 @@
     "testify": {
       "zh": "我要做见证",
       "en": "Share Your Testimony"
+    },
+    "qt": {
+      "zh": "灵修",
+      "en": "Devotion"
     }
   },
   "footer": {

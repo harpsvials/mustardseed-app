@@ -52,10 +52,12 @@ class HomePage extends StatelessWidget {
     switch (href) {
       case 'sermons.html':
         onOpenTab?.call(1);
-      case 'testimonies.html':
+      case 'qt.html':
         onOpenTab?.call(2);
-      case 'discussion.html':
+      case 'testimonies.html':
         onOpenTab?.call(3);
+      case 'discussion.html':
+        onOpenTab?.call(4);
       case 'about.html':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (_) => AboutPage(data: data)));
