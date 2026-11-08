@@ -1,9 +1,20 @@
 {
-  "updated": "2026-11-08 23:11",
-  "updatedLabel": "2026年11月8日 23:11",
+  "updated": "2026-11-09 06:58",
+  "updatedLabel": "2026年11月9日 06:58",
   "sourceUrl": "https://www.rpg-move.tw/category/rpg-daily/",
   "keepDays": 7,
   "items": [
+    {
+      "date": "2026-11-09",
+      "dateLabel": "2026年11月9日",
+      "weekday": "星期一",
+      "verseImage": "daily_20261109-1.jpg",
+      "verseImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261109-1.jpg",
+      "prayerImage": "daily_20261109-2.jpg",
+      "prayerImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261109-2.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1109/",
+      "title": "每日经文1109 - RPG复兴祷告总动员"
+    },
     {
       "date": "2026-11-08",
       "dateLabel": "2026年11月8日",
