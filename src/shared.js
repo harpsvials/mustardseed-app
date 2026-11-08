@@ -167,7 +167,7 @@
   var curPath = decodeURIComponent((location.pathname || '/').split('#')[0]).replace(/\/+$/, '') || '/';
   var curFile = curPath.split('/').pop() || '';
   var basePath = decodeURIComponent(new URL(base + lang + '/', location.href).pathname).replace(/\/+$/, '') || '/';
-  var MAIN = { 'index.html':0, 'sermons.html':1, 'discussion.html':2, 'testimonies.html':3, 'guestbook.html':4, 'prayer.html':5, 'about.html':6 };
+  var MAIN = { 'index.html':0, 'sermons.html':1, 'discussion.html':2, 'testimonies.html':3, 'guestbook.html':4, 'prayer.html':5, 'about.html':6, 'qt.html':-1 };   /* qt.html 暂不在导航内，不误高亮「讲道」 */
   var activeIdx = -1;
   /* 优先按导航 href 匹配当前路径（兼容：根路径、子目录部署、无 .html 的 clean URL） */
   for(var i=0;i<NAV.length;i++){

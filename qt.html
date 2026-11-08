@@ -4,192 +4,221 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#16281C">
-<title>灵修 · 今日 | mustardseed</title>
+<title>今日灵修 · mustardseed</title>
 <meta name="description" content="《活泼的生命》今日灵修：今天的主题与经文范围，以贴纸样式呈现，并标注日期与资料来源。">
-<meta property="og:title" content="灵修 · 今日 | mustardseed">
+<meta name="keywords" content="株洲教会,株洲家庭教会,灵修,QT,活泼的生命,每日灵修,mustardseed">
+<meta property="og:title" content="今日灵修 · mustardseed">
 <meta property="og:description" content="《活泼的生命》今日灵修：今天的主题与经文范围，以贴纸样式呈现。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="mustardseed">
 <meta property="og:locale" content="zh_CN">
-<link rel="canonical" href="https://www.zhuzhouchurch.com/qt.html">
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
-<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=Noto+Sans+SC:wght@300;400;500&amp;family=Noto+Sans:wght@300;400;500&amp;family=Noto+Serif:wght@400;600;700&amp;family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="src/site.css">
+<link rel="canonical" href="https://www.zhuzhouchurch.com/qt.html">
 <style>
-:root{
-  --bg:#16281C;
-  --paper:#F3EBD8;
-  --ink:#22301C;
-  --ink-soft:rgba(34,48,28,.62);
-  --ink-faint:rgba(34,48,28,.42);
-  --mustard:#E0AE33;
-  --mustard-deep:#9C7420;
-  --terra:#D98E5A;
-  --terra-deep:#8A4B1F;
-  --sprout:#8FBF5F;
-  --cream:#F3EBD8;
-  --cream-dim:rgba(243,235,216,.66);
-  --cream-faint:rgba(243,235,216,.40);
-  --serif:"Noto Serif SC","Songti SC","STSong",serif;
-  --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-  --kai:"Kaiti SC","STKaiti","KaiTi","Noto Serif SC",serif;
-  --ease:cubic-bezier(.22,1,.36,1);
+/* ===== 灵修页：纸卡 + 两枚贴纸（本页专属，颜色不随主题变量漂移） ===== */
+.page-qt{
+  --qt-paper:#F3EBD8;
+  --qt-ink:#22301C;
+  --qt-ink-soft:rgba(34,48,28,.68);
+  --qt-ink-faint:rgba(34,48,28,.44);
+  --qt-gold:#E0AE33;
+  --qt-gold-deep:#9C7420;
+  --qt-terra:#8A4B1F;
+  --qt-tape:#1D3526;
+  --qt-tape-ink:#F3EBD8;
   /* 撕开的胶带两端 */
-  --tape:polygon(0% 0%,100% 0%,100% 9%,98.6% 13%,100% 17%,98.4% 22%,100% 27%,98.6% 32%,100% 37%,98.4% 43%,100% 48%,98.6% 54%,100% 59%,98.4% 65%,100% 70%,98.6% 76%,100% 81%,98.4% 87%,100% 92%,100% 100%,0% 100%,0% 92%,1.4% 87%,0% 81%,1.6% 76%,0% 70%,1.4% 65%,0% 59%,1.6% 54%,0% 48%,1.4% 43%,0% 37%,1.6% 32%,0% 27%,1.4% 22%,0% 17%,1.6% 13%,0% 9%);
+  --qt-torn:polygon(0% 0%,100% 0%,100% 9%,98.6% 13%,100% 17%,98.4% 22%,100% 27%,98.6% 32%,100% 37%,98.4% 43%,100% 48%,98.6% 54%,100% 59%,98.4% 65%,100% 70%,98.6% 76%,100% 81%,98.4% 87%,100% 92%,100% 100%,0% 100%,0% 92%,1.4% 87%,0% 81%,1.6% 76%,0% 70%,1.4% 65%,0% 59%,1.6% 54%,0% 48%,1.4% 43%,0% 37%,1.6% 32%,0% 27%,1.4% 22%,0% 17%,1.6% 13%,0% 9%);
 }
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;
-  background:radial-gradient(120% 46% at 50% -6%,rgba(224,174,51,.13),rgba(224,174,51,0) 62%),var(--bg);
-  color:var(--cream);
-  font-family:var(--sans);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-:focus-visible{outline:2px solid var(--mustard);outline-offset:3px;border-radius:4px}
+html[data-theme="light"] .page-qt{--qt-paper:#FFFDF7;}
 
-.topbar{max-width:640px;margin:0 auto;padding:clamp(16px,4vw,26px) clamp(20px,6vw,40px) 0;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{font-size:13px;letter-spacing:.34em;text-transform:lowercase;color:var(--mustard);text-decoration:none;white-space:nowrap}
-.brand i{font-style:normal;color:var(--sprout)}
-.back{flex:none;font-size:12.5px;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.32);border-radius:999px;padding:0 14px;min-height:38px;display:inline-flex;align-items:center;transition:border-color .2s,color .2s,background .2s}
-.back:hover{border-color:var(--mustard);color:var(--mustard);background:rgba(224,174,51,.08)}
+.qt-wrap{margin-top:clamp(16px,4vw,26px)}
 
-.sheet{
+.qt-sheet{
   position:relative;
-  max-width:640px;
-  margin:clamp(20px,5vw,36px) auto 0;
-  padding:clamp(26px,7vw,44px) clamp(20px,6vw,40px) clamp(22px,5vw,32px);
-  background:var(--paper);
-  color:var(--ink);
-  border-radius:3px;
-  box-shadow:0 26px 60px rgba(0,0,0,.45),0 1px 0 rgba(255,255,255,.10) inset;
+  background:var(--qt-paper);
+  color:var(--qt-ink);
+  border-radius:4px;
+  padding:clamp(26px,6vw,40px) clamp(20px,5.5vw,36px) clamp(22px,4.5vw,30px);
+  box-shadow:0 22px 50px rgba(0,0,0,.38);
 }
-.sheet::after{
-  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity:.055;mix-blend-mode:multiply;
+html[data-theme="light"] .qt-sheet{
+  border:1px solid rgba(176,138,42,.22);
+  box-shadow:0 18px 40px rgba(84,62,24,.16);
 }
 /* 贴在纸卡顶部的胶带 */
-.sheet::before{
-  content:"";position:absolute;top:-14px;left:50%;width:104px;height:30px;z-index:2;
+.qt-sheet::before{
+  content:"";position:absolute;top:-13px;left:50%;width:100px;height:28px;z-index:2;
   transform:translateX(-50%) rotate(-2.2deg);
-  background:rgba(224,174,51,.86);
-  clip-path:var(--tape);
-  filter:drop-shadow(0 6px 9px rgba(0,0,0,.28));
+  background:rgba(224,174,51,.88);
+  clip-path:var(--qt-torn);
+  filter:drop-shadow(0 6px 9px rgba(0,0,0,.26));
 }
 
-.sheet-head{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 14px;margin-bottom:clamp(18px,5vw,26px)}
-.sheet-title{font-family:var(--serif);font-weight:600;font-size:13px;letter-spacing:.26em;color:var(--mustard-deep)}
-.sheet-day{font-size:12.5px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+.qt-head{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 14px;margin-bottom:clamp(16px,4.5vw,24px)}
+.qt-kicker{font-family:var(--font-serif);font-weight:600;font-size:13px;letter-spacing:.24em;color:var(--qt-gold-deep)}
+.qt-day{font-size:12.5px;color:var(--qt-ink-faint);font-variant-numeric:tabular-nums}
 
-.stale{position:relative;z-index:1;margin:0 0 18px;padding:10px 13px;border-radius:8px;background:rgba(217,142,90,.16);border:1px solid rgba(217,142,90,.45);font-size:13px;line-height:1.8;color:var(--terra-deep)}
-.stale b{font-weight:600}
+.qt-stale{position:relative;z-index:1;margin:0 0 16px;padding:10px 13px;border-radius:8px;background:rgba(217,142,90,.16);border:1px solid rgba(217,142,90,.45);font-size:13.5px;line-height:1.8;color:var(--qt-terra)}
+.qt-stale b{font-weight:600}
 
-.sticker{position:relative;z-index:1}
+.qt-sticker{position:relative;z-index:1}
 
-/* 主题贴纸：金棕底、白边、略歪 */
-.topic{
-  background:var(--mustard);
-  color:var(--ink);
+/* 主题贴纸：金棕底、白边、略微歪 */
+.qt-topic{
+  background:var(--qt-gold);
+  color:var(--qt-ink);
   padding:clamp(22px,6vw,34px) clamp(20px,5.5vw,34px) clamp(15px,4vw,20px);
   border-radius:20px 44px 18px 36px / 34px 18px 40px 22px;
   transform:rotate(-1.3deg);
   box-shadow:0 0 0 5px rgba(255,255,255,.94),0 18px 26px -8px rgba(0,0,0,.45);
-  animation:stickIn .62s var(--ease) both;
+  animation:qtTopicIn .62s var(--ease-out) both;
 }
-.topic .sticker-tag{display:inline-block;font-size:12px;letter-spacing:.24em;color:rgba(34,48,28,.55)}
-.topic h1{margin:12px 0 0;font-family:var(--kai);font-weight:700;font-size:clamp(31px,9.4vw,45px);line-height:1.26;letter-spacing:.02em;overflow-wrap:break-word}
-.topic .sub{margin:9px 0 0;font-family:var(--serif);font-weight:600;font-size:clamp(16px,4.5vw,20px);line-height:1.55;color:var(--terra-deep);letter-spacing:.03em}
-.topic .sub[hidden]{display:none}
-.topic .stamp{margin-top:clamp(14px,4vw,20px);padding-top:10px;border-top:1px dashed rgba(34,48,28,.34);display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(34,48,28,.74);font-variant-numeric:tabular-nums}
-.topic .stamp i{display:block;width:3px;height:3px;border-radius:50%;background:rgba(34,48,28,.42);font-style:normal;flex:none}
+.qt-tag{display:inline-block;font-size:12px;letter-spacing:.24em}
+.qt-topic .qt-tag{color:rgba(34,48,28,.55)}
+.qt-topic h2{
+  margin:11px 0 0;
+  font-family:"Kaiti SC","STKaiti","KaiTi",var(--font-serif);
+  font-weight:700;
+  font-size:clamp(31px,9.2vw,44px);
+  line-height:1.26;
+  letter-spacing:.02em;
+  overflow-wrap:break-word;
+}
+.qt-topic .qt-sub{margin:8px 0 0;font-family:var(--font-serif);font-weight:600;font-size:clamp(16px,4.5vw,20px);line-height:1.55;letter-spacing:.03em;color:var(--qt-terra)}
+.qt-topic .qt-sub[hidden]{display:none}
+.qt-stamp{margin-top:clamp(14px,4vw,20px);padding-top:10px;border-top:1px dashed rgba(34,48,28,.34);display:flex;align-items:center;gap:9px;font-size:13px;font-variant-numeric:tabular-nums}
+.qt-topic .qt-stamp{color:rgba(34,48,28,.76)}
+.qt-stamp i,.qt-stamp .qt-dot{display:block;width:3px;height:3px;border-radius:50%;font-style:normal;flex:none}
+.qt-topic .qt-dot{background:rgba(34,48,28,.42)}
 
 /* 经文范围：深绿胶带式横贴，撕口在两端 */
-.reading{
-  margin-top:clamp(26px,7vw,38px);
-  background:#1D3526;
-  color:var(--cream);
-  padding:clamp(16px,4.4vw,22px) clamp(24px,7vw,44px);
-  clip-path:var(--tape);
-  filter:drop-shadow(0 14px 18px rgba(0,0,0,.36));
+.qt-reading{
+  margin-top:clamp(24px,6.5vw,36px);
+  background:var(--qt-tape);
+  color:var(--qt-tape-ink);
+  padding:clamp(15px,4.2vw,21px) clamp(24px,7vw,44px);
+  clip-path:var(--qt-torn);
+  filter:drop-shadow(0 14px 18px rgba(0,0,0,.34));
   transform:rotate(.9deg);
-  animation:stickIn .62s .1s var(--ease) both;
+  animation:qtTapeIn .62s .1s var(--ease-out) both;
 }
-.reading .sticker-tag{display:inline-block;font-size:12px;letter-spacing:.24em;color:rgba(243,235,216,.55)}
-.reading .range{margin:8px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
-.reading .book{font-family:var(--serif);font-weight:700;font-size:clamp(19px,5vw,24px);line-height:1.5;color:var(--cream);letter-spacing:.03em}
-.reading .num{font-family:var(--serif);font-weight:600;font-size:clamp(21px,5.8vw,28px);line-height:1.4;color:var(--mustard);letter-spacing:.04em;font-variant-numeric:tabular-nums;overflow-wrap:break-word}
-.reading .stamp{margin-top:7px;display:flex;align-items:center;gap:9px;font-size:12.5px;color:rgba(243,235,216,.56);font-variant-numeric:tabular-nums}
-.reading .stamp i{display:block;width:3px;height:3px;border-radius:50%;background:rgba(243,235,216,.42);font-style:normal;flex:none}
+.qt-reading .qt-tag{color:rgba(243,235,216,.56)}
+.qt-range{margin:8px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
+.qt-book{font-family:var(--font-serif);font-weight:700;font-size:clamp(19px,5vw,24px);line-height:1.5;letter-spacing:.03em;color:var(--qt-tape-ink)}
+.qt-num{font-family:var(--font-serif);font-weight:600;font-size:clamp(21px,5.8vw,28px);line-height:1.4;letter-spacing:.04em;color:var(--qt-gold);font-variant-numeric:tabular-nums;overflow-wrap:break-word}
+.qt-reading .qt-stamp{color:rgba(243,235,216,.58);font-size:12.5px;margin-top:6px;border-top:0;padding-top:0}
+.qt-reading .qt-dot{background:rgba(243,235,216,.42)}
 
-.meta{position:relative;z-index:1;margin:clamp(24px,6vw,34px) 0 0;padding-top:14px;border-top:1px solid rgba(34,48,28,.16);display:flex;flex-wrap:wrap;gap:4px 10px;font-size:12.5px;line-height:1.9;color:var(--ink-soft)}
-.meta a{color:var(--terra-deep);text-decoration:underline;text-underline-offset:3px}
-.meta a:hover{color:var(--ink)}
-.meta .sep{color:var(--ink-faint)}
+.qt-meta{
+  position:relative;z-index:1;
+  margin:clamp(22px,5.5vw,32px) 0 0;
+  padding-top:13px;
+  border-top:1px solid rgba(34,48,28,.16);
+  display:flex;flex-wrap:wrap;gap:4px 10px;
+  font-size:12.5px;line-height:1.9;color:var(--qt-ink-soft);
+}
+.qt-meta a{color:var(--qt-terra);text-decoration:underline;text-underline-offset:3px}
+.qt-meta a:hover{color:var(--qt-ink)}
+.qt-meta .qt-sep{color:var(--qt-ink-faint)}
 
-.foot{max-width:640px;margin:clamp(18px,4vw,26px) auto 0;padding:0 clamp(20px,6vw,40px) calc(38px + env(safe-area-inset-bottom));font-size:12px;line-height:1.95;color:var(--cream-faint)}
-.foot a{color:var(--cream-dim);text-underline-offset:3px}
-
-@keyframes stickIn{
+@keyframes qtTopicIn{
   from{opacity:0;transform:rotate(-1.3deg) translateY(14px) scale(.986)}
   to{opacity:1;transform:rotate(-1.3deg)}
 }
-@keyframes tapeIn{
+@keyframes qtTapeIn{
   from{opacity:0;transform:rotate(.9deg) translateY(14px) scale(.986)}
   to{opacity:1;transform:rotate(.9deg)}
 }
-.reading{animation-name:tapeIn}
-
 @media (min-width:720px){
-  .topic{padding:38px 40px 22px}
-  .reading{padding:20px 48px}
-  .topic h1{font-size:46px}
-  .reading .num{font-size:29px}
+  .qt-topic{padding:38px 40px 22px}
+  .qt-reading{padding:20px 48px}
+  .qt-topic h2{font-size:46px}
+  .qt-num{font-size:29px}
 }
 @media (prefers-reduced-motion:reduce){
-  .topic,.reading{animation:none}
+  .qt-topic,.qt-reading{animation:none}
 }
 </style>
 </head>
-<body>
+<body class="page-qt">
+<div class="page">
 
-<div class="topbar">
-  <a class="brand" href="./index.html">mustardseed<i>.</i></a>
-  <a class="back" href="./index.html">返回首页</a>
-</div>
+  <!-- ===== 顶部：文字 logo + 语言切换 ===== -->
+  <header class="site-header">
+    <span class="logo" id="siteLogo"></span>
+    <div class="lang-bar" id="langBar" role="group" data-i18n-aria="lang.label" aria-label="语言"></div>
+  </header>
 
-<main class="sheet" id="sheet">
-  <div class="sheet-head">
-    <span class="sheet-title">灵修 · 今日</span>
-    <span class="sheet-day" id="headDate">2026年11月8日 · 星期日</span>
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="sprout" aria-hidden="true"></div>
+    <h1>今日灵修</h1>
+    <p class="hero-verse">先领受今天的话语，再走进今天<small>活泼的生命 · QT</small></p>
+    <div class="hero-rule"></div>
+  </section>
+
+  <!-- ===== 悬浮条：支持与合作 + 背景音乐 ===== -->
+  <div class="contact-row">
+    <a class="contact-link" href="mailto:xiaodongdaniel@icloud.com" aria-label="支持与合作">
+      <span class="contact-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
+    </a>
+    <div class="ms-player" id="msPlayer">
+      <div class="ms-chip">
+        <span class="ms-name">Alleluia</span>
+        <span class="ms-time" id="msTime">0:00</span>
+      </div>
+      <button class="ms-btn" id="msPlay" aria-label="播放背景音乐">
+        <span class="ms-btn-inner">
+          <svg class="ms-ic-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="currentColor"/></svg>
+          <svg class="ms-ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>
+        </span>
+      </button>
+    </div>
   </div>
 
-  <p class="stale" id="staleNote" hidden>今天的内容还没更新，下面显示的是 <b id="staleDate">2026年11月8日</b> 的话语。</p>
+  <!-- ===== 站点主导航 ===== -->
+  <nav class="site-nav" id="siteNav" data-i18n-aria="nav.aria" aria-label="站点导航"></nav>
 
-  <article class="sticker topic">
-    <span class="sticker-tag">今天的主题</span>
-    <h1 id="qtTopic">悲惨的审判</h1>
-    <p class="sub" id="qtSubtitle">仅有极少数存留</p>
-    <p class="stamp"><span id="dateA">2026年11月8日</span><i></i><span id="weekA">星期日</span></p>
-  </article>
+  <main>
+    <div class="qt-wrap">
+      <section class="qt-sheet" id="qtSheet" aria-label="今日灵修内容">
+        <div class="qt-head">
+          <span class="qt-kicker">灵修 · 今日</span>
+          <span class="qt-day" id="headDate">2026年11月8日 · 星期日</span>
+        </div>
 
-  <article class="sticker reading">
-    <span class="sticker-tag">经文范围</span>
-    <p class="range"><span class="book" id="qtBook">阿摩司书</span><span class="num" id="qtNum">3：9～15</span></p>
-    <p class="stamp"><span id="dateB">2026年11月8日</span><i></i><span id="weekB">星期日</span></p>
-  </article>
+        <p class="qt-stale" id="staleNote" hidden>今天的内容还没更新，下面显示的是 <b id="staleDate">2026年11月8日</b> 的话语。</p>
 
-  <p class="meta">
-    <span id="updated">资料更新于 2026年11月8日 20:32（台北时间）</span>
-    <span class="sep">·</span>
-    <span>资料来源：<a href="https://www.duranno.tw/livinglife/index.php/daily" target="_blank" rel="noopener">活泼的生命／推喇奴书房</a></span>
-  </p>
-</main>
+        <article class="qt-sticker qt-topic">
+          <span class="qt-tag">今天的主题</span>
+          <h2 id="qtTopic">悲惨的审判</h2>
+          <p class="qt-sub" id="qtSubtitle">仅有极少数存留</p>
+          <p class="qt-stamp"><span id="dateA">2026年11月8日</span><i class="qt-dot"></i><span id="weekA">星期日</span></p>
+        </article>
 
-<footer class="foot">
-  本页只摘录当日《活泼的生命》的主题与经文范围，诗歌、经文摘要与全文请见<a href="https://www.duranno.tw/livinglife/index.php/daily" target="_blank" rel="noopener">原页</a>。
-</footer>
+        <article class="qt-sticker qt-reading">
+          <span class="qt-tag">经文范围</span>
+          <p class="qt-range"><span class="qt-book" id="qtBook">阿摩司书</span><span class="qt-num" id="qtNum">3：9～15</span></p>
+          <p class="qt-stamp"><span id="dateB">2026年11月8日</span><i class="qt-dot"></i><span id="weekB">星期日</span></p>
+        </article>
+
+        <p class="qt-meta">
+          <span id="updated">资料更新于 2026年11月8日 20:32（台北时间）</span>
+          <span class="qt-sep">·</span>
+          <span>资料来源：<a href="https://www.duranno.tw/livinglife/index.php/daily" target="_blank" rel="noopener">活泼的生命／推喇奴书房</a></span>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <nav id="siteNavFoot" class="foot-nav"></nav>mustard<span class="seed">·</span>seed — <span data-i18n="footer.tag">让每个分享都像种子，落进土壤</span> <a class="foot-privacy" href="privacy.html" data-i18n="footer.privacy">隐私政策</a> <a class="foot-app" href="https://github.com/harpsvials/mustardseed-app/releases/latest/download/app-release.apk" target="_blank" rel="noopener" data-i18n="footer.app">App 下载</a>
+  </footer>
+
+</div>
 
 <script type="application/json" id="qt-boot">
 {
@@ -204,8 +233,22 @@ body{
   "updatedLabel": "2026年11月8日 20:32"
 }
 </script>
+<script src="src/i18n.js"></script>
+<script src="src/shared.js"></script>
 <script>
 (function(){
+  /* 本页目前只有简体版本：其余语言入口改跳该语言主页，避免 404 */
+  var bar = document.getElementById('langBar');
+  if(bar){
+    var other = bar.querySelectorAll('.lang-btn[data-lang]');
+    for(var i=0;i<other.length;i++){
+      var lang = other[i].getAttribute('data-lang');
+      if(lang === 'zh-CN') continue;
+      other[i].setAttribute('href', lang + '/index.html');
+      other[i].setAttribute('title', '该语言暂无本页，前往' + other[i].textContent);
+    }
+  }
+
   var boot = {};
   try{ boot = JSON.parse(document.getElementById('qt-boot').textContent); }catch(e){}
   var data = boot;
@@ -238,10 +281,9 @@ body{
     try{
       today = new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Taipei'}).format(new Date());
     }catch(e){}
-    var isStale = !!(today && d.date && d.date !== today);
     var note = document.getElementById('staleNote');
     if(note){
-      if(isStale){ setText('staleDate', d.dateLabel); note.hidden = false; }
+      if(today && d.date && d.date !== today){ setText('staleDate', d.dateLabel); note.hidden = false; }
       else { note.hidden = true; }
     }
   }
