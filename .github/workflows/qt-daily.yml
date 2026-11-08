@@ -33,15 +33,19 @@ jobs:
       - name: Fetch and parse today's fields
         run: python3 tools/qt_snapshot.py
 
+      - name: Fetch RPG daily verse image (keep last 7 days)
+        run: python3 tools/rpg_daily.py
+
       - name: Commit if changed
         run: |
-          if [ -z "$(git status --porcelain qt-data.json)" ]; then
+          if [ -z "$(git status --porcelain qt-data.json rpg-data.json images/rpg)" ]; then
             echo "数据无变化，跳过提交"
             exit 0
           fi
           git config user.name "qt-snapshot-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add qt-data.json
+          git add qt-data.json rpg-data.json
+          if [ -d images/rpg ]; then git add images/rpg; fi
           # [skip ci] 避免触发 Build App 工作流
-          git commit -m "chore(qt): 更新今日灵修快照 $(TZ=Asia/Shanghai date +%F) [skip ci]"
+          git commit -m "chore(qt): 更新今日灵修与 RPG 每日经文 $(TZ=Asia/Shanghai date +%F) [skip ci]"
           git push

@@ -124,6 +124,67 @@ html[data-theme="light"] .qt-sheet{
 .qt-meta a:hover{color:var(--qt-ink)}
 .qt-meta .qt-sep{color:var(--qt-ink-faint)}
 
+/* ===== RPG 每日经文：贴在纸卡下方的卡片照片 ===== */
+.qt-rpg{
+  position:relative;
+  margin-top:clamp(28px,7vw,42px);
+  background:var(--qt-paper);
+  color:var(--qt-ink);
+  border-radius:4px;
+  padding:clamp(22px,5vw,32px) clamp(16px,4.4vw,28px) clamp(16px,4vw,22px);
+  box-shadow:0 22px 50px rgba(0,0,0,.38);
+}
+html[data-theme="light"] .qt-rpg{
+  border:1px solid rgba(176,138,42,.22);
+  box-shadow:0 18px 40px rgba(84,62,24,.16);
+}
+.qt-rpg[hidden]{display:none}
+.qt-rpg-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 14px;margin-bottom:clamp(14px,4vw,20px)}
+.qt-rpg .qt-kicker{color:var(--qt-terra)}
+
+.qt-figure{margin:0}
+.qt-figure > a{
+  display:block;
+  background:#FFFDF8;
+  padding:8px;
+  border-radius:3px;
+  box-shadow:0 12px 26px rgba(0,0,0,.3);
+  transform:rotate(-.6deg);
+  transition:transform .25s var(--ease-out),box-shadow .25s var(--ease-out);
+}
+.qt-figure > a:hover{transform:rotate(0) translateY(-2px);box-shadow:0 16px 30px rgba(0,0,0,.34)}
+.qt-figure img{display:block;width:100%;height:auto;border-radius:2px;background:var(--qt-paper)}
+.qt-figure figcaption{
+  margin-top:12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;
+  font-size:12.5px;color:var(--qt-ink-soft);font-variant-numeric:tabular-nums;
+}
+.qt-figure figcaption .qt-dot{display:block;width:3px;height:3px;border-radius:50%;background:rgba(34,48,28,.4);flex:none}
+.qt-figure figcaption a{color:var(--qt-terra);text-decoration:underline;text-underline-offset:3px}
+.qt-figure figcaption a:hover{color:var(--qt-ink)}
+
+.qt-thumbs{
+  display:flex;gap:8px;
+  margin-top:clamp(16px,4vw,20px);
+  padding:2px 2px 6px;
+  overflow-x:auto;
+  scrollbar-width:thin;
+  overscroll-behavior-x:contain;
+}
+.qt-thumb{
+  flex:0 0 auto;width:86px;padding:0;border:0;background:#FFFDF8;
+  border-radius:3px;overflow:hidden;cursor:pointer;
+  box-shadow:0 0 0 2px rgba(255,255,255,.92),0 4px 10px rgba(0,0,0,.22);
+  opacity:.76;
+  transition:opacity .18s,box-shadow .18s;
+  font:inherit;color:inherit;
+}
+.qt-thumb:hover{opacity:.94}
+.qt-thumb[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px var(--qt-gold),0 6px 12px rgba(0,0,0,.28)}
+.qt-thumb img{display:block;width:100%;height:auto}
+.qt-thumb span{display:block;padding:4px 0 5px;font-size:11px;letter-spacing:.02em;text-align:center;color:var(--qt-ink-soft);font-variant-numeric:tabular-nums}
+
+.qt-rpg-meta{margin:clamp(14px,3.5vw,18px) 0 0;padding-top:10px}
+
 @keyframes qtTopicIn{
   from{opacity:0;transform:rotate(-1.3deg) translateY(14px) scale(.986)}
   to{opacity:1;transform:rotate(-1.3deg)}
@@ -211,6 +272,31 @@ html[data-theme="light"] .qt-sheet{
           <span>资料来源：<a href="https://www.duranno.tw/livinglife/index.php/daily" target="_blank" rel="noopener">活泼的生命／推喇奴书房</a></span>
         </p>
       </section>
+
+      <!-- ===== RPG 每日经文：当天卡片原图 + 最近 7 天 ===== -->
+      <section class="qt-rpg" id="rpgSheet" hidden aria-label="RPG 每日经文">
+        <div class="qt-rpg-head">
+          <span class="qt-kicker">RPG · 每日经文</span>
+          <span class="qt-day" id="rpgUpdated">2026年11月8日 22:52</span>
+        </div>
+
+        <figure class="qt-figure">
+          <a id="rpgMainLink" href="https://www.rpg-move.tw/daily1108/" target="_blank" rel="noopener" aria-label="打开 RPG 每日经文原页">
+            <img id="rpgMainImg" src="images/rpg/daily_20261108.jpg" alt="RPG 每日经文卡片 2026年11月8日">
+          </a>
+          <figcaption>
+            <span id="rpgMainCap">2026年11月8日 · 星期日</span>
+            <i class="qt-dot"></i>
+            <a id="rpgMainSrc" href="https://www.rpg-move.tw/daily1108/" target="_blank" rel="noopener">查看原页</a>
+          </figcaption>
+        </figure>
+
+        <div class="qt-thumbs" id="rpgThumbs" role="list" aria-label="最近 7 天的卡片"></div>
+
+        <p class="qt-meta qt-rpg-meta">
+          <span>卡片原图取自 <a href="https://www.rpg-move.tw/category/rpg-daily/" target="_blank" rel="noopener">RPG 復興禱告總動員「每日經文」</a>（365 復興禱告卡），只显示原图、不作转载，版权归原作者所有。</span>
+        </p>
+      </section>
     </div>
   </main>
 
@@ -231,6 +317,67 @@ html[data-theme="light"] .qt-sheet{
   "sourceUrl": "https://www.duranno.tw/livinglife/index.php/daily",
   "updated": "2026-11-08 20:32",
   "updatedLabel": "2026年11月8日 20:32"
+}
+</script>
+<script type="application/json" id="rpg-boot">
+{
+  "updatedLabel": "2026年11月8日 22:52",
+  "items": [
+    {
+      "date": "2026-11-08",
+      "dateLabel": "2026年11月8日",
+      "weekday": "星期日",
+      "image": "daily_20261108.jpg",
+      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261108.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1108/",
+      "title": "每日经文1108 - RPG复兴祷告总动员"
+    },
+    {
+      "date": "2026-11-07",
+      "dateLabel": "2026年11月7日",
+      "weekday": "星期六",
+      "image": "daily_20261107.jpg",
+      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261107.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1107/",
+      "title": "每日经文1107 - RPG复兴祷告总动员"
+    },
+    {
+      "date": "2026-11-06",
+      "dateLabel": "2026年11月6日",
+      "weekday": "星期五",
+      "image": "daily_20261106.jpg",
+      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261106.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1106/",
+      "title": "每日经文1106 - RPG复兴祷告总动员"
+    },
+    {
+      "date": "2026-11-05",
+      "dateLabel": "2026年11月5日",
+      "weekday": "星期四",
+      "image": "daily_20261105.jpg",
+      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261105.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1105/",
+      "title": "每日经文1105 - RPG复兴祷告总动员"
+    },
+    {
+      "date": "2026-11-04",
+      "dateLabel": "2026年11月4日",
+      "weekday": "星期三",
+      "image": "daily_20261104.jpg",
+      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261104.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1104/",
+      "title": "每日经文1104 - RPG复兴祷告总动员"
+    },
+    {
+      "date": "2026-11-03",
+      "dateLabel": "2026年11月3日",
+      "weekday": "星期二",
+      "image": "daily_20261103.jpg",
+      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261103.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1103/",
+      "title": "每日经文1103 - RPG复兴祷告总动员"
+    }
+  ]
 }
 </script>
 <script src="src/i18n.js"></script>
@@ -294,6 +441,79 @@ html[data-theme="light"] .qt-sheet{
     fetch('qt-data.json', {cache:'no-store'})
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(j){ if(j && j.topic){ data = Object.assign({}, data, j); render(data); } })
+      .catch(function(){});
+  }catch(e){}
+
+  /* ===== RPG 每日经文：当天卡片原图，可切换最近 7 天 ===== */
+  var rpgSheet = document.getElementById('rpgSheet');
+  var rpgThumbs = document.getElementById('rpgThumbs');
+  var rpgBoot = {};
+  try{ rpgBoot = JSON.parse(document.getElementById('rpg-boot').textContent); }catch(e){}
+
+  function rpgImageSrc(it){
+    return it.imageUrl || ('images/rpg/' + it.image);
+  }
+
+  function setRpgMain(it, btn){
+    if(!it) return;
+    var img = document.getElementById('rpgMainImg');
+    if(img){
+      img.onerror = function(){
+        if(img.src.indexOf('/images/rpg/') < 0) img.src = 'images/rpg/' + it.image;
+      };
+      img.src = rpgImageSrc(it);
+      img.alt = 'RPG 每日经文卡片 ' + (it.dateLabel || '');
+    }
+    setText('rpgMainCap', [it.dateLabel, it.weekday].filter(Boolean).join(' · '));
+    var link = document.getElementById('rpgMainLink');
+    if(link && it.sourceUrl) link.href = it.sourceUrl;
+    var srcLink = document.getElementById('rpgMainSrc');
+    if(srcLink && it.sourceUrl) srcLink.href = it.sourceUrl;
+    if(rpgThumbs){
+      var kids = rpgThumbs.children;
+      for(var i=0;i<kids.length;i++){
+        kids[i].setAttribute('aria-current', kids[i] === btn ? 'true' : 'false');
+      }
+    }
+  }
+
+  function renderRpg(d){
+    var items = (d && d.items) || [];
+    if(!items.length || !rpgSheet) return;
+    setText('rpgUpdated', d.updatedLabel ? '资料更新于 ' + d.updatedLabel : '');
+    rpgSheet.hidden = false;
+    if(rpgThumbs){
+      rpgThumbs.innerHTML = '';
+      items.forEach(function(it){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'qt-thumb';
+        b.setAttribute('role', 'listitem');
+        b.setAttribute('aria-label', (it.dateLabel || '') + ' ' + (it.weekday || ''));
+        var im = document.createElement('img');
+        im.loading = 'lazy';
+        im.src = rpgImageSrc(it);
+        im.alt = '';
+        im.onerror = (function(ctx, el){
+          return function(){ if(el.src.indexOf('/images/rpg/') < 0) el.src = 'images/rpg/' + ctx.image; };
+        })(it, im);
+        var sp = document.createElement('span');
+        sp.textContent = String(it.dateLabel || '').replace(/^\d{4}年/, '');
+        b.appendChild(im);
+        b.appendChild(sp);
+        b.addEventListener('click', function(){ setRpgMain(it, b); });
+        rpgThumbs.appendChild(b);
+      });
+    }
+    setRpgMain(items[0], rpgThumbs ? rpgThumbs.children[0] : null);
+  }
+
+  if(rpgSheet && rpgBoot && rpgBoot.items && rpgBoot.items.length) renderRpg(rpgBoot);
+
+  try{
+    fetch('rpg-data.json', {cache:'no-store'})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if(j && j.items && j.items.length) renderRpg(j); })
       .catch(function(){});
   }catch(e){}
 })();

@@ -88,6 +88,8 @@ class QtPage extends StatefulWidget {
 
 class _QtPageState extends State<QtPage> {
   QtData? _data;
+  RpgData? _rpg;
+  int _rpgIndex = 0;
   bool _loading = true;
 
   @override
@@ -98,10 +100,12 @@ class _QtPageState extends State<QtPage> {
 
   Future<void> _load() async {
     setState(() => _loading = true);
-    final data = await QtData.fetch();
+    final results = await Future.wait([QtData.fetch(), RpgData.fetch()]);
     if (!mounted) return;
     setState(() {
-      _data = data;
+      _data = results[0] as QtData?;
+      _rpg = results[1] as RpgData?;
+      _rpgIndex = 0;
       _loading = false;
     });
   }
@@ -126,6 +130,7 @@ class _QtPageState extends State<QtPage> {
             _errorCard()
           else
             _sheet(_data!),
+          if (!_loading && _rpg != null) _rpgCard(_rpg!),
           const SizedBox(height: 24),
         ],
       ),
@@ -166,8 +171,8 @@ class _QtPageState extends State<QtPage> {
           const SizedBox(height: 6),
           Text(
             AppLocale.value == AppLocale.en
-                ? 'The Living Life · today’s theme and reading, two stickers, each stamped with its date.'
-                : '《活泼的生命》每日灵修：今天的主题与经文范围，两枚贴纸各自标着日期。',
+                ? 'The Living Life today’s theme and reading in two stickers, then today’s RPG daily-verse card image.'
+                : '《活泼的生命》今日主题与经文范围两枚贴纸，再加一张 RPG 每日经文卡片图。',
             style: TextStyle(
               fontSize: 14,
               color: AppColors.creamDim,
@@ -410,6 +415,182 @@ class _QtPageState extends State<QtPage> {
     );
   }
 
+  // ── 第三块：RPG 每日经文卡片（只放图，保留最近 7 天） ──
+  Widget _rpgCard(RpgData d) {
+    final isEn = AppLocale.value == AppLocale.en;
+    final item = d.items[_rpgIndex.clamp(0, d.items.length - 1)];
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16, 18, 16, 0),
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF4EAD3),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFE2D3B2)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  isEn ? 'RPG · DAILY VERSE' : 'RPG · 每日经文',
+                  style: const TextStyle(
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 2,
+                    color: Color(0xFF8A4B1F),
+                  ),
+                ),
+              ),
+              if (d.updatedLabel.isNotEmpty)
+                Text(
+                  '${isEn ? 'Updated ' : '更新 '}${d.updatedLabel}',
+                  style: const TextStyle(
+                    fontSize: 11.5,
+                    color: Color(0x992A2313),
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: Container(
+              color: const Color(0xFFFFFDF8),
+              child: AspectRatio(
+                aspectRatio: 1136 / 774,
+                child: Image.network(
+                  item.imageFor(d.base),
+                  fit: BoxFit.contain,
+                  loadingBuilder: (context, child, progress) {
+                    if (progress == null) return child;
+                    return const Center(
+                      child: SizedBox(
+                        width: 22,
+                        height: 22,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      ),
+                    );
+                  },
+                  errorBuilder: (context, error, stack) => Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(14),
+                      child: Text(
+                        isEn
+                            ? 'This card image is unavailable right now. Tap “View original” to open the source page.'
+                            : '暂时取不到这张卡片，点右下角「查看原页」到源站看。',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 13,
+                          height: 1.5,
+                          color: Color(0x992A2313),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  item.stamp,
+                  style: const TextStyle(
+                    fontSize: 12.5,
+                    color: Color(0x992A2313),
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () => _openSource(item.sourceUrl),
+                style: TextButton.styleFrom(
+                  foregroundColor: const Color(0xFF8A5A16),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  minimumSize: const Size(0, 36),
+                ),
+                child: Text(
+                  isEn ? 'View original' : '查看原页',
+                  style: const TextStyle(fontSize: 13),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 82,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: d.items.length,
+              separatorBuilder: (_, _) => const SizedBox(width: 8),
+              itemBuilder: (_, i) => _rpgThumb(d, i),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            isEn
+                ? 'Card images from RPG Revival Prayer Movement “RPG Daily Verse” (365 Revival Prayer Cards). Original images only, no reprint; all rights belong to the publisher.'
+                : '卡片原图取自 RPG 復興禱告總動員「每日經文」（365 復興禱告卡），只显示原图、不作转载，版权归原作者所有。',
+            style: TextStyle(
+              fontSize: 12,
+              height: 1.6,
+              color: AppColors.creamFaint,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _rpgThumb(RpgData d, int i) {
+    final it = d.items[i];
+    final selected = i == _rpgIndex;
+    return GestureDetector(
+      onTap: () => setState(() => _rpgIndex = i),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 160),
+        width: 92,
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFFDF8),
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+            color: selected ? const Color(0xFFE0AE33) : const Color(0x33E2D3B2),
+            width: selected ? 2 : 1,
+          ),
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(3)),
+                child: Image.network(
+                  it.imageFor(d.base),
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  errorBuilder: (context, error, stack) => const Center(
+                    child: Icon(Icons.image_not_supported_outlined, size: 18),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 3),
+              child: Text(
+                it.dateLabel.replaceFirst(RegExp(r'^\d{4}年'), ''),
+                style: const TextStyle(
+                  fontSize: 10.5,
+                  color: Color(0x992A2313),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Future<void> _openSource(String url) async {
     if (url.isEmpty) return;
     try {
@@ -455,5 +636,91 @@ class _StampLine extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+/// RPG 每日经文的一张卡片：只有图、日期与原页链接，不含 OCR 文字
+class RpgItem {
+  final String date;
+  final String dateLabel;
+  final String weekday;
+  final String image;
+  final String imageUrl;
+  final String sourceUrl;
+  final String title;
+
+  const RpgItem({
+    required this.date,
+    required this.dateLabel,
+    required this.weekday,
+    required this.image,
+    required this.imageUrl,
+    required this.sourceUrl,
+    required this.title,
+  });
+
+  factory RpgItem.fromJson(Map<String, dynamic> j) => RpgItem(
+        date: (j['date'] ?? '').toString(),
+        dateLabel: (j['dateLabel'] ?? j['date'] ?? '').toString(),
+        weekday: (j['weekday'] ?? '').toString(),
+        image: (j['image'] ?? '').toString(),
+        imageUrl: (j['imageUrl'] ?? '').toString(),
+        sourceUrl: (j['sourceUrl'] ?? '').toString(),
+        title: (j['title'] ?? '').toString(),
+      );
+
+  /// 卡片下的日期行：2026年11月8日 · 星期日
+  String get stamp => weekday.isEmpty ? dateLabel : '$dateLabel · $weekday';
+
+  /// 优先清单里的绝对地址；缺失时按读取源拼相对路径
+  String imageFor(String base) =>
+      imageUrl.isNotEmpty ? imageUrl : '${base}images/rpg/$image';
+}
+
+/// RPG 每日经文清单：与网站同源，读 rpg-data.json（Actions 每日抓取、只留 7 天）
+class RpgData {
+  final String updatedLabel;
+  final List<RpgItem> items;
+  final String base;
+
+  const RpgData({
+    required this.updatedLabel,
+    required this.items,
+    required this.base,
+  });
+
+  static const _sources = [
+    'https://harpsvials.github.io/mustardseed-app/rpg-data.json',
+    'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/rpg-data.json',
+    'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/rpg-data.json',
+  ];
+
+  /// 依次尝试各源，全部失败或清单为空返回 null
+  static Future<RpgData?> fetch() async {
+    for (final url in _sources) {
+      try {
+        final res = await http
+            .get(Uri.parse(url), headers: const {'cache-control': 'no-store'})
+            .timeout(const Duration(seconds: 10));
+        if (res.statusCode != 200) continue;
+        final j = jsonDecode(res.body);
+        if (j is! Map<String, dynamic>) continue;
+        final raw = j['items'];
+        if (raw is! List) continue;
+        final items = raw
+            .whereType<Map<String, dynamic>>()
+            .map(RpgItem.fromJson)
+            .where((e) => e.image.isNotEmpty || e.imageUrl.isNotEmpty)
+            .toList();
+        if (items.isEmpty) continue;
+        final base = url.substring(0, url.lastIndexOf('/') + 1);
+        return RpgData(
+          updatedLabel: (j['updatedLabel'] ?? j['updated'] ?? '').toString(),
+          items: items,
+          base: base,
+        );
+      } catch (_) {}
+    }
+    return null;
   }
 }

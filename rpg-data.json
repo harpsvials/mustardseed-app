@@ -1,0 +1,62 @@
+{
+  "updated": "2026-11-08 22:52",
+  "updatedLabel": "2026年11月8日 22:52",
+  "sourceUrl": "https://www.rpg-move.tw/category/rpg-daily/",
+  "keepDays": 7,
+  "items": [
+    {
+      "date": "2026-11-08",
+      "dateLabel": "2026年11月8日",
+      "weekday": "星期日",
+      "image": "daily_20261108.jpg",
+      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261108.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1108/",
+      "title": "每日经文1108 - RPG复兴祷告总动员"
+    },
+    {
+      "date": "2026-11-07",
+      "dateLabel": "2026年11月7日",
+      "weekday": "星期六",
+      "image": "daily_20261107.jpg",
+      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261107.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1107/",
+      "title": "每日经文1107 - RPG复兴祷告总动员"
+    },
+    {
+      "date": "2026-11-06",
+      "dateLabel": "2026年11月6日",
+      "weekday": "星期五",
+      "image": "daily_20261106.jpg",
+      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261106.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1106/",
+      "title": "每日经文1106 - RPG复兴祷告总动员"
+    },
+    {
+      "date": "2026-11-05",
+      "dateLabel": "2026年11月5日",
+      "weekday": "星期四",
+      "image": "daily_20261105.jpg",
+      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261105.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1105/",
+      "title": "每日经文1105 - RPG复兴祷告总动员"
+    },
+    {
+      "date": "2026-11-04",
+      "dateLabel": "2026年11月4日",
+      "weekday": "星期三",
+      "image": "daily_20261104.jpg",
+      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261104.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1104/",
+      "title": "每日经文1104 - RPG复兴祷告总动员"
+    },
+    {
+      "date": "2026-11-03",
+      "dateLabel": "2026年11月3日",
+      "weekday": "星期二",
+      "image": "daily_20261103.jpg",
+      "imageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261103.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1103/",
+      "title": "每日经文1103 - RPG复兴祷告总动员"
+    }
+  ]
+}
