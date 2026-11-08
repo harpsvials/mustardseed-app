@@ -147,11 +147,12 @@
   apply();
 })();
 
-/* ===== 4. 站点导航：统一注入 7 个主导航链接（全部可点击，当前页高亮） ===== */
+/* ===== 4. 站点导航：统一注入 8 个主导航链接（全部可点击，当前页高亮） ===== */
 (function(){
   var NAV = [
     ['nav.home',    'index.html',                          '主页'],
     ['nav.sermons', 'sermons.html',                        '讲道'],
+    ['nav.qt',      'qt.html',                             '灵修', 1],   /* 灵修页仅有简体版，其它语言一律指向根路径 */
     ['nav.discussion', 'discussion.html',                  '讨论'],
     ['nav.testimonies', 'testimonies.html',                '见证'],
     ['nav.guestbook', 'guestbook.html',                    '留言'],
@@ -167,11 +168,11 @@
   var curPath = decodeURIComponent((location.pathname || '/').split('#')[0]).replace(/\/+$/, '') || '/';
   var curFile = curPath.split('/').pop() || '';
   var basePath = decodeURIComponent(new URL(base + lang + '/', location.href).pathname).replace(/\/+$/, '') || '/';
-  var MAIN = { 'index.html':0, 'sermons.html':1, 'discussion.html':2, 'testimonies.html':3, 'guestbook.html':4, 'prayer.html':5, 'about.html':6, 'qt.html':-1 };   /* qt.html 暂不在导航内，不误高亮「讲道」 */
+  var MAIN = { 'index.html':0, 'sermons.html':1, 'qt.html':2, 'discussion.html':3, 'testimonies.html':4, 'guestbook.html':5, 'prayer.html':6, 'about.html':7 };
   var activeIdx = -1;
   /* 优先按导航 href 匹配当前路径（兼容：根路径、子目录部署、无 .html 的 clean URL） */
   for(var i=0;i<NAV.length;i++){
-    var navHref = (lang === 'zh-CN') ? base + NAV[i][1] : base + lang + '/' + NAV[i][1];   /* 简体中文导航指向根路径 */
+    var navHref = (lang === 'zh-CN' || NAV[i][3]) ? base + NAV[i][1] : base + lang + '/' + NAV[i][1];   /* 简体中文为根路径；只有简中版的页面（灵修）任何语言都指向根路径 */
     var hp = decodeURIComponent(new URL(navHref, location.href).pathname).replace(/\/+$/, '');
     if(curPath === hp || curPath === hp.replace(/\.html$/, '')){ activeIdx = i; break; }
   }
@@ -185,7 +186,7 @@
   var html = '';
   for(var i=0;i<NAV.length;i++){
     var k = NAV[i][0];
-    var href = (lang === 'zh-CN') ? base + NAV[i][1] : base + lang + '/' + NAV[i][1];   /* 简体中文为根路径 */
+    var href = (lang === 'zh-CN' || NAV[i][3]) ? base + NAV[i][1] : base + lang + '/' + NAV[i][1];   /* 简体中文为根路径；灵修页仅简中，统一指向根路径 */
     var name = (d[k] != null) ? d[k] : NAV[i][2];
     var active = (i === activeIdx) ? ' is-current' : '';
     html += '<a class="site-link' + active + '" href="' + href + '" data-i18n="' + k + '">' + name + '</a>';
@@ -194,16 +195,17 @@
   var foot = document.getElementById('siteNavFoot');
   if(foot) foot.innerHTML = html;   /* 页脚导航与顶部共用一套注入 */
 
-  /* ---- 手机 App 底部 Tab 栏：6 个核心入口（主页/讲道/见证/讨论/留言/祷告墙），固定底部，当前页高亮 ---- */
+  /* ---- 手机 App 底部 Tab 栏：7 个核心入口（主页/讲道/灵修/见证/讨论/留言/祷告墙），固定底部，当前页高亮 ---- */
   var TABS = [
     ['nav.home','index.html','主页','<path d="M3.5 11 12 4.5 20.5 11"/><path d="M5 11v9h14v-9"/><path d="M9.5 20v-4.5h5V20"/>'],
     ['nav.sermons','sermons.html','讲道','<path d="M12 5.5v13"/><path d="M12 5.5C10.6 4.4 7.8 4.1 4.8 4.5v13.6c3-.4 5.8-.1 7.2.9z"/><path d="M12 5.5c1.4-1.1 4.2-1.4 7.2-1v13.6c-3-.4-5.8-.1-7.2.9z"/>'],
+    ['nav.qt','qt.html','灵修','<circle cx="12" cy="12" r="3.6"/><path d="M12 4.2v2.2M12 17.6v2.2M4.2 12h2.2M17.6 12h2.2M6.9 6.9l1.6 1.6M15.5 15.5l1.6 1.6M17.1 6.9L15.5 8.5M8.5 15.5L6.9 17.1"/>', 1],
     ['nav.testimonies','testimonies.html','见证','<path d="M12 20s-7-4.5-9.5-9C1 8 3 5 6.5 5c2 0 3.5 1.2 4.5 2.8C12 6.2 13.5 5 15.5 5 19 5 21 8 19.5 11c-2.5 4.5-7.5 9-7.5 9z"/>'],
     ['nav.discussion','discussion.html','讨论','<path d="M4 5h16v10H8l-4 4V5z"/><path d="M8 9h8"/><path d="M8 12h5"/>'],
     ['nav.guestbook','guestbook.html','留言','<path d="M4.5 19.5V16.8L16.3 5a1.84 1.84 0 0 1 2.6 2.6L7.1 19.4 4.5 19.5z"/><path d="M14.8 6.5l2.6 2.6"/>'],
     ['nav.prayer','prayer.html','祷告墙','<path d="M6.5 4h11a2.5 2.5 0 0 1 2.5 2.5v11a2.5 2.5 0 0 1-2.5 2.5h-11a2.5 2.5 0 0 1-2.5-2.5V6.5A2.5 2.5 0 0 1 6.5 4z"/><path d="M12 8v8"/><path d="M8.5 12h7"/>']
   ];
-  var TAB_MAP = [0,1,3,2,4,5];   /* 底部 6 个 tab 对应 NAV 的索引：主页0 讲道1 见证3 讨论2 留言4 祷告墙5 */
+  var TAB_MAP = [0,1,2,4,3,5,6];   /* 底部 7 个 tab 对应 NAV 的索引：主页0 讲道1 灵修2 见证4 讨论3 留言5 祷告墙6 */
   var tabActive = -1;
   for(var ti=0;ti<TAB_MAP.length;ti++){ if(TAB_MAP[ti] === activeIdx){ tabActive = ti; break; } }
   var tb = document.createElement('nav');
@@ -213,7 +215,7 @@
   var th = '';
   for(var tj=0;tj<TABS.length;tj++){
     var tk = TABS[tj][0];
-    var thr = (lang === 'zh-CN') ? base + TABS[tj][1] : base + lang + '/' + TABS[tj][1];
+    var thr = (lang === 'zh-CN' || TABS[tj][4]) ? base + TABS[tj][1] : base + lang + '/' + TABS[tj][1];   /* 灵修页仅简中，统一指向根路径 */
     var tn = (d[tk] != null) ? d[tk] : TABS[tj][2];
     var ta = (tj === tabActive) ? ' is-current' : '';
     th += '<a class="app-tab' + ta + '" href="' + thr + '" data-i18n="' + tk + '">' +
