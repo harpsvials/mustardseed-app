@@ -226,7 +226,8 @@ body{
 
     var parts = splitReading(d.reading);
     setText('qtBook', parts[0] || d.reading);
-    setText('qtNum', parts[1]);
+    var numEl = document.getElementById('qtNum');
+    if(numEl) numEl.textContent = parts[1] || '';
 
     setText('headDate', [d.dateLabel, d.weekday].filter(Boolean).join(' · '));
     setText('dateA', d.dateLabel); setText('weekA', d.weekday);
