@@ -4946,6 +4946,34 @@
     "topics": [
       {
         "label": {
+          "zh": "关于管教",
+          "en": "On Discipline"
+        },
+        "q": {
+          "zh": "你被天父用以上三种方法管教过吗？如果有，请分享。（1. 微声的责备；2. 承受自然的结果；3. 苦难与环境的磨炼）",
+          "en": "Have you ever been disciplined by the Father through the three ways above? If so, please share. (1. A quiet rebuke; 2. Living with the natural consequences; 3. Refinement through hardship and circumstances)"
+        },
+        "prompt": {
+          "zh": "管教不是天父放手不管，而是他不肯让你走远。",
+          "en": "Discipline is not the Father letting go of you—it is His refusal to let you drift far."
+        }
+      },
+      {
+        "label": {
+          "zh": "关于改变",
+          "en": "On Change"
+        },
+        "q": {
+          "zh": "你被天父管教过后，有什么改变吗？",
+          "en": "After the Father disciplined you, what changed?"
+        },
+        "prompt": {
+          "zh": "改变，是管教留下的印记。",
+          "en": "Change is the mark that discipline leaves behind."
+        }
+      },
+      {
+        "label": {
           "zh": "关于五饼二鱼",
           "en": "Five Loaves and Two Fish"
         },
