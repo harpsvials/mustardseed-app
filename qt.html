@@ -473,7 +473,7 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
   render(data);
 
   try{
-    fetch('qt-data.json', {cache:'no-store'})
+    fetch('/api/data?f=qt-data.json', {cache:'no-store'})
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(j){ if(j && j.topic){ data = Object.assign({}, data, j); render(data); } })
       .catch(function(){});
@@ -563,7 +563,7 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
   if(rpgSheet && rpgBoot && rpgBoot.items && rpgBoot.items.length) renderRpg(rpgBoot);
 
   try{
-    fetch('rpg-data.json', {cache:'no-store'})
+    fetch('/api/data?f=rpg-data.json', {cache:'no-store'})
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(j){ if(j && j.items && j.items.length) renderRpg(j); })
       .catch(function(){});

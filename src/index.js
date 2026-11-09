@@ -1,6 +1,10 @@
 // mustardseed 网站 — Worker 入口
 // 1) /api/comments — 留言接口（GET 读取 / POST 发表），数据存 Cloudflare D1
-// 2) 其余请求全部转交静态资源托管（[assets]），含自定义 404
+// 2) /api/data、/api/asset — App 与网页取数取图（优先读 KV，回源 GitHub 兜底）
+// 3) scheduled — 每日抓取《活泼的生命》与 RPG 经文，写入 KV
+// 4) 其余请求全部转交静态资源托管（[assets]），含自定义 404
+
+import { updateDaily } from './daily.js';
 
 /* ==================== 兜底 404 页面 ====================
  * 与仓库根目录 404.html 内容同步（修改 404.html 后请同步更新此常量），
@@ -182,6 +186,15 @@ window.I18N = {
 `;
 
 export default {
+  // Cloudflare Cron Trigger：在北京时间 05:00–08:40 之间每 20 分钟跑一次，
+  // 抓到当天内容就写进 KV，没更新就等下一个时间点重试。
+  // 相比 GitHub Actions 的 schedule（会被延迟或整趟丢弃），这里的触发更稳定。
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(
+      updateDaily(env).then((lines) => console.log('[daily]', lines.join(' | ')))
+    );
+  },
+
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
@@ -422,7 +435,37 @@ async function proxyAsset(request, env, url) {
   }
 
   const isAsset = path.startsWith('images/') || path.startsWith('mp3/');
-  const ttl = isAsset ? 86400 : 300;
+  const ttl = isAsset ? 86400 : 60;
+
+  // 优先读 KV：这里放的是 Worker 每日抓取/核对过的当天数据，比仓库快照更及时。
+  // KV 里没有（例如还没到第一次抓取）才回源 GitHub，保证接口不会因此变空。
+  const kv = env.MUSTARDSEED_DATA;
+  if (kv && typeof kv.get === 'function') {
+    try {
+      if (!isAsset) {
+        const text = await kv.get(path, 'text');
+        if (text) {
+          return new Response(text, {
+            status: 200,
+            headers: {
+              'Content-Type': 'application/json; charset=utf-8',
+              'Access-Control-Allow-Origin': '*',
+              'Cache-Control': 'public, max-age=60'
+            }
+          });
+        }
+      } else if (path.startsWith('images/')) {
+        const obj = await kv.getWithMetadata(path, 'arrayBuffer');
+        if (obj && obj.value) {
+          const headers = new Headers();
+          headers.set('Content-Type', (obj.metadata && obj.metadata.contentType) || 'image/jpeg');
+          headers.set('Access-Control-Allow-Origin', '*');
+          headers.set('Cache-Control', 'public, max-age=86400');
+          return new Response(obj.value, { status: 200, headers });
+        }
+      }
+    } catch (_) {}
+  }
 
   let res = null;
   try {

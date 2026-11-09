@@ -22,3 +22,14 @@ not_found_handling = "404-page"
 # 暴露 ASSETS 绑定：/api/data、/api/asset 需要它转发静态文件
 # （App 走静态路径会被 Cloudflare 托管验证拦成 403，走 /api 才通）
 binding = "ASSETS"
+
+# 每日抓取的落点：Worker Cron 把当天的 qt-data.json / rpg-data.json 与图片写进 KV，
+# /api/data、/api/asset 优先读这里；GitHub 仅作为兜底与仓库留档。
+[[kv_namespaces]]
+binding = "MUSTARDSEED_DATA"
+id = "b92e503b9b294159a158a0be73144b8f"
+
+# 北京时间 05:00–08:40 = UTC 21:00–00:40，每 20 分钟试一次。
+# 对方站点通常 05:30–06:30 换当天内容，抓到即写入，之后的时点会自己跳过。
+[triggers]
+crons = ["*/20 21-23,0 * * *"]
