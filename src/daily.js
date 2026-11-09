@@ -205,6 +205,13 @@ function parseRPGPost(url, html) {
   return { date, verseCands, prayerUrl, sourceUrl: url, title: simplify(title) || '每日經文' };
 }
 
+// 图片一律指向站内 /api/asset：App 与网页都走同域，不依赖 github.io
+function normalizeItem(it) {
+  if (it.verseImage) it.verseImageUrl = `${SITE}/api/asset?p=images/rpg/${it.verseImage}`;
+  if (it.prayerImage) it.prayerImageUrl = `${SITE}/api/asset?p=images/rpg/${it.prayerImage}`;
+  return it;
+}
+
 async function updateRPG(env) {
   const kv = env.MUSTARDSEED_DATA;
   if (!kv) return 'no-kv';
@@ -280,12 +287,14 @@ async function updateRPG(env) {
     if (items.has(date) || date < earliest || date > today) continue;
     items.set(date, it);
   }
-
-  const keep = [...items.values()].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, KEEP_DAYS);
-  const signature = keep.map((i) => `${i.date}${i.verseImage}${i.prayerImage}`).join('|');
+  const keep = [...items.values()]
+    .map(normalizeItem)
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .slice(0, KEEP_DAYS);
+  const signature = keep.map((i) => `${i.date}${i.verseImageUrl}${i.prayerImageUrl}`).join('|');
   const prevSig = (prev?.items || [])
     .slice(0, KEEP_DAYS)
-    .map((i) => `${i.date}${i.verseImage}${i.prayerImage}`)
+    .map((i) => `${i.date}${i.verseImageUrl}${i.prayerImageUrl}`)
     .join('|');
 
   if (prev && signature === prevSig && keep.length) {
