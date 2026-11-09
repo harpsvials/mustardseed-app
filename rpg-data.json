@@ -1,9 +1,20 @@
 {
-  "updated": "2026-11-09 06:58",
-  "updatedLabel": "2026年11月9日 06:58",
+  "updated": "2026-11-10 06:28",
+  "updatedLabel": "2026年11月10日 06:28",
   "sourceUrl": "https://www.rpg-move.tw/category/rpg-daily/",
   "keepDays": 7,
   "items": [
+    {
+      "date": "2026-11-10",
+      "dateLabel": "2026年11月10日",
+      "weekday": "星期二",
+      "verseImage": "daily_20261110-1.jpg",
+      "verseImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261110-1.jpg",
+      "prayerImage": "daily_20261110-2.jpg",
+      "prayerImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261110-2.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1110/",
+      "title": "每日经文1110 - RPG复兴祷告总动员"
+    },
     {
       "date": "2026-11-09",
       "dateLabel": "2026年11月9日",
@@ -69,17 +80,6 @@
       "prayerImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261104-2.jpg",
       "sourceUrl": "https://www.rpg-move.tw/daily1104/",
       "title": "每日经文1104 - RPG复兴祷告总动员"
-    },
-    {
-      "date": "2026-11-03",
-      "dateLabel": "2026年11月3日",
-      "weekday": "星期二",
-      "verseImage": "daily_20261103-1.jpg",
-      "verseImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261103-1.jpg",
-      "prayerImage": "daily_20261103-2.jpg",
-      "prayerImageUrl": "https://harpsvials.github.io/mustardseed-app/images/rpg/daily_20261103-2.jpg",
-      "sourceUrl": "https://www.rpg-move.tw/daily1103/",
-      "title": "每日经文1103 - RPG复兴祷告总动员"
     }
   ]
 }

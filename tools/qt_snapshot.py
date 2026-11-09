@@ -84,15 +84,27 @@ def parse(lines: list[str]) -> dict:
     if not date:
         raise ValueError("找不到日期行")
 
+    def is_noise(ln: str) -> bool:
+        """原页用「★」「-->」这类纯符号行做分隔，不能当成正文。"""
+        s = ln.strip()
+        if not s:
+            return True
+        if s in ("-->", "—>", "->"):
+            return True
+        # 去掉符号与空白后什么都不剩，就是分隔行
+        return not re.sub(r"[★☆·•●○◆◇※\-–—_=~～\s]+", "", s)
+
     def after(marker: str, stop: list[str], max_lines: int = 4) -> list[str]:
         for i, ln in enumerate(lines):
             if marker in ln:
                 # 同一行可能跟着内容，例如「今天的主題 悲慘的審判」
                 tail = ln.split(marker, 1)[1].strip(" ★：:")
-                out = [tail] if tail else []
+                out = [tail] if tail and not is_noise(tail) else []
                 for nxt in lines[i + 1 :]:
                     if any(s in nxt for s in stop):
                         break
+                    if is_noise(nxt):
+                        continue
                     out.append(nxt)
                     if len(out) >= max_lines:
                         break
@@ -136,6 +148,11 @@ def main() -> int:
     tpe = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8)))
     data["updated"] = tpe.strftime("%Y-%m-%d %H:%M")
     data["updatedLabel"] = f"{tpe.year}年{tpe.month}月{tpe.day}日 {tpe:%H:%M}"
+
+    # 对方站点还没换当天内容时，不要拿昨天的数据冒充今天，留给下一次定时重试
+    if data["date"] != tpe.date().isoformat():
+        print(f"对方站点仍是 {data['dateLabel']}，尚未更新到今天，本次不写入", file=sys.stderr)
+        return 0
 
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"已写入 {OUT.name}：{data['dateLabel']} · {data['topic']} · {data['reading']}")
