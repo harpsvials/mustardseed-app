@@ -13,10 +13,9 @@ class Notice {
 
 /// notice.json 拉取：每次打开 App 强制推送，不失效
 class NoticeFetcher {
+  // 走自己域名的 /api/data：静态路径会被 Cloudflare 验证拦成 403，/api/* 不受影响
   static const _sources = [
-    'https://harpsvials.github.io/mustardseed-app/notice.json',
-    'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/notice.json',
-    'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/notice.json',
+    'https://www.zhuzhouchurch.com/api/data?f=notice.json',
   ];
 
   // 云端不可达时的内置兜底消息，保证每次打开都强制推送、消息不失效

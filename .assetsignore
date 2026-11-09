@@ -11,3 +11,9 @@ _backup/
 _shots/
 .DS_Store
 *.apk
+# Flutter 工程目录（含 build/、符号包等大文件，网站不需要）
+app/
+_apk/
+tools/
+# wrangler 本地缓存与临时目录：绝不能作为静态资源上传
+.wrangler/

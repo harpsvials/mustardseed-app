@@ -48,10 +48,11 @@ class QtData {
     return '$dateLabel$tail';
   }
 
+  // 只走自己域名的 /api/data：静态路径会被 Cloudflare 托管验证拦成 403，
+  // 但走 Worker 路由的 /api/* 不受验证影响（网页与 App 同源，免 CORS）。
+  // 不用 jsDelivr / raw：国内网络这两个域名会被重置或长时间打不开。
   static const _sources = [
-    'https://harpsvials.github.io/mustardseed-app/qt-data.json',
-    'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/qt-data.json',
-    'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/qt-data.json',
+    'https://www.zhuzhouchurch.com/api/data?f=qt-data.json',
   ];
 
   /// 依次尝试各源，全部失败返回 null
@@ -719,10 +720,22 @@ class RpgItem {
 
   /// 优先清单里的绝对地址；缺失时按读取源拼相对路径
   String verseFor(String base) =>
-      verseImageUrl.isNotEmpty ? verseImageUrl : '${base}images/rpg/$verseImage';
+      _abs(verseImageUrl.isNotEmpty ? verseImageUrl : '${base}images/rpg/$verseImage');
 
   String prayerFor(String base) =>
-      prayerImageUrl.isNotEmpty ? prayerImageUrl : '${base}images/rpg/$prayerImage';
+      _abs(prayerImageUrl.isNotEmpty ? prayerImageUrl : '${base}images/rpg/$prayerImage');
+
+  /// 清单里的图片地址可能还写着旧基址（github.io / jsDelivr），
+  /// 统一截到 images/ 之后的相对路径，改走 /api/asset 取图。
+  static const _assetBase = 'https://www.zhuzhouchurch.com/api/asset?p=';
+
+  static String _abs(String url) {
+    final i = url.indexOf('images/');
+    if (i >= 0) return _assetBase + url.substring(i);
+    final j = url.indexOf('mp3/');
+    if (j >= 0) return _assetBase + url.substring(j);
+    return url;
+  }
 }
 
 /// RPG 每日经文清单：与网站同源，读 rpg-data.json（Actions 每日抓取、只留 7 天）
@@ -737,10 +750,9 @@ class RpgData {
     required this.base,
   });
 
+  // 同 QtData：只走自己域名的 /api/data
   static const _sources = [
-    'https://harpsvials.github.io/mustardseed-app/rpg-data.json',
-    'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/rpg-data.json',
-    'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/rpg-data.json',
+    'https://www.zhuzhouchurch.com/api/data?f=rpg-data.json',
   ];
 
   /// 依次尝试各源，全部失败或清单为空返回 null

@@ -23,9 +23,7 @@ class MusicTracks {
       sub: '芥菜种教会',
       asset: 'music/Alleluia.mp3',
       urls: [
-        'https://harpsvials.github.io/mustardseed-app/mp3/Alleluia.mp3',
-        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/Alleluia.mp3',
-        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/Alleluia.mp3',
+        'https://www.zhuzhouchurch.com/api/asset?p=mp3/Alleluia.mp3',
       ],
     ),
     Track(
@@ -33,9 +31,7 @@ class MusicTracks {
       sub: '芥菜种教会',
       asset: 'music/Healing In Your Presence.mp3',
       urls: [
-        'https://harpsvials.github.io/mustardseed-app/mp3/Healing%20In%20Your%20Presence.mp3',
-        'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/mp3/Healing%20In%20Your%20Presence.mp3',
-        'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/mp3/Healing%20In%20Your%20Presence.mp3',
+        'https://www.zhuzhouchurch.com/api/asset?p=mp3/Healing%20In%20Your%20Presence.mp3',
       ],
     ),
   ];

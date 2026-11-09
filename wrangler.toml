@@ -19,3 +19,6 @@ database_id = "bc917a54-3971-44e9-bc76-4bc5794db0d1"
 [assets]
 directory = "./"
 not_found_handling = "404-page"
+# 暴露 ASSETS 绑定：/api/data、/api/asset 需要它转发静态文件
+# （App 走静态路径会被 Cloudflare 托管验证拦成 403，走 /api 才通）
+binding = "ASSETS"

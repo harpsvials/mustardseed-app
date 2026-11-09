@@ -210,6 +210,19 @@ export default {
       if (request.method === 'POST') return addPrayer(request, env);
       return json({ ok: false, error: 'method-not-allowed' }, 405);
     }
+    // —— App 取数/取图接口 ——
+    // 背景：站点绑自定义域名后，静态文件会命中 Cloudflare 托管验证（challenge），
+    // 浏览器能过、App（Dart http）拿不到；而走 Worker 路由的 /api/* 不受验证影响。
+    // 所以把 App 需要的 JSON、图片、音频通过 /api 转发，App 与网页同源读取。
+    //   GET /api/data?f=qt-data.json      → 白名单内的 JSON
+    //   GET /api/asset?p=images/rpg/x.jpg → images/ 与 mp3/ 下的静态资源
+    if (url.pathname === '/api/data' || url.pathname === '/api/asset') {
+      if (request.method !== 'GET' && request.method !== 'HEAD') {
+        return json({ ok: false, error: 'method-not-allowed' }, 405);
+      }
+      return proxyAsset(request, env, url);
+    }
+
     if (url.pathname.startsWith('/api/')) {
       return json({ ok: false, error: 'not-found' }, 404);
     }
@@ -377,4 +390,68 @@ function json(data, status) {
       'Access-Control-Allow-Origin': '*'
     }
   });
+}
+
+// —— /api/data、/api/asset 的白名单与转发 ——
+// 只放行 App 真正需要的文件，避免变成任意文件代理
+const API_DATA_FILES = [
+  'qt-data.json',
+  'rpg-data.json',
+  'notice.json',
+  'version.json',
+  'appdata/appdata.json'
+];
+const API_ASSET_PREFIXES = ['images/', 'mp3/'];
+// 直接回源 GitHub main 分支：每日抓取一提交，App 立刻能读到最新；
+// 不再依赖部署时打包进去的静态快照（那份只有部署当天是新的）。
+const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/';
+
+async function proxyAsset(request, env, url) {
+  let path = '';
+  if (url.pathname === '/api/data') {
+    const f = (url.searchParams.get('f') || '').trim().replace(/^\/+/, '');
+    if (!API_DATA_FILES.includes(f)) return json({ ok: false, error: 'forbidden' }, 403);
+    path = f;
+  } else {
+    const p = (url.searchParams.get('p') || '').trim().replace(/^\/+/, '');
+    if (!p || p.includes('..')) return json({ ok: false, error: 'forbidden' }, 403);
+    if (!API_ASSET_PREFIXES.some((pre) => p.startsWith(pre))) {
+      return json({ ok: false, error: 'forbidden' }, 403);
+    }
+    path = p;
+  }
+
+  const isAsset = path.startsWith('images/') || path.startsWith('mp3/');
+  const ttl = isAsset ? 86400 : 300;
+
+  let res = null;
+  try {
+    res = await fetch(GITHUB_RAW_BASE + path, {
+      headers: { 'User-Agent': 'mustardseed-app-worker' },
+      cf: { cacheEverything: true, cacheTtl: ttl }
+    });
+  } catch (_) {}
+
+  // 回源失败时退回 Worker 自带的静态快照，保证接口不会整个挂掉
+  if (!res || !res.ok) {
+    if (env.ASSETS && typeof env.ASSETS.fetch === 'function') {
+      try {
+        res = await env.ASSETS.fetch(new URL('/' + path, url.origin));
+      } catch (_) {}
+    }
+  }
+  if (!res || !res.ok) {
+    return json({ ok: false, error: 'not-found' }, 404);
+  }
+
+  const headers = new Headers();
+  const type = res.headers.get('Content-Type') ||
+    (path.endsWith('.json') ? 'application/json; charset=utf-8' :
+      path.endsWith('.jpg') ? 'image/jpeg' :
+        path.endsWith('.png') ? 'image/png' :
+          path.endsWith('.mp3') ? 'audio/mpeg' : 'application/octet-stream');
+  headers.set('Content-Type', type);
+  headers.set('Access-Control-Allow-Origin', '*');
+  headers.set('Cache-Control', 'public, max-age=' + ttl);
+  return new Response(res.body, { status: 200, headers });
 }

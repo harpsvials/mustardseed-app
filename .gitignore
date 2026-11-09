@@ -11,3 +11,6 @@ _backup/
 newapp/
 *.log
 assets/logo_darkbg_backup.png
+
+# wrangler 本地缓存（含账号信息，绝不入库）
+.wrangler/

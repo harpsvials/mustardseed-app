@@ -82,12 +82,11 @@ class AppData {
     return AppData.fromJson(jsonDecode(s) as Map<String, dynamic>);
   }
 
-  /// 从 GitHub 拉取最新内容；失败返回 null（调用方回退内置）
+  /// 从服务器拉取最新内容；失败返回 null（调用方回退内置）
+  /// 走自己域名的 /api/data：静态路径会被 Cloudflare 验证拦成 403，/api/* 不受影响
   static Future<AppData?> fetchRemote() async {
     const sources = [
-      'https://harpsvials.github.io/mustardseed-app/appdata/appdata.json',
-      'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/appdata/appdata.json',
-      'https://cdn.jsdelivr.net/gh/harpsvials/mustardseed-app@main/appdata/appdata.json',
+      'https://www.zhuzhouchurch.com/api/data?f=appdata/appdata.json',
     ];
     for (final url in sources) {
       try {
