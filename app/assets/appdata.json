@@ -4946,6 +4946,34 @@
     "topics": [
       {
         "label": {
+          "zh": "关于 AI",
+          "en": "About AI"
+        },
+        "q": {
+          "zh": "你使用过 AI 吗？你认为 AI 最有用的是什么？",
+          "en": "Have you ever used AI? What do you think is the most useful thing about AI?"
+        },
+        "prompt": {
+          "zh": "工具是中性的，关键在用它的人，为什么要用、怎么用。",
+          "en": "The tool is neutral; what matters is who uses it—and why, and how."
+        }
+      },
+      {
+        "label": {
+          "zh": "关于 AI 与末世",
+          "en": "AI and the Last Days"
+        },
+        "q": {
+          "zh": "你认为未来的兽会不会是以 AI 智能体的形式出现？基督徒应该怎么面对 AI 带来的挑战。",
+          "en": "Do you think the coming “beast” could appear in the form of AI agents? How should Christians face the challenges that AI brings?"
+        },
+        "prompt": {
+          "zh": "技术会更新，掌权的仍是那位不改变的主。",
+          "en": "Technology is updated; the Lord who reigns does not change."
+        }
+      },
+      {
+        "label": {
           "zh": "关于管教",
           "en": "On Discipline"
         },
