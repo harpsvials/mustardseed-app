@@ -4946,6 +4946,34 @@
     "topics": [
       {
         "label": {
+          "zh": "关于门徒",
+          "en": "About discipleship"
+        },
+        "q": {
+          "zh": "你是否愿意委身在教会跟随耶稣的话语，成为耶稣基督的门徒？如果你愿意，你有什么方面需要调整的吗？",
+          "en": "Are you willing to commit yourself in the church, following Jesus' words, and become a disciple of Jesus Christ? If you are willing, what areas in your life need adjusting?"
+        },
+        "prompt": {
+          "zh": "门徒不是头衔，是每天都重新跟上去的选择。",
+          "en": "Discipleship is not a title; it is the choice to follow again each day."
+        }
+      },
+      {
+        "label": {
+          "zh": "关于传福音",
+          "en": "About evangelism"
+        },
+        "q": {
+          "zh": "耶稣要求教会传福音和教导人成为祂的门徒，对此你有什么想法吗？你想要向谁传福音，你觉得自己要怎样做？",
+          "en": "Jesus asked the church to preach the gospel and teach people to become His disciples—what do you think about that? Who would you like to share the gospel with, and how do you think you should do it?"
+        },
+        "prompt": {
+          "zh": "福音先是传给人听，再是陪人走成门徒。",
+          "en": "The gospel reaches ears first, then walks with people until they become disciples."
+        }
+      },
+      {
+        "label": {
           "zh": "关于 AI",
           "en": "About AI"
         },
