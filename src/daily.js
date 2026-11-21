@@ -10,9 +10,15 @@ const UA =
   'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
 
 const QT_URL = 'https://www.duranno.tw/livinglife/index.php/daily';
+// CGN 中文台「活潑的生命」官方播放列表：每天一集，前一日 23:00（北京）发布，
+// 标题带 8 位日期，描述里有「主題」「經文」两行。2026-11 起 duranno 站点维护，
+// 该列表成为主源，duranno 退为备源。
+const YT_PLAYLIST_ID = 'PLUkEOfQnxIpEMVHWNpAh5LWxQJB1vZcOh';
+const YT_RSS = `https://www.youtube.com/feeds/videos.xml?playlist_id=${YT_PLAYLIST_ID}`;
 const RPG_CATEGORY = 'https://www.rpg-move.tw/category/rpg-daily/';
 const RPG_UPLOAD = 'https://www.rpg-move.tw/wp-content/uploads/';
-const SITE = 'https://www.zhuzhouchurch.com';
+// 图片绝对地址走 workers.dev 预览域：www 域对非浏览器请求会返回 CF 挑战页（403）
+const ASSET_BASE = 'https://mustardseed.harps-vials.workers.dev';
 const KEEP_DAYS = 7;
 const WEEKDAYS = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
 
@@ -143,17 +149,107 @@ function parseQT(lines) {
   };
 }
 
+// —— YouTube 播放列表解析 ——
+function decodeXml(s) {
+  return decodeEntities(s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1'));
+}
+
+function parseYTFeed(xml) {
+  const out = [];
+  for (const m of xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)) {
+    const e = m[1];
+    out.push({
+      id: (e.match(/<yt:videoId>([^<]*)<\/yt:videoId>/) || [])[1] || '',
+      title: decodeXml((e.match(/<title[^>]*>([\s\S]*?)<\/title>/) || [])[1] || ''),
+      published: (e.match(/<published>([^<]*)<\/published>/) || [])[1] || '',
+      desc: decodeXml((e.match(/<media:description[^>]*>([\s\S]*?)<\/media:description>/) || [])[1] || '')
+    });
+  }
+  return out;
+}
+
+// 标题里的 8 位日期优先，其次描述里的「2026年11月12日」
+function pickYTEntry(entries, date) {
+  const want = date.replace(/-/g, '');
+  for (const e of entries) {
+    const m = e.title.match(/20\d{6}/);
+    if (m && m[0] === want) return e;
+  }
+  for (const e of entries) {
+    const m = e.desc.match(/(\d{4})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日/);
+    if (m && `${m[1]}-${pad(m[2])}-${pad(m[3])}` === date) return e;
+  }
+  return null;
+}
+
+function normalizeReading(s) {
+  return simplify(s)
+    .replace(/\s+/g, '')
+    .replace(/:/g, '：')
+    .replace(/[~〜–—]/g, '～');
+}
+
+function parseYTVideo(entry, date) {
+  const d = new Date(date + 'T00:00:00Z');
+
+  // 描述里「-主題 ：公平與公義 如江河般湧流的生活」
+  let topic = '';
+  const mt = entry.desc.match(/主\s*題\s*[：:]\s*(.+)/);
+  if (mt) topic = tidy(mt[1]);
+  if (!topic) {
+    topic = tidy(entry.title.replace(/^\[[^\]]*\]\s*/, '').replace(/20\d{6}\s*/, '').replace(/\([^)]*\)\s*$/, ''));
+  }
+
+  // 描述里「-經文 ：阿摩司書 5:18~27」，退而取标题末尾括号
+  let reading = '';
+  const mr = entry.desc.match(/經\s*文\s*[：:]\s*(.+)/);
+  if (mr) reading = normalizeReading(mr[1]);
+  if (!reading) {
+    const pr = entry.title.match(/\(([^)]+)\)\s*$/);
+    if (pr) reading = normalizeReading(pr[1]);
+  }
+
+  return {
+    date,
+    dateLabel: `${d.getUTCFullYear()}年${d.getUTCMonth() + 1}月${d.getUTCDate()}日`,
+    weekday: WEEKDAYS[d.getUTCDay() === 0 ? 6 : d.getUTCDay() - 1],
+    topic,
+    subtitle: '',
+    reading,
+    sourceUrl: `https://www.youtube.com/watch?v=${entry.id}`,
+    sourceName: simplify('CGN中文台·活潑的生命')
+  };
+}
+
 async function updateQT(env) {
   const kv = env.MUSTARDSEED_DATA;
   if (!kv) return 'no-kv';
-  let data;
+  const today = tpeDate();
+  let data = null;
+  let note = '';
+
+  // 主源：CGN 中文台 YouTube 播放列表（RSS，无需 key）
   try {
-    data = parseQT(toLines(await fetchText(QT_URL)));
+    const entries = parseYTFeed(await fetchText(YT_RSS));
+    const hit = pickYTEntry(entries, today);
+    if (hit) data = parseYTVideo(hit, today);
+    else note = `yt 无 ${today}（最新 ${entries[0]?.title.slice(0, 28) || '空'}）`;
   } catch (e) {
-    return `qt-fail: ${e.message}`;
+    note = `yt-fail ${e.message}`;
   }
-  // 对方站点还没换当天内容时，不写入，留给下个时间点重试
-  if (data.date !== tpeDate()) return `qt-skip: 站点仍是 ${data.date}`;
+
+  // 备源：duranno 每日页（站点维护期间多半仍是旧日期，命中当天才用）
+  if (!data) {
+    try {
+      const d = parseQT(toLines(await fetchText(QT_URL)));
+      if (d.date === today) data = d;
+      else note += ` | duranno 仍是 ${d.date}`;
+    } catch (e) {
+      note += ` | duranno-fail ${e.message}`;
+    }
+  }
+
+  if (!data || !data.topic) return `qt-skip: ${note || '当天内容为空'}`;
 
   const prevRaw = await kv.get('qt-data.json');
   if (prevRaw) {
@@ -173,7 +269,7 @@ async function updateQT(env) {
   data.updated = tpeStamp();
   data.updatedLabel = tpeLabel();
   await kv.put('qt-data.json', JSON.stringify(data, null, 2) + '\n');
-  return `qt-ok: ${data.dateLabel} ${data.topic}`;
+  return `qt-ok: ${data.dateLabel} ${data.topic}｜${data.reading}`;
 }
 
 function parseRPGPost(url, html) {
@@ -207,8 +303,8 @@ function parseRPGPost(url, html) {
 
 // 图片一律指向站内 /api/asset：App 与网页都走同域，不依赖 github.io
 function normalizeItem(it) {
-  if (it.verseImage) it.verseImageUrl = `${SITE}/api/asset?p=images/rpg/${it.verseImage}`;
-  if (it.prayerImage) it.prayerImageUrl = `${SITE}/api/asset?p=images/rpg/${it.prayerImage}`;
+  if (it.verseImage) it.verseImageUrl = `${ASSET_BASE}/api/asset?p=images/rpg/${it.verseImage}`;
+  if (it.prayerImage) it.prayerImageUrl = `${ASSET_BASE}/api/asset?p=images/rpg/${it.prayerImage}`;
   return it;
 }
 
@@ -269,7 +365,7 @@ async function updateRPG(env) {
       if (buf && buf.byteLength >= 15000) {
         await kv.put(`images/rpg/${verseName}`, buf, { metadata: { contentType: 'image/jpeg' } });
         item.verseImage = verseName;
-        item.verseImageUrl = `${SITE}/api/asset?p=images/rpg/${verseName}`;
+        item.verseImageUrl = `${ASSET_BASE}/api/asset?p=images/rpg/${verseName}`;
         break;
       }
     }
@@ -277,7 +373,7 @@ async function updateRPG(env) {
     if (pb && pb.byteLength >= 15000) {
       await kv.put(`images/rpg/${prayerName}`, pb, { metadata: { contentType: 'image/jpeg' } });
       item.prayerImage = prayerName;
-      item.prayerImageUrl = `${SITE}/api/asset?p=images/rpg/${prayerName}`;
+      item.prayerImageUrl = `${ASSET_BASE}/api/asset?p=images/rpg/${prayerName}`;
     }
     if (item.verseImage || item.prayerImage) items.set(parsed.date, item);
   }
@@ -333,3 +429,6 @@ export async function updateDaily(env) {
   const results = await Promise.allSettled([updateQT(env), updateRPG(env)]);
   return results.map((r) => (r.status === 'fulfilled' ? r.value : `error: ${r.reason}`));
 }
+
+// 仅供本地解析测试使用（Worker 运行时不引用）
+export const __internal = { parseYTFeed, pickYTEntry, parseYTVideo, normalizeReading, parseQT };
