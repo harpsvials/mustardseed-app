@@ -486,10 +486,13 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
   try{ rpgBoot = JSON.parse(document.getElementById('rpg-boot').textContent); }catch(e){}
 
   function rpgImageSrc(it){
-    return it.prayerImageUrl || it.imageUrl || ('images/rpg/' + (it.prayerImage || it.image));
+    // 优先用本站同源路径：外链（GitHub Pages）会 301 回本站域名，图片请求容易被拦成 403
+    if(it.prayerImage || it.image) return 'images/rpg/' + (it.prayerImage || it.image);
+    return it.prayerImageUrl || it.imageUrl || '';
   }
   function rpgVerseSrc(it){
-    return it.verseImageUrl || (it.verseImage ? 'images/rpg/' + it.verseImage : '');
+    if(it.verseImage) return 'images/rpg/' + it.verseImage;
+    return it.verseImageUrl || '';
   }
 
   function setRpgMain(it, btn){
