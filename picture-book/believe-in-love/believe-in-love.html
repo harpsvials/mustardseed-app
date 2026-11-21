@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>相信有爱就有奇迹 · 绘本</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23F6E7F0'/%3E%3Cpath d='M32 14 L38 27 L52 28 L41 36 L45 50 L32 42 L19 50 L23 36 L12 28 L26 27 Z' fill='%23C79AD8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&amp;display=swap">
+<style>
+/* ===== 基础（375px 手机优先） ===== */
+:root{
+  --paper:#FFF9EF;        /* 页面底 米白 */
+  --card:#FFFDF8;         /* 卡片 暖白 */
+  --ink:#4A3B52;          /* 主文字 深紫棕 */
+  --ink-soft:#7A6B82;     /* 次文字 */
+  --rose:#D98AA8;         /* 粉 */
+  --rose-soft:#F6E1EC;    /* 粉浅 */
+  --violet:#9B7FD4;       /* 紫 */
+  --violet-soft:#EAE2F7;  /* 紫浅 */
+  --gold:#C99A52;         /* 金棕 */
+  --line:#EEDFC8;         /* 边框 */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+  line-height:1.85;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(900px 420px at 8% -6%, rgba(214,160,203,.16), transparent 62%),
+    radial-gradient(820px 400px at 96% 4%, rgba(155,127,212,.13), transparent 60%),
+    radial-gradient(700px 460px at 50% 108%, rgba(201,154,82,.10), transparent 65%);
+  background-attachment:fixed;
+}
+/* ===== 页头 ===== */
+header.site-head{
+  text-align:center;
+  padding:56px 20px 30px;
+}
+header.site-head .kicker{
+  font-size:13px;
+  letter-spacing:.5em;
+  color:var(--violet);
+  margin-bottom:14px;
+  text-indent:.5em;
+}
+header.site-head h1{
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:.06em;
+  color:var(--ink);
+  text-shadow:0 2px 0 rgba(255,255,255,.6);
+}
+header.site-head h1 .hl{
+  color:var(--rose);
+}
+header.site-head .sub{
+  margin-top:12px;
+  font-size:15px;
+  color:var(--ink-soft);
+  line-height:2;
+}
+header.site-head .rule{
+  width:96px;height:2px;
+  margin:22px auto 0;
+  background:linear-gradient(90deg,var(--rose),var(--violet),var(--gold));
+  border-radius:2px;
+  opacity:.7;
+}
+/* ===== 主内容 ===== */
+main{
+  max-width:720px;
+  margin:0 auto;
+  padding:8px 16px 0;
+}
+article.page{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  margin:22px 0;
+  box-shadow:0 2px 14px rgba(122,92,60,.06);
+}
+article.page figure{
+  margin:0;
+  background:#F3EDE3;
+}
+article.page figure img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+article.page .words{
+  padding:18px 20px 20px;
+  border-top:1px dashed var(--line);
+  background:linear-gradient(180deg,#FFFDF8, #FFFBEF);
+}
+article.page .words p{
+  font-size:17px;
+  line-height:1.9;
+}
+article.page .words p.main{
+  font-size:19px;
+  font-weight:700;
+  color:var(--ink);
+}
+article.page .words p.main + p.main{
+  margin-top:6px;
+}
+article.page .words p.sub{
+  color:var(--ink-soft);
+  font-size:15.5px;
+  margin-top:8px;
+}
+article.page .words p.prayer{
+  font-size:15.5px;
+  color:var(--ink-soft);
+  margin-top:8px;
+  text-align:left;
+  padding-left:10px;
+  border-left:2px solid var(--violet-soft);
+}
+article.page .words .verse{
+  display:inline-block;
+  font-size:13px;
+  letter-spacing:.35em;
+  color:var(--gold);
+  margin-top:14px;
+  text-indent:.35em;
+}
+/* 封面与尾页特殊版式 */
+article.page.cover,
+article.page.closing{
+  background:linear-gradient(160deg,#FDF3F8, #F6ECFA 55%, #FDF7EA);
+  border-color:#F0D9E5;
+}
+article.page.cover .words,
+article.page.closing .words{
+  background:transparent;
+  border-top:none;
+  padding-top:16px;
+}
+article.page.cover .words p.main{
+  font-size:26px;
+  text-align:center;
+}
+article.page.cover .words p.sub{
+  text-align:center;
+}
+article.page.closing .words p.main{
+  font-size:20px;
+  text-align:center;
+}
+article.page.closing .words p.sub{
+  text-align:center;
+}
+article.page.closing .words p.prayer{
+  border-left:none;
+  padding-left:0;
+  text-align:center;
+  font-size:15px;
+}
+/* 页码 */
+.page .page-mark{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 20px 0;
+  font-size:12px;
+  letter-spacing:.25em;
+  color:var(--gold);
+}
+.page .page-mark .dot{
+  flex:1;
+  height:1px;
+  background:var(--line);
+  margin:0 12px;
+}
+/* ===== 页脚 ===== */
+footer.site-foot{
+  margin-top:34px;
+  padding:40px 20px 48px;
+  text-align:center;
+  background:
+    radial-gradient(520px 200px at 50% 0%, rgba(246,225,236,.6), transparent 70%);
+  border-top:1px solid var(--line);
+}
+footer.site-foot .heart{
+  font-size:12px;
+  letter-spacing:.5em;
+  color:var(--rose);
+  text-indent:.5em;
+}
+footer.site-foot p.bless{
+  margin-top:10px;
+  font-size:18px;
+  font-weight:700;
+  color:var(--ink);
+}
+footer.site-foot p.src{
+  margin-top:8px;
+  font-size:13px;
+  color:var(--ink-soft);
+  line-height:1.9;
+}
+footer.site-foot .foot-rule{
+  width:64px;height:2px;
+  margin:18px auto 0;
+  background:linear-gradient(90deg,var(--gold),var(--rose),var(--violet));
+  opacity:.55;
+}
+/* ===== 桌面扩展 ===== */
+@media (min-width:768px){
+  body{font-size:18px}
+  header.site-head{padding:84px 24px 44px}
+  header.site-head h1{font-size:46px}
+  header.site-head .sub{font-size:16px}
+  main{padding:10px 24px 0}
+  article.page{margin:30px 0;border-radius:22px}
+  article.page .words{padding:24px 34px 28px}
+  article.page .words p{font-size:18px}
+  article.page .words p.main{font-size:21px}
+  article.page.cover .words p.main{font-size:32px}
+  article.page.closing .words p.main{font-size:23px}
+  footer.site-foot{padding:52px 24px 56px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="kicker">真实的故事 · 爱的绘本</div>
+  <h1>相信有爱<span class="hl">就有</span>奇迹</h1>
+  <p class="sub">真实的故事，献给那些忍耐、等候、盼望的人</p>
+  <div class="rule"></div>
+</header>
+
+<main>
+  <!-- 第 1 页：封面 -->
+  <article class="page cover">
+    <figure><img src="images/p01.jpg" alt="封面：相信有爱就有奇迹，柔和光芒与云朵"></figure>
+    <div class="words">
+      <p class="main">相信有爱就有奇迹</p>
+      <p class="sub">真实的故事，献给那些忍耐等候盼望的人</p>
+    </div>
+  </article>
+
+  <!-- 第 2 页 -->
+  <article class="page">
+    <div class="page-mark"><span>02</span><span class="dot"></span><span>一家四口</span></div>
+    <figure><img src="images/p02.jpg" alt="一家四口的温馨合影插画"></figure>
+    <div class="words">
+      <p class="main">我们是一家四口</p>
+      <p class="sub">爸爸和妈妈、哥哥和弟弟，日子简单而平凡</p>
+    </div>
+  </article>
+
+  <!-- 第 3 页 -->
+  <article class="page">
+    <div class="page-mark"><span>03</span><span class="dot"></span><span>变故</span></div>
+    <figure><img src="images/p03.jpg" alt="居家场景中妈妈面露忧虑，爸爸安慰"></figure>
+    <div class="words">
+      <p class="main">突然有一天，妈妈的身体出现一个肿块</p>
+    </div>
+  </article>
+
+  <!-- 第 4 页 -->
+  <article class="page">
+    <div class="page-mark"><span>04</span><span class="dot"></span><span>祷告</span></div>
+    <figure><img src="images/p04.jpg" alt="女子双手合十在草地上仰望天空祷告"></figure>
+    <div class="words">
+      <p class="main">刚开始我们以为是炎症引起的肿块</p>
+      <p class="main">爸爸在祷告中，似乎听见上帝说要医治妈妈</p>
+    </div>
+  </article>
+
+  <!-- 第 5 页 -->
+  <article class="page">
+    <div class="page-mark"><span>05</span><span class="dot"></span><span>检查结果</span></div>
+    <figure><img src="images/p05.jpg" alt="水墨病历单据背景，确诊乳腺癌中期"></figure>
+    <div class="words">
+      <p class="main">后来，检查结果出来了</p>
+      <p class="main">乳腺癌浸润导管癌</p>
+      <p class="main">中期</p>
+    </div>
+  </article>
+
+  <!-- 第 6 页 -->
+  <article class="page">
+    <div class="page-mark"><span>06</span><span class="dot"></span><span>化疗</span></div>
+    <figure><img src="images/p06.jpg" alt="暗色调中，妈妈被黑色带状物缠绕，神情低落"></figure>
+    <div class="words">
+      <p class="main">紧接着的化疗让妈妈的身体不堪重负</p>
+    </div>
+  </article>
+
+  <!-- 第 7 页 -->
+  <article class="page">
+    <div class="page-mark"><span>07</span><span class="dot"></span><span>乌云</span></div>
+    <figure><img src="images/p07.jpg" alt="暗黑藏蓝乌云纹理，压抑氛围"></figure>
+    <div class="words">
+      <p class="main">痛苦和压力如乌云般袭来</p>
+    </div>
+  </article>
+
+  <!-- 第 8 页 -->
+  <article class="page">
+    <div class="page-mark"><span>08</span><span class="dot"></span><span>忙乱</span></div>
+    <figure><img src="images/p08.jpg" alt="黑紫灰水彩晕染，混乱压抑的纹理"></figure>
+    <div class="words">
+      <p class="main">在忙乱中我们几乎忘记了神医治的话语</p>
+    </div>
+  </article>
+
+  <!-- 第 9 页 -->
+  <article class="page">
+    <div class="page-mark"><span>09</span><span class="dot"></span><span>前夜</span></div>
+    <figure><img src="images/p09.jpg" alt="深蓝淡紫晕染纹理，沉郁氛围"></figure>
+    <div class="words">
+      <p class="main">第四次化疗的前夜，我们为第二天的化疗祈祷</p>
+    </div>
+  </article>
+
+  <!-- 第 10 页 -->
+  <article class="page">
+    <div class="page-mark"><span>10</span><span class="dot"></span><span>异象</span></div>
+    <figure><img src="images/p10.jpg" alt="紫蓝云雾中一头灰色的狼，神态凶狠"></figure>
+    <div class="words">
+      <p class="main">在祷告中爸爸看见一头灰色的狼在撕咬妈妈的身体</p>
+    </div>
+  </article>
+
+  <!-- 第 11 页 -->
+  <article class="page">
+    <div class="page-mark"><span>11</span><span class="dot"></span><span>决定</span></div>
+    <figure><img src="images/p11.jpg" alt="左冷右暖分镜：医生警示与温馨的一家四口"></figure>
+    <div class="words">
+      <p class="main">在我们决定和医生沟通停下化疗</p>
+      <p class="main">医生说，这样百分百会死。</p>
+    </div>
+  </article>
+
+  <!-- 第 12 页 -->
+  <article class="page">
+    <div class="page-mark"><span>12</span><span class="dot"></span><span>信心</span></div>
+    <figure><img src="images/p12.jpg" alt="一家四口依偎望向金色光束，白鸽飞翔"></figure>
+    <div class="words">
+      <p class="main">我们不相信人说的没有百分百，</p>
+      <p class="main">我们选择上帝是医治我们的神</p>
+    </div>
+  </article>
+
+  <!-- 第 13 页 -->
+  <article class="page">
+    <div class="page-mark"><span>13</span><span class="dot"></span><span>陪伴</span></div>
+    <figure><img src="images/p13.jpg" alt="居家场景，怀孕的妈妈与两个孩子依偎，爸爸在身后"></figure>
+    <div class="words">
+      <p class="main">那段时间我们拒绝许多人的探望</p>
+      <p class="main">我们更多和教会的朋友一起祷告和赞美</p>
+    </div>
+  </article>
+
+  <!-- 第 14 页 -->
+  <article class="page">
+    <div class="page-mark"><span>14</span><span class="dot"></span><span>同心</span></div>
+    <figure><img src="images/p14.jpg" alt="一家人手牵手围成圈，暖黄光晕环绕，外围灰暗人影"></figure>
+    <div class="words">
+      <p class="main">那段时间我们拒绝许多人的探望</p>
+      <p class="main">我们更多和教会的朋友一起祷告和赞美</p>
+    </div>
+  </article>
+
+  <!-- 第 15 页 -->
+  <article class="page">
+    <div class="page-mark"><span>15</span><span class="dot"></span><span>相信</span></div>
+    <figure><img src="images/p15.jpg" alt="一家四口，母亲仰望光芒，父亲轻拥，孩子依偎身侧"></figure>
+    <div class="words">
+      <p class="main">停下化疗后，癌症期间的疼痛还会来袭</p>
+      <p class="main">我们选择相信神已经医治了</p>
+    </div>
+  </article>
+
+  <!-- 第 16 页 -->
+  <article class="page">
+    <div class="page-mark"><span>16</span><span class="dot"></span><span>旅程</span></div>
+    <figure><img src="images/p16.jpg" alt="一家四口手牵手走在蜿蜒道路上，望向远方的日出"></figure>
+    <div class="words">
+      <p class="main">这是一个信心旅程</p>
+      <p class="main">即使在疼痛中，也选择相信上帝是医治自己的上帝</p>
+    </div>
+  </article>
+
+  <!-- 第 17 页 -->
+  <article class="page">
+    <div class="page-mark"><span>17</span><span class="dot"></span><span>陪伴</span></div>
+    <figure><img src="images/p17.jpg" alt="温馨居家场景，怀孕的妈妈读书，爸爸俯身，两个孩子依偎"></figure>
+    <div class="words">
+      <p class="main">爸爸和两个可爱的孩子一直陪伴着妈妈</p>
+    </div>
+  </article>
+
+  <!-- 第 18 页 -->
+  <article class="page">
+    <div class="page-mark"><span>18</span><span class="dot"></span><span>鼓励</span></div>
+    <figure><img src="images/p18.jpg" alt="女子坐在窗边阅读书籍，音符曲线环绕，光洒入室内"></figure>
+    <div class="words">
+      <p class="main">有时候，也会缺乏信心</p>
+      <p class="main">医治的经文和祷告，</p>
+      <p class="main">给我们很大的鼓励</p>
+    </div>
+  </article>
+
+  <!-- 第 19 页 -->
+  <article class="page">
+    <div class="page-mark"><span>19</span><span class="dot"></span><span>痊愈</span></div>
+    <figure><img src="images/p19.jpg" alt="粉色连衣裙女孩张开双臂站在花丛草地中，花瓣飞舞"></figure>
+    <div class="words">
+      <p class="main">后来，我们发现肿瘤完全消失不见了</p>
+    </div>
+  </article>
+
+  <!-- 第 20 页 -->
+  <article class="page">
+    <div class="page-mark"><span>20</span><span class="dot"></span><span>健康</span></div>
+    <figure><img src="images/p20.jpg" alt="一家四口在林间小路牵手漫步，蓝天白云花草葱郁"></figure>
+    <div class="words">
+      <p class="main">2021年发现肿瘤到现在，</p>
+      <p class="main">妈妈身体一直都很健康</p>
+    </div>
+  </article>
+
+  <!-- 第 21 页 -->
+  <article class="page closing">
+    <figure><img src="images/p21.jpg" alt="一家四口依偎，暖色粉黄渐变光晕"></figure>
+    <div class="words">
+      <p class="main">我们写下这个故事，是想要告诉您，当你失去盼望的时候</p>
+      <p class="main">还有一位上帝爱你，能够帮助你</p>
+    </div>
+  </article>
+
+  <!-- 第 22 页：祷告 -->
+  <article class="page closing">
+    <figure><img src="images/p22.jpg" alt="云朵金光中十字架与向上伸展的双手"></figure>
+    <div class="words">
+      <p class="main">如果你愿意接受耶稣的祝福，请和我一起祷告：</p>
+      <p class="prayer">“主耶稣啊！我需要你。感谢为我的罪死在十字架上。我愿意打开心门接受你作我的救主和生命的主。感谢你赦免我的罪并赐给我永生，求你管理我的一生，使我成为你所喜悦的人。奉主耶稣的名祷告，阿们。”</p>
+      <span class="verse">奉主耶稣的名 · 阿们</span>
+    </div>
+  </article>
+</main>
+
+<footer class="site-foot">
+  <div class="heart">相 信 有 爱 就 有 奇 迹</div>
+  <p class="bless">愿爱与盼望，常与你同在</p>
+  <p class="src">真实的故事 · 献给那些忍耐等候盼望的人<br>本页面为绘本电子版，文字可在源码中修改</p>
+  <div class="foot-rule"></div>
+</footer>
+
+</body>
+</html>
