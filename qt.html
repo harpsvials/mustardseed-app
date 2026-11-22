@@ -485,13 +485,16 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
   var rpgBoot = {};
   try{ rpgBoot = JSON.parse(document.getElementById('rpg-boot').textContent); }catch(e){}
 
+  // 图片统一走 /api/asset：先读 KV（当天抓图就存在这里），再回源仓库静态快照。
+  // 直接写 images/rpg/<文件名> 只对已提交进仓库的图有效，新抓的图会 404。
+  function rpgAsset(file){ return '/api/asset?p=images/rpg/' + file; }
   function rpgImageSrc(it){
-    // 优先用本站同源路径：外链（GitHub Pages）会 301 回本站域名，图片请求容易被拦成 403
-    if(it.prayerImage || it.image) return 'images/rpg/' + (it.prayerImage || it.image);
+    var f = it.prayerImage || it.image;
+    if(f) return rpgAsset(f);
     return it.prayerImageUrl || it.imageUrl || '';
   }
   function rpgVerseSrc(it){
-    if(it.verseImage) return 'images/rpg/' + it.verseImage;
+    if(it.verseImage) return rpgAsset(it.verseImage);
     return it.verseImageUrl || '';
   }
 
@@ -499,10 +502,6 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
     if(!it) return;
     var img = document.getElementById('rpgMainImg');
     if(img){
-      var prayerFile = it.prayerImage || it.image;
-      img.onerror = function(){
-        if(prayerFile && img.src.indexOf('/images/rpg/') < 0) img.src = 'images/rpg/' + prayerFile;
-      };
       img.src = rpgImageSrc(it);
       img.alt = 'RPG 每日经文卡片 ' + (it.dateLabel || '') + ' 默想与祷告';
     }
@@ -511,9 +510,6 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
     var verseSrc = rpgVerseSrc(it);
     if(verseFig) verseFig.style.display = verseSrc ? '' : 'none';
     if(verseImg && verseSrc){
-      verseImg.onerror = function(){
-        if(it.verseImage && verseImg.src.indexOf('/images/rpg/') < 0) verseImg.src = 'images/rpg/' + it.verseImage;
-      };
       verseImg.src = verseSrc;
       verseImg.alt = 'RPG 每日经文卡 ' + (it.dateLabel || '') + ' 经文';
     }
@@ -549,9 +545,6 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
         im.loading = 'lazy';
         im.src = rpgImageSrc(it);
         im.alt = '';
-        im.onerror = (function(ctx, el){
-          return function(){ if(el.src.indexOf('/images/rpg/') < 0) el.src = 'images/rpg/' + (ctx.prayerImage || ctx.image); };
-        })(it, im);
         var sp = document.createElement('span');
         sp.textContent = String(it.dateLabel || '').replace(/^\d{4}年/, '');
         b.appendChild(im);
