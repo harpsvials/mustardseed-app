@@ -29,8 +29,9 @@ class UpdateChecker {
   static Future<(String, String)?> check() async {
     final info = await PackageInfo.fromPlatform();
     final local = info.version;
-    // 多源依次尝试：GitHub API → raw → jsDelivr，任一成功即可
-    for (final src in [_repo, _rawVersion, _jsdelivrVersion]) {
+    // 多源依次尝试：自家域名的 version.json 优先（国内可达、响应快），
+    // 其次 jsDelivr 同源，最后才是 api.github.com（国内常被墙，放最后避免白等 10 秒）
+    for (final src in [_rawVersion, _jsdelivrVersion, _repo]) {
       try {
         final res = await http
             .get(
@@ -76,7 +77,12 @@ class UpdateChecker {
           apkUrl = data['apk']?.toString();
           pageUrl = data['url']?.toString();
         }
-        final url = (apkUrl ?? pageUrl ?? _fallback).toString();
+        // Android 一律改走自家域名的 /api/apk：GitHub Release 直链在国内只有几十 KB/s，
+        // 86 MB 的包在 5 分钟内下不完，会以「下载失败」告终。
+        var url = (apkUrl ?? pageUrl ?? _fallback).toString();
+        if (Platform.isAndroid) {
+          url = 'https://zhuzhouchurch.com/api/apk';
+        }
         return (tag, url);
       } catch (_) {
         // 该源失败，继续尝试下一个源
@@ -164,7 +170,7 @@ class UpdateChecker {
       final res = await http
           .get(Uri.parse(apkUrl),
               headers: {'User-Agent': 'mustardseed-app'})
-          .timeout(const Duration(minutes: 5));
+          .timeout(const Duration(minutes: 20));
       if (res.statusCode != 200) throw Exception('HTTP ${res.statusCode}');
       final file = await File(target).create(recursive: true);
       await file.writeAsBytes(res.bodyBytes, flush: true);
