@@ -491,7 +491,7 @@ class _QtPageState extends State<QtPage> {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 14, 20, 0),
           child: Text(
-            '仅摘录「今天的主题」与「经文范围」两行，全文与原页版权归推喇奴书房《活泼的生命》所有。',
+            '主题与经文范围摘自推喇奴书房《活泼的生命》；经文正文引自《中文英王钦定本》（ckjv.asia，CC BY-SA 3.0）。',
             style: TextStyle(
               fontSize: 12.5,
               height: 1.65,
