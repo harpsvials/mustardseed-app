@@ -414,7 +414,7 @@ const API_DATA_FILES = [
   'version.json',
   'appdata/appdata.json'
 ];
-const API_ASSET_PREFIXES = ['images/', 'mp3/'];
+const API_ASSET_PREFIXES = ['images/', 'mp3/', 'bible/'];
 // 直接回源 GitHub main 分支：每日抓取一提交，App 立刻能读到最新；
 // 不再依赖部署时打包进去的静态快照（那份只有部署当天是新的）。
 const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/';

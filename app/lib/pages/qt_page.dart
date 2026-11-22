@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../i18n.dart';
 import '../theme.dart';
+import '../services/bible_verses.dart';
 
 /// 今日灵修快照：与网站同源，读 qt-data.json（由 GitHub Actions 每日抓取生成）
 class QtData {
@@ -90,6 +91,7 @@ class QtPage extends StatefulWidget {
 class _QtPageState extends State<QtPage> {
   QtData? _data;
   RpgData? _rpg;
+  List<BibleVerse>? _verses;
   int _rpgIndex = 0;
   bool _loading = true;
 
@@ -102,10 +104,16 @@ class _QtPageState extends State<QtPage> {
   Future<void> _load() async {
     setState(() => _loading = true);
     final results = await Future.wait([QtData.fetch(), RpgData.fetch()]);
+    final data = results[0] as QtData?;
+    List<BibleVerse>? verses;
+    if (data != null && data.reading.isNotEmpty) {
+      verses = await BibleVerses.fetchFor(data.reading);
+    }
     if (!mounted) return;
     setState(() {
-      _data = results[0] as QtData?;
+      _data = data;
       _rpg = results[1] as RpgData?;
+      _verses = verses;
       _rpgIndex = 0;
       _loading = false;
     });
@@ -222,6 +230,81 @@ class _QtPageState extends State<QtPage> {
               foregroundColor: const Color(0xFF24301B),
             ),
             child: const Text('重新读取'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ── 今日经文正文（《中文英王钦定本》，CC BY-SA 3.0）──
+  Widget _versesCard(List<BibleVerse> verses) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(18, 16, 18, 14),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFBF7EE),
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(color: const Color(0x24223A29)),
+        boxShadow: const [
+          BoxShadow(color: Color(0x14000000), blurRadius: 10, offset: Offset(0, 4)),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                AppLocale.value == AppLocale.en ? 'TODAY\'S SCRIPTURE' : '今日经文',
+                style: const TextStyle(
+                  fontSize: 12.5,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 2,
+                  color: Color(0xFF5D7161),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(child: Container(height: 1, color: const Color(0x28223A29))),
+            ],
+          ),
+          const SizedBox(height: 12),
+          for (final v in verses)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 9),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 22,
+                    child: Text(
+                      '${v.n}',
+                      style: const TextStyle(
+                        fontSize: 11.5,
+                        fontWeight: FontWeight.w600,
+                        height: 1.95,
+                        color: Color(0xFF8A9A8C),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      v.text,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        height: 1.95,
+                        color: Color(0xFF2F3B31),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          const SizedBox(height: 6),
+          Container(height: 1, color: const Color(0x1A223A29)),
+          const SizedBox(height: 8),
+          const Text(
+            '经文引自《中文英王钦定本》· ckjv.asia · CC BY-SA 3.0',
+            style: TextStyle(fontSize: 11, height: 1.6, color: Color(0xFF8B978C)),
           ),
         ],
       ),
@@ -373,6 +456,10 @@ class _QtPageState extends State<QtPage> {
                   ),
                 ),
               ),
+              if (_verses != null && _verses!.isNotEmpty) ...[
+                const SizedBox(height: 18),
+                _versesCard(_verses!),
+              ],
               const SizedBox(height: 18),
               Divider(color: const Color(0x332A2313), height: 1),
               const SizedBox(height: 12),
