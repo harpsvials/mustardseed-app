@@ -9,6 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../i18n.dart';
 import '../theme.dart';
 import '../services/bible_verses.dart';
+import '../services/qt_reflection.dart';
 
 /// 今日灵修快照：与网站同源，读 qt-data.json（由 GitHub Actions 每日抓取生成）
 class QtData {
@@ -53,7 +54,7 @@ class QtData {
   // 但走 Worker 路由的 /api/* 不受验证影响（网页与 App 同源，免 CORS）。
   // 不用 jsDelivr / raw：国内网络这两个域名会被重置或长时间打不开。
   static const _sources = [
-    'https://www.zhuzhouchurch.com/api/data?f=qt-data.json',
+    'https://zhuzhouchurch.com/api/data?f=qt-data.json',
   ];
 
   /// 依次尝试各源，全部失败返回 null
@@ -92,6 +93,7 @@ class _QtPageState extends State<QtPage> {
   QtData? _data;
   RpgData? _rpg;
   List<BibleVerse>? _verses;
+  QtReflection? _reflection;
   int _rpgIndex = 0;
   bool _loading = true;
 
@@ -103,7 +105,11 @@ class _QtPageState extends State<QtPage> {
 
   Future<void> _load() async {
     setState(() => _loading = true);
-    final results = await Future.wait([QtData.fetch(), RpgData.fetch()]);
+    final results = await Future.wait([
+      QtData.fetch(),
+      RpgData.fetch(),
+      QtReflection.fetch(),
+    ]);
     final data = results[0] as QtData?;
     List<BibleVerse>? verses;
     if (data != null && data.reading.isNotEmpty) {
@@ -113,6 +119,7 @@ class _QtPageState extends State<QtPage> {
     setState(() {
       _data = data;
       _rpg = results[1] as RpgData?;
+      _reflection = results[2] as QtReflection?;
       _verses = verses;
       _rpgIndex = 0;
       _loading = false;
@@ -180,8 +187,8 @@ class _QtPageState extends State<QtPage> {
           const SizedBox(height: 6),
           Text(
             AppLocale.value == AppLocale.en
-                ? 'The Living Life today’s theme and reading in two stickers, then today’s RPG daily-verse cards — scripture and prayer.'
-                : '《活泼的生命》今日主题与经文范围两枚贴纸，再加 RPG 每日经文两张卡片：经文与默想祷告。',
+                ? 'Today’s theme and reading stickers, then the day’s scripture with reflection and a letter to God, then the RPG daily-verse cards.'
+                : '《活泼的生命》今日主题与经文范围两枚贴纸，下面是当日经文正文、默想与写给神的信，末尾是 RPG 每日经文两张卡片。',
             style: TextStyle(
               fontSize: 14,
               color: AppColors.creamDim,
@@ -305,6 +312,102 @@ class _QtPageState extends State<QtPage> {
           const Text(
             '经文引自《中文英王钦定本》· ckjv.asia · CC BY-SA 3.0',
             style: TextStyle(fontSize: 11, height: 1.6, color: Color(0xFF8B978C)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _cardHead(String label, {double topGap = 0}) {
+    return Padding(
+      padding: EdgeInsets.only(top: topGap),
+      child: Row(
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 12.5,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 2,
+              color: Color(0xFF5D7161),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(child: Container(height: 1, color: const Color(0x28223A29))),
+        ],
+      ),
+    );
+  }
+
+  // ── 默想与写给神的信（译自 Living Life · Today's QT）──
+  Widget _reflectionCard(QtReflection r) {
+    const body = TextStyle(fontSize: 15, height: 1.95, color: Color(0xFF2F3B31));
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(18, 16, 18, 14),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFBF7EE),
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(color: const Color(0x24223A29)),
+        boxShadow: const [
+          BoxShadow(color: Color(0x14000000), blurRadius: 10, offset: Offset(0, 4)),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _cardHead(AppLocale.value == AppLocale.en ? 'REFLECTION' : '默想'),
+          const SizedBox(height: 12),
+          for (final s in r.sections) ...[
+            if (s.heading.isNotEmpty) ...[
+              Text(
+                s.heading,
+                style: const TextStyle(
+                  fontSize: 15.5,
+                  height: 1.7,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF41563F),
+                ),
+              ),
+              const SizedBox(height: 6),
+            ],
+            for (final p in s.paragraphs) ...[
+              Text(p, style: body),
+              const SizedBox(height: 8),
+            ],
+            if (s.question.isNotEmpty) ...[
+              Container(height: 1, color: const Color(0x24223A29)),
+              const SizedBox(height: 9),
+              Text(
+                s.question,
+                style: const TextStyle(fontSize: 13.5, height: 1.85, color: Color(0xFF647567)),
+              ),
+            ],
+            const SizedBox(height: 12),
+          ],
+          if (r.letter.isNotEmpty) ...[
+            _cardHead(AppLocale.value == AppLocale.en ? 'LETTER TO GOD' : '写给神的信'),
+            const SizedBox(height: 8),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.fromLTRB(14, 12, 14, 11),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF5EEDC),
+                borderRadius: BorderRadius.circular(3),
+              ),
+              child: Text(
+                r.letter,
+                style: const TextStyle(fontSize: 15, height: 1.95, color: Color(0xFF3B4A37)),
+              ),
+            ),
+          ],
+          const SizedBox(height: 12),
+          Container(height: 1, color: const Color(0x1A223A29)),
+          const SizedBox(height: 8),
+          Text(
+            '默想与祷文译自 ${r.sourceLabel}'
+            '${r.titleLine.isEmpty ? '' : ' · ${r.titleLine}'} · 中文由本站翻译',
+            style: const TextStyle(fontSize: 11, height: 1.6, color: Color(0xFF8B978C)),
           ),
         ],
       ),
@@ -459,6 +562,12 @@ class _QtPageState extends State<QtPage> {
               if (_verses != null && _verses!.isNotEmpty) ...[
                 const SizedBox(height: 18),
                 _versesCard(_verses!),
+              ],
+              if (_reflection != null &&
+                  _reflection!.date.isNotEmpty &&
+                  _reflection!.date == d.date) ...[
+                const SizedBox(height: 12),
+                _reflectionCard(_reflection!),
               ],
               const SizedBox(height: 18),
               Divider(color: const Color(0x332A2313), height: 1),
@@ -814,7 +923,7 @@ class RpgItem {
 
   /// 清单里的图片地址可能还写着旧基址（github.io / jsDelivr），
   /// 统一截到 images/ 之后的相对路径，改走 /api/asset 取图。
-  static const _assetBase = 'https://www.zhuzhouchurch.com/api/asset?p=';
+  static const _assetBase = 'https://zhuzhouchurch.com/api/asset?p=';
 
   static String _abs(String url) {
     final i = url.indexOf('images/');
@@ -839,7 +948,7 @@ class RpgData {
 
   // 同 QtData：只走自己域名的 /api/data
   static const _sources = [
-    'https://www.zhuzhouchurch.com/api/data?f=rpg-data.json',
+    'https://zhuzhouchurch.com/api/data?f=rpg-data.json',
   ];
 
   /// 依次尝试各源，全部失败或清单为空返回 null

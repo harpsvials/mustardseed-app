@@ -86,7 +86,7 @@ class AppData {
   /// 走自己域名的 /api/data：静态路径会被 Cloudflare 验证拦成 403，/api/* 不受影响
   static Future<AppData?> fetchRemote() async {
     const sources = [
-      'https://www.zhuzhouchurch.com/api/data?f=appdata/appdata.json',
+      'https://zhuzhouchurch.com/api/data?f=appdata/appdata.json',
     ];
     for (final url in sources) {
       try {

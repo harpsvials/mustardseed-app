@@ -23,7 +23,7 @@ class MusicTracks {
       sub: '芥菜种教会',
       asset: 'music/Alleluia.mp3',
       urls: [
-        'https://www.zhuzhouchurch.com/api/asset?p=mp3/Alleluia.mp3',
+        'https://zhuzhouchurch.com/api/asset?p=mp3/Alleluia.mp3',
       ],
     ),
     Track(
@@ -31,7 +31,7 @@ class MusicTracks {
       sub: '芥菜种教会',
       asset: 'music/Healing In Your Presence.mp3',
       urls: [
-        'https://www.zhuzhouchurch.com/api/asset?p=mp3/Healing%20In%20Your%20Presence.mp3',
+        'https://zhuzhouchurch.com/api/asset?p=mp3/Healing%20In%20Your%20Presence.mp3',
       ],
     ),
   ];

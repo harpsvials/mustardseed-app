@@ -17,9 +17,9 @@ class UpdateChecker {
   // 弱网/国内网络下 api.github.com 不可达时的兜底源（version.json 由 CI 每次构建后自动更新）
   // 走自己域名的 /api/data：静态路径会被 Cloudflare 验证拦成 403，/api/* 不受影响
   static const _rawVersion =
-      'https://www.zhuzhouchurch.com/api/data?f=version.json';
+      'https://zhuzhouchurch.com/api/data?f=version.json';
   static const _jsdelivrVersion =
-      'https://www.zhuzhouchurch.com/api/data?f=version.json';
+      'https://zhuzhouchurch.com/api/data?f=version.json';
   static const _fallback =
       'https://github.com/harpsvials/mustardseed-app/releases/latest';
 

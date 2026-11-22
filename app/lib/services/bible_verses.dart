@@ -13,7 +13,7 @@ class BibleVerse {
 /// 经文库：/bible/ckjv/<书卷号>.json（《中文英王钦定本》，CC BY-SA 3.0）。
 /// 走 /api/asset 而不是静态路径——静态路径会被 Cloudflare 托管验证拦成 403。
 class BibleVerses {
-  static const _base = 'https://www.zhuzhouchurch.com/api/asset?p=bible/ckjv/';
+  static const _base = 'https://zhuzhouchurch.com/api/asset?p=bible/ckjv/';
   static Map<String, String>? _index;
   static final Map<String, Map<String, dynamic>> _books = {};
 
