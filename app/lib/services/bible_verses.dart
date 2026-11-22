@@ -52,7 +52,8 @@ class BibleVerses {
 
   /// 解析「哥林多后书1：15～24」这类经文范围
   static (String, int, int, int)? parseReading(String reading) {
-    final t = reading.replaceAll(RegExp(r'[０-９]'), (m) => String.fromCharCode(m.runes.first - 0xFEE0));
+    final t = reading.replaceAllMapped(
+        RegExp(r'[０-９]'), (m) => String.fromCharCode(m.group(0)!.runes.first - 0xFEE0));
     final m = RegExp(r'^([^0-9]+)(\d+)[:：](\d+)(?:\s*[～~\-－—]\s*(\d+))?').firstMatch(t);
     if (m == null) return null;
     final book = m.group(1)!.replaceAll(RegExp(r'\s+'), '');
