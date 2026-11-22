@@ -25,6 +25,10 @@ binding = "ASSETS"
 
 # 每日抓取的落点：Worker Cron 把当天的 qt-data.json / rpg-data.json 与图片写进 KV，
 # /api/data、/api/asset 优先读这里；GitHub 仅作为兜底与仓库留档。
+# Workers AI：每日把英文 QT 的默想/祷文译成简体中文（免费额度足够每天几次调用）
+[ai]
+binding = "AI"
+
 [[kv_namespaces]]
 binding = "MUSTARDSEED_DATA"
 id = "b92e503b9b294159a158a0be73144b8f"

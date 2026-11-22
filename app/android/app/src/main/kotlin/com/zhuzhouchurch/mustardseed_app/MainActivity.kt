@@ -25,10 +25,17 @@ class MainActivity : FlutterActivity() {
                             return@setMethodCallHandler
                         }
                         try {
-                            installApk(File(path))
-                            result.success(true)
+                            result.success(installApk(File(path)))
                         } catch (e: Exception) {
                             result.error("install_failed", e.message, null)
+                        }
+                    }
+                    "settings" -> {
+                        try {
+                            openInstallSettings()
+                            result.success(true)
+                        } catch (e: Exception) {
+                            result.error("settings_failed", e.message, null)
                         }
                     }
                     else -> result.notImplemented()
@@ -36,18 +43,15 @@ class MainActivity : FlutterActivity() {
             }
     }
 
-    private fun installApk(apk: File) {
-        // 未开启“安装未知应用”时先引导到系统设置
+    private fun installApk(apk: File): String {
+        if (!apk.exists() || apk.length() == 0L) {
+            throw IllegalStateException("apk missing: ${apk.absolutePath}")
+        }
+        // 未开启「安装未知应用」时不静默跳转，返回状态让 Flutter 弹窗说明、授权后重试
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
             !packageManager.canRequestPackageInstalls()
         ) {
-            val intent = Intent(
-                Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,
-                Uri.parse("package:$packageName")
-            )
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            return
+            return "need_permission"
         }
 
         val uri = FileProvider.getUriForFile(
@@ -61,5 +65,17 @@ class MainActivity : FlutterActivity() {
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
         startActivity(intent)
+        return "ok"
+    }
+
+    private fun openInstallSettings() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val intent = Intent(
+                Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,
+                Uri.parse("package:$packageName")
+            )
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }
     }
 }

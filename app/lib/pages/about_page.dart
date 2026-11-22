@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../i18n.dart';
 import '../data/app_data.dart';
+import '../services/update_checker.dart';
 
 class AboutPage extends StatelessWidget {
   final AppData data;
@@ -26,6 +27,7 @@ class AboutPage extends StatelessWidget {
         children: [
           for (final section in sections)
             _SectionCard(section: section),
+          const _UpdateCard(),
         ],
       ),
     );
@@ -88,6 +90,115 @@ class _SectionCard extends StatelessWidget {
                 ),
               ),
             ),
+        ],
+      ),
+    );
+  }
+}
+
+
+/// 版本与更新：显示本机版本 / 服务端最新版本，可手动检查并直接走应用内更新
+class _UpdateCard extends StatefulWidget {
+  const _UpdateCard();
+
+  @override
+  State<_UpdateCard> createState() => _UpdateCardState();
+}
+
+class _UpdateCardState extends State<_UpdateCard> {
+  bool _busy = true;
+  UpdateCheckInfo? _info;
+
+  @override
+  void initState() {
+    super.initState();
+    _probe();
+  }
+
+  Future<void> _probe() async {
+    setState(() => _busy = true);
+    final info = await UpdateChecker.probe();
+    if (!mounted) return;
+    setState(() {
+      _info = info;
+      _busy = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final info = _info;
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.bgCard,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.line),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            AppLocale.value == AppLocale.en ? 'Version' : '版本与更新',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: AppColors.mustard,
+              height: 1.3,
+            ),
+          ),
+          const SizedBox(height: 12),
+          _row('当前版本', info?.current.isNotEmpty == true ? info!.current : '读取中…'),
+          _row('最新版本', _busy ? '检查中…' : (info?.latest ?? '—')),
+          _row('状态', _busy ? '正在检查…' : (info?.summary ?? '')),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              OutlinedButton(
+                onPressed: _busy ? null : _probe,
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: AppColors.cream,
+                  side: BorderSide(color: AppColors.lineStrong),
+                ),
+                child: const Text('重新检查'),
+              ),
+              const SizedBox(width: 10),
+              if (info?.hasUpdate == true)
+                FilledButton(
+                  onPressed: () => UpdateChecker.showUpdateDialog(context, info!),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: AppColors.mustard,
+                    foregroundColor: const Color(0xFF24301B),
+                  ),
+                  child: const Text('立即更新'),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _row(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 6),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 84,
+            child: Text(
+              label,
+              style: TextStyle(fontSize: 14.5, color: AppColors.creamFaint),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: TextStyle(fontSize: 14.5, color: AppColors.cream, height: 1.5),
+            ),
+          ),
         ],
       ),
     );

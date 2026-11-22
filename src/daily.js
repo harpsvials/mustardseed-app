@@ -425,10 +425,293 @@ async function updateRPG(env) {
   return `rpg-ok: ${keep.length} 天，最新 ${keep[0]?.date || '无'}`;
 }
 
+// —— 英文 QT 的「默想 / 写给神的信」：抓当天英文页，用 Workers AI 译成简体中文 ——
+// 英文站内容由 reload_default1.asp 按服务器当天日期返回（默认页会被 CDN 缓存成旧日期）。
+const QT_EN_URL = 'https://www.duranno.com/livinglife/qt/reload_default1.asp';
+const QT_EN_PAGE = 'https://www.duranno.com/livinglife/qt/';
+// 先 Qwen（中文更自然），失败再退 Llama 3.3
+const AI_MODELS = ['@cf/qwen/qwen3.8-27b', '@cf/meta/llama-3.3-70b-instruct-fp8-fast'];
+// 译文规则改动时+1：KV 里旧版本会自动重译一次
+const REFLECTION_PROMPT_VERSION = 2;
+
+// 英文书卷名 → 中文（与 qt-data.json 的 reading 对齐，用来校验当天英文页与中文主题同章）
+const EN_BOOK_ZH = {
+  Genesis: '创世记', Exodus: '出埃及记', Leviticus: '利未记', Numbers: '民数记',
+  Deuteronomy: '申命记', Joshua: '约书亚记', Judges: '士师记', Ruth: '路得记',
+  '1 Samuel': '撒母耳记上', '2 Samuel': '撒母耳记下', '1 Kings': '列王纪上',
+  '2 Kings': '列王纪下', '1 Chronicles': '历代志上', '2 Chronicles': '历代志下',
+  Ezra: '以斯拉记', Nehemiah: '尼希米记', Esther: '以斯帖记', Job: '约伯记',
+  Psalms: '诗篇', Psalm: '诗篇', Proverbs: '箴言', Ecclesiastes: '传道书',
+  'Song of Songs': '雅歌', Isaiah: '以赛亚书', Jeremiah: '耶利米书',
+  Lamentations: '耶利米哀歌', Ezekiel: '以西结书', Daniel: '但以理书',
+  Hosea: '何西阿书', Joel: '约珥书', Amos: '阿摩司书', Obadiah: '俄巴底亚书',
+  Jonah: '约拿书', Micah: '弥迦书', Nahum: '那鸿书', Habakkuk: '哈巴谷书',
+  Zephaniah: '西番雅书', Haggai: '哈该书', Zechariah: '撒迦利亚书', Malachi: '玛拉基书',
+  Matthew: '马太福音', Mark: '马可福音', Luke: '路加福音', John: '约翰福音',
+  Acts: '使徒行传', Romans: '罗马书', '1 Corinthians': '哥林多前书',
+  '2 Corinthians': '哥林多后书', Galatians: '加拉太书', Ephesians: '以弗所书',
+  Philippians: '腓立比书', Colossians: '歌罗西书', '1 Thessalonians': '帖撒罗尼迦前书',
+  '2 Thessalonians': '帖撒罗尼迦后书', '1 Timothy': '提摩太前书',
+  '2 Timothy': '提摩太后书', Titus: '提多书', Philemon: '腓利门书',
+  Hebrews: '希伯来书', James: '雅各书', '1 Peter': '彼得前书', '2 Peter': '彼得后书',
+  '1 John': '约翰一书', '2 John': '约翰二书', '3 John': '约翰三书',
+  Jude: '犹大书', Revelation: '启示录'
+};
+
+function plainText(s) {
+  return decodeEntities(String(s).replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, ' '))
+    .replace(/\u00a0/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/// 从英文 QT 片段里取出标题、经文范围、默想分节与祷文
+function parseEnQT(html) {
+  const mDate = html.match(/videoNowDate\s*=\s*"(\d{4}-\d{2}-\d{2})"/);
+  const mTitle = html.match(/class="title"><a[^>]*>([\s\S]*?)<\/a>/);
+  const mRead = html.match(/class="sub_title">([\s\S]*?)<\/div>/);
+  if (!mDate || !mTitle || !mRead) throw new Error('en-qt-structure');
+
+  const iRefl = html.indexOf('<!-- Reflection-->');
+  const iLetter = html.indexOf('<!--  Letter to God -->');
+  const reflPart = iRefl >= 0 && iLetter > iRefl ? html.slice(iRefl, iLetter) : '';
+  const iLbl = html.indexOf('Letter to God');
+  const letterPart = iLbl >= 0 ? html.slice(iLbl) : '';
+
+  const mReflCon = reflPart.match(/<div class="con">([\s\S]*?)<\/div>/);
+  const mLetterCon = letterPart.match(/<div class="con"[^>]*>([\s\S]*?)<\/div>/);
+  if (!mReflCon || !mLetterCon) throw new Error('en-qt-content');
+
+  const blocks = mReflCon[1]
+    .split(/<br\s*\/?>\s*<br\s*\/?>/i)
+    .map(plainText)
+    .filter(Boolean);
+
+  const headingRe = /^(.{1,80}?)\s*\((\d+)\s*:\s*(\d+)\s*[–\-—~]\s*(\d+)\)$/;
+  const cueRe = /^(Think|Reflect|What|How|Consider|Do you|Have you|In what|Where|Why|When|Ask|Is there|Can you|Take a moment)/i;
+
+  const sections = [];
+  for (let i = 0; i < blocks.length; i++) {
+    const b = blocks[i];
+    const isHeading = headingRe.test(b) ||
+      (b.length <= 60 && !/[.?!]$/.test(b) && i + 1 < blocks.length && blocks[i + 1].length > b.length);
+    if (isHeading) {
+      sections.push({ heading: b, paragraphs: [], question: '' });
+      continue;
+    }
+    if (!sections.length) continue;
+    const cur = sections[sections.length - 1];
+    if ((cueRe.test(b) || b.endsWith('?')) && !cur.question) cur.question = b;
+    else cur.paragraphs.push(b);
+  }
+
+  const letter = plainText(mLetterCon[1].replace(/Amen\s*\(\d+\)/i, '')).trim();
+  const reflectionText = blocks.join(' ');
+
+  return {
+    date: mDate[1],
+    title: plainText(mTitle[1]),
+    reading: plainText(mRead[1]),
+    sections: sections.filter((s) => s.heading),
+    letter,
+    chars: reflectionText.length + letter.length
+  };
+}
+
+async function fetchEnQT() {
+  const res = await fetch(QT_EN_URL, {
+    method: 'POST',
+    headers: {
+      'User-Agent': UA,
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      'X-Requested-With': 'XMLHttpRequest',
+      Accept: 'text/html, */*; q=0.01'
+    },
+    body: 'OD=' + tpeDate().replace(/-/g, ''),
+    signal: AbortSignal.timeout(25000)
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return await res.text();
+}
+
+function pickAiText(r) {
+  if (!r) return '';
+  if (typeof r.response === 'string') return r.response;
+  const c = r.choices && r.choices[0];
+  if (c) {
+    if (typeof c.text === 'string') return c.text;
+    if (c.message && typeof c.message.content === 'string') return c.message.content;
+  }
+  return '';
+}
+
+function parseJsonLoose(text) {
+  let s = String(text || '').trim();
+  s = s.replace(/^```(?:json)?/i, '').replace(/```$/m, '').trim();
+  const i = s.indexOf('{');
+  const j = s.lastIndexOf('}');
+  if (i < 0 || j <= i) return null;
+  try {
+    return JSON.parse(s.slice(i, j + 1));
+  } catch (_) {
+    return null;
+  }
+}
+
+// 统一中文里的经文章节写法：(2:1–4) → （2：1～4）
+function normalizeZhRef(s) {
+  return String(s || '')
+    .replace(/\((\d+)\s*:\s*(\d+)\s*[–\-—~～]\s*(\d+)\)/g, '（$1：$2～$3）')
+    .replace(/\((\d+)\s*:\s*(\d+)\)/g, '（$1：$2）')
+    .replace(/\s+（/g, '（')
+    .replace(/\s+([，。；：？！）])/g, '$1')
+    .replace(/\s{2,}/g, ' ')
+    .replace(/祢/g, '你')
+    .trim();
+}
+
+async function translateReflection(env, en) {
+  const payload = {
+    title: en.title,
+    sections: en.sections.map((s) => ({
+      heading: s.heading,
+      paragraphs: s.paragraphs,
+      question: s.question
+    })),
+    letter: en.letter
+  };
+  const system =
+    '你是专业的英文到简体中文译者，翻译基督教灵修文字：忠于原意、语气庄重、通顺自然，避免直译腔。' +
+    '用词按本站习惯：God→神，Lord→主，prayer→祷告（不写「祈祷」），forgive→赦免，repent→悔改，' +
+    'church→教会，Spirit→圣灵，grace→恩典，salvation→救恩，reconciliation→和好，' +
+    'speak the truth in love→用爱心说诚实话，remember→记得（不写「记念」），opportunity→机会（不写「契机」）。' +
+    '称呼神时用「你」，不用「祢」。标题要像中文书标题，不要逐词硬译。只输出 JSON。';
+  const user =
+    '把下面的英文灵修材料翻译成简体中文，只输出一个 JSON，字段与输入一致：' +
+    'title、sections[{heading,paragraphs,question}]、letter；不要解释、不要代码块、不要额外文字。' +
+    '小标题里的经文章节括号照原样保留；某节没有问题就把 question 留空字符串。\n\n' +
+    JSON.stringify(payload, null, 1);
+
+  for (const model of AI_MODELS) {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        const r = await env.AI.run(model, {
+          messages: [
+            { role: 'system', content: system },
+            { role: 'user', content: user }
+          ],
+          max_tokens: 1600,
+          chat_template_kwargs: { enable_thinking: false }
+        });
+        const obj = parseJsonLoose(pickAiText(r));
+        if (!obj || !Array.isArray(obj.sections)) continue;
+        if (obj.sections.length !== payload.sections.length) continue;
+        const sections = payload.sections.map((src, i) => {
+          const t = obj.sections[i] || {};
+          return {
+            heading: normalizeZhRef(t.heading || src.heading),
+            paragraphs: (Array.isArray(t.paragraphs) ? t.paragraphs : [])
+              .map((p) => String(p).replace(/\s+/g, ' ').trim())
+              .filter(Boolean),
+            question: normalizeZhRef(t.question || '')
+          };
+        });
+        if (sections.some((s) => !s.paragraphs.length)) continue;
+        return {
+          title: normalizeZhRef(obj.title || ''),
+          sections,
+          letter: String(obj.letter || '').replace(/\s+/g, ' ').trim(),
+          model
+        };
+      } catch (_) {}
+    }
+  }
+  throw new Error('translate-failed');
+}
+
+async function updateReflection(env) {
+  const kv = env.MUSTARDSEED_DATA;
+  if (!kv) return 'reflection: no-kv';
+  if (!env.AI || typeof env.AI.run !== 'function') return 'reflection: no-ai';
+
+  const today = tpeDate();
+  let qt = null;
+  try {
+    const raw = await kv.get('qt-data.json', 'text');
+    if (raw) qt = JSON.parse(raw);
+  } catch (_) {}
+  if (!qt || !qt.reading) return 'reflection: qt-missing';
+
+  let en;
+  try {
+    en = parseEnQT(await fetchEnQT());
+  } catch (e) {
+    return `reflection-skip: en-fail ${e.message}`;
+  }
+  if (en.date !== today) return `reflection-skip: en 仍是 ${en.date}`;
+  if (!en.sections.length || !en.letter) return 'reflection-skip: en 内容为空';
+
+  // 英文页与中文主题必须同章，否则宁可不写（避免「哥林多后书」配「阿摩司书」的默想）
+  const enM = en.reading.match(/^(.*?)\s*(\d+)\s*:\s*(\d+)/);
+  const zhM = String(qt.reading).match(/^(.+?)(\d+)[：:](\d+)/);
+  if (enM && zhM) {
+    const enBook = EN_BOOK_ZH[enM[1].trim()];
+    if (!enBook || enBook !== zhM[1].trim() || Number(enM[2]) !== Number(zhM[2])) {
+      return `reflection-skip: 不同章（en ${en.reading} / zh ${qt.reading}）`;
+    }
+  }
+
+  let prev = null;
+  try {
+    prev = JSON.parse(await kv.get('qt-reflection.json', 'text'));
+  } catch (_) {}
+  if (
+    prev &&
+    prev.date === today &&
+    prev.sourceTitle === en.title &&
+    prev.enChars === en.chars &&
+    prev.promptVersion === REFLECTION_PROMPT_VERSION
+  ) {
+    return 'reflection-unchanged';
+  }
+
+  let zh;
+  try {
+    zh = await translateReflection(env, en);
+  } catch (e) {
+    return `reflection-skip: ${e.message}`;
+  }
+
+  const data = {
+    date: today,
+    dateLabel: tpeLabelDate(today),
+    title: zh.title || '',
+    titleEn: en.title,
+    sourceUrl: QT_EN_PAGE,
+    sourceLabel: "Living Life · Today's QT",
+    sourceReading: en.reading,
+    reflection: zh.sections,
+    letter: zh.letter,
+    updated: tpeStamp(),
+    updatedLabel: tpeLabel(),
+    model: zh.model,
+    promptVersion: REFLECTION_PROMPT_VERSION
+  };
+  await kv.put('qt-reflection.json', JSON.stringify(data, null, 2) + '\n');
+  return `reflection-ok: ${today} ${zh.sections.length} 段｜${zh.model}`;
+}
+
+function tpeLabelDate(ymd) {
+  const [y, m, d] = String(ymd).split('-').map(Number);
+  return `${y}年${m}月${d}日`;
+}
+
 export async function updateDaily(env) {
-  const results = await Promise.allSettled([updateQT(env), updateRPG(env)]);
-  return results.map((r) => (r.status === 'fulfilled' ? r.value : `error: ${r.reason}`));
+  const qt = await updateQT(env);
+  const results = await Promise.allSettled([updateRPG(env), updateReflection(env)]);
+  const tails = results.map((r) => (r.status === 'fulfilled' ? r.value : `error: ${r.reason}`));
+  return [qt, ...tails];
 }
 
 // 仅供本地解析测试使用（Worker 运行时不引用）
-export const __internal = { parseYTFeed, pickYTEntry, parseYTVideo, normalizeReading, parseQT };
+export const __internal = { parseYTFeed, pickYTEntry, parseYTVideo, normalizeReading, parseQT, parseEnQT };
