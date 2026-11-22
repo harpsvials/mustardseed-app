@@ -1,0 +1,817 @@
+{
+ "version": "中文英王钦定本",
+ "source": "https://www.ckjv.asia",
+ "license": "CC BY-SA 3.0",
+ "books": {
+  "创世记": {
+   "n": 1,
+   "file": "01.json",
+   "chapters": 50,
+   "verses": 1533
+  },
+  "出埃及记": {
+   "n": 2,
+   "file": "02.json",
+   "chapters": 40,
+   "verses": 1213
+  },
+  "利未记": {
+   "n": 3,
+   "file": "03.json",
+   "chapters": 27,
+   "verses": 859
+  },
+  "民数记": {
+   "n": 4,
+   "file": "04.json",
+   "chapters": 36,
+   "verses": 1288
+  },
+  "申命记": {
+   "n": 5,
+   "file": "05.json",
+   "chapters": 34,
+   "verses": 959
+  },
+  "约书亚记": {
+   "n": 6,
+   "file": "06.json",
+   "chapters": 24,
+   "verses": 658
+  },
+  "士师记": {
+   "n": 7,
+   "file": "07.json",
+   "chapters": 21,
+   "verses": 618
+  },
+  "路得记": {
+   "n": 8,
+   "file": "08.json",
+   "chapters": 4,
+   "verses": 85
+  },
+  "撒母耳记上": {
+   "n": 9,
+   "file": "09.json",
+   "chapters": 31,
+   "verses": 810
+  },
+  "撒母耳记下": {
+   "n": 10,
+   "file": "10.json",
+   "chapters": 24,
+   "verses": 695
+  },
+  "列王纪上": {
+   "n": 11,
+   "file": "11.json",
+   "chapters": 22,
+   "verses": 816
+  },
+  "列王纪下": {
+   "n": 12,
+   "file": "12.json",
+   "chapters": 25,
+   "verses": 719
+  },
+  "历代志上": {
+   "n": 13,
+   "file": "13.json",
+   "chapters": 29,
+   "verses": 942
+  },
+  "历代志下": {
+   "n": 14,
+   "file": "14.json",
+   "chapters": 36,
+   "verses": 822
+  },
+  "以斯拉记": {
+   "n": 15,
+   "file": "15.json",
+   "chapters": 10,
+   "verses": 280
+  },
+  "尼希米记": {
+   "n": 16,
+   "file": "16.json",
+   "chapters": 13,
+   "verses": 406
+  },
+  "以斯帖记": {
+   "n": 17,
+   "file": "17.json",
+   "chapters": 10,
+   "verses": 167
+  },
+  "约伯记": {
+   "n": 18,
+   "file": "18.json",
+   "chapters": 42,
+   "verses": 1070
+  },
+  "诗篇": {
+   "n": 19,
+   "file": "19.json",
+   "chapters": 150,
+   "verses": 2461
+  },
+  "箴言": {
+   "n": 20,
+   "file": "20.json",
+   "chapters": 31,
+   "verses": 915
+  },
+  "传道书": {
+   "n": 21,
+   "file": "21.json",
+   "chapters": 12,
+   "verses": 222
+  },
+  "雅歌": {
+   "n": 22,
+   "file": "22.json",
+   "chapters": 8,
+   "verses": 117
+  },
+  "以赛亚书": {
+   "n": 23,
+   "file": "23.json",
+   "chapters": 66,
+   "verses": 1292
+  },
+  "耶利米书": {
+   "n": 24,
+   "file": "24.json",
+   "chapters": 52,
+   "verses": 1364
+  },
+  "耶利米哀歌": {
+   "n": 25,
+   "file": "25.json",
+   "chapters": 5,
+   "verses": 154
+  },
+  "以西结书": {
+   "n": 26,
+   "file": "26.json",
+   "chapters": 48,
+   "verses": 1273
+  },
+  "但以理书": {
+   "n": 27,
+   "file": "27.json",
+   "chapters": 12,
+   "verses": 357
+  },
+  "何西阿书": {
+   "n": 28,
+   "file": "28.json",
+   "chapters": 14,
+   "verses": 197
+  },
+  "约珥书": {
+   "n": 29,
+   "file": "29.json",
+   "chapters": 3,
+   "verses": 73
+  },
+  "阿摩司书": {
+   "n": 30,
+   "file": "30.json",
+   "chapters": 9,
+   "verses": 146
+  },
+  "俄巴底亚书": {
+   "n": 31,
+   "file": "31.json",
+   "chapters": 1,
+   "verses": 21
+  },
+  "约拿书": {
+   "n": 32,
+   "file": "32.json",
+   "chapters": 4,
+   "verses": 48
+  },
+  "弥迦书": {
+   "n": 33,
+   "file": "33.json",
+   "chapters": 7,
+   "verses": 105
+  },
+  "那鸿书": {
+   "n": 34,
+   "file": "34.json",
+   "chapters": 3,
+   "verses": 47
+  },
+  "哈巴谷书": {
+   "n": 35,
+   "file": "35.json",
+   "chapters": 3,
+   "verses": 56
+  },
+  "西番雅书": {
+   "n": 36,
+   "file": "36.json",
+   "chapters": 3,
+   "verses": 53
+  },
+  "哈该书": {
+   "n": 37,
+   "file": "37.json",
+   "chapters": 2,
+   "verses": 38
+  },
+  "撒迦利亚书": {
+   "n": 38,
+   "file": "38.json",
+   "chapters": 14,
+   "verses": 211
+  },
+  "玛拉基书": {
+   "n": 39,
+   "file": "39.json",
+   "chapters": 4,
+   "verses": 55
+  },
+  "马太福音": {
+   "n": 40,
+   "file": "40.json",
+   "chapters": 28,
+   "verses": 1071
+  },
+  "马可福音": {
+   "n": 41,
+   "file": "41.json",
+   "chapters": 16,
+   "verses": 678
+  },
+  "路加福音": {
+   "n": 42,
+   "file": "42.json",
+   "chapters": 24,
+   "verses": 1151
+  },
+  "约翰福音": {
+   "n": 43,
+   "file": "43.json",
+   "chapters": 21,
+   "verses": 879
+  },
+  "使徒行传": {
+   "n": 44,
+   "file": "44.json",
+   "chapters": 28,
+   "verses": 1007
+  },
+  "罗马书": {
+   "n": 45,
+   "file": "45.json",
+   "chapters": 16,
+   "verses": 433
+  },
+  "哥林多前书": {
+   "n": 46,
+   "file": "46.json",
+   "chapters": 16,
+   "verses": 437
+  },
+  "哥林多后书": {
+   "n": 47,
+   "file": "47.json",
+   "chapters": 13,
+   "verses": 257
+  },
+  "加拉太书": {
+   "n": 48,
+   "file": "48.json",
+   "chapters": 6,
+   "verses": 149
+  },
+  "以弗所书": {
+   "n": 49,
+   "file": "49.json",
+   "chapters": 6,
+   "verses": 155
+  },
+  "腓立比书": {
+   "n": 50,
+   "file": "50.json",
+   "chapters": 4,
+   "verses": 104
+  },
+  "歌罗西书": {
+   "n": 51,
+   "file": "51.json",
+   "chapters": 4,
+   "verses": 95
+  },
+  "帖撒罗尼迦前书": {
+   "n": 52,
+   "file": "52.json",
+   "chapters": 5,
+   "verses": 89
+  },
+  "帖撒罗尼迦后书": {
+   "n": 53,
+   "file": "53.json",
+   "chapters": 3,
+   "verses": 47
+  },
+  "提摩太前书": {
+   "n": 54,
+   "file": "54.json",
+   "chapters": 6,
+   "verses": 113
+  },
+  "提摩太后书": {
+   "n": 55,
+   "file": "55.json",
+   "chapters": 4,
+   "verses": 83
+  },
+  "提多书": {
+   "n": 56,
+   "file": "56.json",
+   "chapters": 3,
+   "verses": 46
+  },
+  "腓利门书": {
+   "n": 57,
+   "file": "57.json",
+   "chapters": 1,
+   "verses": 25
+  },
+  "希伯来书": {
+   "n": 58,
+   "file": "58.json",
+   "chapters": 13,
+   "verses": 303
+  },
+  "雅各书": {
+   "n": 59,
+   "file": "59.json",
+   "chapters": 5,
+   "verses": 108
+  },
+  "彼得前书": {
+   "n": 60,
+   "file": "60.json",
+   "chapters": 5,
+   "verses": 105
+  },
+  "彼得后书": {
+   "n": 61,
+   "file": "61.json",
+   "chapters": 3,
+   "verses": 61
+  },
+  "约翰一书": {
+   "n": 62,
+   "file": "62.json",
+   "chapters": 5,
+   "verses": 105
+  },
+  "约翰二书": {
+   "n": 63,
+   "file": "63.json",
+   "chapters": 1,
+   "verses": 13
+  },
+  "约翰三书": {
+   "n": 64,
+   "file": "64.json",
+   "chapters": 1,
+   "verses": 14
+  },
+  "犹大书": {
+   "n": 65,
+   "file": "65.json",
+   "chapters": 1,
+   "verses": 25
+  },
+  "启示录": {
+   "n": 66,
+   "file": "66.json",
+   "chapters": 22,
+   "verses": 404
+  },
+  "林前": {
+   "n": 46,
+   "file": "46.json",
+   "chapters": 16,
+   "verses": 437
+  },
+  "林后": {
+   "n": 47,
+   "file": "47.json",
+   "chapters": 13,
+   "verses": 257
+  },
+  "林後": {
+   "n": 47,
+   "file": "47.json",
+   "chapters": 13,
+   "verses": 257
+  },
+  "帖前": {
+   "n": 52,
+   "file": "52.json",
+   "chapters": 5,
+   "verses": 89
+  },
+  "帖后": {
+   "n": 53,
+   "file": "53.json",
+   "chapters": 3,
+   "verses": 47
+  },
+  "帖後": {
+   "n": 53,
+   "file": "53.json",
+   "chapters": 3,
+   "verses": 47
+  },
+  "提前": {
+   "n": 54,
+   "file": "54.json",
+   "chapters": 6,
+   "verses": 113
+  },
+  "提后": {
+   "n": 55,
+   "file": "55.json",
+   "chapters": 4,
+   "verses": 83
+  },
+  "提後": {
+   "n": 55,
+   "file": "55.json",
+   "chapters": 4,
+   "verses": 83
+  },
+  "彼前": {
+   "n": 60,
+   "file": "60.json",
+   "chapters": 5,
+   "verses": 105
+  },
+  "彼后": {
+   "n": 61,
+   "file": "61.json",
+   "chapters": 3,
+   "verses": 61
+  },
+  "彼後": {
+   "n": 61,
+   "file": "61.json",
+   "chapters": 3,
+   "verses": 61
+  },
+  "约一": {
+   "n": 62,
+   "file": "62.json",
+   "chapters": 5,
+   "verses": 105
+  },
+  "约二": {
+   "n": 63,
+   "file": "63.json",
+   "chapters": 1,
+   "verses": 13
+  },
+  "约三": {
+   "n": 64,
+   "file": "64.json",
+   "chapters": 1,
+   "verses": 14
+  },
+  "撒上": {
+   "n": 9,
+   "file": "09.json",
+   "chapters": 31,
+   "verses": 810
+  },
+  "撒下": {
+   "n": 10,
+   "file": "10.json",
+   "chapters": 24,
+   "verses": 695
+  },
+  "王上": {
+   "n": 11,
+   "file": "11.json",
+   "chapters": 22,
+   "verses": 816
+  },
+  "王下": {
+   "n": 12,
+   "file": "12.json",
+   "chapters": 25,
+   "verses": 719
+  },
+  "代上": {
+   "n": 13,
+   "file": "13.json",
+   "chapters": 29,
+   "verses": 942
+  },
+  "代下": {
+   "n": 14,
+   "file": "14.json",
+   "chapters": 36,
+   "verses": 822
+  },
+  "诗": {
+   "n": 19,
+   "file": "19.json",
+   "chapters": 150,
+   "verses": 2461
+  },
+  "箴": {
+   "n": 20,
+   "file": "20.json",
+   "chapters": 31,
+   "verses": 915
+  },
+  "传": {
+   "n": 21,
+   "file": "21.json",
+   "chapters": 12,
+   "verses": 222
+  },
+  "赛": {
+   "n": 23,
+   "file": "23.json",
+   "chapters": 66,
+   "verses": 1292
+  },
+  "耶": {
+   "n": 24,
+   "file": "24.json",
+   "chapters": 52,
+   "verses": 1364
+  },
+  "哀": {
+   "n": 25,
+   "file": "25.json",
+   "chapters": 5,
+   "verses": 154
+  },
+  "结": {
+   "n": 26,
+   "file": "26.json",
+   "chapters": 48,
+   "verses": 1273
+  },
+  "但": {
+   "n": 27,
+   "file": "27.json",
+   "chapters": 12,
+   "verses": 357
+  },
+  "何": {
+   "n": 28,
+   "file": "28.json",
+   "chapters": 14,
+   "verses": 197
+  },
+  "珥": {
+   "n": 29,
+   "file": "29.json",
+   "chapters": 3,
+   "verses": 73
+  },
+  "摩": {
+   "n": 30,
+   "file": "30.json",
+   "chapters": 9,
+   "verses": 146
+  },
+  "俄": {
+   "n": 31,
+   "file": "31.json",
+   "chapters": 1,
+   "verses": 21
+  },
+  "拿": {
+   "n": 32,
+   "file": "32.json",
+   "chapters": 4,
+   "verses": 48
+  },
+  "弥": {
+   "n": 33,
+   "file": "33.json",
+   "chapters": 7,
+   "verses": 105
+  },
+  "鸿": {
+   "n": 34,
+   "file": "34.json",
+   "chapters": 3,
+   "verses": 47
+  },
+  "哈": {
+   "n": 35,
+   "file": "35.json",
+   "chapters": 3,
+   "verses": 56
+  },
+  "番": {
+   "n": 36,
+   "file": "36.json",
+   "chapters": 3,
+   "verses": 53
+  },
+  "该": {
+   "n": 37,
+   "file": "37.json",
+   "chapters": 2,
+   "verses": 38
+  },
+  "亚": {
+   "n": 38,
+   "file": "38.json",
+   "chapters": 14,
+   "verses": 211
+  },
+  "玛": {
+   "n": 39,
+   "file": "39.json",
+   "chapters": 4,
+   "verses": 55
+  },
+  "太": {
+   "n": 40,
+   "file": "40.json",
+   "chapters": 28,
+   "verses": 1071
+  },
+  "可": {
+   "n": 41,
+   "file": "41.json",
+   "chapters": 16,
+   "verses": 678
+  },
+  "路": {
+   "n": 42,
+   "file": "42.json",
+   "chapters": 24,
+   "verses": 1151
+  },
+  "约": {
+   "n": 43,
+   "file": "43.json",
+   "chapters": 21,
+   "verses": 879
+  },
+  "徒": {
+   "n": 44,
+   "file": "44.json",
+   "chapters": 28,
+   "verses": 1007
+  },
+  "罗": {
+   "n": 45,
+   "file": "45.json",
+   "chapters": 16,
+   "verses": 433
+  },
+  "加": {
+   "n": 48,
+   "file": "48.json",
+   "chapters": 6,
+   "verses": 149
+  },
+  "弗": {
+   "n": 49,
+   "file": "49.json",
+   "chapters": 6,
+   "verses": 155
+  },
+  "腓": {
+   "n": 50,
+   "file": "50.json",
+   "chapters": 4,
+   "verses": 104
+  },
+  "西": {
+   "n": 51,
+   "file": "51.json",
+   "chapters": 4,
+   "verses": 95
+  },
+  "多": {
+   "n": 56,
+   "file": "56.json",
+   "chapters": 3,
+   "verses": 46
+  },
+  "门": {
+   "n": 57,
+   "file": "57.json",
+   "chapters": 1,
+   "verses": 25
+  },
+  "来": {
+   "n": 58,
+   "file": "58.json",
+   "chapters": 13,
+   "verses": 303
+  },
+  "雅": {
+   "n": 59,
+   "file": "59.json",
+   "chapters": 5,
+   "verses": 108
+  },
+  "犹": {
+   "n": 65,
+   "file": "65.json",
+   "chapters": 1,
+   "verses": 25
+  },
+  "启": {
+   "n": 66,
+   "file": "66.json",
+   "chapters": 22,
+   "verses": 404
+  },
+  "创": {
+   "n": 1,
+   "file": "01.json",
+   "chapters": 50,
+   "verses": 1533
+  },
+  "出": {
+   "n": 2,
+   "file": "02.json",
+   "chapters": 40,
+   "verses": 1213
+  },
+  "利": {
+   "n": 3,
+   "file": "03.json",
+   "chapters": 27,
+   "verses": 859
+  },
+  "民": {
+   "n": 4,
+   "file": "04.json",
+   "chapters": 36,
+   "verses": 1288
+  },
+  "申": {
+   "n": 5,
+   "file": "05.json",
+   "chapters": 34,
+   "verses": 959
+  },
+  "书": {
+   "n": 6,
+   "file": "06.json",
+   "chapters": 24,
+   "verses": 658
+  },
+  "士": {
+   "n": 7,
+   "file": "07.json",
+   "chapters": 21,
+   "verses": 618
+  },
+  "得": {
+   "n": 8,
+   "file": "08.json",
+   "chapters": 4,
+   "verses": 85
+  },
+  "拉": {
+   "n": 15,
+   "file": "15.json",
+   "chapters": 10,
+   "verses": 280
+  },
+  "尼": {
+   "n": 16,
+   "file": "16.json",
+   "chapters": 13,
+   "verses": 406
+  },
+  "斯": {
+   "n": 17,
+   "file": "17.json",
+   "chapters": 10,
+   "verses": 167
+  },
+  "伯": {
+   "n": 18,
+   "file": "18.json",
+   "chapters": 42,
+   "verses": 1070
+  }
+ }
+}

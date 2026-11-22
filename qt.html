@@ -124,6 +124,38 @@ html[data-theme="light"] .qt-sheet{
 .qt-meta a:hover{color:var(--qt-ink)}
 .qt-meta .qt-sep{color:var(--qt-ink-faint)}
 
+/* ===== 今日经文正文（中文英王钦定本） ===== */
+.qt-verses{
+  margin:22px auto 0;max-width:640px;text-align:left;
+  background:#fbf7ee;border:1px solid rgba(58,84,63,.14);border-radius:4px;
+  box-shadow:0 6px 18px rgba(38,52,40,.07);padding:22px 24px 16px;
+}
+.qt-verses[hidden]{display:none}
+.qt-verses h3{
+  margin:0 0 6px;font-size:13px;letter-spacing:.16em;color:#5d7161;font-weight:600;
+  display:flex;align-items:center;gap:8px;
+}
+.qt-verses h3::after{content:'';flex:1;height:1px;background:rgba(58,84,63,.16)}
+.qt-verses ol{margin:12px 0 0;padding:0;list-style:none;counter-reset:qv}
+.qt-verses li{
+  position:relative;padding-left:26px;margin:0 0 10px;
+  font-size:15.5px;line-height:1.95;color:#2f3b31;
+  font-family:"Noto Serif SC","Songti SC",serif;
+}
+.qt-verses li:last-child{margin-bottom:0}
+.qt-verses li>b{
+  position:absolute;left:0;top:0;font-size:11.5px;font-weight:600;color:#8a9a8c;
+  font-family:"Noto Sans SC",sans-serif;line-height:1.95;
+}
+.qt-verses .qt-verses-src{
+  margin:16px 0 0;padding-top:10px;border-top:1px dashed rgba(58,84,63,.16);
+  font-size:11.5px;line-height:1.7;color:#8b978c;
+}
+.qt-verses .qt-verses-src a{color:#6b7d6d;text-decoration:underline dotted}
+@media (max-width:640px){
+  .qt-verses{margin:16px 12px 0;padding:18px 16px 14px}
+  .qt-verses li{font-size:15px;line-height:1.9}
+}
 /* ===== RPG 每日经文：贴在纸卡下方的卡片照片 ===== */
 .qt-rpg{
   position:relative;
@@ -275,6 +307,12 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
           <p class="qt-range"><span class="qt-book" id="qtBook">阿摩司书</span><span class="qt-num" id="qtNum">3：9～15</span></p>
           <p class="qt-stamp"><span id="dateB">2026年11月8日</span><i class="qt-dot"></i><span id="weekB">星期日</span></p>
         </article>
+
+        <section class="qt-verses" id="qtVerses" hidden aria-label="今日经文正文">
+          <h3>今日经文</h3>
+          <ol id="qtVerseList"></ol>
+          <p class="qt-verses-src">经文引自《中文英王钦定本》 · <a href="https://www.ckjv.asia/" target="_blank" rel="noopener">ckjv.asia</a> · CC BY-SA 3.0</p>
+        </section>
 
         <p class="qt-meta">
           <span id="updated">资料更新于 2026年11月8日 20:32（台北时间）</span>
@@ -444,7 +482,57 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
     var el = document.getElementById(id);
     if(el && value) el.textContent = value;
   }
+  // ===== 今日经文正文：按 reading 从分卷经文库取节 =====
+  var verseIndexPromise = null;
+  function loadVerseIndex(){
+    if(!verseIndexPromise){
+      verseIndexPromise = fetch('/bible/ckjv/index.json', {cache:'force-cache'})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .catch(function(){ return null; });
+    }
+    return verseIndexPromise;
+  }
+  function parseReading(text){
+    var t = String(text || '').replace(/[０-９]/g, function(c){
+      return String.fromCharCode(c.charCodeAt(0) - 65248);
+    });
+    var m = t.match(/^([^0-9]+)(\d+)[:：](\d+)(?:\s*[～~\-－—]\s*(\d+))?/);
+    if(!m) return null;
+    var book = m[1].replace(/\s+/g, '');
+    var start = parseInt(m[3], 10);
+    var end = m[4] ? parseInt(m[4], 10) : start;
+    if(end < start) end = start;
+    return {book: book, chapter: parseInt(m[2], 10), start: start, end: end};
+  }
+  function renderVerses(d){
+    var box = document.getElementById('qtVerses');
+    var list = document.getElementById('qtVerseList');
+    if(!box || !list) return;
+    var sp = parseReading(d && d.reading);
+    if(!sp){ box.hidden = true; return; }
+    loadVerseIndex().then(function(idx){
+      if(!idx || !idx.books || !idx.books[sp.book]) return;
+      var file = idx.books[sp.book].file;
+      return fetch('/bible/ckjv/' + file, {cache:'force-cache'})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(book){
+          if(!book) return;
+          var ch = book[String(sp.chapter)];
+          if(!ch) return;
+          var html = '';
+          for(var v = sp.start; v <= sp.end; v++){
+            if(!ch[String(v)]) continue;
+            html += '<li><b>' + v + '</b><span>' + ch[String(v)] + '</span></li>';
+          }
+          if(!html) return;
+          list.innerHTML = html;
+          box.hidden = false;
+        });
+    }).catch(function(){});
+  }
+
   function render(d){
+    renderVerses(d);
     setText('qtTopic', d.topic);
     var sub = document.getElementById('qtSubtitle');
     if(sub){ sub.textContent = d.subtitle || ''; sub.hidden = !d.subtitle; }
