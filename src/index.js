@@ -416,6 +416,7 @@ function json(data, status) {
 // 只放行 App 真正需要的文件，避免变成任意文件代理
 const API_DATA_FILES = [
   'qt-data.json',
+  'qt-reflection.json',
   'rpg-data.json',
   'notice.json',
   'version.json',
