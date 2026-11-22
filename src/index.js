@@ -236,6 +236,13 @@ export default {
       return proxyAsset(request, env, url);
     }
 
+    // —— 安装包直链 ——
+    // 背景：GitHub Release 资产在国内单个连接只有几十 KB/s，86 MB 要半小时以上。
+    // 这里由 Worker 从边缘节点取回再转发，手机与电脑都能较快拿到最新 APK。
+    if (url.pathname === '/api/apk' || url.pathname === '/apk/app-release.apk') {
+      return proxyApk(request, env);
+    }
+
     if (url.pathname.startsWith('/api/')) {
       return json({ ok: false, error: 'not-found' }, 404);
     }
@@ -418,6 +425,38 @@ const API_ASSET_PREFIXES = ['images/', 'mp3/', 'bible/'];
 // 直接回源 GitHub main 分支：每日抓取一提交，App 立刻能读到最新；
 // 不再依赖部署时打包进去的静态快照（那份只有部署当天是新的）。
 const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/';
+
+// 取最新发布版 APK：先读 version.json 拿下载地址，再经边缘节点转发
+async function proxyApk(request, env) {
+  try {
+    const vres = await fetch(
+      'https://raw.githubusercontent.com/harpsvials/mustardseed-app/main/version.json',
+      { cf: { cacheTtl: 300, cacheEverything: true } }
+    );
+    if (!vres.ok) return json({ ok: false, error: 'version-unavailable' }, 502);
+    const v = await vres.json();
+    if (!v.apk) return json({ ok: false, error: 'no-apk' }, 404);
+    const range = request.headers.get('range');
+    const r = await fetch(v.apk, {
+      redirect: 'follow',
+      headers: range ? { range } : undefined,
+      cf: range ? undefined : { cacheEverything: true, cacheTtl: 86400 }
+    });
+    if (!r.ok) return json({ ok: false, error: 'upstream', status: r.status }, 502);
+    const headers = new Headers();
+    headers.set('Content-Type', 'application/vnd.android.package-archive');
+    headers.set('Accept-Ranges', 'bytes');
+    const len = r.headers.get('Content-Length');
+    if (len) headers.set('Content-Length', len);
+    const cr = r.headers.get('Content-Range');
+    if (cr) headers.set('Content-Range', cr);
+    headers.set('Content-Disposition', `attachment; filename="mustardseed-${v.version || 'app'}.apk"`);
+    headers.set('Cache-Control', 'public, max-age=86400');
+    return new Response(request.method === 'HEAD' ? null : r.body, { status: r.status === 206 ? 206 : 200, headers });
+  } catch (e) {
+    return json({ ok: false, error: 'apk-proxy-failed', detail: String(e) }, 502);
+  }
+}
 
 async function proxyAsset(request, env, url) {
   let path = '';
