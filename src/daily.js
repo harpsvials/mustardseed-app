@@ -561,8 +561,8 @@ function parseJsonLoose(text) {
 // 统一中文里的经文章节写法：(2:1–4) → （2：1～4）
 function normalizeZhRef(s) {
   return String(s || '')
-    .replace(/\((\d+)\s*:\s*(\d+)\s*[–\-—~～]\s*(\d+)\)/g, '（$1：$2～$3）')
-    .replace(/\((\d+)\s*:\s*(\d+)\)/g, '（$1：$2）')
+    .replace(/[（(]\s*(\d+)\s*[:：]\s*(\d+)\s*[–\-—~～]\s*(\d+)\s*[）)]/g, '（$1：$2～$3）')
+    .replace(/[（(]\s*(\d+)\s*[:：]\s*(\d+)\s*[）)]/g, '（$1：$2）')
     .replace(/\s+（/g, '（')
     .replace(/\s+([，。；：？！）])/g, '$1')
     .replace(/\s{2,}/g, ' ')
