@@ -156,6 +156,49 @@ html[data-theme="light"] .qt-sheet{
   .qt-verses{margin:16px 12px 0;padding:18px 16px 14px}
   .qt-verses li{font-size:15px;line-height:1.9}
 }
+/* ===== 默想与写给神的信 ===== */
+.qt-reflect{
+  margin:14px auto 0;max-width:640px;text-align:left;
+  background:#fbf7ee;border:1px solid rgba(58,84,63,.14);border-radius:4px;
+  box-shadow:0 6px 18px rgba(38,52,40,.07);padding:20px 24px 16px;
+}
+.qt-reflect[hidden]{display:none}
+.qt-reflect h3{
+  margin:0 0 4px;font-size:13px;letter-spacing:.16em;color:#5d7161;font-weight:600;
+  display:flex;align-items:center;gap:8px;
+}
+.qt-reflect h3::after{content:'';flex:1;height:1px;background:rgba(58,84,63,.16)}
+.qt-reflect h3.qt-reflect-letter-h{margin-top:20px;padding-top:14px;border-top:1px dashed rgba(58,84,63,.16)}
+.qt-ref-block{margin:14px 0 0}
+.qt-ref-block:first-of-type{margin-top:10px}
+.qt-ref-block h4{
+  margin:0 0 6px;font-size:15.5px;line-height:1.7;font-weight:600;color:#41563f;
+  font-family:"Noto Serif SC","Songti SC",serif;letter-spacing:.02em;
+}
+.qt-ref-block p{
+  margin:0 0 8px;font-size:15.5px;line-height:1.95;color:#2f3b31;
+  font-family:"Noto Serif SC","Songti SC",serif;
+}
+.qt-ref-block p:last-child{margin-bottom:0}
+.qt-ref-block .qt-ref-q{
+  margin:10px 0 0;padding-top:9px;border-top:1px dashed rgba(58,84,63,.14);
+  font-size:14px;line-height:1.85;color:#647567;
+}
+.qt-letter{
+  margin:6px 0 0;padding:12px 14px 11px;border-radius:3px;
+  background:#f5eedc;font-size:15px;line-height:1.95;color:#3b4a37;
+  font-family:"Noto Serif SC","Songti SC",serif;text-align:left;
+}
+.qt-reflect .qt-reflect-src{
+  margin:14px 0 0;padding-top:10px;border-top:1px dashed rgba(58,84,63,.16);
+  font-size:11.5px;line-height:1.7;color:#8b978c;
+}
+.qt-reflect .qt-reflect-src a{color:#6b7d6d;text-decoration:underline dotted}
+@media (max-width:640px){
+  .qt-reflect{margin:12px 12px 0;padding:18px 16px 14px}
+  .qt-ref-block p,.qt-letter{font-size:15px;line-height:1.9}
+  .qt-ref-block .qt-ref-q{font-size:13.5px}
+}
 /* ===== RPG 每日经文：贴在纸卡下方的卡片照片 ===== */
 .qt-rpg{
   position:relative;
@@ -312,6 +355,14 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
           <h3>今日经文</h3>
           <ol id="qtVerseList"></ol>
           <p class="qt-verses-src">经文引自《中文英王钦定本》 · <a href="https://www.ckjv.asia/" target="_blank" rel="noopener">ckjv.asia</a> · CC BY-SA 3.0</p>
+        </section>
+
+        <section class="qt-reflect" id="qtReflect" hidden aria-label="默想与写给神的信">
+          <h3>默想</h3>
+          <div id="qtReflectBody"></div>
+          <h3 class="qt-reflect-letter-h">写给神的信</h3>
+          <p class="qt-letter" id="qtLetter"></p>
+          <p class="qt-reflect-src">默想与祷文译自 <a href="https://www.duranno.com/livinglife/qt/" target="_blank" rel="noopener">Living Life · Today's QT</a> · <span id="qtRefTitle"></span> · 中文由本站翻译</p>
         </section>
 
         <p class="qt-meta">
@@ -531,8 +582,33 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
     }).catch(function(){});
   }
 
+  // ===== 默想与写给神的信：按日期取 qt-reflection.json =====
+  var reflectData = null;
+  function renderReflection(d){
+    var box = document.getElementById('qtReflect');
+    var body = document.getElementById('qtReflectBody');
+    var letter = document.getElementById('qtLetter');
+    if(!box || !body || !letter) return;
+    var r = reflectData;
+    if(!r || !r.reflection || !r.reflection.length){ box.hidden = true; return; }
+    if(r.date && d && d.date && r.date !== d.date){ box.hidden = true; return; }
+    var html = '';
+    r.reflection.forEach(function(sec){
+      html += '<div class="qt-ref-block">';
+      if(sec.heading) html += '<h4>' + sec.heading + '</h4>';
+      (sec.paragraphs || []).forEach(function(p){ html += '<p>' + p + '</p>'; });
+      if(sec.question) html += '<p class="qt-ref-q">' + sec.question + '</p>';
+      html += '</div>';
+    });
+    body.innerHTML = html;
+    letter.textContent = r.letter || '';
+    setText('qtRefTitle', r.title ? r.title + (r.titleEn ? '（' + r.titleEn + '）' : '') : (r.titleEn || ''));
+    box.hidden = false;
+  }
+
   function render(d){
     renderVerses(d);
+    renderReflection(d);
     setText('qtTopic', d.topic);
     var sub = document.getElementById('qtSubtitle');
     if(sub){ sub.textContent = d.subtitle || ''; sub.hidden = !d.subtitle; }
@@ -564,6 +640,13 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
     fetch('/api/data?f=qt-data.json', {cache:'no-store'})
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(j){ if(j && j.topic){ data = Object.assign({}, data, j); render(data); } })
+      .catch(function(){});
+  }catch(e){}
+
+  try{
+    fetch('/api/data?f=qt-reflection.json', {cache:'no-store'})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if(j && j.reflection){ reflectData = j; renderReflection(data); } })
       .catch(function(){});
   }catch(e){}
 
