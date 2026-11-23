@@ -432,7 +432,7 @@ const QT_EN_PAGE = 'https://www.duranno.com/livinglife/qt/';
 // 先 Qwen（中文更自然），失败再退 Llama 3.3
 const AI_MODELS = ['@cf/qwen/qwen3.8-27b', '@cf/meta/llama-3.3-70b-instruct-fp8-fast'];
 // 译文规则改动时+1：KV 里旧版本会自动重译一次
-const REFLECTION_PROMPT_VERSION = 2;
+const REFLECTION_PROMPT_VERSION = 3;
 
 // 英文书卷名 → 中文（与 qt-data.json 的 reading 对齐，用来校验当天英文页与中文主题同章）
 const EN_BOOK_ZH = {
@@ -585,7 +585,7 @@ async function translateReflection(env, en) {
     '用词按本站习惯：God→神，Lord→主，prayer→祷告（不写「祈祷」），forgive→赦免，repent→悔改，' +
     'church→教会，Spirit→圣灵，grace→恩典，salvation→救恩，reconciliation→和好，' +
     'speak the truth in love→用爱心说诚实话，remember→记得（不写「记念」），opportunity→机会（不写「契机」）。' +
-    '称呼神时用「你」，不用「祢」。标题要像中文书标题，不要逐词硬译。只输出 JSON。';
+    '称呼神时用「你」，不用「祢」。标题必须完整译出原标题的全部意思，不得省略词，例如 The Hard Work of Reconciliation→和好的艰辛之路；小标题按上面的对照表，不得另创说法；letter 要像自然的中文祷告，避免英文语序和「以及」「并且」这类生硬连接。只输出 JSON。';
   const user =
     '把下面的英文灵修材料翻译成简体中文，只输出一个 JSON，字段与输入一致：' +
     'title、sections[{heading,paragraphs,question}]、letter；不要解释、不要代码块、不要额外文字。' +
@@ -601,6 +601,7 @@ async function translateReflection(env, en) {
             { role: 'user', content: user }
           ],
           max_tokens: 1600,
+          temperature: 0,
           chat_template_kwargs: { enable_thinking: false }
         });
         const obj = parseJsonLoose(pickAiText(r));
@@ -690,6 +691,7 @@ async function updateReflection(env) {
     sourceUrl: QT_EN_PAGE,
     sourceLabel: "Living Life · Today's QT",
     sourceReading: en.reading,
+    enChars: en.chars,
     reflection: zh.sections,
     letter: zh.letter,
     updated: tpeStamp(),
