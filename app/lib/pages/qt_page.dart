@@ -21,7 +21,6 @@ class QtData {
   final String reading;
   final String sourceUrl;
   final String updatedLabel;
-  final QtData? prev;
 
   const QtData({
     required this.date,
@@ -32,27 +31,9 @@ class QtData {
     required this.reading,
     required this.sourceUrl,
     required this.updatedLabel,
-    this.prev,
   });
 
-  factory QtData.fromJson(Map<String, dynamic> j) {
-    final base = QtData._fromJson(j);
-    final p = j['prev'];
-    if (p is! Map<String, dynamic>) return base;
-    return QtData(
-      date: base.date,
-      dateLabel: base.dateLabel,
-      weekday: base.weekday,
-      topic: base.topic,
-      subtitle: base.subtitle,
-      reading: base.reading,
-      sourceUrl: base.sourceUrl,
-      updatedLabel: base.updatedLabel,
-      prev: QtData._fromJson(p),
-    );
-  }
-
-  factory QtData._fromJson(Map<String, dynamic> j) => QtData(
+  factory QtData.fromJson(Map<String, dynamic> j) => QtData(
         date: (j['date'] ?? '').toString(),
         dateLabel: (j['dateLabel'] ?? j['date'] ?? '').toString(),
         weekday: (j['weekday'] ?? '').toString(),
@@ -115,18 +96,6 @@ class _QtPageState extends State<QtPage> {
   QtReflection? _reflection;
   int _rpgIndex = 0;
   bool _loading = true;
-  bool _showPrev = false;
-  String? _versesDate;
-
-  QtData? get _viewData => _showPrev ? (_data?.prev ?? _data) : _data;
-
-  QtReflection? _reflectionFor(QtData? d) {
-    if (d == null || _reflection == null) return null;
-    if (_reflection!.date == d.date) return _reflection;
-    final prev = _reflection!.prev;
-    if (prev != null && prev.date == d.date) return prev;
-    return null;
-  }
 
   @override
   void initState() {
@@ -142,19 +111,16 @@ class _QtPageState extends State<QtPage> {
       QtReflection.fetch(),
     ]);
     final data = results[0] as QtData?;
-    final selected = _showPrev && data?.prev != null ? data!.prev! : data;
     List<BibleVerse>? verses;
-    if (selected != null && selected.reading.isNotEmpty) {
-      verses = await BibleVerses.fetchFor(selected.reading);
+    if (data != null && data.reading.isNotEmpty) {
+      verses = await BibleVerses.fetchFor(data.reading);
     }
     if (!mounted) return;
     setState(() {
       _data = data;
       _rpg = results[1] as RpgData?;
       _reflection = results[2] as QtReflection?;
-      if (data?.prev == null) _showPrev = false;
       _verses = verses;
-      _versesDate = selected?.date;
       _rpgIndex = 0;
       _loading = false;
     });
@@ -179,7 +145,7 @@ class _QtPageState extends State<QtPage> {
           else if (_data == null)
             _errorCard()
           else
-            _sheet(_viewData!, _reflectionFor(_viewData)),
+            _sheet(_data!),
           if (!_loading && _rpg != null) _rpgCard(_rpg!),
           const SizedBox(height: 24),
         ],
@@ -201,7 +167,7 @@ class _QtPageState extends State<QtPage> {
           Row(
             children: [
               Text(
-                AppLocale.value == AppLocale.en ? 'Daily Devotion' : '每日灵修',
+                AppLocale.value == AppLocale.en ? 'Daily Devotion' : '今日灵修',
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.w700,
@@ -229,76 +195,9 @@ class _QtPageState extends State<QtPage> {
               height: 1.55,
             ),
           ),
-          if (_data?.prev != null) ...[
-            const SizedBox(height: 14),
-            Row(
-              children: [
-                _dayChip('今天', false),
-                const SizedBox(width: 8),
-                _dayChip('昨天', true),
-              ],
-            ),
-          ],
         ],
       ),
     );
-  }
-
-  String _shortDate(String ymd) {
-    final m = RegExp(r'^\d{4}-(\d{2})-(\d{2})$').firstMatch(ymd);
-    return m == null ? '' : '${m.group(1)}/${m.group(2)}';
-  }
-
-  Widget _dayChip(String label, bool prev) {
-    final active = _showPrev == prev;
-    final date = prev ? _data?.prev?.date ?? '' : _data?.date ?? '';
-    final short = _shortDate(date);
-    return Material(
-      color: active ? AppColors.mustard : Colors.transparent,
-      borderRadius: BorderRadius.circular(999),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(999),
-        onTap: active ? null : () => _switchDay(prev),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999),
-            border: Border.all(
-              color: active ? AppColors.mustard : AppColors.lineStrong,
-            ),
-          ),
-          child: Text(
-            short.isEmpty ? label : '$label $short',
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-              color: active ? const Color(0xFF24301B) : AppColors.creamDim,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Future<void> _switchDay(bool prev) async {
-    if (prev && _data?.prev == null) return;
-    if (_showPrev == prev) return;
-    setState(() => _showPrev = prev);
-    final d = _viewData;
-    if (d == null || d.reading.isEmpty) {
-      setState(() {
-        _verses = null;
-        _versesDate = null;
-      });
-      return;
-    }
-    if (_versesDate == d.date) return;
-    final verses = await BibleVerses.fetchFor(d.reading);
-    if (!mounted || _viewData?.date != d.date) return;
-    setState(() {
-      _verses = verses;
-      _versesDate = d.date;
-    });
   }
 
   Widget _errorCard() {
@@ -345,7 +244,7 @@ class _QtPageState extends State<QtPage> {
   }
 
   // ── 今日经文正文（《中文英王钦定本》，CC BY-SA 3.0）──
-  Widget _versesCard(List<BibleVerse> verses, {bool yesterday = false}) {
+  Widget _versesCard(List<BibleVerse> verses) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(18, 16, 18, 14),
@@ -363,9 +262,7 @@ class _QtPageState extends State<QtPage> {
           Row(
             children: [
               Text(
-                AppLocale.value == AppLocale.en
-                    ? (yesterday ? 'YESTERDAY\'S SCRIPTURE' : 'TODAY\'S SCRIPTURE')
-                    : (yesterday ? '昨日经文' : '今日经文'),
+                AppLocale.value == AppLocale.en ? 'TODAY\'S SCRIPTURE' : '今日经文',
                 style: const TextStyle(
                   fontSize: 12.5,
                   fontWeight: FontWeight.w700,
@@ -517,7 +414,7 @@ class _QtPageState extends State<QtPage> {
     );
   }
 
-  Widget _sheet(QtData d, QtReflection? reflection) {
+  Widget _sheet(QtData d) {
     final isToday = d.date == QtData.taipeiToday();
     return Column(
       children: [
@@ -531,9 +428,7 @@ class _QtPageState extends State<QtPage> {
               border: Border.all(color: AppColors.terra.withValues(alpha: .45)),
             ),
             child: Text(
-              _showPrev
-                  ? '你正在查看 ${d.dateLabel} 的内容，点上面的「今天」可回到当天。'
-                  : '今天的内容还没更新，下面显示的是 ${d.dateLabel} 的话语。',
+              '今天的内容还没更新，下面显示的是 ${d.dateLabel} 的话语。',
               style: TextStyle(
                 fontSize: 14.5,
                 height: 1.55,
@@ -580,8 +475,8 @@ class _QtPageState extends State<QtPage> {
                     children: [
                       Text(
                         AppLocale.value == AppLocale.en
-                            ? (isToday ? 'TODAY’S THEME' : 'YESTERDAY’S THEME')
-                            : (isToday ? '今天的主题' : '昨天的主题'),
+                            ? 'TODAY’S THEME'
+                            : '今天的主题',
                         style: const TextStyle(
                           fontSize: 12.5,
                           fontWeight: FontWeight.w700,
@@ -664,13 +559,15 @@ class _QtPageState extends State<QtPage> {
                   ),
                 ),
               ),
-              if (_versesDate == d.date && _verses != null && _verses!.isNotEmpty) ...[
+              if (_verses != null && _verses!.isNotEmpty) ...[
                 const SizedBox(height: 18),
-                _versesCard(_verses!, yesterday: !isToday),
+                _versesCard(_verses!),
               ],
-              if (reflection != null && reflection.date == d.date) ...[
+              if (_reflection != null &&
+                  _reflection!.date.isNotEmpty &&
+                  _reflection!.date == d.date) ...[
                 const SizedBox(height: 12),
-                _reflectionCard(reflection),
+                _reflectionCard(_reflection!),
               ],
               const SizedBox(height: 18),
               Divider(color: const Color(0x332A2313), height: 1),

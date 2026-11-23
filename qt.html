@@ -60,10 +60,6 @@ html[data-theme="light"] .qt-sheet{
 .qt-head{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 14px;margin-bottom:clamp(16px,4.5vw,24px)}
 .qt-kicker{font-family:var(--font-serif);font-weight:600;font-size:13px;letter-spacing:.24em;color:var(--qt-gold-deep)}
 .qt-day{font-size:12.5px;color:var(--qt-ink-faint);font-variant-numeric:tabular-nums}
-.qt-daynav{display:inline-flex;gap:2px;padding:3px;border:1px solid rgba(34,48,28,.18);border-radius:999px;background:rgba(255,253,247,.56)}
-.qt-daynav button{appearance:none;border:0;background:transparent;color:var(--qt-ink-soft);font:inherit;font-size:12.5px;line-height:1.2;padding:6px 12px;border-radius:999px;cursor:pointer;transition:background .18s,color .18s}
-.qt-daynav button[aria-pressed="true"]{background:var(--qt-tape);color:var(--qt-tape-ink)}
-.qt-daynav button:disabled{opacity:.4;cursor:default}
 
 .qt-stale{position:relative;z-index:1;margin:0 0 16px;padding:10px 13px;border-radius:8px;background:rgba(217,142,90,.16);border:1px solid rgba(217,142,90,.45);font-size:13.5px;line-height:1.8;color:var(--qt-terra)}
 .qt-stale b{font-weight:600}
@@ -305,8 +301,8 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
   <!-- ===== Hero ===== -->
   <section class="hero">
     <div class="sprout" aria-hidden="true"></div>
-    <h1>每日灵修</h1>
-    <p class="hero-verse">先领受每天的话语，再走进今天<small>活泼的生命 · QT</small></p>
+    <h1>今日灵修</h1>
+    <p class="hero-verse">先领受今天的话语，再走进今天<small>活泼的生命 · QT</small></p>
     <div class="hero-rule"></div>
   </section>
 
@@ -336,18 +332,14 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
     <div class="qt-wrap">
       <section class="qt-sheet" id="qtSheet" aria-label="今日灵修内容">
         <div class="qt-head">
-          <span class="qt-kicker" id="qtDayKicker">灵修 · 今天</span>
-          <div class="qt-daynav" id="qtDayNav" hidden aria-label="切换日期">
-            <button type="button" data-day="today" aria-pressed="true">今天 <span data-date></span></button>
-            <button type="button" data-day="prev" aria-pressed="false">昨天 <span data-date></span></button>
-          </div>
+          <span class="qt-kicker">灵修 · 今日</span>
           <span class="qt-day" id="headDate">2026年11月8日 · 星期日</span>
         </div>
 
         <p class="qt-stale" id="staleNote" hidden>今天的内容还没更新，下面显示的是 <b id="staleDate">2026年11月8日</b> 的话语。</p>
 
         <article class="qt-sticker qt-topic">
-          <span class="qt-tag" id="qtTopicTag">今天的主题</span>
+          <span class="qt-tag">今天的主题</span>
           <h2 id="qtTopic">悲惨的审判</h2>
           <p class="qt-sub" id="qtSubtitle">仅有极少数存留</p>
           <p class="qt-stamp"><span id="dateA">2026年11月8日</span><i class="qt-dot"></i><span id="weekA">星期日</span></p>
@@ -360,7 +352,7 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
         </article>
 
         <section class="qt-verses" id="qtVerses" hidden aria-label="今日经文正文">
-          <h3 id="qtVersesTitle">今日经文</h3>
+          <h3>今日经文</h3>
           <ol id="qtVerseList"></ol>
           <p class="qt-verses-src">经文引自《中文英王钦定本》 · <a href="https://www.ckjv.asia/" target="_blank" rel="noopener">ckjv.asia</a> · CC BY-SA 3.0</p>
         </section>
@@ -531,39 +523,6 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
   var boot = {};
   try{ boot = JSON.parse(document.getElementById('qt-boot').textContent); }catch(e){}
   var data = boot;
-  var reflectData = null;
-  var qtDay = 'today';
-
-  function currentData(){
-    return qtDay === 'prev' && data && data.prev && data.prev.date ? data.prev : data;
-  }
-  function reflectionFor(d){
-    if(!reflectData || !d) return null;
-    if(reflectData.date === d.date) return reflectData;
-    if(reflectData.prev && reflectData.prev.date === d.date) return reflectData.prev;
-    return null;
-  }
-  function shortDate(ymd){
-    var m = String(ymd || '').match(/^\d{4}-(\d{2})-(\d{2})$/);
-    return m ? m[1] + '/' + m[2] : '';
-  }
-  function syncDayNav(){
-    var nav = document.getElementById('qtDayNav');
-    var kicker = document.getElementById('qtDayKicker');
-    if(kicker) kicker.textContent = qtDay === 'prev' ? '灵修 · 昨天' : '灵修 · 今天';
-    if(!nav) return;
-    var hasPrev = !!(data && data.prev && data.prev.date);
-    nav.hidden = !hasPrev;
-    if(!hasPrev) return;
-    var btns = nav.querySelectorAll('button[data-day]');
-    for(var i=0;i<btns.length;i++){
-      var key = btns[i].getAttribute('data-day');
-      var on = (key === 'prev') === (qtDay === 'prev');
-      btns[i].setAttribute('aria-pressed', on ? 'true' : 'false');
-      var slot = btns[i].querySelector('[data-date]');
-      if(slot) slot.textContent = key === 'prev' ? shortDate(data.prev.date) : shortDate(data.date);
-    }
-  }
 
   function splitReading(text){
     var m = String(text || '').match(/^([^\d０-９]+)(.*)$/);
@@ -624,11 +583,13 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
   }
 
   // ===== 默想与写给神的信：按日期取 qt-reflection.json =====
-  function renderReflection(d, r){
+  var reflectData = null;
+  function renderReflection(d){
     var box = document.getElementById('qtReflect');
     var body = document.getElementById('qtReflectBody');
     var letter = document.getElementById('qtLetter');
     if(!box || !body || !letter) return;
+    var r = reflectData;
     if(!r || !r.reflection || !r.reflection.length){ box.hidden = true; return; }
     if(r.date && d && d.date && r.date !== d.date){ box.hidden = true; return; }
     var html = '';
@@ -646,11 +607,8 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
   }
 
   function render(d){
-    syncDayNav();
-    setText('qtTopicTag', qtDay === 'prev' ? '昨天的主题' : '今天的主题');
-    setText('qtVersesTitle', qtDay === 'prev' ? '昨日经文' : '今日经文');
     renderVerses(d);
-    renderReflection(d, reflectionFor(d));
+    renderReflection(d);
     setText('qtTopic', d.topic);
     var sub = document.getElementById('qtSubtitle');
     if(sub){ sub.textContent = d.subtitle || ''; sub.hidden = !d.subtitle; }
@@ -671,35 +629,24 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
     }catch(e){}
     var note = document.getElementById('staleNote');
     if(note){
-      if(qtDay === 'today' && today && d.date && d.date !== today){ setText('staleDate', d.dateLabel); note.hidden = false; }
+      if(today && d.date && d.date !== today){ setText('staleDate', d.dateLabel); note.hidden = false; }
       else { note.hidden = true; }
     }
   }
 
-  var dayNav = document.getElementById('qtDayNav');
-  if(dayNav){
-    dayNav.addEventListener('click', function(e){
-      var btn = e.target.closest('button[data-day]');
-      if(!btn || btn.disabled) return;
-      var key = btn.getAttribute('data-day');
-      if(key === 'prev' && !(data && data.prev && data.prev.date)) return;
-      qtDay = key === 'prev' ? 'prev' : 'today';
-      render(currentData());
-    });
-  }
-  render(currentData());
+  render(data);
 
   try{
     fetch('/api/data?f=qt-data.json', {cache:'no-store'})
       .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(j){ if(j && j.topic){ data = Object.assign({}, data, j); render(currentData()); } })
+      .then(function(j){ if(j && j.topic){ data = Object.assign({}, data, j); render(data); } })
       .catch(function(){});
   }catch(e){}
 
   try{
     fetch('/api/data?f=qt-reflection.json', {cache:'no-store'})
       .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(j){ if(j && j.reflection){ reflectData = j; render(currentData()); } })
+      .then(function(j){ if(j && j.reflection){ reflectData = j; renderReflection(data); } })
       .catch(function(){});
   }catch(e){}
 

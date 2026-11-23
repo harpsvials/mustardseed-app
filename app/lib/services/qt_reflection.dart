@@ -27,7 +27,6 @@ class QtReflection {
   final String sourceLabel;
   final List<ReflectionSection> sections;
   final String letter;
-  final QtReflection? prev;
 
   const QtReflection({
     required this.date,
@@ -38,7 +37,6 @@ class QtReflection {
     required this.sourceLabel,
     required this.sections,
     required this.letter,
-    this.prev,
   });
 
   bool get isEmpty => sections.isEmpty && letter.isEmpty;
@@ -49,23 +47,6 @@ class QtReflection {
   }
 
   factory QtReflection.fromJson(Map<String, dynamic> j) {
-    final base = QtReflection._fromJson(j);
-    final p = j['prev'];
-    if (p is! Map<String, dynamic>) return base;
-    return QtReflection(
-      date: base.date,
-      dateLabel: base.dateLabel,
-      title: base.title,
-      titleEn: base.titleEn,
-      sourceUrl: base.sourceUrl,
-      sourceLabel: base.sourceLabel,
-      sections: base.sections,
-      letter: base.letter,
-      prev: QtReflection._fromJson(p),
-    );
-  }
-
-  factory QtReflection._fromJson(Map<String, dynamic> j) {
     final raw = j['reflection'];
     final sections = <ReflectionSection>[];
     if (raw is List) {

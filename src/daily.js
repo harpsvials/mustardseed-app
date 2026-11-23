@@ -20,16 +20,11 @@ const RPG_UPLOAD = 'https://www.rpg-move.tw/wp-content/uploads/';
 // 图片绝对地址走 workers.dev 预览域：www 域对非浏览器请求会返回 CF 挑战页（403）
 const ASSET_BASE = 'https://mustardseed.harps-vials.workers.dev';
 const KEEP_DAYS = 7;
+const REFLECTION_KEEP_DAYS = 7;
 const WEEKDAYS = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
 
 const toCN = Converter({ from: 't', to: 'cn' });
 const simplify = (s) => toCN(s || '');
-// 写入新的一天时，把上一天原样收进 prev，供网页/App 回看；只留两层，避免越滚越大
-const withoutPrev = (o) => {
-  if (!o || typeof o !== 'object') return null;
-  const { prev, ...rest } = o;
-  return rest;
-};
 
 
 // —— 北京时间 ——
@@ -272,13 +267,6 @@ async function updateQT(env) {
         return 'qt-unchanged';
       }
     } catch (_) {}
-  }
-
-  // 保留前一天，最多两天；同一天重跑时沿用已有的 prev，避免把昨天冲掉
-  if (prev) {
-    const lastDay = withoutPrev(prev);
-    data.prev = lastDay && lastDay.date !== data.date ? lastDay : prev.prev || null;
-    if (!data.prev) delete data.prev;
   }
 
   data.updated = tpeStamp();
@@ -732,12 +720,19 @@ async function updateReflection(env) {
     model: zh.model,
     promptVersion: REFLECTION_PROMPT_VERSION
   };
-  // 与灵修正文一样，保留前一天的默想，页面可切到昨天
-  if (prev) {
-    const lastDay = withoutPrev(prev);
-    data.prev = lastDay && lastDay.date !== data.date ? lastDay : prev.prev || null;
-    if (!data.prev) delete data.prev;
-  }
+  // 默想与祷文另存一份最近 7 天的归档，仅供留底；当前数据与网页/App 始终只保留当天
+  let history = [];
+  try {
+    const rawHistory = await kv.get('qt-reflection-history.json', 'text');
+    const parsed = rawHistory ? JSON.parse(rawHistory) : null;
+    if (parsed && Array.isArray(parsed.items)) history = parsed.items;
+  } catch (_) {}
+  const items = [data, ...history.filter((it) => it && it.date && it.date !== data.date)]
+    .slice(0, REFLECTION_KEEP_DAYS);
+  await kv.put(
+    'qt-reflection-history.json',
+    JSON.stringify({ keepDays: REFLECTION_KEEP_DAYS, updated: tpeStamp(), items }, null, 2) + '\n'
+  );
   await kv.put('qt-reflection.json', JSON.stringify(data, null, 2) + '\n');
   return `reflection-ok: ${today} ${zh.sections.length} 段｜${zh.model}`;
 }
