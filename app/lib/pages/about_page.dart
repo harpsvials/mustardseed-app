@@ -79,17 +79,31 @@ class _SectionCard extends StatelessWidget {
             const SizedBox(height: 10),
           ],
           for (final p in paras)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Text(
-                AppLocale.t(p.cast<String, dynamic>()),
-                style: TextStyle(
-                  fontSize: 17,
-                  height: 1.75,
-                  color: AppColors.cream,
+            if ((p['key'] ?? '').toString().endsWith('.label'))
+              Padding(
+                padding: const EdgeInsets.only(top: 6, bottom: 8),
+                child: Text(
+                  AppLocale.t(p.cast<String, dynamic>()),
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    height: 1.3,
+                    color: AppColors.mustard,
+                  ),
+                ),
+              )
+            else
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Text(
+                  AppLocale.t(p.cast<String, dynamic>()),
+                  style: TextStyle(
+                    fontSize: 17,
+                    height: 1.75,
+                    color: AppColors.cream,
+                  ),
                 ),
               ),
-            ),
         ],
       ),
     );
