@@ -567,6 +567,7 @@ function normalizeZhRef(s) {
     .replace(/\s+([，。；：？！）])/g, '$1')
     .replace(/\s{2,}/g, ' ')
     .replace(/祢/g, '你')
+    .replace(/在爱中说真话|以爱说真理|用爱说真理/g, '用爱心说诚实话')
     .trim();
 }
 
@@ -666,6 +667,9 @@ async function updateReflection(env) {
   try {
     prev = JSON.parse(await kv.get('qt-reflection.json', 'text'));
   } catch (_) {}
+  if (prev && prev.date === today && prev.locked === true) {
+    return 'reflection-locked';
+  }
   if (
     prev &&
     prev.date === today &&
