@@ -661,8 +661,19 @@ async function updateReflection(env) {
   const zhM = String(qt.reading).match(/^(.+?)(\d+)[：:](\d+)/);
   if (enM && zhM) {
     const enBook = EN_BOOK_ZH[enM[1].trim()];
-    if (!enBook || enBook !== zhM[1].trim() || Number(enM[2]) !== Number(zhM[2])) {
-      return `reflection-skip: 不同章（en ${en.reading} / zh ${qt.reading}）`;
+    const sameBook = enBook === zhM[1].trim();
+    const sameChapter = Number(enM[2]) === Number(zhM[2]);
+    if (!sameBook || !sameChapter) {
+      // 英文站偶尔把书卷标错（如 2 Corinthians 标成 2 Chronicles），
+      // 此时用默想小节标题里的「章:节」复核：全部落在同一章、且含中文经文的起始节，才继续。
+      const refs = [...en.sections.map((s) => String(s.heading || '')).join(' ').matchAll(/(\d+)\s*:\s*(\d+)/g)]
+        .map((m) => [Number(m[1]), Number(m[2])]);
+      const zhCh = Number(zhM[2]);
+      const zhV = Number(zhM[3]);
+      const headingsAgree = refs.length > 0 && refs.every(([ch]) => ch === zhCh) && refs.some(([, v]) => v === zhV);
+      if (!headingsAgree) {
+        return `reflection-skip: 不同章（en ${en.reading} / zh ${qt.reading}）`;
+      }
     }
   }
 
