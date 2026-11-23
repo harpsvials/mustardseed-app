@@ -428,9 +428,10 @@ async function updateRPG(env) {
 // —— 英文 QT 的「默想 / 写给神的信」：抓当天英文页，用 Workers AI 译成简体中文 ——
 // 英文站内容由 reload_default1.asp 按服务器当天日期返回（默认页会被 CDN 缓存成旧日期）。
 const QT_EN_URL = 'https://www.duranno.com/livinglife/qt/reload_default1.asp';
-// 对外展示的来源统一指向 CGN 中文台「活潑的生命」YouTube 頻道
+// 主题与经文范围仍取自 CGN 中文台「活潑的生命」
 const CGN_YT = 'https://www.youtube.com/@CGNChinese_%E6%B4%BB%E6%BD%91%E7%9A%84%E7%94%9F%E5%91%BD';
-const QT_EN_PAGE = 'https://www.duranno.com/livinglife/qt/';
+// 默想与祷文实际译自英文 QT 网站 Duranno「Living Life」，来源标注须指向该站
+const QT_EN_HOME = 'https://www.duranno.com/livinglife/qt/';
 // 先 Qwen（中文更自然），失败再退 Llama 3.3
 const AI_MODELS = ['@cf/qwen/qwen3.8-27b', '@cf/meta/llama-3.3-70b-instruct-fp8-fast'];
 // 译文规则改动时+1：KV 里旧版本会自动重译一次
@@ -694,8 +695,8 @@ async function updateReflection(env) {
     dateLabel: tpeLabelDate(today),
     title: zh.title || '',
     titleEn: en.title,
-    sourceUrl: CGN_YT,
-    sourceLabel: 'CGN Chinese · 活潑的生命',
+    sourceUrl: QT_EN_HOME,
+    sourceLabel: 'Duranno · Living Life（英文 QT）',
     sourceReading: en.reading,
     enChars: en.chars,
     reflection: zh.sections,

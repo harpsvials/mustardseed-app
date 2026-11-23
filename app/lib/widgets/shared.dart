@@ -191,6 +191,39 @@ class BlockView extends StatelessWidget {
         // 讨论题统一由页面底部的 QuestionsView 卡片渲染，
         // 正文中重复的 question 块直接跳过，避免出现多余的问号条
         return const SizedBox.shrink();
+      case 'sub':
+        final text = AppLocale.t({'zh': block.zh, 'en': block.en});
+        return Padding(
+          padding: const EdgeInsets.only(top: 14, bottom: 4),
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 16.5,
+              fontWeight: FontWeight.w600,
+              height: 1.55,
+              color: AppColors.mustard,
+            ),
+          ),
+        );
+      case 'quote':
+        final text = AppLocale.t({'zh': block.zh, 'en': block.en});
+        return Container(
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.fromLTRB(12, 9, 12, 9),
+          decoration: BoxDecoration(
+            color: const Color(0x14FFFFFF),
+            border: Border(left: BorderSide(color: AppColors.mustard, width: 2)),
+          ),
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 15.5,
+              height: 1.8,
+              fontStyle: FontStyle.italic,
+              color: AppColors.cream,
+            ),
+          ),
+        );
       default:
         final text = AppLocale.t({'zh': block.zh, 'en': block.en});
         return Padding(

@@ -24,7 +24,7 @@ class _SermonDetailPageState extends State<SermonDetailPage> {
       final t = AppLocale.t(ch.title);
       if (t.isNotEmpty) buf.writeln(t);
       for (final b in ch.blocks) {
-        if (b.type == 'p') {
+        if (b.type == 'p' || b.type == 'sub' || b.type == 'quote') {
           buf.writeln(AppLocale.t({'zh': b.zh, 'en': b.en}));
         }
       }

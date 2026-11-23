@@ -168,7 +168,7 @@ class Chapter {
 }
 
 class Block {
-  final String type; // p / verse / question
+  final String type; // p / sub / quote / verse / question
   final String? zh;
   final String? en;
   final Map<String, dynamic>? label; // verse 用 {zh,en}

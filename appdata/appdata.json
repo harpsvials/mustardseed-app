@@ -3814,7 +3814,33 @@
               "zh": "一片水域，许多名字",
               "en": "One Body of Water, Many Names"
             },
-            "blocks": []
+            "blocks": [
+              {
+                "type": "p",
+                "zh": "我们说的“海”是圣经中提到的“加利利海”，因为不同的作者写作背景、年代以及地理称呼，它在圣经中出现了不同的名称。",
+                "en": "The “sea” we speak of is the “Sea of Galilee” in the Bible. Because the writers had different backgrounds, eras and geographical names, it appears under different names in Scripture."
+              },
+              {
+                "type": "p",
+                "zh": "以加利利地区为地理参照，叫加利利海；以当时湖西岸平原和城镇的名字被称为“革尼撒勒湖”；以及后来罗马分封王在湖畔兴建的罗马化大都市命名叫“提比利亚海”。",
+                "en": "Named after the region of Galilee, it is called the Sea of Galilee; named after the plain and town on its western shore, it is called the Lake of Gennesaret; and later it was named after the Romanized metropolis built on its shore by a Roman tetrarch — the Sea of Tiberias."
+              },
+              {
+                "type": "p",
+                "zh": "所以，你会发现圣经中耶稣在海边、湖边，都是说的同一片水域，严格意义上来说是一个淡水湖。",
+                "en": "So you will find that when Jesus was by the sea or the lake in the Bible, it was always the same body of water — strictly speaking, a freshwater lake."
+              },
+              {
+                "type": "p",
+                "zh": "这片水域处于东非大裂谷延伸段的约旦河谷裂谷带中，它是被山地环绕的低海拔盆地。好像是山中间的一个深碗。",
+                "en": "This body of water lies in the Jordan Valley rift, the extension of the East African Rift. It is a low-altitude basin surrounded by mountains, like a deep bowl set among the hills."
+              },
+              {
+                "type": "p",
+                "zh": "湖面因地处低海拔、四周受热，空气迅速升温膨胀，形成低气压区，而高空冷空气遇到湖面低压热空气的时候，冷空气会急剧下沉，所以会出现圣经中突然而来的风浪，在几分钟内可以引发2至3米高的巨浪。这也是耶稣海面行走事件的背景。",
+                "en": "Because of its low altitude, the air over the lake heats and expands quickly, forming a low-pressure zone; when cold high-altitude air meets the warm low-pressure air over the lake, it plunges sharply downward. This is why sudden storms appear in the Bible, capable of raising waves two to three meters high within minutes. This is also the backdrop of the event when Jesus walked on the sea."
+              }
+            ]
           },
           {
             "id": "first",
@@ -3824,10 +3850,15 @@
             },
             "blocks": [
               {
+                "type": "p",
+                "zh": "我们看圣经路加福音五章1至11节，革尼撒勒湖边渔网险些裂开，渔获太多船险些沉没。",
+                "en": "Let us read Luke 5:1–11. By the Lake of Gennesaret the nets nearly tore, and the boats nearly sank from the great catch."
+              },
+              {
                 "type": "verse",
                 "zh": {
                   "label": "圣经 · 路加福音 5:1–2",
-                  "text": "耶稣站在革尼撒勒湖边，众人拥挤他，要听　神的道。他见有两只船湾在湖边，打鱼的人却离开船洗网去了。"
+                  "text": "耶稣站在革尼撒勒湖边，众人拥挤他，要听 神的道。他见有两只船湾在湖边，打鱼的人却离开船洗网去了。"
                 },
                 "en": {
                   "label": "Scripture · Luke 5:1–2",
@@ -3917,7 +3948,63 @@
               "zh": "想象力的默想：整夜劳力的彼得",
               "en": "A Meditation of Imagination: Peter Who Toiled All Night"
             },
-            "blocks": []
+            "blocks": [
+              {
+                "type": "p",
+                "zh": "在路加福音中的“革尼撒勒湖边”与马可福音中的“加利利的海”我们之前说过，这是同一片水域。有了这个背景，你就很容易明白：这次对西门彼得、安得烈以及雅各和约翰的呼召，是同一时间段发生的事情，只是不同的人对同一事件有不同的记录。",
+                "en": "As we said earlier, the “shore of the Lake of Gennesaret” in Luke and the “Sea of Galilee” in Mark are the same body of water. With this background, you can easily see that the calling of Simon Peter and Andrew, and of James and John, happened at the same time — different people recorded the same event differently."
+              },
+              {
+                "type": "p",
+                "zh": "请允许我加入想象力来理解这段经文：耶稣在呼召十二个使徒之前曾有整夜的祷告，圣经也多次记录耶稣常在夜晚祷告、次日服侍。所以我想，耶稣呼召十二个门徒中与他走得最近的彼得、雅各、约翰时，也一定曾整夜祷告。",
+                "en": "Allow me to use my imagination to understand this passage. The Scriptures record that before Jesus called the twelve apostles he spent a whole night in prayer, and that he often prayed at night before serving the next day. So I believe that when Jesus called Peter, James and John — the three closest to him among the disciples — he must also have prayed through the night."
+              },
+              {
+                "type": "p",
+                "zh": "而彼得正是在夜晚整夜劳力捕鱼，却什么都没有捕到。在这样的背景下，众人拥挤耶稣，要听耶稣讲神的道，而彼得在洗渔网。耶稣就上了彼得的船，请彼得把船撑开离开岸边，对众人讲道。",
+                "en": "Peter had toiled all night fishing and caught nothing. In that state, the crowd pressed around Jesus to hear the word of God while Peter washed his nets. Jesus got into Peter’s boat, asked him to push out from shore, and taught the crowds."
+              },
+              {
+                "type": "p",
+                "zh": "彼得整夜劳力，什么都没有得到，却也愿意奉献自己的船，让耶稣在他的船上讲道。我们设身处地想一下，你辛苦的工作，身体非常的疲劳，而却有人要求你来教会服事，甚至更过分的要使用你的船。",
+                "en": "Peter, who had worked all night and gained nothing, still offered his boat for Jesus to preach from. Put yourself in his place: you have worked hard and you are exhausted, and yet someone asks you to come serve at church — and even more, to use your boat."
+              },
+              {
+                "type": "p",
+                "zh": "没有一定的奉献和牺牲精神应该很难做到，我们在顺境中奉献一些时间和金钱，可能会比较容易，但当我们整夜劳力却一无所获，身体和精力都疲劳，如果熬夜换来收获满满，会比较容易精神亢奋。",
+                "en": "Without a spirit of offering and sacrifice, that would be hard to do. When things go well, giving some time and money is easier; but when we have labored all night and gained nothing, body and spirit exhausted — if staying up had brought a full harvest, it would be easier to stay excited."
+              },
+              {
+                "type": "p",
+                "zh": "但这个时候，彼得显然是萎靡不振的状态。如果你处在这样的状态，你还愿意摆上自己为耶稣吗？",
+                "en": "But at this moment Peter was clearly worn out. If you were in that state, would you still offer yourself to Jesus?"
+              },
+              {
+                "type": "p",
+                "zh": "在这种情况下，彼得为耶稣服务撑船，听耶稣讲道，而耶稣讲完道之后，你知道刚刚之前彼得才洗干净的网，耶稣本身是木匠，却要指导专业的渔夫，竟然要求疲惫的专业渔夫彼得把船开到水深之处下网打鱼。",
+                "en": "In this state, Peter served Jesus by pushing the boat and listening to his teaching. But when Jesus finished, you recall that Peter had just washed his nets. Jesus — a carpenter, yet a master fisherman — actually asked the weary professional fisherman Peter to put out into deep water and let down the nets."
+              },
+              {
+                "type": "p",
+                "zh": "疲劳一夜的人，最想做的事，是睡觉。已经勉强来服事了两个小时，够累的了。但是耶稣竟然要他下网捕鱼，难道不知道他的渔网是才洗干净的吗？但是彼得却说，“夫子，我们整夜劳力，并没有打着什么。但依从你的话，我就下网。”",
+                "en": "The one thing a person exhausted from a night’s work wants most is sleep. He had already served for two hours, grudgingly, and was tired enough. Yet Jesus asked him to cast his own nets — did he not know they had just been washed clean? But Peter said, “Master, we’ve worked hard all night and haven’t caught anything. But because you say so, I will let down the nets.”"
+              },
+              {
+                "type": "p",
+                "zh": "而彼得下网之后，竟然圈住许多鱼，网险些裂开。还要请其他船上的人来帮忙，鱼多到一个程度，船都要沉下去了。但上帝安排的刚刚好，还没有沉，甚至装满了两只船，说明这一网已经是这条船所能承载的极限收获了。你注意这个时候，雅各跟约翰正在旁边看的惊掉下巴。（路加福音五章5至10节）",
+                "en": "When Peter let down the nets, he caught so many fish that the nets began to break, and he had to call the men in the other boat to help. The catch was so great the boats were about to sink — yet God arranged it just in time, so they did not sink, and even both boats were filled. That catch was already the very limit those boats could carry. Notice that James and John were watching nearby, jaws dropping. (Luke 5:5–10)"
+              },
+              {
+                "type": "p",
+                "zh": "彼得看见这一网竟然打到这么多的鱼，就俯伏在耶稣面前，说，“主啊，离开我，我是个罪人！”彼得虽然是没有学问的小民（使徒行传四章13节），但是他比所有人都清楚，自己是个罪人！而耶稣是主！",
+                "en": "When Peter saw the great catch, he fell at Jesus’ feet and said, “Lord, go away from me, for I am a sinful man!” Peter was an unschooled ordinary man (Acts 4:13), yet he knew better than anyone: I am a sinner, and Jesus is Lord!"
+              },
+              {
+                "type": "p",
+                "zh": "电影中彼得问，“怎么做到捕这么多鱼？”耶稣对彼得说，“跟从我！”，彼得说：“能做什么？”耶稣说，“改变这个世界！”彼得就是在这样的情况下，跟随了耶稣，当然雅各、约翰和安得烈也是。",
+                "en": "In the film, Peter asks, “How did you catch so many fish?” Jesus says to Peter, “Follow me!” Peter asks, “What can I do?” Jesus answers, “Change the world!” It was in such circumstances that Peter followed Jesus — and so did James, John and Andrew."
+              }
+            ]
           },
           {
             "id": "second",
@@ -3926,6 +4013,11 @@
               "en": "By the Sea of Tiberias"
             },
             "blocks": [
+              {
+                "type": "p",
+                "zh": "我们来看，约翰福音二十一章2至13节。",
+                "en": "Let us read John 21:2–13."
+              },
               {
                 "type": "verse",
                 "zh": {
@@ -3980,6 +4072,11 @@
             },
             "blocks": [
               {
+                "type": "p",
+                "zh": "约翰福音二十一章2节说，这个地方有西庇太的两个儿子也和彼得在一起，他们是谁？从马可福音一章19节可以知道，这两个人是雅各和约翰。",
+                "en": "John 21:2 says the two sons of Zebedee were there with Peter. Who were they? From Mark 1:19 we know they were James and John."
+              },
+              {
                 "type": "verse",
                 "zh": {
                   "label": "圣经 · 马可福音 1:19",
@@ -3989,6 +4086,56 @@
                   "label": "Scripture · Mark 1:19",
                   "text": "When he had gone a little farther, he saw James son of Zebedee and his brother John in a boat, preparing their nets."
                 }
+              },
+              {
+                "type": "p",
+                "zh": "耶稣在受难之后，圣经说，门徒就四散了。而彼得就和雅各、约翰、拿但业、多马还有另外两个不知道名字的门徒在一起。",
+                "en": "After Jesus’ suffering, the Scripture says, the disciples were scattered. Peter was together with James, John, Nathanael, Thomas, and two other disciples whose names we do not know."
+              },
+              {
+                "type": "p",
+                "zh": "这里有怀疑的多马、三次不认主的彼得，还有主所爱的那个人约翰。如果你认为你是主所爱的那个人，好像约翰一样是最靠近主的人，也可以和其他软弱的肢体一起去网鱼，说不定能够在团契中帮助软弱的人遇见主。",
+                "en": "Here were doubting Thomas, Peter who denied the Lord three times, and John, the one whom the Lord loved. If you believe you are the one the Lord loves — the one closest to him, like John — you can also come to the net with weak brothers and sisters, and perhaps in fellowship you may help the weak meet the Lord."
+              },
+              {
+                "type": "p",
+                "zh": "彼得说，我去打鱼。他们也说，我们也和你去打鱼。陪伴是我们能够给人最好的安慰！并且耶稣其实也在他们旁边不远处，如果你觉得你很软弱，好像彼得一样，其实耶稣就在你的不远处，他爱彼得、也爱你。",
+                "en": "Peter said, “I’m going out to fish.” They said, “We’ll go with you.” Companionship is the best comfort we can give people! And Jesus was actually not far from them. If you feel weak, like Peter, know that Jesus is not far from you — he loves Peter, and he loves you."
+              },
+              {
+                "type": "p",
+                "zh": "耶稣说，“小子，你们有吃的没有？”这几个渔夫又是整夜劳力，什么都没有。耶稣说，“你们把网撒在船的右边，就必得着。”他们撒下网的时候，竟然因为鱼太多了拉不上来了。",
+                "en": "Jesus said, “Friends, haven’t you any fish?” These fishermen had again toiled all night and caught nothing. Jesus said, “Throw your net on the right side of the boat.” When they cast the net, they could not haul it in because of the abundance of fish."
+              },
+              {
+                "type": "p",
+                "zh": "我要你们想像一下，你们就是那两个不知道名字的门徒，你们上一次看见耶稣教彼得捕鱼，而这一次同样一无所获，又有一个人同样是教彼得和这些渔夫捕鱼！突然，你全身鸡皮疙瘩都起来！神圣的同在和潮水般的记忆涌来！你想起来了，这莫非就是主吗？",
+                "en": "Imagine that you are one of those two unnamed disciples. Last time you saw Jesus teach Peter to fish; this time, again empty-handed, someone else teaches Peter and these fishermen how to fish! Suddenly, goosebumps rise all over you! Sacred presence and a tide of memory flood in! It dawns on you — could this be the Lord?"
+              },
+              {
+                "type": "p",
+                "zh": "你们彼此都心照不宣的知道是主，约翰快人一步、脱口而出：“是主！”你在旁边快哭了！眼泪就这样流下来！彼得一听见是主的声音！就拿起衣服，跳在海里！此时你在旁边看着彼得向耶稣疯狂游去，同时你听见自己嚎啕痛哭！",
+                "en": "All of you know in your hearts that it is the Lord. John, quick of step, blurts out, “It is the Lord!” You are about to cry! Tears flow! The moment Peter hears the Lord’s voice, he grabs his clothes and jumps into the sea! You watch Peter swim desperately toward Jesus, and at the same time you hear yourself wailing and weeping!"
+              },
+              {
+                "type": "p",
+                "zh": "你和我是如此的软弱，甚至有时候还不敢承认耶稣的名，但是耶稣竟然爱你、爱我，为我们死在十字架、并且复活后还来找我们回家！",
+                "en": "You and I are so weak — sometimes we dare not even confess the name of Jesus. Yet Jesus loves you and loves me, died on the cross for us, and after his resurrection came to find us and bring us home!"
+              },
+              {
+                "type": "p",
+                "zh": "彼得不再说，主啊，我是罪人，而是疯狂中洒泪奔向耶稣，其余的门徒也带着满满的收获去到主那里！而这一次他们看到的不是鱼，而是耶稣。耶稣再也不用说“来跟从我”！上一次耶稣被捕，门徒四散。",
+                "en": "Peter no longer said, “Lord, I am a sinner.” Instead, in a frenzy of tears he ran toward Jesus, and the other disciples went to the Lord with a full catch! This time what they saw was not fish, but Jesus. Jesus no longer needed to say, “Follow me!” The last time, Jesus was arrested and the disciples scattered."
+              },
+              {
+                "type": "p",
+                "zh": "这一次，这些门徒真的甘愿与主同死：彼得传福音被倒钉十字架，多马在印度宣教殉道，其他门徒也大多为基督的福音殉道，主所爱的那个人被流放到荒无人烟的海岛上。",
+                "en": "This time the disciples would even die with the Lord. Peter preached the gospel and was crucified upside down; Thomas preached in India and was martyred; most of the other disciples were also martyred for the gospel of Christ; the one the Lord loved was exiled to a desolate island."
+              },
+              {
+                "type": "p",
+                "zh": "耶稣爱你也像爱这些门徒一样，你是不是也愿意放下渔网，回到主的身边来跟随主？",
+                "en": "Jesus loves you just as he loved these disciples. Are you willing to put down your nets and return to the Lord’s side to follow him?"
               }
             ]
           },
@@ -3998,18 +4145,7 @@
               "zh": "",
               "en": ""
             },
-            "blocks": [
-              {
-                "type": "question",
-                "zh": "当你处在又疲劳、又软弱的境况中的时候，好像彼得整夜劳力却什么都没有捕获，你还愿意为耶稣撑船吗？说说你的感受。",
-                "en": "When you find yourself weary and weak, like Peter who toiled all night and caught nothing, are you still willing to push the boat out for Jesus? Tell us how you feel."
-              },
-              {
-                "type": "question",
-                "zh": "当你想到耶稣两次教导彼得他们捕鱼的时候，在你记忆重合这两次相似的事件的时候，你内心是怎样感受？",
-                "en": "When you think of Jesus teaching Peter and the others to fish twice, as the two similar events overlap in your memory, what stirs in your heart?"
-              }
-            ]
+            "blocks": []
           }
         ],
         "questions": {
@@ -4073,7 +4209,28 @@
               "zh": "引言",
               "en": "Introduction"
             },
-            "blocks": []
+            "blocks": [
+              {
+                "type": "p",
+                "zh": "亲爱的弟兄姐妹平安！今天我们来一起学习一个主题，神听我们的呼求。我相信很多弟兄姐妹一定经历过祷告蒙神垂听之后的喜乐！请问当你为一件重要的事情祷告的时候，上帝非常明确的回应你，你是不是非常的喜乐？亲爱的弟兄姐妹，如果你在祷告中经历过神回应的，请你挥挥你的手！请刚刚举手的弟兄姐妹回应一下，上帝听你的祷告的时候，你是不是非常开心？的确，当我们祷告蒙上帝垂听的时候，我们会非常的开心、非常的喜乐！但我也深知道，我们弟兄姐妹，也有过为自己非常在意的事情祷告没有得到回应的那种痛苦和无助以及茫然！好像一直以来自己所有的祷告，都似乎在对空气说话一样！",
+                "en": "Dear brothers and sisters, peace to you! Today we will learn a theme together: God hears our cry. I believe many brothers and sisters have experienced the joy of having your prayers heard by God! When you pray about something important and God answers you very clearly, are you not filled with joy? Dear brothers and sisters, if you have experienced God answering your prayer, please wave your hand! Let those who just raised their hands respond: when God heard your prayer, were you not overjoyed? Indeed, when our prayers are heard by God, we become very happy and joyful! But I also know well that some of our brothers and sisters have experienced the pain, helplessness and confusion of praying earnestly about things they care about deeply without receiving an answer! It is as if all your prayers have been spoken into the air!"
+              },
+              {
+                "type": "p",
+                "zh": "诚然，当我们的祷告得到上帝回应的时候，我们非常的喜乐，但当我们祷告没有得到上帝回应的时候，特别是我们非常在意的事情，没有得到上帝的回应，我们内心深处是那么的无助，那么的痛苦！",
+                "en": "Truly, when our prayers are answered by God, we are overjoyed, but when our prayers are not answered, especially when the things we care about most receive no answer, deep inside we feel so helpless and so pained!"
+              },
+              {
+                "type": "p",
+                "zh": "那如果你也一样经历过，那种在祷告中没有应答、好像是对着空气说话那种无助和痛苦，我相信你一定想要寻找一个答案，那就是如何祷告，上帝才会聆听？有一些人祷告的时候比较茫然，不太确定自己祷告上帝会不会垂听！垂听了就很开心，没有垂听就很失望，就好像买彩票那种感觉！甚至到一种程度，最后对祷告不再期待！如果你也恰好处在这种光景之中，我期待你和我一起在今天的讲道当中去寻找上帝给你的回应！如果你正处在学习怎样祷告，我也期盼你能从今天的讲道之中有所收获！如果你已经非常会祷告！那么我邀请你带着祷告的心，为我们今天的讲道来守望！让我们一起从圣经的角度来看，如何让你的祷告得到神的回应！",
+                "en": "If you too have experienced that helplessness and pain of praying with no answer, as if speaking into the air, I believe you surely want to find an answer: how should we pray so that God will listen? Some people pray in confusion, unsure whether God will hear them! When they are heard, they rejoice; when not, they are disappointed, as if playing the lottery! Some even reach the point where they no longer expect anything from prayer. If you find yourself in this situation, I invite you to search with me in today's sermon for the answer God gives you! If you are still learning how to pray, I hope you too will gain something from today's sermon! If you are already very skilled at praying, then I invite you to pray with a heart of prayer and stand watch over today's message! Together let us look from the Bible's perspective at how to make your prayers receive God's answer!"
+              },
+              {
+                "type": "p",
+                "zh": "亲爱的弟兄姐妹，好不好我们一起低头来祷告？请弟兄姐妹为我们接下来的这段讲道时间祷告！求上帝的圣灵运行在我们中间，求上帝差遣大能争战的天使在你我之间，为我们的聚会争战，除去仇敌一切的拦阻，将拦阻人认识神的自高之事一概除去！除去仇敌一切的谎言与诡计，求神赐给我们谦卑、受教的心，使我们在听道的时候放下自己，敞开自己的心，能够领受上帝透过今天的讲台给我们生命带来的造就！（祷告）",
+                "en": "Dear brothers and sisters, shall we bow our heads and pray together? Please pray for this time of preaching! Ask the Holy Spirit of God to move among us, ask God to send mighty warring angels between us to fight for our gathering, and to remove every obstacle of the enemy, taking away everything lofty that exalts itself against the knowledge of God! Remove every lie and scheme of the enemy, and grant us humble, teachable hearts, so that as we listen we may lay ourselves down, open our hearts, and receive what God brings to our lives through today's pulpit! (Prayer)"
+              }
+            ]
           },
           {
             "id": "pipeline",
@@ -4081,7 +4238,68 @@
               "zh": "要疏通祷告的管道",
               "en": "Clear the Prayer Channel"
             },
-            "blocks": []
+            "blocks": [
+              {
+                "type": "sub",
+                "zh": "1. 淘宝购物需要互联网，祷告需要连接天堂的互联网、手机和广播信号",
+                "en": "1. Shopping on Taobao needs the internet; prayer needs a connection to heaven's internet, like a phone and a broadcast signal"
+              },
+              {
+                "type": "p",
+                "zh": "亲爱弟兄姐妹，我想问你们一个问题，有多少弟兄姐妹在淘宝上买过东西！请挥挥手！（微笑）你或许会奇怪这个问题和祷告有什么关系？我再问一个问题也许你就会明白了！亲爱弟兄姐妹，如果我们没有办法上网，还可以自己去网上买东西吗？我们都知道我们和淘宝之间有一个无形的通道叫互联网，没有连上互联网，就没有办法上淘宝购物；同样，你我和上帝之间也有一个通道，你可以叫它天上的互联网。当你没有连上天上互联网的时候，你就没有办法让你的祷告到达上帝的面前，你的祷告也就可能得不到任何回应！",
+                "en": "Dear brothers and sisters, I want to ask you a question: how many of you have bought things on Taobao? Please wave your hand! (Smile) You may wonder what this question has to do with prayer? Let me ask another question and perhaps you will understand! Dear brothers and sisters, if we had no way to get online, could we still go and shop online by ourselves? We all know there is an invisible channel between us and Taobao called the internet; without connecting to the internet, there is no way to shop on Taobao. In the same way, there is also a channel between you and God; you could call it heaven's internet. When you are not connected to heaven's internet, your prayers cannot reach God, and your prayers may receive no answer at all!"
+              },
+              {
+                "type": "sub",
+                "zh": "2. 阻碍我们连接天上互联网的那些障碍是什么",
+                "en": "2. What are the obstacles that block our connection to heaven's internet?"
+              },
+              {
+                "type": "p",
+                "zh": "圣经约翰福音9章31节告诉我们，神不听罪人的祷告！甚至诗篇66篇18节说，我若心里注重罪孽，主必不听。也就是说，就算仅仅只是我们心里犯罪、我们心里是污秽的，圣经说主不听我们的祷告。对于我们活在这个世界上的人来讲，每个人都犯了罪，亏缺了上帝的荣耀（罗马书3:23）。特别是在我们还不认识耶稣、不信耶稣的时候，我们和上帝之间的通道是实心的，全部堵起来的！亲爱的弟兄姐妹，上帝不听罪人的祷告很正常，但是我们是信耶稣是基督的人，在基督耶稣里、在上帝的爱子里，我们得蒙救赎，罪过已经得以赦免（歌罗西书1:14）。弟兄姐妹，我们因耶稣的宝血，已经从上帝不听祷告的咒诅当中得到了释放！所以我们和上帝之间的通道已经通了。虽然诗篇66篇18节说，我若心里注重罪孽，主必不听。但是诗篇66篇19节紧接着说，但神实在听见了，他侧耳听了我祷告的声音。亲爱的弟兄姐妹，我们过去因为不信耶稣，上帝不听我们的祷告，但是今天上帝不听祷告的咒诅也已经被耶稣基督的十字架打破了！但问题是今天，我们是不是容让一些拦阻，在我们和上帝的之间呢？你知道当你没有连上互联网的时候，你没有办法使用淘宝购物。但同样，我们若容让上帝和我们之间通道被阻隔的话，我们就会像没有网络不能上淘宝一样，祷告不能达到上帝的面前。",
+                "en": "The Bible tells us in John 9:31 that God does not listen to sinners! Even Psalm 66:18 says, If I had cherished sin in my heart, the Lord would not have listened. That is to say, even if it is only sin in our hearts, if our hearts are defiled, the Bible says the Lord will not hear our prayers. For everyone living in this world, all have sinned and fall short of the glory of God (Romans 3:23). Especially when we did not yet know Jesus or believe in Him, the channel between us and God was solid, completely blocked! Dear brothers and sisters, it is normal that God does not listen to the prayers of sinners, but we are people who believe that Jesus is the Christ. In Christ Jesus, in God's beloved Son, we have redemption and the forgiveness of sins (Colossians 1:14). Brothers and sisters, through the blood of Jesus we have been set free from the curse that God does not hear prayer! So the channel between us and God is now open. Although Psalm 66:18 says, If I had cherished sin in my heart, the Lord would not have listened, Psalm 66:19 immediately continues: But God has surely listened; He has heard my prayer. Dear brothers and sisters, in the past, because we did not believe in Jesus, God did not hear our prayers, but today the curse that God does not hear prayer has been broken by the cross of Jesus Christ! Yet the question today is: are we allowing some obstacles to remain between us and God? You know that without the internet you cannot shop on Taobao. In the same way, if we allow the channel between God and us to be blocked, we will be like someone without internet who cannot use Taobao: our prayers cannot reach God."
+              },
+              {
+                "type": "p",
+                "zh": "到底哪些东西可以阻隔我们和上帝之间的通道？首先，是罪。所以雅各书5章16节说，所以你们要彼此认罪，互相代求，使你们可以得医治。义人祈祷所发的力量是大有功效的。认罪使得我们和上帝之间的拦阻打开了！认罪使得我们和上帝之间的关系被医治了、恢复了！所以，我们必须向神认罪；如果我们得罪了人，也需要向人认罪，马太福音5章23到25节说，所以，你在祭坛上献礼物的时候，若想起弟兄向你怀怨，就把礼物留在坛前，先去同弟兄和好，然后来献礼物。你同告你的对头还在路上，就赶紧与他和息，恐怕他把你送给审判官，审判官交付衙役，你就下在监里了。从这两节圣经来看，如果我们得罪别人，没有向人认错和好，我们就容易被控告，使得我们灵里面受到亏损。如果别人得罪我们，我们也需要原谅他人。马可福音11章25节说，你们站着祷告的时候，若想起有人得罪你们，就当饶恕他，好叫你们在天上的父也饶恕你们的过犯。我们需要饶恕伤害我们的人，否则，我们带着伤害和不饶恕的苦毒，无法坦然无惧的来到上帝的面前祷告！",
+                "en": "So what can block the channel between us and God? First, sin. Therefore James 5:16 says, Therefore confess your sins to each other and pray for each other so that you may be healed. The prayer of a righteous person is powerful and effective. Confession opens up the obstacles between us and God! Confession heals and restores our relationship with God! So we must confess our sins to God; and if we have wronged others, we also need to confess to them. Matthew 5:23-25 says, Therefore, if you are offering your gift at the altar and there remember that your brother has something against you, leave your gift there in front of the altar. First go and be reconciled to your brother; then come and offer your gift. Settle matters quickly with your adversary who is taking you to court. Do it while you are still together on the way, or your adversary may hand you over to the judge, and the judge may hand you over to the officer, and you may be thrown into prison. From these two verses we see that if we wrong others and do not admit our fault and be reconciled, we are easily accused, and our spirit suffers loss. And if others have wronged us, we also need to forgive them. Mark 11:25 says, And when you stand praying, if you hold anything against anyone, forgive them, so that your Father in heaven may forgive you your sins. We need to forgive those who have hurt us; otherwise, carrying hurt and the bitterness of unforgiveness, we cannot come before God in prayer with boldness and confidence!"
+              },
+              {
+                "type": "p",
+                "zh": "疑惑也会成为一种拦阻，堵塞我们与上帝之间的通道。彼得因为疑惑，原本在海面行走，却掉在了海里（马太福音14:25-31）。雅各书1章6到7节说，只要凭着信心求，一点不疑惑；因为那疑惑的人，就像海中的波浪，被风吹动翻腾。这样的人不要想从主那里得什么。如果你想要祷告得到上帝的回应，你需要把疑惑从生命中除去，因为疑惑也会成为我们祷告的阻碍。",
+                "en": "Doubt also becomes an obstacle that blocks the channel between us and God. Because of doubt, Peter, who had been walking on the sea, fell into the water (Matthew 14:25-31). James 1:6-7 says, But when you ask, you must believe and not doubt, because the one who doubts is like a wave of the sea, blown and tossed by the wind. That person should not expect to receive anything from the Lord. If you want your prayer to receive God's answer, you need to remove doubt from your life, because doubt also becomes an obstacle to our prayers."
+              },
+              {
+                "type": "p",
+                "zh": "雅各书4章3节说，你们求也得不着，是因为你们妄求，要浪费在你们的宴乐中。浪费和宴乐也会成为我们祷告的阻碍。圣经很清晰的告诉我们，妄求、浪费在宴乐中，导致我们求也得不着。",
+                "en": "James 4:3 says, When you ask, you do not receive, because you ask with wrong motives, that you may spend what you get on your pleasures. Waste and pleasure-seeking also become obstacles to our prayers. The Bible clearly tells us that asking wrongly, wasting on pleasures, causes us to ask and not receive."
+              },
+              {
+                "type": "p",
+                "zh": "总体来说，我们生命中隐藏的罪，习惯性、不愿意向神承认的罪；不愿意向神悔改的罪；犯错伤害他人，不愿意去与人和好；别人伤害我们，我们不愿意选择饶恕，等等出现这些状况，我们和上帝之间的关系就被拦阻了。这些拦阻不是因为上帝，乃是因为我们自己。",
+                "en": "In general, the hidden sins in our lives, sins we habitually refuse to confess to God, sins we refuse to repent of; when we wrong others by our mistakes and are unwilling to be reconciled; when others hurt us and we are unwilling to choose forgiveness; whenever such situations arise, our relationship with God is blocked. These obstacles are not caused by God, but by ourselves."
+              },
+              {
+                "type": "p",
+                "zh": "我们的疑惑（雅各书1:6-7）、我们的宴乐（雅各书4:3）、我们的骄傲（彼得前书5:5）、我们的自义（路加福音18:9-14）、我们不敬重家人（彼得前书3:7妻子）等等，这些生命中坚固的营垒成为我们与上帝之间的拦阻。所以这些拦阻就是我们需要从生命中除去的。常常有人问能不能练习瑜伽来锻炼身体？（反而你女儿能不能去酒吧？）",
+                "en": "Our doubts (James 1:6-7), our pleasures (James 4:3), our pride (1 Peter 5:5), our self-righteousness (Luke 18:9-14), our failure to honor our family members (1 Peter 3:7, wives) — these strongholds in our lives become obstacles between us and God. These are the obstacles we need to remove from our lives. People often ask whether they can practice yoga for exercise? (Can your daughter go to a bar instead?)"
+              },
+              {
+                "type": "sub",
+                "zh": "3. 清理天堂互联网通道的障碍",
+                "en": "3. Clear away the obstacles on heaven's internet channel"
+              },
+              {
+                "type": "p",
+                "zh": "（示范：背着一堆象征着疑惑、虚荣、骄傲、自义的包包，从狭窄的通道是无法通过的。）",
+                "en": "(Demonstration: carrying a pile of bags symbolizing doubt, vanity, pride, and self-righteousness, you cannot pass through a narrow passage.)"
+              },
+              {
+                "type": "p",
+                "zh": "今天我们很多人最无法忍受的一种状况就是，有手机，没有电，或者有电没有网！亲爱的弟兄姐妹，那我们和上帝之间的关系呢？祷告的网络通道，虽然看不见，却真实存在，你是否愿意去清理那些你和上帝之间的垃圾，让你和上帝能够顺利连线呢？你可以选择，网络畅通或者掉线。亲爱的弟兄姐妹，只有我们每个人和上帝之间的通道被清理干净，我们才能祷告的畅通！就像我们把生活中的垃圾丢掉一样，我们才能愉快的生活！跟你旁边的人说，要想愉快的祷告，要除去你生命中的垃圾！",
+                "en": "Today, one situation many of us can hardly bear is having a phone but no battery, or having electricity but no network! Dear brothers and sisters, what about our relationship with God? The network channel of prayer, though invisible, truly exists. Are you willing to clear away the garbage between you and God so that you and God can connect smoothly? You can choose: network connected, or disconnected. Dear brothers and sisters, only when the channel between each of us and God is cleaned can our prayers flow freely! Just as we throw away the garbage in our daily lives so that we can live pleasantly, so tell the person next to you: to pray pleasantly, remove the garbage from your life!"
+              }
+            ]
           },
           {
             "id": "faith",
@@ -4089,7 +4307,88 @@
               "zh": "要有神话语的信心",
               "en": "Have Faith in God's Word"
             },
-            "blocks": []
+            "blocks": [
+              {
+                "type": "p",
+                "zh": "弟兄姐妹，我们分享了第一点要疏通祷告的管道，现在我们来分享第二点，要有神话语的信心。跟你旁边的人讲，要有从神话语而来的信心。",
+                "en": "Brothers and sisters, we have shared the first point, clearing the prayer channel. Now let us share the second point: have faith that comes from God's Word. Tell the person next to you: have faith that comes from God's Word."
+              },
+              {
+                "type": "sub",
+                "zh": "1. 上帝的话语常常存在心里（约翰福音15:7）",
+                "en": "1. Let God's Word dwell in your heart (John 15:7)"
+              },
+              {
+                "type": "p",
+                "zh": "我们一起来看，圣经约翰福音15章7节说，你们若常在我里面，我的话也常在你们里面，凡你们所愿意的，祈求就给你们成就。圣经说，如果我们常常在主的里面，主的话也常常在我们里面，凡我们所愿意的，祈求就给我们成就！弟兄姐妹，我们要常常读上帝的话语！上帝的话语才能在我们里面！跟你旁边的人说，你要读上帝的话语！并且我们还需要常常的行在上帝的话语里面，就是要顺服我们所读的上帝的话语。也就是说，我们要成为一个不随从自己肉体情欲的人，而要成为一个随从圣灵、顺服神话语的人（罗马书8章）！才能够凡我们所愿意的，祈求就给我们成就！",
+                "en": "Let us look together: John 15:7 says, If you remain in me and my words remain in you, ask whatever you wish, and it will be done for you. The Bible says, if we remain in the Lord and His words remain in us, whatever we wish we will receive when we ask! Brothers and sisters, we must read God's Word often! Only then can God's Word dwell in us! Tell the person next to you: you must read God's Word! And we also need to walk often in God's Word, that is, to obey the Word of God we read. In other words, we must become people who do not follow the desires of our flesh, but who follow the Holy Spirit and submit to the Word of God (Romans 8)! Only then will whatever we wish be granted when we ask!"
+              },
+              {
+                "type": "sub",
+                "zh": "2. 相信神会垂听我们的祷告（马太福音21:22、马可福音11:23-24）",
+                "en": "2. Believe that God will hear our prayers (Matthew 21:22, Mark 11:23-24)"
+              },
+              {
+                "type": "p",
+                "zh": "我们看一处经文，马太福音21章22节说，你们祷告，无论求什么，只要信，就必得着。从这处经文我们可以看到，相信你的祷告，是非常重要的，我们的信，是祷告能够得到回应的一个非常重要的因素。",
+                "en": "Let us look at one passage: Matthew 21:22 says, If you believe, you will receive whatever you ask for in prayer. From this passage we can see that believing in your prayer is very important; our faith is a very important factor in whether prayer receives an answer."
+              },
+              {
+                "type": "p",
+                "zh": "真实的信心，包含口里承认和心里相信，而口里承认和心里相信两者才会决定我们是不是有真实的信心。若是我们口里不能承认，说自己心里相信是不行的。而你口里承认心里却不相信也不行，因为信心的原则在这里不是加减法，而是乘法。",
+                "en": "True faith includes confession with the mouth and belief in the heart, and only both confession with the mouth and belief in the heart determine whether we have true faith. If we cannot confess with our mouths, saying we believe in our hearts is not enough. And if you confess with your mouth but do not believe in your heart, that also is not enough, because the principle of faith here is not addition or subtraction, but multiplication."
+              },
+              {
+                "type": "p",
+                "zh": "有一些基督徒在错误观念影响下，根本不知道自己祷告，上帝会不会垂听，以至于祷告变得形式化。当人们被错误的观念所束缚的时候，甚至可能对祷告不再有期待，或者对祷告感到迷茫。这种情况下，我们的祷告就非常的软弱并且没有力量！",
+                "en": "Some Christians, under the influence of wrong ideas, do not even know whether God will hear their prayers, and so their prayer becomes formalistic. When people are bound by wrong ideas, they may even stop expecting anything from prayer, or feel confused about prayer. In such a case, our prayers become very weak and powerless!"
+              },
+              {
+                "type": "p",
+                "zh": "有一个故事说，有一个地方干旱很久了，很多基督徒就到教会一起去祷告，求上帝能够使天空下雨，来解决这土地的旱情，祷告结束之后，大家都准备回家的时候，天空开始下起了暴雨，大家发现彼此好像都没有带雨伞，这时候，从教会出来一个小女孩打着一把红色的小雨伞。弟兄姐妹，你觉得相信上帝会垂听我们的祷告，是在我们看见上帝回应的时候，还是在我们没有看见的时候？约翰福音20章29节说，耶稣对他说，你因看见了我才信；那没有看见就信的有福了。跟你旁边的人说，那没有看见就相信的人是有福的！",
+                "en": "There is a story about a place that had been dry for a long time. Many Christians gathered at church to pray, asking God to send rain to relieve the drought of the land. After the prayer ended, as everyone prepared to go home, a heavy rain suddenly began to fall, and everyone realized that none of them seemed to have brought an umbrella. Then, out of the church came a little girl holding a small red umbrella. Brothers and sisters, do you think believing that God will hear our prayers happens when we see God's answer, or when we do not yet see it? John 20:29 says, Jesus told him, Because you have seen me, you have believed; blessed are those who have not seen and yet have believed. Tell the person next to you: blessed are those who believe without seeing!"
+              },
+              {
+                "type": "p",
+                "zh": "很多时候，我们只是头脑相信圣经的话语会发生在我们生命中，我们很难从心灵里相信圣经的祝福会发生在我们身上。但是我们对于世界上的事情，却很愿意相信。",
+                "en": "Many times, we only believe with our minds that the words of the Bible will happen in our lives; it is hard for us to believe from our hearts that the blessings of the Bible will come upon us. Yet we are very willing to believe the things of this world."
+              },
+              {
+                "type": "p",
+                "zh": "比如你爸爸说，儿子（女儿），给你的银行卡打了钱，请问你拿到钱了吗？但你相不相信，当你去银行取钱的时候，你的卡里真的有钱？",
+                "en": "For example, your father says, Son (daughter), I have transferred money into your bank card. Have you received the money? But do you believe that when you go to the bank to withdraw money, there really is money in your card?"
+              },
+              {
+                "type": "p",
+                "zh": "希伯来书11章1节说，信就是所望之事的实底，是未见之事的确据。弟兄姐妹，我们真的需要对属灵的事情有这样的信心。信是所望之事的实底，有时候我们说，我们心里没有底。但是圣经说，信心就是你一直期望的那件事实实在在的底！弟兄姐妹，你的心中有没有一直祷告、一直期待想要发生的事情？如果你有请你挥挥手，上帝要你去信，上帝要你心里有底！你祷告的时候，你心里有没有底，不会写在你的脸上！但是在属灵的世界里面，你里面的信心到底有没有底，时时刻刻，神都知道！",
+                "en": "Hebrews 11:1 says, Now faith is confidence in what we hope for and assurance about what we do not see. Brothers and sisters, we truly need this kind of faith in spiritual things. Faith is the confidence of things hoped for; sometimes we say we have no foundation in our hearts. But the Bible says faith is the solid foundation of the very thing you have been hoping for! Brothers and sisters, is there something in your heart that you have been praying for and expecting to happen? If there is, please wave your hand; God wants you to believe, God wants you to have a foundation in your heart! When you pray, whether you have a foundation in your heart is not written on your face! But in the spiritual world, whether the faith within you truly has a foundation is known by God at every moment!"
+              },
+              {
+                "type": "sub",
+                "zh": "3. 信心要从上帝的话语而来（罗马书10:17）",
+                "en": "3. Faith comes from God's Word (Romans 10:17)"
+              },
+              {
+                "type": "p",
+                "zh": "亲爱的弟兄姐妹，你知道吗？我们说要有信心，但是信心从哪里来呢？很多人说，我信！我信！但是你真的知道什么是我信吗？不是所有喊我信的人都是有信心的人！你要明白这一点。不是肯德基里面买的东西都是鸡肉和薯条！现在也有油条和豆浆！亲爱的弟兄姐妹，不要成为嘴巴上说有信心的人！",
+                "en": "Dear brothers and sisters, do you know? We say we must have faith, but where does faith come from? Many people say, I believe! I believe! But do you really know what it means to believe? Not everyone who shouts I believe is a person of faith! You must understand this. Not everything sold in KFC is chicken and fries! Now they also sell youtiao and soy milk! Dear brothers and sisters, do not become people who only say with their mouths that they have faith!"
+              },
+              {
+                "type": "p",
+                "zh": "亲爱的弟兄姐妹，圣经罗马书10章17节说，可见信道是从听道来的，听道是从基督的话来的。信心是从基督的话语来的！我们的生命有多爱慕上帝的话语，我们里面就有多少比例的信心！如果我们的信心不够，是因为我们里面上帝的话语不够！我们只有有了上帝的话语，我们才能有可能有信心！脱离上帝话语的信心都是镜花水月！随时会消失的！",
+                "en": "Dear brothers and sisters, Romans 10:17 says, Consequently, faith comes from hearing the message, and the message is heard through the word about Christ. Faith comes from the words of Christ! The more our lives love God's Word, the greater the proportion of faith within us! If our faith is insufficient, it is because God's Word within us is insufficient! Only when we have God's Word can we possibly have faith! Faith that is separated from God's Word is like a flower in a mirror or the moon in the water; it disappears at any moment!"
+              },
+              {
+                "type": "p",
+                "zh": "亲爱的弟兄姐妹，你还记得彼得海面行走的故事吗？当门徒们以为看到鬼怪的时候，耶稣说，是我。彼得说，主啊，如果是你，请叫我也走在水面上。主说，你来吧！亲爱的弟兄姐妹，彼得之所以能够在海面上行走，是因为主所说的话语，彼得，你来吧！主耶稣的话语就成为支撑彼得海面行走的桥梁。这桥梁就是彼得海面行走的信心！",
+                "en": "Dear brothers and sisters, do you remember the story of Peter walking on the sea? When the disciples thought they saw a ghost, Jesus said, It is I. Peter said, Lord, if it is you, tell me to come to you on the water. The Lord said, Come! Dear brothers and sisters, Peter was able to walk on the sea because of the words the Lord spoke: Peter, come! The words of the Lord Jesus became the bridge that supported Peter as he walked on the sea. That bridge was Peter's faith for walking on the sea!"
+              },
+              {
+                "type": "p",
+                "zh": "以前看过一本书上说，有两个姐妹出去传福音，路过一条河，桥已经被水淹没了，那两个姐妹彼此说，彼得在海面上行走，我们也在水面上走吧！我们是传福音的，相信耶稣也会对我们说，你走过去吧！你猜这两位姐妹有没有顺利在水面上走过去？弟兄姐妹，彼得有耶稣对他的应许，而这两位姐妹是自己头脑想的。也就是说她们信心的根据是她们自己的头脑想法。刚刚说，信心是从哪里来？信心是从上帝的话语来，这两位热心的姐妹的信心是从自己的头脑来，很显然这两位热心的姐妹自然被洪水给冲走了！所以不要把我们的想法当成神的声音！跟你旁边的人说，不要把自己的想法当做神的声音！当然神有时候会透过我们的心发出微小的声音！神的声音在我们的里面是突然冒出来的！不是依靠理性的分析，而是突然的灵感跳出在自己的脑海中，对于突然的灵感的出现，我们依然需要分辨是否来自于上帝，以后有机会我们再谈如何聆听神的声音，我们继续谈祷告的话题。",
+                "en": "I once read in a book that two sisters went out to preach the gospel and passed by a river where the bridge had been submerged by floodwater. The two sisters said to each other, Peter walked on the sea; let us also walk on the water! We are preachers of the gospel; we believe Jesus will also say to us, Walk across! Guess whether these two sisters walked across the water successfully? Brothers and sisters, Peter had Jesus' promise to him, but these two sisters were relying on their own thoughts. That is to say, the basis of their faith was their own mental ideas. Just now we said, where does faith come from? Faith comes from God's Word; these two zealous sisters' faith came from their own minds, and obviously these two zealous sisters were swept away by the flood! So do not take our own thoughts as the voice of God! Tell the person next to you: do not mistake your own thoughts for the voice of God! Of course, God sometimes speaks through our hearts with a small voice! The voice of God rises up suddenly within us! It is not dependent on rational analysis, but a sudden inspiration leaping into our minds. As for sudden inspirations, we still need to discern whether they come from God. If we have another opportunity, we will talk about how to listen to the voice of God; let us continue with the topic of prayer."
+              }
+            ]
           },
           {
             "id": "will",
@@ -4097,7 +4396,38 @@
               "zh": "要按神的旨意祷告",
               "en": "Pray According to God's Will"
             },
-            "blocks": []
+            "blocks": [
+              {
+                "type": "p",
+                "zh": "我们看一处圣经，约翰一书5章13到15节说，我将这些话写给你们信奉神儿子之名的人，要叫你们知道自己有永生。我们若照他的旨意求什么，他就听我们，这是我们向他所存坦然无惧的心。既然知道他听我们一切所求的，就知道我们所求于他的，无不得着。",
+                "en": "Let us look at one passage of Scripture: 1 John 5:13-15 says, I write these things to you who believe in the name of the Son of God so that you may know that you have eternal life. This is the confidence we have in approaching God: that if we ask anything according to his will, he hears us. And if we know that he hears us, whatever we ask, we know that we have what we asked of him."
+              },
+              {
+                "type": "sub",
+                "zh": "1. 神的旨意与祷告",
+                "en": "1. God's will and prayer"
+              },
+              {
+                "type": "p",
+                "zh": "什么是神的旨意？神的旨意就是神在圣经上的话语！包含神的命令！神要人遵行的话语，神给人各种的应许，都是神的旨意！我们刚才谈到神所赐的信心来源于神的话语！也就是说神的话语可以建立我们的信心，神的话语同样也向我们展示神的心意！所以说，真正有信心的人必定会选择活在上帝的话语里面，也同时是活在神的旨意里面！当我们远离神的话语，我们就会失去从神而来的信心，也同样会偏离上帝的旨意！当我们偏离上帝的话语、偏离上帝的旨意，我们同样在祷告上也会变得迷茫！",
+                "en": "What is God's will? God's will is God's Word in the Bible! It includes God's commands! The words God wants people to obey, and the various promises God gives people, are all God's will! Just now we spoke of how the faith God gives comes from God's Word! That is to say, God's Word can build our faith, and God's Word also shows us God's heart! Therefore, a truly faithful person will certainly choose to live in God's Word, and at the same time live in God's will! When we drift away from God's Word, we lose the faith that comes from God and also stray from God's will! When we stray from God's Word and God's will, we likewise become confused in prayer!"
+              },
+              {
+                "type": "sub",
+                "zh": "2. 巴兰的故事",
+                "en": "2. The story of Balaam"
+              },
+              {
+                "type": "p",
+                "zh": "在旧约民数记有一个先知叫做巴兰，当时以色列要进迦南地，路过外邦人的地方，外邦人和以色列人争战，耶和华就把外邦人交在以色列人手中，当以色列人在摩押人附近安营的时候，就有一些古代的吟游诗人，就是喜欢写诗歌去唱的那些人！有一些人就唱，摩押啊，你们有祸了！你们灭亡了，你们的男子逃跑，你们的女子被掳掠！然后摩押就人心惶惶，于是他们就找巴兰这个先知去咒诅以色列人！上帝对巴兰说，你不可以咒诅以色列人，也不可去摩押人那里！巴兰就对摩押的人说，我不和你们去！第二次摩押王又派人来说，我要使你得到极大的尊荣，你要什么，我就给你什么，只要你为我咒诅以色列人！巴兰说，你们就在这里住一晚，容我再去问问上帝！",
+                "en": "In the Old Testament book of Numbers there was a prophet named Balaam. When Israel was about to enter Canaan and passed through the land of foreigners, the foreigners fought against Israel, and the Lord delivered the foreigners into Israel's hands. When Israel camped near the Moabites, there were some ancient wandering minstrels, people who loved to write songs and sing! Some of them sang, Moab, woe to you! You are destroyed; your men flee, and your women are captured! Then Moab became anxious and fearful, so they asked Balaam the prophet to curse Israel! God said to Balaam, You must not curse Israel, nor go to the Moabites! Balaam told the people of Moab, I will not go with you! The king of Moab sent people a second time, saying, I will bestow great honor on you; whatever you ask, I will give you, only come and curse Israel for me! Balaam said, Stay here tonight, and let me ask God once more!"
+              },
+              {
+                "type": "p",
+                "zh": "亲爱的弟兄姐妹，请问巴兰第一次问上帝的时候，上帝有没有给巴兰答案？上帝已经给过巴兰答案，为什么巴兰还要问上帝呢？原因在于巴兰想要从摩押人那里得着什么！亲爱的弟兄姐妹，神的仇敌要给你的诱惑，你要远离！我们的眼目要单单定睛在主耶稣基督身上，如果有仇敌的诱惑来诱惑我们的时候，我们最好的办法不是去说，啊，你离开我，啊上帝啊，帮助我不犯罪！乃是远离诱惑！同那清心祷告主的人一起去追求属天的事情（提摩太后书2:22）。",
+                "en": "Dear brothers and sisters, when Balaam asked God the first time, did God give Balaam an answer? God had already given Balaam an answer, so why did Balaam ask God again? The reason is that Balaam wanted to gain something from the Moabites! Dear brothers and sisters, flee from the temptations the enemy of God brings to you! Let our eyes be fixed solely on the Lord Jesus Christ. When the temptations of the enemy come to entice us, our best approach is not to say, Oh, depart from me; oh God, help me not to sin! Rather, flee from temptation! Together with those who call on the Lord out of a pure heart, pursue the things of heaven (2 Timothy 2:22)."
+              }
+            ]
           },
           {
             "id": "persist",
@@ -4116,6 +4446,71 @@
                   "label": "Scripture · Luke 11:9–10",
                   "text": "So I say to you: Ask and it will be given to you; seek and you will find; knock and the door will be opened to you. For everyone who asks receives; the one who seeks finds; and to the one who knocks, the door will be opened."
                 }
+              },
+              {
+                "type": "sub",
+                "zh": "1. 寡妇和不义的官（路加福音18:1-8）",
+                "en": "1. The widow and the unjust judge (Luke 18:1-8)"
+              },
+              {
+                "type": "p",
+                "zh": "亲爱的弟兄姐妹，我们一起来看路加福音18章1到8节，路加福音18章这个寡妇和不义的官的故事，说有一个城里有一个官，不惧怕神，也不尊重世人！在这个城市里，有一个老寡妇，有冤屈的事情，找这个官来伸冤。这个官非常不愿意为一个寡妇伸冤！于是这个寡妇每天去找这个官喊冤！一次又一次！这个官心里想，我不敬畏神，我也不尊重这些穷人！但是这个寡妇总是来烦扰我，我就给她伸冤算了，免得她天天来烦我！",
+                "en": "Dear brothers and sisters, let us look together at Luke 18:1-8, the story of the widow and the unjust judge. It says there was a judge in a certain town who neither feared God nor cared what people thought. In that town there was an old widow who had been wronged and came to this judge to get justice. The judge was very unwilling to grant justice to a widow! So the widow went to the judge every day crying out for justice! Again and again! The judge thought to himself, I do not fear God nor care about these poor people! But this widow keeps bothering me, so I will see that she gets justice, so that she will not come back and keep bothering me!"
+              },
+              {
+                "type": "p",
+                "zh": "亲爱的弟兄姐妹，你听这个不义的官说的话，他要给这个寡妇伸冤！如果上帝的百姓，我们亲爱的弟兄姐妹，如果我们能够不住的祷告，上帝难道不会垂听我们的祷告吗？上帝要比世界上的官员要好很多的，对不对！我要告诉你，我亲爱的弟兄姐妹，上帝要快快的给你伸冤了！",
+                "en": "Dear brothers and sisters, you have heard what this unjust judge said: he would grant the widow justice! If God's people, our dear brothers and sisters, if we can pray without ceasing, will God not hear our prayers? God is so much better than the officials of this world, is He not! I tell you, my dear brothers and sisters, God will grant you justice quickly!"
+              },
+              {
+                "type": "sub",
+                "zh": "2. 上帝透过天使回应但以理的祷告（但以理书10:1-14）",
+                "en": "2. God answered Daniel's prayer through an angel (Daniel 10:1-14)"
+              },
+              {
+                "type": "p",
+                "zh": "在旧约但以理书第十章中，我们看到圣经怎么说，但以理想要明白神在将来的事（但以理书10:12）。他就在上帝面前专心祈祷，圣经形容但以理美味没有吃，酒肉没有入他的口，也没有用油抹自己的身体。但以理专心祈祷了三个七日，二十一天，就有回应临到但以理。我们一起来读但以理书10章12到14节。（此处省略经文）",
+                "en": "In Daniel 10 of the Old Testament, we see what the Bible says: Daniel wanted to understand what would happen in the future (Daniel 10:12). He prayed earnestly before God, and the Bible says Daniel ate no choice food, no meat or wine touched his lips, and he did not anoint himself with oil. Daniel prayed earnestly for three weeks, twenty-one days, and then an answer came to Daniel. Let us read Daniel 10:12-14 together. (Scripture omitted here)"
+              },
+              {
+                "type": "p",
+                "zh": "圣经说，但以理第一天专心祷告的时候，他的言语已经蒙神垂听！但是波斯的魔君拦阻了二十一日，后来有大君中的一位米迦勒来帮助。亲爱的弟兄姐妹，但以理的祷告上帝第一天就垂听了，请问但以理祷告了多少天？但以理的祷告第一天就蒙垂听了，请问但以理多少天之后才得到这个回应？原因是什么？在看不见的属灵世界有魔君拦阻！亲爱的弟兄姐妹，但以理不断祷告，直到上帝的回应临到自己，请问你要是为着特别重要的事情，祷告之后没有任何的回应，要不要继续祷告？要，一定要继续祷告！甚至是专心禁食祈祷！",
+                "en": "The Bible says that on the very first day Daniel prayed earnestly, his words were already heard by God! But the prince of the Persian kingdom resisted him for twenty-one days, until Michael, one of the chief princes, came to help. Dear brothers and sisters, God heard Daniel's prayer on the first day. How many days did Daniel pray? Daniel's prayer was heard on the first day, but how many days passed before the answer came? Why? Because in the unseen spiritual world, a prince was resisting! Dear brothers and sisters, Daniel kept praying until God's answer came to him. If you are praying for something especially important and receive no answer after praying, should you keep praying? Yes, you must keep praying! Even pray earnestly with fasting!"
+              },
+              {
+                "type": "sub",
+                "zh": "3. P.U.S.H.——Pray Until Something Happens!",
+                "en": "3. P.U.S.H. — Pray Until Something Happens!"
+              },
+              {
+                "type": "p",
+                "zh": "下面我们分享一个故事，有一个人，晚上正在他的小屋里睡觉，突然房间里充满了光，神向他显现。主跟他说，要交给他一个任务。主带他到屋门口的一块大岩石前，让他要用尽全力去推那块大岩石。于是，日复一日，他遵命而行。从日出到日落。每一天，他就用肩膀顶着那粗糙的大岩石，用尽全力地推啊推。就这样，过了好多年。",
+                "en": "Let me share a story. There was a man who was sleeping in his little hut at night when suddenly the room was filled with light, and God appeared to him. The Lord told him that He was giving him a task. The Lord brought him to a large rock at the door of his hut and told him to push the rock with all his might. So day after day, he obeyed. From sunrise to sunset, every day he pressed his shoulder against the rough rock and pushed with all his strength. And so it went for many years."
+              },
+              {
+                "type": "p",
+                "zh": "每天晚上，他满带疲乏，全身酸痛地回到他的小屋里，觉得又是徒劳无获的一天。因为他表现出有些气馁，那恶者（撒旦）决定在他软弱的心思里播下怀疑的种子：你已经推这块岩石很久了，可它还是纹丝不动啊。",
+                "en": "Every night he returned to his hut exhausted and aching all over, feeling that it had been another day of fruitless labor. Because he showed some discouragement, the evil one (Satan) decided to plant seeds of doubt in his weak mind: You have been pushing this rock for a long time, and it has not moved at all."
+              },
+              {
+                "type": "p",
+                "zh": "这样，那恶者（撒旦）让他感到这是一项不可能完成的任务。他是一个失败者。这些的想法使得他更加感觉气馁和沮丧。撒旦又进一步建议：何必在这件事上全力以赴呢？反正已经在花时间做了，只需要做做样子，小力一点去推就足够了。这疲乏的人计划就照此而行，但还是决定先向神祷告，把他的疑问带到主面前弄清楚。",
+                "en": "Thus the evil one (Satan) made him feel that this was an impossible task. That he was a failure. These thoughts made him feel even more discouraged and dejected. Satan further suggested: Why go all out on this matter? Since you are already spending time on it, just go through the motions, push with a little less force, that is enough. The weary man planned to do exactly that, but first he decided to pray to God and bring his questions before the Lord to be clarified."
+              },
+              {
+                "type": "p",
+                "zh": "“主啊，”他说：“我已经在你的事工上劳力很长时间了，我全力以赴来做你所要求我做的事。但是，尽管如此，那个岩石还是纹丝不动，什么地方错了？为什么我会这样失败呢？”主满怀同情地回答说：“当我要求你来服侍我，你答应了。我告诉你，你的任务是尽你的全力去推那岩石，你照此而行了。我从来没有说过我期望你会推动那块岩石的……你的任务只是推。现在你来到我面前，尽了全力却感到一无所获。但事实上真是这样吗？看看你自己吧，你的双臂健壮而有力，你的背晒成古铜色，何等强壮；你的手因为长期的推压而起了老茧，你的大腿已经变得非常结实。因着这一切，你已经成熟许多，你的能力已经远超当初的你。的确，你没有能移动那岩石。但是我对你的呼召是要你顺服，去推岩石，借此磨练你的信心，信靠我的智慧，你都已经做到了。现在，轮到我来移动这块岩石了。”",
+                "en": "\"Lord,\" he said, \"I have labored in your service for a long time, and I have put all my strength into doing what you asked me to do. Yet despite all this, the rock has not moved at all. What is wrong? Why do I fail like this?\" The Lord answered with compassion: \"When I asked you to serve me, you accepted. I told you your task was to push the rock with all your might, and you did. I never said I expected you to move the rock... your task was only to push. Now you come before me, having done your best and feeling you have gained nothing. But is that really true? Look at yourself: your arms are strong and powerful, your back is bronzed by the sun, how strong you are; your hands have developed calluses from long pushing, and your legs have become very sturdy. Through all this you have matured greatly, and your strength far exceeds what it was before. Indeed, you have not moved the rock. But my calling to you was to obey, to push the rock, and through this to train your faith and trust in my wisdom, and you have done all of it. Now, it is my turn to move the rock.\""
+              },
+              {
+                "type": "p",
+                "zh": "很多时候，我们听到神的话，总是尝试用我们自己的聪明去解释神要的是什么，其实，神所需要的只是简单的信而顺服，要我们尽全力去磨练那能“移山”的信心。但是，要知道，把山移动，还是神的工作。",
+                "en": "Many times, when we hear God's word, we try to use our own cleverness to explain what God wants. In fact, all God needs is simple faith and obedience, and He wants us to do our utmost to train the faith that can \"move mountains.\" But know this: moving the mountain is still God's work."
+              },
+              {
+                "type": "p",
+                "zh": "当一切都不对劲的时候，我们只要推（push）；当工作使我们信心下沉的时候，只要推（push）；当人并没有按照你所期望的做出反应的时候，只要推（push）；当你入不敷出的时候，只要推（push）。",
+                "en": "When everything goes wrong, just push (P.U.S.H.); when work makes our faith sink, just push; when people do not respond as you expected, just push; when you cannot make ends meet, just push."
               }
             ]
           },
@@ -4125,23 +4520,16 @@
               "zh": "结语",
               "en": "Conclusion"
             },
-            "blocks": []
+            "blocks": [
+              {
+                "type": "p",
+                "zh": "当我们在祷告遇到没有垂听的时候，我们可以反思，我们的祷告的通道是不是畅通的，有没有被罪和自己的私欲拦阻？我们有没有持续在基督耶稣里祷告和等候，我的祷告合上帝的心意吗？我祷告的时候，我相信我所祷告的上帝会垂听吗？当你在自己祷告的这些方面符合上帝的旨意的时候，我相信，你离得到上帝的回应已经很近了！愿我们每个弟兄姐妹都能够在祷告中得蒙上帝的垂听，得蒙上帝的恩典！阿们！我们一起低头祷告！",
+                "en": "When our prayers are not heard, we can reflect: is the channel of our prayer clear, or is it blocked by sin and our own desires? Are we continuing to pray and wait in Christ Jesus, and does my prayer agree with God's will? When I pray, do I believe that the God I pray to will hear me? When your prayers align with God's will in these areas, I believe you are very close to receiving God's answer! May every brother and sister among us be heard by God in prayer and receive God's grace! Amen! Let us bow our heads and pray together!"
+              }
+            ]
           }
         ],
-        "questions": {
-          "tag": {
-            "zh": "思考 · Question",
-            "en": "Reflection"
-          },
-          "title": {
-            "zh": "",
-            "en": ""
-          },
-          "text": {
-            "zh": "当你处在又疲劳、又软弱的境况中的时候，好像彼得整夜劳力却什么都没有捕获，你还愿意为耶稣撑船吗？说说你的感受。\n当你想到耶稣两次教导彼得他们捕鱼的时候，在你记忆重合这两次相似的事件的时候，你内心是怎样感受？",
-            "en": "When you find yourself weary and weak, like Peter who toiled all night and caught nothing, are you still willing to push the boat out for Jesus? Tell us how you feel.\nWhen you think of Jesus teaching Peter and the others to fish twice, as the two similar events overlap in your memory, what stirs in your heart?"
-          }
-        }
+        "questions": null
       },
       {
         "id": "13",
@@ -4484,7 +4872,28 @@
               "zh": "我自己经历到神医治的经验",
               "en": "My Own Experience of God’s Healing"
             },
-            "blocks": []
+            "blocks": [
+              {
+                "type": "p",
+                "zh": "神学院期间2008 — 2011：有一位白内障和耳聋得到医治，还有一些其他疾病得到医治的。",
+                "en": "Seminary years2008 — 2011：Someone was healed of cataracts and deafness, and several others were healed of various illnesses."
+              },
+              {
+                "type": "p",
+                "zh": "公办教会期间2012 — 2015：特别多的病人得到医治：住在河西医院附近的一位阿姨肾病得到医治，河东的一位阿姨心脏病得到医治，还有一些神经性的耳聋和疼痛病得到医治。",
+                "en": "Public church years2012 — 2015：A great many people were healed: an aunt living near Hexi Hospital was healed of kidney disease, another aunt in Hedong was healed of heart disease, and several more were healed of nervous deafness and chronic pain."
+              },
+              {
+                "type": "p",
+                "zh": "温州家庭教会期间2016 — 2020：没有特别的医治聚会，但也是看过很多病人被主医治，和2-3位污鬼辖制人得到释放。",
+                "en": "Wenzhou house-church years2016 — 2020：We held no special healing services, yet I saw many sick people healed by the Lord, and two or three people bound by unclean spirits set free."
+              },
+              {
+                "type": "p",
+                "zh": "现在教会期间2021 — 2024 · 2026：师母的癌症、邹芳姐妹的腰椎，还有一些来到我们中间的朋友得到了医治。",
+                "en": "Our present church2021 — 2024 · 2026：My wife’s cancer, Sister Zou Fang’s spine, and several friends who came among us were all healed."
+              }
+            ]
           },
           {
             "id": "dna",
@@ -4492,7 +4901,13 @@
               "zh": "教会的DNA",
               "en": "The DNA of the Church"
             },
-            "blocks": []
+            "blocks": [
+              {
+                "type": "p",
+                "zh": "在我们教会，我们会发现上帝医治人的疾病。我们曾经宣告“凡来到我们中间的病人都要得到医治。”正在不断地实现。",
+                "en": "In our church, we have seen God heal people of sickness. We once declared, “Every sick person who comes among us will be healed.” That word is continually being fulfilled."
+              }
+            ]
           },
           {
             "id": "believe",
@@ -4501,6 +4916,11 @@
               "en": "The Power of Believing"
             },
             "blocks": [
+              {
+                "type": "p",
+                "zh": "相信是有力量的！那我们要相信什么，才能获得医治和释放呢？要相信圣经关于医治和释放的应许。",
+                "en": "Believing is powerful! So what must we believe in order to receive healing and deliverance? We must believe God’s promises about healing and deliverance."
+              },
               {
                 "type": "verse",
                 "zh": {
@@ -4525,7 +4945,7 @@
                 "type": "verse",
                 "zh": {
                   "label": "圣经 · 约翰福音 11:40",
-                  "text": "耶稣说：“我不是对你说过，你若信，就必看见　神的荣耀吗？”"
+                  "text": "耶稣说：“我不是对你说过，你若信，就必看见 神的荣耀吗？”"
                 },
                 "en": {
                   "label": "Scripture · John 11:40",
@@ -4562,6 +4982,11 @@
             },
             "blocks": [
               {
+                "type": "p",
+                "zh": "疾病出于灵性空间的盗贼，也就是圣经说的“魔鬼”。",
+                "en": "Sickness comes from the thief in the spiritual realm—the one the Bible calls “the devil.”"
+              },
+              {
                 "type": "verse",
                 "zh": {
                   "label": "圣经 · 约翰福音 10:9",
@@ -4584,10 +5009,25 @@
                 }
               },
               {
+                "type": "p",
+                "zh": "当出于圣经、忠于圣经的教导，就是从耶稣来的，而从耶稣来的，必然得救、并且能够被喂养的健康、丰盛。",
+                "en": "Teaching that comes from the Bible and remains faithful to the Bible comes from Jesus; and what comes from Jesus leads to salvation, and to health and abundance by which we are nourished."
+              },
+              {
+                "type": "p",
+                "zh": "否认耶稣，就是认为耶稣的话语或者圣经已经成为过时的教导，另外发展出一套信仰体系出来，就是在否认耶稣。而否认耶稣的教导，就是出于盗贼，要偷窃、杀害、毁坏我们的健康和财务，甚至是毁坏我们的灵性生命。",
+                "en": "To deny Jesus is to treat his words, or the Bible itself, as outdated teaching and then develop another belief system of your own. Teaching that denies Jesus comes from the thief, who steals, kills, and destroys our health and our finances—even destroying our spiritual lives."
+              },
+              {
+                "type": "p",
+                "zh": "而我们要想领受超自然的健康和财务的兴盛，就要弃绝盗贼的迷惑、弃绝出于鬼魔的教导。",
+                "en": "If we want to receive supernatural health and prosperity in our finances, we must renounce the thief’s deceptions and renounce teachings that come from demons."
+              },
+              {
                 "type": "verse",
                 "zh": {
                   "label": "圣经 · 哥林多前书 10:20–21",
-                  "text": "我乃是说：外邦人所献的祭是祭鬼，不是祭　神，我不愿意你们与鬼相交。你们不能喝主的杯，又喝鬼的杯；不能吃主的筵席，又吃鬼的筵席。"
+                  "text": "我乃是说：外邦人所献的祭是祭鬼，不是祭 神，我不愿意你们与鬼相交。你们不能喝主的杯，又喝鬼的杯；不能吃主的筵席，又吃鬼的筵席。"
                 },
                 "en": {
                   "label": "Scripture · 1 Corinthians 10:20–21",
@@ -4595,33 +5035,45 @@
                 }
               },
               {
+                "type": "p",
+                "zh": "保罗说，不信上帝的人所献祭是给鬼，你不能和鬼交往。你祭拜鬼魔的时候，就是与鬼魔交往。所以，很多人因此生命中带下鬼魔的辖制，常常莫名的惧怕或者经常性意外事故。我们奉耶稣的名宣告：“我要弃绝，我所祭拜、跪拜过的鬼魔。”“从此，我因为信耶稣，我是属于耶稣的人。”",
+                "en": "Paul says that what unbelievers sacrifice is offered to demons, and you cannot have fellowship with demons. When you worship demons, you are in fellowship with them. That is why so many people live under demonic bondage, plagued by inexplicable fears or repeated accidents. We declare in the name of Jesus: “I renounce the demons I have worshipped and bowed down to.” “From now on, because I believe in Jesus, I belong to Jesus.”"
+              },
+              {
                 "type": "verse",
                 "zh": {
                   "label": "圣经 · 约翰一书 3:8",
-                  "text": "犯罪的是属魔鬼，因为魔鬼从起初就犯罪。　神的儿子显现出来，为要除灭魔鬼的作为。"
+                  "text": "犯罪的是属魔鬼，因为魔鬼从起初就犯罪。 神的儿子显现出来，为要除灭魔鬼的作为。"
                 },
                 "en": {
                   "label": "Scripture · 1 John 3:8",
                   "text": "The one who does what is sinful is of the devil, because the devil has been sinning from the beginning. The reason the Son of God appeared was to destroy the devil’s work."
                 }
+              },
+              {
+                "type": "p",
+                "zh": "圣经说，神的儿子显现出来，是为了要除灭魔鬼的作为！感谢主，我们信了耶稣之后，耶稣要除灭我们生命中魔鬼的作为。",
+                "en": "The Bible says the Son of God appeared to destroy the devil’s work! Thank the Lord—after we believe in Jesus, Jesus destroys the works of the devil in our lives."
+              },
+              {
+                "type": "p",
+                "zh": "魔鬼是超自然灵性的灵体，而圣经中“灵”这个字有一个意思是“气息”。所以，在动漫和超自然的影视作品中，邪恶的鬼魔，常常伴随着一片黑色（或者其他颜色）的气体。现实中，被魔鬼辖制的人，一般来说，你是无法看到颜色的。但影视作品中为了描述出来，就有了颜色。",
+                "en": "The devil is a supernatural spirit-being; and in the Bible the word “spirit” also means “breath.” That is why in anime and supernatural films, evil demons are often shown as a cloud of black—or otherwise colored—gas. In real life, when someone is under demonic bondage, you cannot actually see color. Filmmakers give it color in order to describe it."
+              },
+              {
+                "type": "p",
+                "zh": "耶稣来到你的生命中，其中有一个恩典会帮助你赶出魔鬼的权势。而途径就托付给了教会。很多人以为赶鬼只需要一分钟，但其实赶鬼和医治一样，都是一个过程，只是有的过程短，有的过程长。区别在于是否处理了魔鬼依附的条件。",
+                "en": "When Jesus comes into your life, one of the graces he brings is the power to drive out the devil’s authority—and he has entrusted this ministry to the church. Many people think deliverance takes only a minute, but in truth, like healing, deliverance is a process: sometimes short, sometimes long. The difference lies in whether the conditions the devil feeds on have been dealt with."
+              },
+              {
+                "type": "p",
+                "zh": "魔鬼依附在人的身上，通常是因为：对人的苦毒、性淫乱和拜偶像。对人的苦毒需要原谅饶恕，淫乱需要悔改，改变自己的行为，偶像需要弃绝。这样驱除魔鬼的辖制会比较容易，魔鬼带来的疾病也会比较容易得到医治。",
+                "en": "The devil clings to people usually through three things: bitterness toward others, sexual immorality, and idolatry. Bitterness must be forgiven and released; immorality must be repented of and changed in behavior; idols must be renounced. Then the devil’s bondage is broken more easily, and the sickness the devil brought is healed more readily."
               }
             ]
           }
         ],
-        "questions": {
-          "tag": {
-            "zh": "思考 · Question",
-            "en": "Reflection"
-          },
-          "title": {
-            "zh": "在我的生命中",
-            "en": "In My Life"
-          },
-          "text": {
-            "zh": "我得罪了谁？谁又得罪了我？\n我又要饶恕谁？",
-            "en": "Whom have I wronged? Who has wronged me?\nWhom do I need to forgive?"
-          }
-        }
+        "questions": null
       },
       {
         "id": "15",
@@ -4669,7 +5121,13 @@
               "zh": "为什么每次聚会，都先分享见证？",
               "en": "Why do we always share testimonies first in every gathering?"
             },
-            "blocks": []
+            "blocks": [
+              {
+                "type": "quote",
+                "zh": "为什么每次的医治聚会，我们都会先分享一些见证呢？因为我们渴望透过见证的分享，来点燃弟兄姐妹心的渴望。圣经说“那些为耶稣作见证的有预言的灵”（和修版 启示录19:10），意思是，神能够透过见证对你的生命发预言——神能够再做一次。",
+                "en": "Why do we always begin every healing gathering by sharing some testimonies? Because we long to kindle the desire of the brothers and sisters through shared testimony. The Scripture says, “those who testify to Jesus have the Spirit of prophecy” (Rev. 19:10). This means God can speak prophecies over your life through testimony—God can do it again."
+              }
+            ]
           },
           {
             "id": "henyang",
@@ -4685,6 +5143,41 @@
               },
               {
                 "type": "p",
+                "zh": "1. 腰椎间盘突出：有几位弟兄姐妹当场得到了医治。",
+                "en": "1. Herniated lumbar disc: several brothers and sisters were healed on the spot."
+              },
+              {
+                "type": "p",
+                "zh": "2. 手脚麻木：得医治。",
+                "en": "2. Numb hands and feet: healed."
+              },
+              {
+                "type": "p",
+                "zh": "3. 子宫肌瘤：一位姐妹分享，在祷告中突然有一股力量进入她的腹部，原来不舒服的地方变得非常舒服。",
+                "en": "3. Uterine fibroid: a sister shared that during prayer a power suddenly entered her abdomen, and what had felt uncomfortable became completely comfortable."
+              },
+              {
+                "type": "p",
+                "zh": "4. 听力恢复：一位戴助听器的弟兄，双耳完全听不见，祷告中听力开始恢复，他形容大约恢复10%。我们鼓励他，为10％的听力恢复开始感谢神。",
+                "en": "4. Restored hearing: a brother wearing a hearing aid had been completely deaf in both ears; during prayer his hearing began to return, and he estimated about 10% was restored. We encouraged him to begin thanking God for that 10%."
+              },
+              {
+                "type": "p",
+                "zh": "5. 膝盖硬块：一位姐妹膝盖有一个硬块非常疼痛，祷告后硬块开始柔软，疼痛极大的减轻。",
+                "en": "5. Lump on the knee: a sister had a painful hard lump on her knee; after prayer the lump began to soften and the pain greatly lessened."
+              },
+              {
+                "type": "p",
+                "zh": "6. 中风脑梗：两个病人有极大的恢复——一个能够在讲台上走来走去，一个手臂能够举起来上下挥动，而之前在教会中是不能举起手臂的。",
+                "en": "6. Stroke and brain infarction: two patients made remarkable recoveries—one could walk back and forth on the platform, and one could raise and swing an arm up and down, though he had not been able to raise it in church before."
+              },
+              {
+                "type": "p",
+                "zh": "7. 重担脱落：还有几个人分享，身上的重担在祷告会上消失了。其中一个姐妹说，自己以前头上和胸口好像被大石头压住一样，祷告中神释放了她所有的重担，感觉非常轻松。",
+                "en": "7. Burden lifted: several others shared that the burdens on them vanished during the prayer meeting. One sister said she had felt as if a great stone pressed on her head and chest, but in prayer God lifted all her burdens and she felt completely light."
+              },
+              {
+                "type": "p",
                 "zh": "这次聚会的神迹和医治，因为主耶稣的怜悯和爱，另外和弟兄姐妹的渴慕也是分不开的。整个会场的弟兄姐妹很渴慕，也很热切的寻求。另一方面，中场见证的时候，彼此的见证鼓励弟兄姐妹进入更深切的渴慕当中，以至于更多的人被圣灵触摸，倒在圣灵里面。极大的敬畏之情在会场中涌流，为罪、为义痛哭流涕的呼求与圣灵中的喜乐在整个会场，还有一个服侍的同工领受了圣灵如火的充满，非常的强烈。",
                 "en": "The miracles and healings in this gathering came through the Lord Jesus’s mercy and love, and were also inseparable from the hunger of the brothers and sisters. The whole room hungered and sought earnestly. Moreover, as testimonies were shared midway, they encouraged one another into deeper hunger, so that more people were touched by the Holy Spirit and fell under the Spirit. A great awe swept through the room—crying out over sin and righteousness, and joy in the Holy Spirit filled the whole place; one serving co-worker also received a very strong, fiery filling of the Holy Spirit."
               }
@@ -4697,6 +5190,17 @@
               "en": "Testimony is your inheritance"
             },
             "blocks": [
+              {
+                "type": "verse",
+                "zh": {
+                  "label": "圣经 · 诗篇 119:111",
+                  "text": "我以永远的法度（英文是见证），为永远的产业，因这是我心中所喜爱的。"
+                },
+                "en": {
+                  "label": "Bible · Psalm 119:111",
+                  "text": "Your statutes are my heritage forever; they are the joy of my heart."
+                }
+              },
               {
                 "type": "p",
                 "zh": "也就是说，见证会成为我们的产业。圣经中约书亚记24:31，约书亚在世和约书亚死后，那些知道耶和华为以色列人所行诸事的长老还在的时候，以色列人事奉耶和华。而在士师记时期，失去传承神的见证的年代，圣经形容士师记21:25：“那时以色列中没有王，各人任意而行。”我知道大部分人会把家产留给自己的后代，但你没有想过，见证是你的产业呢？出埃及那些经历神超自然大能的以色列人，后代不记得神的作为的时候，就任意妄为。你要不要做见证，让见证成为你的产业呢？",
@@ -4721,17 +5225,6 @@
                 "type": "p",
                 "zh": "我呼吁更多青年弟兄姐妹去渴慕进到圣灵里面，更深的渴慕神的圣灵，去追求神透过圣灵来复兴我们。使我们能够进入其中，并开始看见神大能的作为成为我们教会普遍的经历。并且能够激发更多的人去寻求神，追求属灵的奋兴，进入神大能的同在中；使我们不仅经历神，也带领人进入神的大能中。",
                 "en": "I call on more young brothers and sisters to hunger to enter into the Holy Spirit, to hunger more deeply for God’s Spirit, and to seek that God would revive us through the Spirit—so that we may enter in and begin to see the mighty works of God become the common experience of our church; and so that we may stir up more people to seek God, to pursue spiritual revival, and to enter the mighty presence of God—so that we not only experience God ourselves, but also lead others into God’s power."
-              },
-              {
-                "type": "verse",
-                "zh": {
-                  "label": "圣经 · 诗篇 119:111",
-                  "text": "我以永远的法度（英文是见证），为永远的产业，因这是我心中所喜爱的。"
-                },
-                "en": {
-                  "label": "Bible · Psalm 119:111",
-                  "text": "Your statutes are my heritage forever; they are the joy of my heart."
-                }
               }
             ]
           },
@@ -4762,16 +5255,6 @@
             },
             "blocks": [
               {
-                "type": "p",
-                "zh": "圣经说的是信的人必有神迹随着他们，奉耶稣基督的名赶鬼，说新方言，手按病人，病人得医治，没有说只有特定的人。所以，你要知道，我们这些信的人，应该去彰显神医治的能力。我很喜欢比尔强生牧师说的一句话：我们欠这个世代一次遇见神的机会。你若能够领受，就应该把神的话语铭刻在内心，你里面有神预留的医治大能！而你需要相信并领受，并且凭着相信去为病人祷告！",
-                "en": "The Scripture says that signs will accompany those who believe—driving out demons in the name of Jesus Christ, speaking in new tongues, laying hands on the sick that they may be healed—it does not say only certain people. So you must know that we who believe should reveal the healing power of God. I love a saying of Pastor Bill Johnson: we owe this generation an encounter with God. If you can receive it, you should engrave the word of God on your heart—the healing power God has reserved is within you! And you need to believe and receive, and by faith pray for the sick!"
-              },
-              {
-                "type": "p",
-                "zh": "所以，你不止是要渴望领受从神而来的医治；也要渴望复兴的火点燃你的生命。去活出神要你活出的生命光景。",
-                "en": "So you must not only long to receive healing from God; you must also long for the fire of revival to kindle your life, and live out the life that God calls you to live."
-              },
-              {
                 "type": "verse",
                 "zh": {
                   "label": "圣经 · 马可福音 16:16–18",
@@ -4781,6 +5264,21 @@
                   "label": "Bible · Mark 16:16–18",
                   "text": "Whoever believes and is baptized will be saved, but whoever does not believe will be condemned. And these signs will accompany those who believe: in my name they will drive out demons; they will speak in new tongues; they will pick up snakes with their hands; and when they drink deadly poison, it will not hurt them at all; they will place their hands on sick people, and they will get well."
                 }
+              },
+              {
+                "type": "quote",
+                "zh": "过去我所在的神学院的老师以及牧者，都要我不要为病人祷告，他们企图使我相信，今天教会已经不再需要神的医治了。然而，我要告诉你，神是不改变的神。祂过去因为怜悯而医治病人，今天也会因为怜悯而使用我们相信的人去医治病人。",
+                "en": "In the past, the professors and pastors at the seminary I attended all told me not to pray for the sick; they tried to convince me that the church no longer needs God’s healing today. Yet I tell you, God is unchanging. In the past He healed the sick out of mercy, and today He will still, out of mercy, use us who believe to heal the sick."
+              },
+              {
+                "type": "p",
+                "zh": "圣经说的是信的人必有神迹随着他们，奉耶稣基督的名赶鬼，说新方言，手按病人，病人得医治，没有说只有特定的人。所以，你要知道，我们这些信的人，应该去彰显神医治的能力。我很喜欢比尔强生牧师说的一句话：我们欠这个世代一次遇见神的机会。你若能够领受，就应该把神的话语铭刻在内心，你里面有神预留的医治大能！而你需要相信并领受，并且凭着相信去为病人祷告！",
+                "en": "The Scripture says that signs will accompany those who believe—driving out demons in the name of Jesus Christ, speaking in new tongues, laying hands on the sick that they may be healed—it does not say only certain people. So you must know that we who believe should reveal the healing power of God. I love a saying of Pastor Bill Johnson: we owe this generation an encounter with God. If you can receive it, you should engrave the word of God on your heart—the healing power God has reserved is within you! And you need to believe and receive, and by faith pray for the sick!"
+              },
+              {
+                "type": "p",
+                "zh": "所以，你不止是要渴望领受从神而来的医治；也要渴望复兴的火点燃你的生命。去活出神要你活出的生命光景。",
+                "en": "So you must not only long to receive healing from God; you must also long for the fire of revival to kindle your life, and live out the life that God calls you to live."
               }
             ]
           },
@@ -4791,11 +5289,6 @@
               "en": "The Spirit of God brings the power of God"
             },
             "blocks": [
-              {
-                "type": "p",
-                "zh": "从这两节经文的对比，你可以看到，神的灵是带着神的能力的！而你需要神的圣灵不断的充满你，以至于你里面有充足的神的大能，去为耶稣基督去服侍上帝放在你身边的人。",
-                "en": "From the contrast between these two verses you can see that the Spirit of God carries the power of God! And you need the Holy Spirit to fill you continually, so that there is within you an ample supply of God’s mighty power to serve, for the sake of Jesus Christ, the people God places around you."
-              },
               {
                 "type": "verse",
                 "zh": {
@@ -4817,6 +5310,11 @@
                   "label": "Bible · Luke 11:20",
                   "text": "But if it is by the finger of God that I drive out demons, then the kingdom of God has come upon you."
                 }
+              },
+              {
+                "type": "p",
+                "zh": "从这两节经文的对比，你可以看到，神的灵是带着神的能力的！而你需要神的圣灵不断的充满你，以至于你里面有充足的神的大能，去为耶稣基督去服侍上帝放在你身边的人。",
+                "en": "From the contrast between these two verses you can see that the Spirit of God carries the power of God! And you need the Holy Spirit to fill you continually, so that there is within you an ample supply of God’s mighty power to serve, for the sake of Jesus Christ, the people God places around you."
               }
             ]
           },
@@ -4827,16 +5325,6 @@
               "en": "Speaking in tongues builds up yourself"
             },
             "blocks": [
-              {
-                "type": "p",
-                "zh": "神的灵会带下神的能力，而说方言是神透过奥秘的方式在灵里面来造就自己，是需要信心来启动这种造就的，因为你的悟性是听不懂方言说什么。人们做自己不明白或没有把握的事情，都是需要信心。而这种信心就能够启动方言恩赐在灵里面造就的功效。并且也正是信心让你得着神的能力。",
-                "en": "The Spirit of God brings the power of God, and speaking in tongues is God building you up in your spirit through a mysterious way. This building up needs faith to set it in motion, because your mind cannot understand what the tongues are saying. People need faith whenever they do something they do not fully understand or are not sure about. And this faith sets in motion the effect of the gift of tongues building you up in the spirit. It is also faith that lets you receive the power of God."
-              },
-              {
-                "type": "p",
-                "zh": "说方言是圣灵充满其中一个记号。在圣灵充满和说方言中，能够带下神的同在。我们每个人都有耶稣所给予的能力，而区别是有人活出来了，有人没有活出来。说方言是用隐秘的话语造就自己，让自己里面神的能力能够彰显出来。说方言就好像用水泵抽水一样，一次次的按压式的方言，看起来单调重复，却会从内心井中打出活水的泉源，带下生命的能力。",
-                "en": "Speaking in tongues is one of the signs of being filled with the Holy Spirit. In being filled with the Spirit and speaking in tongues, the presence of God is brought down. Each of us has the ability Jesus gave; the difference is that some live it out and some do not. Speaking in tongues builds you up with secret words, letting the power of God within you be revealed. Speaking in tongues is like drawing water with a pump—pressing it again and again may seem monotonous and repetitive, yet it draws up from the inner well a spring of living water, bringing the power of life."
-              },
               {
                 "type": "verse",
                 "zh": {
@@ -4869,6 +5357,16 @@
                   "label": "Bible · 1 Corinthians 14:14",
                   "text": "For if I pray in a tongue, my spirit prays, but my mind is fruitless."
                 }
+              },
+              {
+                "type": "p",
+                "zh": "神的灵会带下神的能力，而说方言是神透过奥秘的方式在灵里面来造就自己，是需要信心来启动这种造就的，因为你的悟性是听不懂方言说什么。人们做自己不明白或没有把握的事情，都是需要信心。而这种信心就能够启动方言恩赐在灵里面造就的功效。并且也正是信心让你得着神的能力。",
+                "en": "The Spirit of God brings the power of God, and speaking in tongues is God building you up in your spirit through a mysterious way. This building up needs faith to set it in motion, because your mind cannot understand what the tongues are saying. People need faith whenever they do something they do not fully understand or are not sure about. And this faith sets in motion the effect of the gift of tongues building you up in the spirit. It is also faith that lets you receive the power of God."
+              },
+              {
+                "type": "p",
+                "zh": "说方言是圣灵充满其中一个记号。在圣灵充满和说方言中，能够带下神的同在。我们每个人都有耶稣所给予的能力，而区别是有人活出来了，有人没有活出来。说方言是用隐秘的话语造就自己，让自己里面神的能力能够彰显出来。说方言就好像用水泵抽水一样，一次次的按压式的方言，看起来单调重复，却会从内心井中打出活水的泉源，带下生命的能力。",
+                "en": "Speaking in tongues is one of the signs of being filled with the Holy Spirit. In being filled with the Spirit and speaking in tongues, the presence of God is brought down. Each of us has the ability Jesus gave; the difference is that some live it out and some do not. Speaking in tongues builds you up with secret words, letting the power of God within you be revealed. Speaking in tongues is like drawing water with a pump—pressing it again and again may seem monotonous and repetitive, yet it draws up from the inner well a spring of living water, bringing the power of life."
               }
             ]
           },
@@ -4917,20 +5415,7 @@
             ]
           }
         ],
-        "questions": {
-          "tag": {
-            "zh": "思考 · Question",
-            "en": "Reflection"
-          },
-          "title": {
-            "zh": "在我的生命中",
-            "en": "In My Life"
-          },
-          "text": {
-            "zh": "我得罪了谁？谁又得罪了我？\n我又要饶恕谁？",
-            "en": "Whom have I wronged? Who has wronged me?\nWhom do I need to forgive?"
-          }
-        }
+        "questions": null
       }
     ]
   },
