@@ -305,8 +305,8 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
   <!-- ===== Hero ===== -->
   <section class="hero">
     <div class="sprout" aria-hidden="true"></div>
-    <h1>今日灵修</h1>
-    <p class="hero-verse">先领受今天的话语，再走进今天<small>活泼的生命 · QT</small></p>
+    <h1>每日灵修</h1>
+    <p class="hero-verse">先领受每天的话语，再走进今天<small>活泼的生命 · QT</small></p>
     <div class="hero-rule"></div>
   </section>
 
@@ -347,7 +347,7 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
         <p class="qt-stale" id="staleNote" hidden>今天的内容还没更新，下面显示的是 <b id="staleDate">2026年11月8日</b> 的话语。</p>
 
         <article class="qt-sticker qt-topic">
-          <span class="qt-tag">今天的主题</span>
+          <span class="qt-tag" id="qtTopicTag">今天的主题</span>
           <h2 id="qtTopic">悲惨的审判</h2>
           <p class="qt-sub" id="qtSubtitle">仅有极少数存留</p>
           <p class="qt-stamp"><span id="dateA">2026年11月8日</span><i class="qt-dot"></i><span id="weekA">星期日</span></p>
@@ -360,7 +360,7 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
         </article>
 
         <section class="qt-verses" id="qtVerses" hidden aria-label="今日经文正文">
-          <h3>今日经文</h3>
+          <h3 id="qtVersesTitle">今日经文</h3>
           <ol id="qtVerseList"></ol>
           <p class="qt-verses-src">经文引自《中文英王钦定本》 · <a href="https://www.ckjv.asia/" target="_blank" rel="noopener">ckjv.asia</a> · CC BY-SA 3.0</p>
         </section>
@@ -647,6 +647,8 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
 
   function render(d){
     syncDayNav();
+    setText('qtTopicTag', qtDay === 'prev' ? '昨天的主题' : '今天的主题');
+    setText('qtVersesTitle', qtDay === 'prev' ? '昨日经文' : '今日经文');
     renderVerses(d);
     renderReflection(d, reflectionFor(d));
     setText('qtTopic', d.topic);
