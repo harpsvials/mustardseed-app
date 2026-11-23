@@ -815,7 +815,21 @@
             "en": "Active following"
           }
         ],
-        "chapters": [
+        "questions": {
+          "tag": {
+            "zh": "思考 · Question",
+            "en": "Reflection · Question"
+          },
+          "title": {
+            "zh": "一起想想",
+            "en": "Think Together"
+          },
+          "text": {
+            "zh": "在你经历困难、痛苦甚至疾病时，你的第一反应更接近“世界的方式”，还是“神的话语”？你打算如何更多专注在神的话语上，让祂的话语在你生命中释放能力？\n对照“主动跟随”与“被动跟随”，你觉得自己的生命光景更接近哪一种？可以怎样开始有意识地主动跟随耶稣？",
+            "en": "When you experience difficulty, pain, or even sickness, is your first reaction closer to “the world’s way” or “the word of God”? How do you plan to focus more on God’s word so that His word releases power in your life? \nComparing “active following” and “passive following,” which condition does your life more closely resemble? How can you begin to consciously and actively follow Jesus?"
+          }
+        },
+        "body": [
           {
             "id": "power",
             "title": {
@@ -980,21 +994,7 @@
               }
             ]
           }
-        ],
-        "questions": {
-          "tag": {
-            "zh": "思考 · Question",
-            "en": "Reflection · Question"
-          },
-          "title": {
-            "zh": "一起想想",
-            "en": "Think Together"
-          },
-          "text": {
-            "zh": "在你经历困难、痛苦甚至疾病时，你的第一反应更接近“世界的方式”，还是“神的话语”？你打算如何更多专注在神的话语上，让祂的话语在你生命中释放能力？\n对照“主动跟随”与“被动跟随”，你觉得自己的生命光景更接近哪一种？可以怎样开始有意识地主动跟随耶稣？",
-            "en": "When you experience difficulty, pain, or even sickness, is your first reaction closer to “the world’s way” or “the word of God”? How do you plan to focus more on God’s word so that His word releases power in your life? \nComparing “active following” and “passive following,” which condition does your life more closely resemble? How can you begin to consciously and actively follow Jesus?"
-          }
-        }
+        ]
       },
       {
         "id": "20",
@@ -1035,7 +1035,21 @@
             "en": "Positive declaration"
           }
         ],
-        "chapters": [
+        "questions": {
+          "tag": {
+            "zh": "思考 · Question",
+            "en": "Reflection · Question"
+          },
+          "title": {
+            "zh": "一起想想",
+            "en": "Think Together"
+          },
+          "text": {
+            "zh": "在你的心中，你觉得上帝会医治什么样的人？你觉得上帝为什么要医治我们？\n我们得医治之后，为什么要作见证？\n当你亲耳听到、亲眼看见别人得到上帝医治的时候，你会有怎样的感受或者想法？",
+            "en": "In your heart, who do you think God heals? Why do you think God heals us?\nAfter we are healed, why should we give testimony?\nWhen you hear with your own ears and see with your own eyes others being healed by God, what feelings or thoughts do you have?"
+          }
+        },
+        "body": [
           {
             "id": "why",
             "title": {
@@ -1267,21 +1281,7 @@
               }
             ]
           }
-        ],
-        "questions": {
-          "tag": {
-            "zh": "思考 · Question",
-            "en": "Reflection · Question"
-          },
-          "title": {
-            "zh": "一起想想",
-            "en": "Think Together"
-          },
-          "text": {
-            "zh": "在你的心中，你觉得上帝会医治什么样的人？你觉得上帝为什么要医治我们？\n我们得医治之后，为什么要作见证？\n当你亲耳听到、亲眼看见别人得到上帝医治的时候，你会有怎样的感受或者想法？",
-            "en": "In your heart, who do you think God heals? Why do you think God heals us?\nAfter we are healed, why should we give testimony?\nWhen you hear with your own ears and see with your own eyes others being healed by God, what feelings or thoughts do you have?"
-          }
-        }
+        ]
       },
       {
         "id": "19",
@@ -1322,7 +1322,21 @@
             "en": "Not wish-making"
           }
         ],
-        "chapters": [
+        "questions": {
+          "tag": {
+            "zh": "思考 · Question",
+            "en": "Reflection · Question"
+          },
+          "title": {
+            "zh": "一起想想",
+            "en": "Think Together"
+          },
+          "text": {
+            "zh": "在你的祷告生活中，是否经历过“得不着”的时刻？对照雅各书4:2-3，你觉得自己更需要学习“照神的旨意求”，还是“带着信心不求妄求”？\n你如何理解“信仰的核心不是方法论，而是生命”？愿意从哪一件事开始，让耶稣成为你生命真正的中心？",
+            "en": "In your prayer life, have you experienced moments of “not receiving”? In light of James 4:2-3, do you think you need to learn more about “asking according to God’s will,” or about “asking with faith without asking wrongly”? \nHow do you understand that “the core of faith is not methodology but life”? With which one thing would you like to begin making Jesus the true center of your life?"
+          }
+        },
+        "body": [
           {
             "id": "intro",
             "title": {
@@ -1627,21 +1641,7 @@
               }
             ]
           }
-        ],
-        "questions": {
-          "tag": {
-            "zh": "思考 · Question",
-            "en": "Reflection · Question"
-          },
-          "title": {
-            "zh": "一起想想",
-            "en": "Think Together"
-          },
-          "text": {
-            "zh": "在你的祷告生活中，是否经历过“得不着”的时刻？对照雅各书4:2-3，你觉得自己更需要学习“照神的旨意求”，还是“带着信心不求妄求”？\n你如何理解“信仰的核心不是方法论，而是生命”？愿意从哪一件事开始，让耶稣成为你生命真正的中心？",
-            "en": "In your prayer life, have you experienced moments of “not receiving”? In light of James 4:2-3, do you think you need to learn more about “asking according to God’s will,” or about “asking with faith without asking wrongly”? \nHow do you understand that “the core of faith is not methodology but life”? With which one thing would you like to begin making Jesus the true center of your life?"
-          }
-        }
+        ]
       },
       {
         "id": "18",
@@ -1682,7 +1682,21 @@
             "en": "Sailing downstream"
           }
         ],
-        "chapters": [
+        "questions": {
+          "tag": {
+            "zh": "思考 · Question",
+            "en": "Reflection · Question"
+          },
+          "title": {
+            "zh": "一起想想",
+            "en": "Think Together"
+          },
+          "text": {
+            "zh": "你是否体验过属灵上“减肥复胖”式的退后或“只听不行”的瓶颈？面对神的话语，我们如何在日常中从“随便”转为“郑重”，身体力行防范“随流失去”？\n我们如何避免依靠“过去的义”或盲目追赶外在潮流，在生活中实践“信心加行为”的真实顺服，经历“顺水行舟”般的生命成长？",
+            "en": "Have you experienced a “diet-then-regain” setback spiritually, or the bottleneck of “hearing without doing”? Facing God’s word, how can we move from “careless” to “serious” in daily life and guard against “drifting away”? \nHow can we avoid relying on “past righteousness” or blindly chasing outward trends, and practice the real obedience of “faith plus works,” experiencing growth like “sailing with the current”?"
+          }
+        },
+        "body": [
           {
             "id": "intro",
             "title": {
@@ -1939,21 +1953,7 @@
               }
             ]
           }
-        ],
-        "questions": {
-          "tag": {
-            "zh": "思考 · Question",
-            "en": "Reflection · Question"
-          },
-          "title": {
-            "zh": "一起想想",
-            "en": "Think Together"
-          },
-          "text": {
-            "zh": "你是否体验过属灵上“减肥复胖”式的退后或“只听不行”的瓶颈？面对神的话语，我们如何在日常中从“随便”转为“郑重”，身体力行防范“随流失去”？\n我们如何避免依靠“过去的义”或盲目追赶外在潮流，在生活中实践“信心加行为”的真实顺服，经历“顺水行舟”般的生命成长？",
-            "en": "Have you experienced a “diet-then-regain” setback spiritually, or the bottleneck of “hearing without doing”? Facing God’s word, how can we move from “careless” to “serious” in daily life and guard against “drifting away”? \nHow can we avoid relying on “past righteousness” or blindly chasing outward trends, and practice the real obedience of “faith plus works,” experiencing growth like “sailing with the current”?"
-          }
-        }
+        ]
       },
       {
         "id": "17",

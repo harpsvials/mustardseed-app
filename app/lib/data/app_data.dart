@@ -140,7 +140,7 @@ class Sermon {
         verseRef: AppData.strMap(j['verseRef']),
         summary: AppData.strMap(j['summary']),
         tags: (j['tags'] as List?)?.map((e) => e.toString()).toList() ?? [],
-        body: (j['body'] as List?)
+        body: ((j['body'] ?? j['chapters']) as List?)
                 ?.map((e) => Chapter.fromJson(e as Map<String, dynamic>))
                 .toList() ??
             [],
