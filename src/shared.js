@@ -187,7 +187,7 @@
   for(var i=0;i<NAV.length;i++){
     var k = NAV[i][0];
     var href = (lang === 'zh-CN' || NAV[i][3]) ? base + NAV[i][1] : base + lang + '/' + NAV[i][1];   /* 简体中文为根路径；灵修页仅简中，统一指向根路径 */
-    var name = (d[k] != null) ? d[k] : NAV[i][2];
+    var name = (k === 'nav.qt' && lang !== 'zh-CN' && lang !== 'zh-Hant') ? 'QT' : ((d[k] != null) ? d[k] : NAV[i][2]);
     var active = (i === activeIdx) ? ' is-current' : '';
     html += '<a class="site-link' + active + '" href="' + href + '" data-i18n="' + k + '">' + name + '</a>';
   }
@@ -216,7 +216,7 @@
   for(var tj=0;tj<TABS.length;tj++){
     var tk = TABS[tj][0];
     var thr = (lang === 'zh-CN' || TABS[tj][4]) ? base + TABS[tj][1] : base + lang + '/' + TABS[tj][1];   /* 灵修页仅简中，统一指向根路径 */
-    var tn = (d[tk] != null) ? d[tk] : TABS[tj][2];
+    var tn = (tk === 'nav.qt' && lang !== 'zh-CN' && lang !== 'zh-Hant') ? 'QT' : ((d[tk] != null) ? d[tk] : TABS[tj][2]);
     var ta = (tj === tabActive) ? ' is-current' : '';
     th += '<a class="app-tab' + ta + '" href="' + thr + '" data-i18n="' + tk + '">' +
           '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + TABS[tj][3] + '</svg>' +
