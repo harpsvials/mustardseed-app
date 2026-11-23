@@ -16,7 +16,7 @@ class ReflectionSection {
 }
 
 /// 当日「默想」与「写给神的信」。
-/// 数据在仓库根目录 qt-reflection.json，经 Worker /api/data 取回；
+/// 数据在仓库根目录 qt-reflection.json，经 Worker /api/data 取回；来源为 CGN Chinese《活潑的生命》。
 /// 只有 date 与当日经文一致时才显示，避免经文换了、默想还是旧的。
 class QtReflection {
   final String date;
@@ -72,7 +72,7 @@ class QtReflection {
       title: (j['title'] ?? '').toString(),
       titleEn: (j['titleEn'] ?? '').toString(),
       sourceUrl: (j['sourceUrl'] ?? '').toString(),
-      sourceLabel: (j['sourceLabel'] ?? "Living Life · Today's QT").toString(),
+      sourceLabel: (j['sourceLabel'] ?? "CGN Chinese · 活潑的生命").toString(),
       sections: sections,
       letter: (j['letter'] ?? '').toString(),
     );

@@ -339,7 +339,7 @@ class _QtPageState extends State<QtPage> {
     );
   }
 
-  // ── 默想与写给神的信（译自 Living Life · Today's QT）──
+  // ── 默想与写给神的信（译自 CGN Chinese · 活潑的生命）──
   Widget _reflectionCard(QtReflection r) {
     const body = TextStyle(fontSize: 15, height: 1.95, color: Color(0xFF2F3B31));
     return Container(
@@ -600,7 +600,7 @@ class _QtPageState extends State<QtPage> {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 14, 20, 0),
           child: Text(
-            '主题与经文范围摘自推喇奴书房《活泼的生命》；经文正文引自《中文英王钦定本》（ckjv.asia，CC BY-SA 3.0）。',
+            '主题与经文范围摘自 CGN Chinese《活潑的生命》；经文正文引自《中文英王钦定本》（ckjv.asia，CC BY-SA 3.0）。',
             style: TextStyle(
               fontSize: 12.5,
               height: 1.65,
