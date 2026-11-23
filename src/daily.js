@@ -24,6 +24,13 @@ const WEEKDAYS = ['星期一', '星期二', '星期三', '星期四', '星期五
 
 const toCN = Converter({ from: 't', to: 'cn' });
 const simplify = (s) => toCN(s || '');
+// 写入新的一天时，把上一天原样收进 prev，供网页/App 回看；只留两层，避免越滚越大
+const withoutPrev = (o) => {
+  if (!o || typeof o !== 'object') return null;
+  const { prev, ...rest } = o;
+  return rest;
+};
+
 
 // —— 北京时间 ——
 const pad = (n) => String(n).padStart(2, '0');
@@ -251,10 +258,11 @@ async function updateQT(env) {
 
   if (!data || !data.topic) return `qt-skip: ${note || '当天内容为空'}`;
 
+  let prev = null;
   const prevRaw = await kv.get('qt-data.json');
   if (prevRaw) {
     try {
-      const prev = JSON.parse(prevRaw);
+      prev = JSON.parse(prevRaw);
       if (
         prev.date === data.date &&
         prev.topic === data.topic &&
@@ -264,6 +272,13 @@ async function updateQT(env) {
         return 'qt-unchanged';
       }
     } catch (_) {}
+  }
+
+  // 保留前一天，最多两天；同一天重跑时沿用已有的 prev，避免把昨天冲掉
+  if (prev) {
+    const lastDay = withoutPrev(prev);
+    data.prev = lastDay && lastDay.date !== data.date ? lastDay : prev.prev || null;
+    if (!data.prev) delete data.prev;
   }
 
   data.updated = tpeStamp();
@@ -717,6 +732,12 @@ async function updateReflection(env) {
     model: zh.model,
     promptVersion: REFLECTION_PROMPT_VERSION
   };
+  // 与灵修正文一样，保留前一天的默想，页面可切到昨天
+  if (prev) {
+    const lastDay = withoutPrev(prev);
+    data.prev = lastDay && lastDay.date !== data.date ? lastDay : prev.prev || null;
+    if (!data.prev) delete data.prev;
+  }
   await kv.put('qt-reflection.json', JSON.stringify(data, null, 2) + '\n');
   return `reflection-ok: ${today} ${zh.sections.length} 段｜${zh.model}`;
 }
