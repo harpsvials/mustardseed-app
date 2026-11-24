@@ -438,7 +438,7 @@ const QT_EN_HOME = 'https://www.duranno.com/livinglife/qt/';
 // 先 Qwen（中文更自然），失败再退 Llama 3.3
 const AI_MODELS = ['@cf/qwen/qwen3.8-27b', '@cf/meta/llama-3.3-70b-instruct-fp8-fast'];
 // 译文规则改动时+1：KV 里旧版本会自动重译一次
-const REFLECTION_PROMPT_VERSION = 3;
+const REFLECTION_PROMPT_VERSION = 4;
 
 // 英文书卷名 → 中文（与 qt-data.json 的 reading 对齐，用来校验当天英文页与中文主题同章）
 const EN_BOOK_ZH = {
@@ -494,7 +494,7 @@ function parseEnQT(html) {
     .filter(Boolean);
 
   const headingRe = /^(.{1,80}?)\s*\((\d+)\s*:\s*(\d+)\s*[–\-—~]\s*(\d+)\)$/;
-  const cueRe = /^(Think|Reflect|What|How|Consider|Do you|Have you|In what|Where|Why|When|Ask|Is there|Can you|Take a moment)/i;
+  const cueRe = /^(Think|Reflect|Ponder|Meditate|Consider|Contemplate|What|How|Do you|Have you|In what|Where|Why|When|Ask|Is there|Can you|Take a moment)/i;
 
   const sections = [];
   for (let i = 0; i < blocks.length; i++) {
