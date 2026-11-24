@@ -17,3 +17,9 @@ _apk/
 tools/
 # wrangler 本地缓存与临时目录：绝不能作为静态资源上传
 .wrangler/
+
+# 本地构建产物，不参与网站发布
+dist/
+
+# DMG 临时打包目录
+.dmg_staging*/
