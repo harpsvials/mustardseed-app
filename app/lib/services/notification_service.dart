@@ -33,6 +33,9 @@ class NotificationService {
           requestAlertPermission: false,
           requestBadgePermission: false,
           requestSoundPermission: false,
+          defaultPresentAlert: true,
+          defaultPresentBadge: true,
+          defaultPresentSound: true,
         ),
       );
       await _plugin.initialize(settings: settings);
@@ -63,6 +66,17 @@ class NotificationService {
             ) ??
             false;
       }
+      final macos = _plugin
+          .resolvePlatformSpecificImplementation<
+              MacOSFlutterLocalNotificationsPlugin>();
+      if (macos != null) {
+        return await macos.requestPermissions(
+              alert: true,
+              badge: true,
+              sound: true,
+            ) ??
+            false;
+      }
     } catch (_) {}
     return false;
   }
@@ -79,6 +93,7 @@ class NotificationService {
         priority: Priority.high,
       ),
       iOS: DarwinNotificationDetails(),
+      macOS: DarwinNotificationDetails(),
     );
     try {
       await _plugin.show(

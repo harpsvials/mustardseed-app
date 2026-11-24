@@ -29,17 +29,23 @@ class HomePage extends StatelessWidget {
         const SizedBox(height: 16),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: GridView.count(
-            crossAxisCount: 2,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            mainAxisSpacing: 12,
-            crossAxisSpacing: 12,
-            childAspectRatio: 1.35,
-            children: [
-              for (final card in cards)
-                _HomeCard(card: card, onTap: () => _open(context, card)),
-            ],
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              // 宽屏三列、窄屏两列；桌面上同时压低卡片高度，避免出现大片空白
+              final wide = constraints.maxWidth >= 900;
+              return GridView.count(
+                crossAxisCount: wide ? 3 : 2,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                mainAxisSpacing: 12,
+                crossAxisSpacing: 12,
+                childAspectRatio: wide ? 1.75 : 1.35,
+                children: [
+                  for (final card in cards)
+                    _HomeCard(card: card, onTap: () => _open(context, card)),
+                ],
+              );
+            },
           ),
         ),
         const SizedBox(height: 20),

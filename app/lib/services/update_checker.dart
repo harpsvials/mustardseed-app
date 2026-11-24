@@ -58,6 +58,11 @@ class UpdateChecker {
   /// 依次查各源，返回完整状态（关于页用来显示「当前 / 最新 / 结果」）
   static Future<UpdateCheckInfo> probe() async {
     final current = await currentVersion();
+    // macOS 桌面版随安装包整体更新，不提供 APK 式应用内更新；
+    // 避免把 Android 版本号误判成「桌面版有新版本」。
+    if (Platform.isMacOS) {
+      return UpdateCheckInfo(current: current, latest: current);
+    }
     final localNum =
         int.tryParse(current.replaceFirst(RegExp(r'^v'), '').replaceAll(RegExp(r'[^\d]'), '')) ?? 0;
     String? error;
