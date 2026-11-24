@@ -10,7 +10,7 @@
 export PATH="/Users/wangxiaodong/.gem/ruby/2.6.0/bin:$PATH"
 export RUBYOPT="-rlogger"   # 系统 Ruby 2.6 下运行 CocoaPods 需要
 flutter pub get
-flutter build macos --release --build-name=v2026.11.24.0857 --build-number=202611240857
+flutter build macos --release --build-name=v2026.11.24.0949 --build-number=202611240949
 ```
 
 产物：`build/macos/Build/Products/Release/mustardseed_app.app`

@@ -4,6 +4,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../i18n.dart';
@@ -34,15 +35,15 @@ class QtData {
   });
 
   factory QtData.fromJson(Map<String, dynamic> j) => QtData(
-        date: (j['date'] ?? '').toString(),
-        dateLabel: (j['dateLabel'] ?? j['date'] ?? '').toString(),
-        weekday: (j['weekday'] ?? '').toString(),
-        topic: (j['topic'] ?? '').toString(),
-        subtitle: (j['subtitle'] ?? '').toString(),
-        reading: (j['reading'] ?? '').toString(),
-        sourceUrl: (j['sourceUrl'] ?? '').toString(),
-        updatedLabel: (j['updatedLabel'] ?? j['updated'] ?? '').toString(),
-      );
+    date: (j['date'] ?? '').toString(),
+    dateLabel: (j['dateLabel'] ?? j['date'] ?? '').toString(),
+    weekday: (j['weekday'] ?? '').toString(),
+    topic: (j['topic'] ?? '').toString(),
+    subtitle: (j['subtitle'] ?? '').toString(),
+    reading: (j['reading'] ?? '').toString(),
+    sourceUrl: (j['sourceUrl'] ?? '').toString(),
+    updatedLabel: (j['updatedLabel'] ?? j['updated'] ?? '').toString(),
+  );
 
   /// 贴纸上的日期行：2026年11月8日 · 星期日
   String get stamp {
@@ -53,9 +54,7 @@ class QtData {
   // 只走自己域名的 /api/data：静态路径会被 Cloudflare 托管验证拦成 403，
   // 但走 Worker 路由的 /api/* 不受验证影响（网页与 App 同源，免 CORS）。
   // 不用 jsDelivr / raw：国内网络这两个域名会被重置或长时间打不开。
-  static const _sources = [
-    'https://zhuzhouchurch.com/api/data?f=qt-data.json',
-  ];
+  static const _sources = ['https://zhuzhouchurch.com/api/data?f=qt-data.json'];
 
   /// 依次尝试各源，全部失败返回 null
   static Future<QtData?> fetch() async {
@@ -96,11 +95,39 @@ class _QtPageState extends State<QtPage> {
   QtReflection? _reflection;
   int _rpgIndex = 0;
   bool _loading = true;
+  static const _textScaleKey = 'ms_qt_text_scale';
+  static const _minTextScale = 0.85;
+  static const _maxTextScale = 1.4;
+  double _textScale = 1.0;
 
   @override
   void initState() {
     super.initState();
+    _loadTextScale();
     _load();
+  }
+
+  Future<void> _loadTextScale() async {
+    try {
+      final saved = (await SharedPreferences.getInstance()).getDouble(
+        _textScaleKey,
+      );
+      if (saved == null || !mounted) return;
+      setState(() {
+        _textScale = saved.clamp(_minTextScale, _maxTextScale);
+      });
+    } catch (_) {}
+  }
+
+  void _changeTextScale(double delta) {
+    final next = (_textScale + delta)
+        .clamp(_minTextScale, _maxTextScale)
+        .toDouble();
+    if (next == _textScale) return;
+    setState(() => _textScale = next);
+    SharedPreferences.getInstance()
+        .then((sp) => sp.setDouble(_textScaleKey, next))
+        .catchError((_) => false);
   }
 
   Future<void> _load() async {
@@ -137,16 +164,28 @@ class _QtPageState extends State<QtPage> {
         padding: EdgeInsets.zero,
         children: [
           _hero(),
-          if (_loading)
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 60),
-              child: Center(child: CircularProgressIndicator()),
-            )
-          else if (_data == null)
-            _errorCard()
-          else
-            _sheet(_data!),
-          if (!_loading && _rpg != null) _rpgCard(_rpg!),
+          MediaQuery(
+            data: MediaQuery.of(context).copyWith(
+              textScaler: TextScaler.linear(
+                (MediaQuery.textScalerOf(context).scale(1.0) * _textScale)
+                    .clamp(0.8, 2.0),
+              ),
+            ),
+            child: Column(
+              children: [
+                if (_loading)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 60),
+                    child: Center(child: CircularProgressIndicator()),
+                  )
+                else if (_data == null)
+                  _errorCard()
+                else
+                  _sheet(_data!),
+                if (!_loading && _rpg != null) _rpgCard(_rpg!),
+              ],
+            ),
+          ),
           const SizedBox(height: 24),
         ],
       ),
@@ -195,7 +234,58 @@ class _QtPageState extends State<QtPage> {
               height: 1.55,
             ),
           ),
+          const SizedBox(height: 12),
+          _textSizeControls(),
         ],
+      ),
+    );
+  }
+
+  Widget _textSizeControls() {
+    final isEn = AppLocale.value == AppLocale.en;
+    return Row(
+      children: [
+        _textSizeButton(
+          label: isEn ? 'Smaller' : '减小',
+          icon: Icons.text_decrease,
+          onPressed: _textScale > _minTextScale
+              ? () => _changeTextScale(-0.1)
+              : null,
+        ),
+        const SizedBox(width: 8),
+        _textSizeButton(
+          label: isEn ? 'Larger' : '加大',
+          icon: Icons.text_increase,
+          onPressed: _textScale < _maxTextScale
+              ? () => _changeTextScale(0.1)
+              : null,
+        ),
+        const SizedBox(width: 12),
+        Text(
+          '${(_textScale * 100).round()}%',
+          style: TextStyle(fontSize: 12.5, color: AppColors.creamFaint),
+        ),
+      ],
+    );
+  }
+
+  Widget _textSizeButton({
+    required String label,
+    required IconData icon,
+    required VoidCallback? onPressed,
+  }) {
+    return OutlinedButton.icon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 16),
+      label: Text(label),
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppColors.cream,
+        disabledForegroundColor: AppColors.creamFaint.withValues(alpha: .4),
+        side: BorderSide(color: AppColors.lineStrong),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        minimumSize: const Size(0, 34),
+        textStyle: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w600),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
       ),
     );
   }
@@ -253,7 +343,11 @@ class _QtPageState extends State<QtPage> {
         borderRadius: BorderRadius.circular(4),
         border: Border.all(color: const Color(0x24223A29)),
         boxShadow: const [
-          BoxShadow(color: Color(0x14000000), blurRadius: 10, offset: Offset(0, 4)),
+          BoxShadow(
+            color: Color(0x14000000),
+            blurRadius: 10,
+            offset: Offset(0, 4),
+          ),
         ],
       ),
       child: Column(
@@ -271,7 +365,9 @@ class _QtPageState extends State<QtPage> {
                 ),
               ),
               const SizedBox(width: 8),
-              Expanded(child: Container(height: 1, color: const Color(0x28223A29))),
+              Expanded(
+                child: Container(height: 1, color: const Color(0x28223A29)),
+              ),
             ],
           ),
           const SizedBox(height: 12),
@@ -311,7 +407,11 @@ class _QtPageState extends State<QtPage> {
           const SizedBox(height: 8),
           const Text(
             '经文引自《中文英王钦定本》· ckjv.asia · CC BY-SA 3.0',
-            style: TextStyle(fontSize: 11, height: 1.6, color: Color(0xFF8B978C)),
+            style: TextStyle(
+              fontSize: 11,
+              height: 1.6,
+              color: Color(0xFF8B978C),
+            ),
           ),
         ],
       ),
@@ -341,7 +441,11 @@ class _QtPageState extends State<QtPage> {
 
   // ── 默想与写给神的信（译自 CGN Chinese · 活潑的生命）──
   Widget _reflectionCard(QtReflection r) {
-    const body = TextStyle(fontSize: 15, height: 1.95, color: Color(0xFF2F3B31));
+    const body = TextStyle(
+      fontSize: 15,
+      height: 1.95,
+      color: Color(0xFF2F3B31),
+    );
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(18, 16, 18, 14),
@@ -350,7 +454,11 @@ class _QtPageState extends State<QtPage> {
         borderRadius: BorderRadius.circular(4),
         border: Border.all(color: const Color(0x24223A29)),
         boxShadow: const [
-          BoxShadow(color: Color(0x14000000), blurRadius: 10, offset: Offset(0, 4)),
+          BoxShadow(
+            color: Color(0x14000000),
+            blurRadius: 10,
+            offset: Offset(0, 4),
+          ),
         ],
       ),
       child: Column(
@@ -380,13 +488,19 @@ class _QtPageState extends State<QtPage> {
               const SizedBox(height: 9),
               Text(
                 s.question,
-                style: const TextStyle(fontSize: 13.5, height: 1.85, color: Color(0xFF647567)),
+                style: const TextStyle(
+                  fontSize: 13.5,
+                  height: 1.85,
+                  color: Color(0xFF647567),
+                ),
               ),
             ],
             const SizedBox(height: 12),
           ],
           if (r.letter.isNotEmpty) ...[
-            _cardHead(AppLocale.value == AppLocale.en ? 'LETTER TO GOD' : '写给神的信'),
+            _cardHead(
+              AppLocale.value == AppLocale.en ? 'LETTER TO GOD' : '写给神的信',
+            ),
             const SizedBox(height: 8),
             Container(
               width: double.infinity,
@@ -397,7 +511,11 @@ class _QtPageState extends State<QtPage> {
               ),
               child: Text(
                 r.letter,
-                style: const TextStyle(fontSize: 15, height: 1.95, color: Color(0xFF3B4A37)),
+                style: const TextStyle(
+                  fontSize: 15,
+                  height: 1.95,
+                  color: Color(0xFF3B4A37),
+                ),
               ),
             ),
           ],
@@ -407,7 +525,11 @@ class _QtPageState extends State<QtPage> {
           Text(
             '默想与祷文译自 ${r.sourceLabel}'
             '${r.titleLine.isEmpty ? '' : ' · ${r.titleLine}'} · 中文由本站翻译',
-            style: const TextStyle(fontSize: 11, height: 1.6, color: Color(0xFF8B978C)),
+            style: const TextStyle(
+              fontSize: 11,
+              height: 1.6,
+              color: Color(0xFF8B978C),
+            ),
           ),
         ],
       ),
@@ -461,7 +583,10 @@ class _QtPageState extends State<QtPage> {
                       bottomLeft: Radius.circular(16),
                       bottomRight: Radius.circular(9),
                     ),
-                    border: Border.all(color: const Color(0xFFFFF8E7), width: 2),
+                    border: Border.all(
+                      color: const Color(0xFFFFF8E7),
+                      width: 2,
+                    ),
                     boxShadow: const [
                       BoxShadow(
                         color: Color(0x1F000000),
@@ -793,7 +918,9 @@ class _QtPageState extends State<QtPage> {
           children: [
             Expanded(
               child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(3)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(3),
+                ),
                 child: Image.network(
                   it.prayerFor(d.base),
                   fit: BoxFit.cover,
@@ -841,27 +968,17 @@ class _StampLine extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: Container(
-            height: 1,
-            color: color.withValues(alpha: .45),
-          ),
+          child: Container(height: 1, color: color.withValues(alpha: .45)),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Text(
             text,
-            style: TextStyle(
-              fontSize: 12.5,
-              letterSpacing: .4,
-              color: color,
-            ),
+            style: TextStyle(fontSize: 12.5, letterSpacing: .4, color: color),
           ),
         ),
         Expanded(
-          child: Container(
-            height: 1,
-            color: color.withValues(alpha: .45),
-          ),
+          child: Container(height: 1, color: color.withValues(alpha: .45)),
         ),
       ],
     );
@@ -915,11 +1032,15 @@ class RpgItem {
   bool get hasVerse => verseImage.isNotEmpty || verseImageUrl.isNotEmpty;
 
   /// 优先清单里的绝对地址；缺失时按读取源拼相对路径
-  String verseFor(String base) =>
-      _abs(verseImageUrl.isNotEmpty ? verseImageUrl : '${base}images/rpg/$verseImage');
+  String verseFor(String base) => _abs(
+    verseImageUrl.isNotEmpty ? verseImageUrl : '${base}images/rpg/$verseImage',
+  );
 
-  String prayerFor(String base) =>
-      _abs(prayerImageUrl.isNotEmpty ? prayerImageUrl : '${base}images/rpg/$prayerImage');
+  String prayerFor(String base) => _abs(
+    prayerImageUrl.isNotEmpty
+        ? prayerImageUrl
+        : '${base}images/rpg/$prayerImage',
+  );
 
   /// 清单里的图片地址可能还写着旧基址（github.io / jsDelivr），
   /// 统一截到 images/ 之后的相对路径，改走 /api/asset 取图。
@@ -966,7 +1087,9 @@ class RpgData {
         final items = raw
             .whereType<Map<String, dynamic>>()
             .map(RpgItem.fromJson)
-            .where((e) => e.prayerImage.isNotEmpty || e.prayerImageUrl.isNotEmpty)
+            .where(
+              (e) => e.prayerImage.isNotEmpty || e.prayerImageUrl.isNotEmpty,
+            )
             .toList();
         if (items.isEmpty) continue;
         final base = url.substring(0, url.lastIndexOf('/') + 1);
