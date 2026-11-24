@@ -17,6 +17,11 @@ flutter build macos --release --build-name=v2026.11.24.0949 --build-number=20261
 
 打包 DMG 时，把 `.app` 与指向 `/Applications` 的快捷方式放入同一目录，再用 `hdiutil create` 生成压缩镜像。
 
+## 灵修页字号
+
+- 手机、平板与 Mac 共用 `lib/pages/qt_page.dart` 的字号按钮，可在 85%–140% 之间调节，选择保存在本机。
+- 网页 `qt.html` 提供相同的「减小 / 加大」按钮，选择保存在浏览器 `localStorage` 的 `ms_qt_text_scale`。
+
 ## 桌面版说明
 
 - 窗口默认 1200×820，最小 960×640，首页在宽屏下自动改为三列。
