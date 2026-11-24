@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../theme.dart';
 import '../i18n.dart';
 import '../data/app_data.dart';
 import '../services/update_checker.dart';
+import '../widgets/shared.dart';
 
 class AboutPage extends StatelessWidget {
   final AppData data;
@@ -15,20 +17,24 @@ class AboutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.bg,
       appBar: AppBar(
-        title: Text(AppLocale.t(
-            data.nav['about'] as Map? ?? {'zh': '关于', 'en': 'About Us'})),
+        title: Text(
+          AppLocale.t(
+            data.nav['about'] as Map? ?? {'zh': '关于', 'en': 'About Us'},
+          ),
+        ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: AppColors.cream),
           onPressed: () => Navigator.of(context).maybePop(),
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(18, 12, 18, 30),
-        children: [
-          for (final section in sections)
-            _SectionCard(section: section),
-          const _UpdateCard(),
-        ],
+      body: ReaderTextSize(
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(18, 12, 18, 30),
+          children: [
+            for (final section in sections) _SectionCard(section: section),
+            const _UpdateCard(),
+          ],
+        ),
       ),
     );
   }
@@ -110,7 +116,6 @@ class _SectionCard extends StatelessWidget {
   }
 }
 
-
 /// 版本与更新：显示本机版本 / 服务端最新版本，可手动检查并直接走应用内更新
 class _UpdateCard extends StatefulWidget {
   const _UpdateCard();
@@ -163,7 +168,10 @@ class _UpdateCardState extends State<_UpdateCard> {
             ),
           ),
           const SizedBox(height: 12),
-          _row('当前版本', info?.current.isNotEmpty == true ? info!.current : '读取中…'),
+          _row(
+            '当前版本',
+            info?.current.isNotEmpty == true ? info!.current : '读取中…',
+          ),
           _row('最新版本', _busy ? '检查中…' : (info?.latest ?? '—')),
           _row('状态', _busy ? '正在检查…' : (info?.summary ?? '')),
           const SizedBox(height: 12),
@@ -180,7 +188,8 @@ class _UpdateCardState extends State<_UpdateCard> {
               const SizedBox(width: 10),
               if (info?.hasUpdate == true)
                 FilledButton(
-                  onPressed: () => UpdateChecker.showUpdateDialog(context, info!),
+                  onPressed: () =>
+                      UpdateChecker.showUpdateDialog(context, info!),
                   style: FilledButton.styleFrom(
                     backgroundColor: AppColors.mustard,
                     foregroundColor: const Color(0xFF24301B),
@@ -210,7 +219,11 @@ class _UpdateCardState extends State<_UpdateCard> {
           Expanded(
             child: Text(
               value,
-              style: TextStyle(fontSize: 14.5, color: AppColors.cream, height: 1.5),
+              style: TextStyle(
+                fontSize: 14.5,
+                color: AppColors.cream,
+                height: 1.5,
+              ),
             ),
           ),
         ],

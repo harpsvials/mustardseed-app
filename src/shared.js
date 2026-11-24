@@ -780,3 +780,70 @@ window.__hasBlocked = (function(){
     })(chapNavs[ci]);
   }
 })();
+
+
+/* ===== 9. 阅读页字号（关于 / 见证 / 所有讲稿详情；85%–140%，本机记忆） ===== */
+(function(){
+  var path = decodeURIComponent(location.pathname || '/');
+  var isAbout = /(?:^|\/)about\.html$/.test(path);
+  var isTestimonies = /(?:^|\/)testimonies\.html$/.test(path);
+  var isSermon = /(?:^|\/)sermons\/[^\/]+\.html$/.test(path);
+  if(!(isAbout || isTestimonies || isSermon)) return;
+  var main = document.querySelector('main');
+  if(!main) return;
+  document.body.classList.add('reader-page');
+
+  var lang = (window.__lang && window.__lang.get && window.__lang.get()) || 'zh-CN';
+  var COPY = {
+    'zh-CN': {label:'字号', smaller:'减小', larger:'加大', group:'正文字号'},
+    'zh-Hant': {label:'字號', smaller:'減小', larger:'加大', group:'正文字號'},
+    'en': {label:'Text size', smaller:'Smaller', larger:'Larger', group:'Text size'},
+    'fr': {label:'Taille du texte', smaller:'Plus petit', larger:'Plus grand', group:'Taille du texte'},
+    'it': {label:'Dimensione testo', smaller:'Più piccolo', larger:'Più grande', group:'Dimensione del testo'},
+    'ja': {label:'文字サイズ', smaller:'縮小', larger:'拡大', group:'本文の文字サイズ'},
+    'ko': {label:'글자 크기', smaller:'작게', larger:'크게', group:'본문 글자 크기'}
+  };
+  var c = COPY[lang] || COPY['zh-CN'];
+
+  var bar = document.createElement('div');
+  bar.className = 'reader-size';
+  bar.setAttribute('role', 'group');
+  bar.setAttribute('aria-label', c.group);
+  bar.innerHTML =
+    '<span class="reader-size-label"></span>' +
+    '<button type="button" class="reader-size-down"></button>' +
+    '<button type="button" class="reader-size-up"></button>' +
+    '<span class="reader-size-value" aria-live="polite">100%</span>';
+  bar.querySelector('.reader-size-label').textContent = c.label;
+  var down = bar.querySelector('.reader-size-down');
+  var up = bar.querySelector('.reader-size-up');
+  var value = bar.querySelector('.reader-size-value');
+  down.textContent = c.smaller;
+  up.textContent = c.larger;
+  down.setAttribute('aria-label', c.smaller);
+  up.setAttribute('aria-label', c.larger);
+
+  var KEY = 'ms_reader_text_scale';
+  var MIN = 0.85, MAX = 1.4, STEP = 0.1;
+  var scale = 1;
+  try{
+    var saved = parseFloat(localStorage.getItem(KEY));
+    if(isFinite(saved)) scale = saved;
+  }catch(e){}
+
+  function apply(next, save){
+    scale = Math.min(MAX, Math.max(MIN, Math.round(next * 10) / 10));
+    document.documentElement.style.setProperty('--reader-ts', String(scale));
+    value.textContent = Math.round(scale * 100) + '%';
+    down.disabled = scale <= MIN + 0.001;
+    up.disabled = scale >= MAX - 0.001;
+    if(save){
+      try{ localStorage.setItem(KEY, String(scale)); }catch(e){}
+    }
+  }
+  down.addEventListener('click', function(){ apply(scale - STEP, true); });
+  up.addEventListener('click', function(){ apply(scale + STEP, true); });
+
+  main.insertBefore(bar, main.firstChild);
+  apply(scale, false);
+})();

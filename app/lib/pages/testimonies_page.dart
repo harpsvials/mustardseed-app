@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../theme.dart';
 import '../i18n.dart';
 import '../data/app_data.dart';
@@ -11,19 +12,19 @@ class TestimoniesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hero = data.testimoniesMeta['heroTitle'] ?? {'zh': '见证', 'en': 'Testimonies'};
+    final hero =
+        data.testimoniesMeta['heroTitle'] ?? {'zh': '见证', 'en': 'Testimonies'};
     final sub = data.testimoniesMeta['heroSub'];
-    return ListView(
-      padding: EdgeInsets.zero,
-      children: [
-        HeroHeader(
-          title: AppLocale.t(hero),
-          sub: AppLocale.t(sub),
-        ),
-        const SizedBox(height: 16),
-        for (final p in data.periods) _PeriodCard(period: p),
-        const SizedBox(height: 20),
-      ],
+    return ReaderTextSize(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          HeroHeader(title: AppLocale.t(hero), sub: AppLocale.t(sub)),
+          const SizedBox(height: 16),
+          for (final p in data.periods) _PeriodCard(period: p),
+          const SizedBox(height: 20),
+        ],
+      ),
     );
   }
 }
@@ -51,13 +52,16 @@ class _PeriodCard extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.terra.withValues(alpha: .14),
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
-                      color: AppColors.terra.withValues(alpha: .4)),
+                    color: AppColors.terra.withValues(alpha: .4),
+                  ),
                 ),
                 child: Text(
                   periodText,

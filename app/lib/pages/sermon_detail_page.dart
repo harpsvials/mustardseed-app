@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../theme.dart';
 import '../i18n.dart';
 import '../data/app_data.dart';
@@ -71,26 +72,27 @@ class _SermonDetailPageState extends State<SermonDetailPage> {
           const SizedBox(width: 6),
         ],
       ),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(18, 12, 18, 30),
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
-              color: AppColors.mustard,
-              height: 1.3,
+      body: ReaderTextSize(
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(18, 12, 18, 30),
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+                color: AppColors.mustard,
+                height: 1.3,
+              ),
             ),
-          ),
-          const SizedBox(height: 14),
-          if (verseText.isNotEmpty)
-            VerseCard(text: verseText, ref: verseRef),
-          for (var i = 0; i < widget.sermon.body.length; i++)
-            _ChapterView(index: i, chapter: widget.sermon.body[i]),
-          if (widget.sermon.questions != null)
-            _QuestionsView(q: widget.sermon.questions!),
-        ],
+            const SizedBox(height: 14),
+            if (verseText.isNotEmpty) VerseCard(text: verseText, ref: verseRef),
+            for (var i = 0; i < widget.sermon.body.length; i++)
+              _ChapterView(index: i, chapter: widget.sermon.body[i]),
+            if (widget.sermon.questions != null)
+              _QuestionsView(q: widget.sermon.questions!),
+          ],
+        ),
       ),
     );
   }
@@ -164,11 +166,7 @@ class _QuestionsView extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             qText,
-            style: TextStyle(
-              fontSize: 17,
-              height: 1.8,
-              color: AppColors.cream,
-            ),
+            style: TextStyle(fontSize: 17, height: 1.8, color: AppColors.cream),
           ),
         ],
       ),

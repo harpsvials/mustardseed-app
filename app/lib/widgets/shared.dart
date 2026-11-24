@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../theme.dart';
 import '../i18n.dart';
 import '../data/app_data.dart';
@@ -21,8 +23,10 @@ class ComposeButton extends StatelessWidget {
           backgroundColor: AppColors.mustard,
           foregroundColor: const Color(0xFF24301B),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          textStyle:
-              const TextStyle(fontWeight: FontWeight.w700, fontSize: 13.5),
+          textStyle: const TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 13.5,
+          ),
         ),
       ),
     );
@@ -99,11 +103,7 @@ class VerseCard extends StatelessWidget {
         children: [
           Text(
             text,
-            style: TextStyle(
-              fontSize: 15,
-              height: 1.7,
-              color: AppColors.cream,
-            ),
+            style: TextStyle(fontSize: 15, height: 1.7, color: AppColors.cream),
           ),
           if (ref != null && ref!.isNotEmpty) ...[
             const SizedBox(height: 6),
@@ -212,7 +212,9 @@ class BlockView extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(12, 9, 12, 9),
           decoration: BoxDecoration(
             color: const Color(0x14FFFFFF),
-            border: Border(left: BorderSide(color: AppColors.mustard, width: 2)),
+            border: Border(
+              left: BorderSide(color: AppColors.mustard, width: 2),
+            ),
           ),
           child: Text(
             text,
@@ -238,5 +240,140 @@ class BlockView extends StatelessWidget {
           ),
         );
     }
+  }
+}
+
+/// 阅读页字号调节：关于 / 见证 / 讲稿详情共用同一设置（85%–140%）
+class ReaderTextSize extends StatefulWidget {
+  final Widget child;
+  final String storageKey;
+
+  const ReaderTextSize({
+    super.key,
+    required this.child,
+    this.storageKey = 'ms_reader_text_scale',
+  });
+
+  @override
+  State<ReaderTextSize> createState() => _ReaderTextSizeState();
+}
+
+class _ReaderTextSizeState extends State<ReaderTextSize> {
+  static const double _min = .85;
+  static const double _max = 1.4;
+  static const double _step = .1;
+  double _scale = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final sp = await SharedPreferences.getInstance();
+    final saved = sp.getDouble(widget.storageKey) ?? 1;
+    if (!mounted) return;
+    setState(() => _scale = saved.clamp(_min, _max).toDouble());
+  }
+
+  void _change(double delta) {
+    final next = (_scale + delta).clamp(_min, _max).toDouble();
+    if (next == _scale) return;
+    setState(() => _scale = next);
+    SharedPreferences.getInstance().then(
+      (sp) => sp.setDouble(widget.storageKey, next),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isEn = AppLocale.value == AppLocale.en;
+    final baseScale = MediaQuery.textScalerOf(context).scale(1.0);
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(18, 6, 18, 6),
+          decoration: BoxDecoration(
+            color: AppColors.bg,
+            border: Border(bottom: BorderSide(color: AppColors.line)),
+          ),
+          child: Row(
+            children: [
+              Text(
+                isEn ? 'Text size' : '字号',
+                style: TextStyle(
+                  fontSize: 11.5,
+                  letterSpacing: 1.2,
+                  color: AppColors.creamDim,
+                ),
+              ),
+              const Spacer(),
+              _ReaderSizeButton(
+                label: isEn ? 'Smaller' : '减小',
+                enabled: _scale > _min + .001,
+                onPressed: () => _change(-_step),
+              ),
+              const SizedBox(width: 8),
+              _ReaderSizeButton(
+                label: isEn ? 'Larger' : '加大',
+                enabled: _scale < _max - .001,
+                onPressed: () => _change(_step),
+              ),
+              const SizedBox(width: 10),
+              SizedBox(
+                width: 42,
+                child: Text(
+                  '${(_scale * 100).round()}%',
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    fontSize: 11.5,
+                    color: AppColors.creamDim,
+                    fontFeatures: const [FontFeature.tabularFigures()],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: MediaQuery(
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: TextScaler.linear(baseScale * _scale)),
+            child: widget.child,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ReaderSizeButton extends StatelessWidget {
+  final String label;
+  final bool enabled;
+  final VoidCallback onPressed;
+
+  const _ReaderSizeButton({
+    required this.label,
+    required this.enabled,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      onPressed: enabled ? onPressed : null,
+      style: OutlinedButton.styleFrom(
+        minimumSize: const Size(0, 34),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        visualDensity: VisualDensity.compact,
+        foregroundColor: AppColors.cream,
+        side: BorderSide(color: AppColors.lineStrong),
+        shape: const StadiumBorder(),
+        textStyle: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500),
+      ),
+      child: Text(label),
+    );
   }
 }

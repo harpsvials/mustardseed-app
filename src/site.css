@@ -625,3 +625,53 @@ html[data-theme="light"] .chapter .chapter-sub:first-child{margin-top:0;}
 /* 见证/关于页段落框统一由「每段一框」规则控制（浅色经 --bg-card/--line 变量自动适配，与深色一致） */
 /* 讲道详情页结尾思考题 → 白底浅绿 */
 html[data-theme="light"] .question{background:linear-gradient(180deg,rgba(143,191,95,.12),rgba(143,191,95,.05));border-color:rgba(143,191,95,.42);}
+
+
+/* ===== 25. 阅读页字号调节（关于 / 见证 / 讲稿详情） ===== */
+:root{--reader-ts:1; --reader-body:15px; --reader-dense:14.5px; --reader-h2:clamp(20px,5.6vw,23px); --reader-h3:clamp(16px,4.4vw,18px); --reader-note:13.5px; --reader-verse:14px; --reader-hero:clamp(14px,4vw,17px);}
+.reader-size{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:0 0 6px;padding:8px 0 10px;border-bottom:1px solid var(--line);}
+.reader-size-label{margin-right:auto;font-family:var(--font-sans);font-size:11px;letter-spacing:.14em;color:var(--cream-faint);}
+.reader-size button{appearance:none;border:1px solid var(--line-strong);background:rgba(255,255,255,.06);color:var(--cream);border-radius:999px;padding:0 13px;min-height:36px;font-family:var(--font-sans);font-size:12.5px;line-height:1.2;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .18s,border-color .18s,opacity .18s;}
+.reader-size button:hover{border-color:var(--mustard);color:var(--mustard);background:rgba(224,174,51,.08);}
+.reader-size button:focus-visible{outline:2px solid var(--mustard);outline-offset:2px;}
+.reader-size button:disabled{opacity:.34;cursor:default;}
+.reader-size-value{min-width:42px;text-align:right;font-size:11.5px;color:var(--cream-dim);font-variant-numeric:tabular-nums;}
+html[data-theme="light"] .reader-size button{background:rgba(36,48,27,.05);border-color:rgba(36,48,27,.26);color:var(--cream);}
+html[data-theme="light"] .reader-size button:hover{background:rgba(224,174,51,.12);border-color:var(--mustard);color:var(--mustard);}
+
+body.reader-page main .para,
+body.reader-page main blockquote.quote,
+body.reader-page main .verse-text,
+body.reader-page main .t-text,
+body.reader-page main .talk-text,
+body.reader-page main .witness-text,
+body.reader-page main .question-text,
+body.reader-page main .prayer-text,
+body.reader-page main .creed-body,
+body.reader-page main .intro-para{font-size:calc(var(--reader-body) * var(--reader-ts));}
+body.reader-page main .sermon-summary,
+body.reader-page main .t-closing,
+body.reader-page main .tl-text{font-size:calc(var(--reader-dense) * var(--reader-ts));}
+body.reader-page main .chapter-title,
+body.reader-page main .sermon-title{font-size:calc(var(--reader-h2) * var(--reader-ts));}
+body.reader-page main .chapter-sub,
+body.reader-page main .sub-title{font-size:calc(var(--reader-h3) * var(--reader-ts));}
+body.reader-page main .note,
+body.reader-page main .t-note{font-size:calc(var(--reader-note) * var(--reader-ts));}
+body.reader-page main .sermon-verse{font-size:calc(var(--reader-verse) * var(--reader-ts));}
+body.reader-page main .hero-verse{font-size:calc(var(--reader-hero) * var(--reader-ts));}
+body.reader-page main .creed-title{font-size:calc(18px * var(--reader-ts));}
+body.reader-page main .milestone-year{font-size:calc(19px * var(--reader-ts));}
+body.reader-page main .milestone-label{font-size:calc(12.5px * var(--reader-ts));}
+body.reader-page main .value-card p{font-size:calc(15px * var(--reader-ts));}
+body.reader-page main .question h2{font-size:calc(21px * var(--reader-ts));}
+body.reader-page main .prayer h2{font-size:calc(23px * var(--reader-ts));}
+body.reader-page main .hints li{font-size:calc(14px * var(--reader-ts));}
+body.reader-page main .prompt{font-size:calc(14px * var(--reader-ts));}
+
+@media (max-width:899px){
+  :root{--reader-body:17px; --reader-dense:17px; --reader-h2:22px; --reader-h3:17px; --reader-note:15px; --reader-verse:16px;}
+  body.reader-page main .chapter-sub{font-size:calc(17px * var(--reader-ts));}
+  body.reader-page main .creed-title{font-size:calc(18px * var(--reader-ts));}
+  body.reader-page main .value-card p{font-size:calc(15px * var(--reader-ts));}
+}
