@@ -20,6 +20,7 @@
 <style>
 /* ===== 灵修页：纸卡 + 两枚贴纸（本页专属，颜色不随主题变量漂移） ===== */
 .page-qt{
+  --qt-ts:1;
   --qt-paper:#F3EBD8;
   --qt-ink:#22301C;
   --qt-ink-soft:rgba(34,48,28,.68);
@@ -61,6 +62,19 @@ html[data-theme="light"] .qt-sheet{
 .qt-kicker{font-family:var(--font-serif);font-weight:600;font-size:13px;letter-spacing:.24em;color:var(--qt-gold-deep)}
 .qt-day{font-size:12.5px;color:var(--qt-ink-faint);font-variant-numeric:tabular-nums}
 
+/* 字号调节：只放大正文与标题文字，卡片和图片尺寸保持稳定 */
+.qt-textsize{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-6px 0 clamp(16px,4.5vw,24px)}
+.qt-textsize-label{font-size:11.5px;letter-spacing:.14em;color:var(--qt-ink-faint)}
+.qt-textsize button{
+  appearance:none;border:1px solid rgba(34,48,28,.24);background:rgba(255,255,255,.5);
+  color:var(--qt-ink);border-radius:999px;padding:6px 13px;font:inherit;font-size:13px;
+  line-height:1.2;cursor:pointer;transition:background .18s,border-color .18s,opacity .18s;
+}
+.qt-textsize button:hover{border-color:rgba(34,48,28,.5);background:rgba(255,255,255,.8)}
+.qt-textsize button:focus-visible{outline:2px solid var(--qt-gold);outline-offset:2px}
+.qt-textsize button:disabled{opacity:.38;cursor:default}
+.qt-textsize-value{min-width:42px;font-size:12px;color:var(--qt-ink-soft);font-variant-numeric:tabular-nums}
+
 .qt-stale{position:relative;z-index:1;margin:0 0 16px;padding:10px 13px;border-radius:8px;background:rgba(217,142,90,.16);border:1px solid rgba(217,142,90,.45);font-size:13.5px;line-height:1.8;color:var(--qt-terra)}
 .qt-stale b{font-weight:600}
 
@@ -82,12 +96,12 @@ html[data-theme="light"] .qt-sheet{
   margin:11px 0 0;
   font-family:"Kaiti SC","STKaiti","KaiTi",var(--font-serif);
   font-weight:700;
-  font-size:clamp(31px,9.2vw,44px);
+  font-size:calc(clamp(31px,9.2vw,44px) * var(--qt-ts));
   line-height:1.26;
   letter-spacing:.02em;
   overflow-wrap:break-word;
 }
-.qt-topic .qt-sub{margin:8px 0 0;font-family:var(--font-serif);font-weight:600;font-size:clamp(16px,4.5vw,20px);line-height:1.55;letter-spacing:.03em;color:var(--qt-terra)}
+.qt-topic .qt-sub{margin:8px 0 0;font-family:var(--font-serif);font-weight:600;font-size:calc(clamp(16px,4.5vw,20px) * var(--qt-ts));line-height:1.55;letter-spacing:.03em;color:var(--qt-terra)}
 .qt-topic .qt-sub[hidden]{display:none}
 .qt-stamp{margin-top:clamp(14px,4vw,20px);padding-top:10px;border-top:1px dashed rgba(34,48,28,.34);display:flex;align-items:center;gap:9px;font-size:13px;font-variant-numeric:tabular-nums}
 .qt-topic .qt-stamp{color:rgba(34,48,28,.76)}
@@ -107,8 +121,8 @@ html[data-theme="light"] .qt-sheet{
 }
 .qt-reading .qt-tag{color:rgba(243,235,216,.56)}
 .qt-range{margin:8px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
-.qt-book{font-family:var(--font-serif);font-weight:700;font-size:clamp(19px,5vw,24px);line-height:1.5;letter-spacing:.03em;color:var(--qt-tape-ink)}
-.qt-num{font-family:var(--font-serif);font-weight:600;font-size:clamp(21px,5.8vw,28px);line-height:1.4;letter-spacing:.04em;color:var(--qt-gold);font-variant-numeric:tabular-nums;overflow-wrap:break-word}
+.qt-book{font-family:var(--font-serif);font-weight:700;font-size:calc(clamp(19px,5vw,24px) * var(--qt-ts));line-height:1.5;letter-spacing:.03em;color:var(--qt-tape-ink)}
+.qt-num{font-family:var(--font-serif);font-weight:600;font-size:calc(clamp(21px,5.8vw,28px) * var(--qt-ts));line-height:1.4;letter-spacing:.04em;color:var(--qt-gold);font-variant-numeric:tabular-nums;overflow-wrap:break-word}
 .qt-reading .qt-stamp{color:rgba(243,235,216,.58);font-size:12.5px;margin-top:6px;border-top:0;padding-top:0}
 .qt-reading .qt-dot{background:rgba(243,235,216,.42)}
 
@@ -139,12 +153,12 @@ html[data-theme="light"] .qt-sheet{
 .qt-verses ol{margin:12px 0 0;padding:0;list-style:none;counter-reset:qv}
 .qt-verses li{
   position:relative;padding-left:26px;margin:0 0 10px;
-  font-size:15.5px;line-height:1.95;color:#2f3b31;
+  font-size:calc(15.5px * var(--qt-ts));line-height:1.95;color:#2f3b31;
   font-family:"Noto Serif SC","Songti SC",serif;
 }
 .qt-verses li:last-child{margin-bottom:0}
 .qt-verses li>b{
-  position:absolute;left:0;top:0;font-size:11.5px;font-weight:600;color:#8a9a8c;
+  position:absolute;left:0;top:0;font-size:calc(11.5px * var(--qt-ts));font-weight:600;color:#8a9a8c;
   font-family:"Noto Sans SC",sans-serif;line-height:1.95;
 }
 .qt-verses .qt-verses-src{
@@ -154,7 +168,7 @@ html[data-theme="light"] .qt-sheet{
 .qt-verses .qt-verses-src a{color:#6b7d6d;text-decoration:underline dotted}
 @media (max-width:640px){
   .qt-verses{margin:16px 12px 0;padding:18px 16px 14px}
-  .qt-verses li{font-size:15px;line-height:1.9}
+  .qt-verses li{font-size:calc(15px * var(--qt-ts));line-height:1.9}
 }
 /* ===== 默想与写给神的信 ===== */
 .qt-reflect{
@@ -172,21 +186,21 @@ html[data-theme="light"] .qt-sheet{
 .qt-ref-block{margin:14px 0 0}
 .qt-ref-block:first-of-type{margin-top:10px}
 .qt-ref-block h4{
-  margin:0 0 6px;font-size:15.5px;line-height:1.7;font-weight:600;color:#41563f;
+  margin:0 0 6px;font-size:calc(15.5px * var(--qt-ts));line-height:1.7;font-weight:600;color:#41563f;
   font-family:"Noto Serif SC","Songti SC",serif;letter-spacing:.02em;
 }
 .qt-ref-block p{
-  margin:0 0 8px;font-size:15.5px;line-height:1.95;color:#2f3b31;
+  margin:0 0 8px;font-size:calc(15.5px * var(--qt-ts));line-height:1.95;color:#2f3b31;
   font-family:"Noto Serif SC","Songti SC",serif;
 }
 .qt-ref-block p:last-child{margin-bottom:0}
 .qt-ref-block .qt-ref-q{
   margin:10px 0 0;padding-top:9px;border-top:1px dashed rgba(58,84,63,.14);
-  font-size:14px;line-height:1.85;color:#647567;
+  font-size:calc(14px * var(--qt-ts));line-height:1.85;color:#647567;
 }
 .qt-letter{
   margin:6px 0 0;padding:12px 14px 11px;border-radius:3px;
-  background:#f5eedc;font-size:15px;line-height:1.95;color:#3b4a37;
+  background:#f5eedc;font-size:calc(15px * var(--qt-ts));line-height:1.95;color:#3b4a37;
   font-family:"Noto Serif SC","Songti SC",serif;text-align:left;
 }
 .qt-reflect .qt-reflect-src{
@@ -196,8 +210,8 @@ html[data-theme="light"] .qt-sheet{
 .qt-reflect .qt-reflect-src a{color:#6b7d6d;text-decoration:underline dotted}
 @media (max-width:640px){
   .qt-reflect{margin:12px 12px 0;padding:18px 16px 14px}
-  .qt-ref-block p,.qt-letter{font-size:15px;line-height:1.9}
-  .qt-ref-block .qt-ref-q{font-size:13.5px}
+  .qt-ref-block p,.qt-letter{font-size:calc(15px * var(--qt-ts));line-height:1.9}
+  .qt-ref-block .qt-ref-q{font-size:calc(13.5px * var(--qt-ts))}
 }
 /* ===== RPG 每日经文：贴在纸卡下方的卡片照片 ===== */
 .qt-rpg{
@@ -334,6 +348,13 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
         <div class="qt-head">
           <span class="qt-kicker">灵修 · 今日</span>
           <span class="qt-day" id="headDate">2026年11月8日 · 星期日</span>
+        </div>
+
+        <div class="qt-textsize" role="group" aria-label="正文字号">
+          <span class="qt-textsize-label">字号</span>
+          <button type="button" id="qtFontDown" aria-label="减小正文字号">减小</button>
+          <button type="button" id="qtFontUp" aria-label="加大正文字号">加大</button>
+          <span class="qt-textsize-value" id="qtFontValue" aria-live="polite">100%</span>
         </div>
 
         <p class="qt-stale" id="staleNote" hidden>今天的内容还没更新，下面显示的是 <b id="staleDate">2026年11月8日</b> 的话语。</p>
@@ -519,6 +540,35 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
       other[i].setAttribute('title', '该语言暂无本页，前往' + other[i].textContent);
     }
   }
+
+  /* ===== 正文字号：本机记忆，85%–140% ===== */
+  (function(){
+    var sheet = document.getElementById('qtSheet');
+    var down = document.getElementById('qtFontDown');
+    var up = document.getElementById('qtFontUp');
+    var value = document.getElementById('qtFontValue');
+    if(!sheet || !down || !up || !value) return;
+    var KEY = 'ms_qt_text_scale';
+    var MIN = 0.85, MAX = 1.4, STEP = 0.1;
+    var scale = 1;
+    try{
+      var saved = parseFloat(localStorage.getItem(KEY));
+      if(isFinite(saved)) scale = saved;
+    }catch(e){}
+    function apply(next, save){
+      scale = Math.min(MAX, Math.max(MIN, Math.round(next * 10) / 10));
+      sheet.style.setProperty('--qt-ts', String(scale));
+      value.textContent = Math.round(scale * 100) + '%';
+      down.disabled = scale <= MIN + 0.001;
+      up.disabled = scale >= MAX - 0.001;
+      if(save){
+        try{ localStorage.setItem(KEY, String(scale)); }catch(e){}
+      }
+    }
+    down.addEventListener('click', function(){ apply(scale - STEP, true); });
+    up.addEventListener('click', function(){ apply(scale + STEP, true); });
+    apply(scale, false);
+  })();
 
   var boot = {};
   try{ boot = JSON.parse(document.getElementById('qt-boot').textContent); }catch(e){}
