@@ -327,10 +327,14 @@ class ReaderTextSize extends StatefulWidget {
   final Widget child;
   final String storageKey;
 
+  /// 可把字号控件并入自定义页头；未提供时控件单独占据页头顶部。
+  final Widget Function(Widget controls)? headerBuilder;
+
   const ReaderTextSize({
     super.key,
     required this.child,
     this.storageKey = 'ms_reader_text_scale',
+    this.headerBuilder,
   });
 
   @override
@@ -374,47 +378,55 @@ class _ReaderTextSizeState extends State<ReaderTextSize> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildControls() {
     final isEn = AppLocale.value == AppLocale.en;
-    final baseScale = MediaQuery.textScalerOf(context).scale(1.0);
-    return Column(
+    return Row(
       children: [
-        Container(
-          padding: const EdgeInsets.fromLTRB(18, 6, 18, 6),
-          decoration: BoxDecoration(
-            color: AppColors.bg,
-            border: Border(bottom: BorderSide(color: AppColors.line)),
-          ),
-          child: Row(
-            children: [
-              ReaderSizeButton(
-                plus: false,
-                label: isEn ? 'Smaller' : '减小',
-                onPressed: _scale > _min + .001 ? () => _change(-_step) : null,
-              ),
-              const SizedBox(width: 8),
-              ReaderSizeButton(
-                plus: true,
-                label: isEn ? 'Larger' : '加大',
-                onPressed: _scale < _max - .001 ? () => _change(_step) : null,
-              ),
-              const SizedBox(width: 10),
-              SizedBox(
-                width: 42,
-                child: Text(
-                  '${(_scale * 100).round()}%',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 11.5,
-                    color: AppColors.creamDim,
-                    fontFeatures: const [FontFeature.tabularFigures()],
-                  ),
-                ),
-              ),
-            ],
+        ReaderSizeButton(
+          plus: false,
+          label: isEn ? 'Smaller' : '减小',
+          onPressed: _scale > _min + .001 ? () => _change(-_step) : null,
+        ),
+        const SizedBox(width: 8),
+        ReaderSizeButton(
+          plus: true,
+          label: isEn ? 'Larger' : '加大',
+          onPressed: _scale < _max - .001 ? () => _change(_step) : null,
+        ),
+        const SizedBox(width: 10),
+        SizedBox(
+          width: 42,
+          child: Text(
+            '${(_scale * 100).round()}%',
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontSize: 11.5,
+              color: AppColors.creamDim,
+              fontFeatures: const [FontFeature.tabularFigures()],
+            ),
           ),
         ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final baseScale = MediaQuery.textScalerOf(context).scale(1.0);
+    final controls = _buildControls();
+    return Column(
+      children: [
+        if (widget.headerBuilder != null)
+          widget.headerBuilder!(controls)
+        else
+          Container(
+            padding: const EdgeInsets.fromLTRB(18, 6, 18, 6),
+            decoration: BoxDecoration(
+              color: AppColors.bg,
+              border: Border(bottom: BorderSide(color: AppColors.line)),
+            ),
+            child: controls,
+          ),
         Expanded(
           child: MediaQuery(
             data: MediaQuery.of(context)

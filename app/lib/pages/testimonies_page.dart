@@ -16,11 +16,14 @@ class TestimoniesPage extends StatelessWidget {
         data.testimoniesMeta['heroTitle'] ?? {'zh': '见证', 'en': 'Testimonies'};
     final sub = data.testimoniesMeta['heroSub'];
     return ReaderTextSize(
+      headerBuilder: (controls) => HeroHeader(
+        title: AppLocale.t(hero),
+        sub: AppLocale.t(sub),
+        trailing: controls,
+      ),
       child: ListView(
-        padding: EdgeInsets.zero,
+        padding: const EdgeInsets.only(top: 16),
         children: [
-          HeroHeader(title: AppLocale.t(hero), sub: AppLocale.t(sub)),
-          const SizedBox(height: 16),
           for (final p in data.periods) _PeriodCard(period: p),
           const SizedBox(height: 20),
         ],
