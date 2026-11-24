@@ -275,8 +275,8 @@ class TextSizeGlyph extends StatelessWidget {
             child: Text(
               plus ? '+' : '-',
               style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w700,
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
                 height: 1,
               ),
             ),
