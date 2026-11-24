@@ -262,24 +262,33 @@ class _ReaderTextSizeState extends State<ReaderTextSize> {
   static const double _min = .85;
   static const double _max = 1.4;
   static const double _step = .1;
+
+  /// 会话内共享，避免新页面重建时被尚未落盘的旧值覆盖。
+  static final Map<String, double> _sessionScales = {};
   double _scale = 1;
 
   @override
   void initState() {
     super.initState();
+    _scale = _sessionScales[widget.storageKey] ?? 1;
     _load();
   }
 
   Future<void> _load() async {
+    if (_sessionScales.containsKey(widget.storageKey)) return;
     final sp = await SharedPreferences.getInstance();
-    final saved = sp.getDouble(widget.storageKey) ?? 1;
+    final saved = (sp.getDouble(widget.storageKey) ?? 1)
+        .clamp(_min, _max)
+        .toDouble();
+    _sessionScales[widget.storageKey] = saved;
     if (!mounted) return;
-    setState(() => _scale = saved.clamp(_min, _max).toDouble());
+    setState(() => _scale = saved);
   }
 
   void _change(double delta) {
     final next = (_scale + delta).clamp(_min, _max).toDouble();
     if (next == _scale) return;
+    _sessionScales[widget.storageKey] = next;
     setState(() => _scale = next);
     SharedPreferences.getInstance().then(
       (sp) => sp.setDouble(widget.storageKey, next),
