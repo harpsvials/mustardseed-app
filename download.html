@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16281C">
+<title>下载 App · 芥菜种教会</title>
+<meta name="description" content="芥菜种教会 App 下载：Android APK、iOS 无签名 IPA、macOS DMG 安装包，一次下载，离线阅读讲道、灵修、见证与祷告墙。">
+<meta name="keywords" content="芥菜种教会,App下载,Android APK,iOS IPA,macOS DMG,讲道,灵修">
+<link rel="canonical" href="https://www.zhuzhouchurch.com/download.html">
+<meta property="og:title" content="下载 App · 芥菜种教会">
+<meta property="og:description" content="Android、iOS、macOS 三个版本，选择你的设备开始安装。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mustardseed">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.zhuzhouchurch.com/assets/download/app-icon.png">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=Noto+Sans+SC:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="src/site.css?v=20261125">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('ms-theme');
+    if(!t){ var h = new Date().getHours(); t = (h >= 6 && h < 18) ? 'light' : 'dark'; }
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){}
+})();
+</script>
+<style>
+/* ===== 下载页专属样式：沿用站点深绿 / 芥末黄 / 衬线标题 ===== */
+.dl-page{max-width:1040px;margin:0 auto;padding:0 20px calc(40px + env(safe-area-inset-bottom));position:relative;z-index:1;}
+.dl-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:calc(20px + env(safe-area-inset-top)) 2px 8px;}
+.dl-header .logo{font-size:14px;letter-spacing:.34em;text-indent:.34em;text-decoration:none;}
+.dl-head-actions{display:flex;align-items:center;gap:8px;}
+.dl-back{min-height:40px;display:inline-flex;align-items:center;gap:7px;padding:0 13px;border:1px solid var(--glass-border);border-radius:999px;background:rgba(255,255,255,.06);color:var(--cream-dim);font-size:12px;letter-spacing:.05em;text-decoration:none;transition:border-color .2s,color .2s,background .2s;}
+.dl-back:hover{border-color:var(--mustard);color:var(--mustard);background:rgba(224,174,51,.08);}
+.dl-back svg{width:15px;height:15px;flex:none;}
+.dl-theme{width:40px;height:40px;flex:none;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--glass-border);border-radius:50%;background:rgba(255,255,255,.06);color:var(--cream);cursor:pointer;transition:border-color .2s,color .2s,background .2s;}
+.dl-theme:hover{border-color:var(--mustard);color:var(--mustard);background:rgba(224,174,51,.08);}
+.dl-theme svg{width:17px;height:17px;}
+html[data-theme="light"] .dl-back,
+html[data-theme="light"] .dl-theme{background:rgba(36,48,27,.05);border-color:rgba(36,48,27,.26);}
+
+/* Hero */
+.dl-hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);align-items:center;gap:48px;padding:54px 4px 58px;border-bottom:1px solid var(--line);}
+.dl-kicker{display:flex;align-items:center;gap:10px;font-size:11px;line-height:1;letter-spacing:.24em;color:var(--mustard);text-transform:uppercase;}
+.dl-kicker::before{content:"";width:28px;height:1px;background:var(--mustard);opacity:.7;flex:none;}
+.dl-hero h1{font-family:var(--font-serif);font-size:clamp(38px,5.4vw,60px);font-weight:700;line-height:1.17;letter-spacing:.02em;color:var(--cream);margin-top:22px;text-wrap:balance;}
+.dl-hero h1 em{font-style:normal;color:var(--mustard-soft);}
+.dl-lede{margin-top:22px;max-width:26em;font-size:16px;line-height:1.95;color:var(--cream-dim);letter-spacing:.02em;}
+.dl-platforms{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-top:26px;font-size:11px;letter-spacing:.18em;color:var(--cream-faint);text-transform:uppercase;}
+.dl-platforms span{width:3px;height:3px;border-radius:50%;background:var(--mustard);opacity:.7;}
+.dl-icon-stage{display:flex;flex-direction:column;align-items:center;justify-self:end;}
+.dl-icon-ring{position:relative;width:clamp(172px,20vw,212px);aspect-ratio:1;display:flex;align-items:center;justify-content:center;border:1px solid var(--line-strong);border-radius:38px;background:radial-gradient(circle at 50% 38%,rgba(224,174,51,.20),rgba(224,174,51,.04) 55%,transparent 72%),var(--bg-card);box-shadow:var(--shadow-card);}
+.dl-icon-ring::after{content:"";position:absolute;inset:12px;border:1px solid var(--line);border-radius:29px;pointer-events:none;}
+.dl-icon-ring img{width:78%;height:78%;object-fit:contain;border-radius:26px;position:relative;z-index:1;}
+.dl-icon-caption{margin-top:16px;font-family:var(--font-serif);font-size:12px;letter-spacing:.22em;color:var(--cream-faint);}
+html[data-theme="light"] .dl-icon-ring{background:radial-gradient(circle at 50% 38%,rgba(224,174,51,.18),rgba(255,253,247,.6) 62%),var(--bg-card);}
+
+/* 下载区 */
+.dl-download{padding-top:46px;}
+.dl-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:24px;}
+.dl-section-head h2{font-family:var(--font-serif);font-size:clamp(25px,3.2vw,34px);font-weight:700;line-height:1.25;color:var(--cream);letter-spacing:.03em;}
+.dl-section-note{font-size:12px;line-height:1.7;color:var(--cream-faint);text-align:right;letter-spacing:.03em;max-width:26em;}
+.dl-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.dl-card{--plat:var(--mustard);--plat-soft:rgba(224,174,51,.13);--plat-border:rgba(224,174,51,.32);position:relative;display:flex;flex-direction:column;min-height:376px;padding:26px 24px 22px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0) 42%),var(--bg-card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-card);transition:border-color .22s,transform .22s,box-shadow .22s;}
+.dl-card:hover{border-color:var(--line-strong);transform:translateY(-2px);box-shadow:var(--shadow-pop);}
+.dl-card::before{content:"";position:absolute;left:22px;right:22px;top:0;height:2px;border-radius:0 0 2px 2px;background:var(--plat);opacity:.62;}
+.dl-card-ios{--plat:var(--mustard);}
+.dl-card-android{--plat:var(--sprout);--plat-soft:rgba(143,191,95,.13);--plat-border:rgba(143,191,95,.32);}
+.dl-card-mac{--plat:var(--terra);--plat-soft:rgba(217,142,90,.13);--plat-border:rgba(217,142,90,.32);}
+html[data-theme="light"] .dl-card{background:var(--bg-card);}
+.dl-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.dl-plat{width:46px;height:46px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:14px;background:var(--plat-soft);border:1px solid var(--plat-border);color:var(--plat);}
+.dl-plat svg{width:24px;height:24px;}
+.dl-badge{flex:none;display:inline-flex;align-items:center;min-height:24px;padding:0 9px;margin-top:2px;border:1px solid var(--plat-border);border-radius:999px;color:var(--plat);font-size:10.5px;letter-spacing:.08em;white-space:nowrap;}
+.dl-title-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:20px;}
+.dl-card h3{font-family:var(--font-serif);font-size:27px;line-height:1.2;font-weight:700;color:var(--cream);letter-spacing:.02em;}
+.dl-req{font-size:11px;color:var(--cream-faint);letter-spacing:.03em;white-space:nowrap;}
+.dl-desc{margin-top:9px;min-height:50px;font-size:13.5px;line-height:1.78;color:var(--cream-dim);}
+.dl-specs{margin-top:18px;margin-bottom:20px;border-top:1px solid var(--line);}
+.dl-spec-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:12px;line-height:1.5;}
+.dl-spec-row span{color:var(--cream-faint);letter-spacing:.04em;}
+.dl-spec-row b{font-weight:500;color:var(--cream);text-align:right;font-variant-numeric:tabular-nums;}
+.dl-btn{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:49px;margin-top:auto;padding:0 17px;border-radius:999px;background:var(--mustard);color:#14261B;font-size:13.5px;font-weight:600;letter-spacing:.03em;text-decoration:none;transition:background .2s,transform .2s,box-shadow .2s;}
+.dl-btn:hover{background:var(--mustard-soft);transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.18);}
+.dl-btn:active{transform:translateY(0);}
+.dl-btn svg{width:17px;height:17px;flex:none;}
+html[data-theme="light"] .dl-btn{color:#fff;}
+html[data-theme="light"] .dl-btn:hover{box-shadow:0 6px 18px rgba(84,62,24,.16);}
+.dl-footnote{margin-top:11px;font-size:11px;line-height:1.6;color:var(--cream-faint);text-align:center;letter-spacing:.03em;}
+
+/* 安装提示 */
+.dl-guide{margin-top:52px;padding-top:38px;border-top:1px solid var(--line);}
+.dl-guide-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:22px;}
+.dl-guide-head h2{font-family:var(--font-serif);font-size:clamp(24px,3vw,31px);font-weight:700;color:var(--cream);letter-spacing:.03em;}
+.dl-guide-head p{font-size:12px;line-height:1.7;color:var(--cream-faint);text-align:right;max-width:28em;}
+.dl-guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line);}
+.dl-guide-item{padding:22px 24px 24px 0;border-right:1px solid var(--line);}
+.dl-guide-item:last-child{border-right:0;padding-right:0;}
+.dl-guide-item .no{font-family:var(--font-serif);font-size:13px;letter-spacing:.08em;color:var(--mustard);}
+.dl-guide-item h3{margin-top:10px;font-family:var(--font-serif);font-size:18px;line-height:1.3;color:var(--cream);font-weight:600;}
+.dl-guide-item p{margin-top:9px;font-size:13px;line-height:1.85;color:var(--cream-dim);}
+.dl-guide-item a{color:var(--mustard);text-decoration:none;border-bottom:1px solid rgba(224,174,51,.40);}
+.dl-guide-item a:hover{border-bottom-color:var(--mustard);}
+
+.dl-source{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;margin-top:22px;font-size:12px;line-height:1.75;color:var(--cream-faint);}
+.dl-source a{color:var(--cream-dim);text-decoration:none;border-bottom:1px solid var(--line-strong);}
+.dl-source a:hover{color:var(--mustard);border-bottom-color:var(--mustard);}
+
+/* 页脚 */
+.dl-footer{margin-top:64px;padding:26px 0 8px;border-top:1px solid var(--line);text-align:center;}
+.dl-footer .foot-nav{padding:0 0 16px;}
+.dl-footer .foot-copy{font-size:12px;line-height:2;letter-spacing:.06em;color:var(--cream-faint);}
+.dl-footer .seed{color:var(--sprout);}
+.dl-footer .foot-privacy,.dl-footer .foot-app{color:var(--cream-faint);text-decoration:none;margin-left:10px;letter-spacing:.06em;transition:color .2s;}
+.dl-footer .foot-privacy:hover,.dl-footer .foot-app:hover,.dl-footer .foot-app[aria-current]{color:var(--mustard);}
+
+@media (max-width:899px){
+  .dl-page{padding-left:16px;padding-right:16px;}
+  .dl-hero{grid-template-columns:1fr;gap:30px;padding:36px 0 42px;text-align:center;}
+  .dl-icon-stage{order:-1;justify-self:center;}
+  .dl-icon-ring{width:142px;border-radius:30px;}
+  .dl-icon-ring::after{inset:9px;border-radius:23px;}
+  .dl-kicker{justify-content:center;}
+  .dl-kicker::before{width:20px;}
+  .dl-hero h1{font-size:clamp(32px,9.8vw,42px);margin-top:18px;}
+  .dl-lede{margin-left:auto;margin-right:auto;font-size:15px;line-height:1.9;}
+  .dl-platforms{justify-content:center;}
+  .dl-section-head,.dl-guide-head{display:block;text-align:left;}
+  .dl-section-note,.dl-guide-head p{margin-top:8px;text-align:left;max-width:none;}
+  .dl-grid{grid-template-columns:1fr;gap:14px;}
+  .dl-card{min-height:0;padding:24px 22px 20px;}
+  .dl-desc{min-height:0;}
+  .dl-guide-grid{grid-template-columns:1fr;border-bottom:0;}
+  .dl-guide-item{border-right:0;border-bottom:1px solid var(--line);padding:20px 0;}
+  .dl-guide-item:last-child{border-bottom:0;padding-bottom:4px;}
+  .dl-footer{display:block;margin-top:46px;}
+  .dl-back span{display:none;}
+  .dl-back{padding:0;width:40px;justify-content:center;}
+}
+@media (max-width:420px){
+  .dl-header .logo{letter-spacing:.26em;text-indent:.26em;}
+  .dl-hero{padding-top:30px;}
+  .dl-icon-ring{width:124px;}
+  .dl-title-row{align-items:flex-start;flex-direction:column;gap:4px;}
+  .dl-spec-row{font-size:11.5px;}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"芥菜种教会","applicationCategory":"LifestyleApplication","operatingSystem":"Android, iOS, macOS","downloadUrl":["https://zhuzhouchurch.com/api/apk","https://github.com/harpsvials/mustardseed-app/releases/download/app-downloads/mustardseed-ios-unsigned.ipa","https://github.com/harpsvials/mustardseed-app/releases/download/app-downloads/mustardseed-macos.dmg"],"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"}}
+</script>
+</head>
+<body class="page-download">
+
+<div class="dl-page">
+
+  <header class="dl-header">
+    <a class="logo" href="index.html" aria-label="芥菜种教会主页">mustard<span class="dot">·</span>seed</a>
+    <div class="dl-head-actions">
+      <a class="dl-back" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        <span>返回主页</span>
+      </a>
+      <button class="dl-theme" id="themeBtn" type="button" aria-label="切换明暗主题">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="dl-hero">
+    <div class="dl-hero-copy">
+      <p class="dl-kicker">Mustardseed App</p>
+      <h1>把教会，<br><em>带在身边</em></h1>
+      <p class="dl-lede">讲道、灵修、见证与祷告墙，离线也能读。<br>选择设备，随时回到这片土壤。</p>
+      <p class="dl-platforms">Android <span></span> iOS <span></span> macOS</p>
+    </div>
+    <div class="dl-icon-stage">
+      <div class="dl-icon-ring">
+        <img src="assets/download/app-icon.png" alt="芥菜种教会 App 图标" width="512" height="512">
+      </div>
+      <span class="dl-icon-caption">MUSTARDSEED</span>
+    </div>
+  </section>
+
+  <!-- ===== 下载 ===== -->
+  <section class="dl-download" aria-labelledby="dlTitle">
+    <div class="dl-section-head">
+      <h2 id="dlTitle">选择你的设备</h2>
+      <p class="dl-section-note">三个安装包均为官方构建。iOS 与 macOS 首次安装需要额外的系统确认。</p>
+    </div>
+
+    <div class="dl-grid">
+
+      <article class="dl-card dl-card-android">
+        <div class="dl-card-head">
+          <span class="dl-plat" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10.5a4 4 0 0 1 8 0v4.2a1.3 1.3 0 0 1-1.3 1.3H9.3A1.3 1.3 0 0 1 8 14.7v-4.2z"/><path d="M9.4 10.5 8.2 8.2M14.6 10.5l1.2-2.3"/><circle cx="10.4" cy="12.4" r=".6"/><circle cx="13.6" cy="12.4" r=".6"/><path d="M9.5 16v2.7M14.5 16v2.7"/></svg>
+          </span>
+          <span class="dl-badge">直接安装</span>
+        </div>
+        <div class="dl-title-row">
+          <h3>Android</h3>
+          <span class="dl-req">7.0 及以上</span>
+        </div>
+        <p class="dl-desc">适用于安卓手机与平板。<br>下载 APK 直接安装。</p>
+        <div class="dl-specs">
+          <div class="dl-spec-row"><span>安装包</span><b>APK</b></div>
+          <div class="dl-spec-row"><span>大小</span><b>约 82 MB</b></div>
+          <div class="dl-spec-row"><span>版本</span><b id="androidVersion">v2026.11.25.0537</b></div>
+        </div>
+        <a class="dl-btn" href="https://zhuzhouchurch.com/api/apk" id="androidBtn">
+          <span>下载 Android 版</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v11"/><path d="M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19.5h14"/></svg>
+        </a>
+        <p class="dl-footnote">最新构建 · GitHub 官方发布</p>
+      </article>
+
+      <article class="dl-card dl-card-ios">
+        <div class="dl-card-head">
+          <span class="dl-plat" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="3.2" width="11" height="17.6" rx="2.4"/><path d="M9.4 5.6h5.2"/><path d="M10.2 18.2h3.6"/></svg>
+          </span>
+          <span class="dl-badge">需自签</span>
+        </div>
+        <div class="dl-title-row">
+          <h3>iOS</h3>
+          <span class="dl-req">15.0 及以上</span>
+        </div>
+        <p class="dl-desc">适用于 iPhone 与 iPad。无签名 IPA，需先在电脑上用 AltStore 或 Sideloadly 自签。</p>
+        <div class="dl-specs">
+          <div class="dl-spec-row"><span>安装包</span><b>IPA</b></div>
+          <div class="dl-spec-row"><span>大小</span><b>39.4 MB</b></div>
+          <div class="dl-spec-row"><span>版本</span><b>2026.11.25 构建</b></div>
+        </div>
+        <a class="dl-btn" href="https://github.com/harpsvials/mustardseed-app/releases/download/app-downloads/mustardseed-ios-unsigned.ipa">
+          <span>下载 iOS 版</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v11"/><path d="M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19.5h14"/></svg>
+        </a>
+        <p class="dl-footnote">未签名 IPA · 需自签后安装</p>
+      </article>
+
+      <article class="dl-card dl-card-mac">
+        <div class="dl-card-head">
+          <span class="dl-plat" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.2" width="16" height="10.4" rx="1.8"/><path d="M2.8 18.8h18.4"/><path d="M9.6 18.8h4.8"/></svg>
+          </span>
+          <span class="dl-badge">未公证</span>
+        </div>
+        <div class="dl-title-row">
+          <h3>macOS</h3>
+          <span class="dl-req">12.0 及以上</span>
+        </div>
+        <p class="dl-desc">适用于 Apple 芯片与 Intel Mac，打开 DMG 拖入「应用程序」即可。</p>
+        <div class="dl-specs">
+          <div class="dl-spec-row"><span>安装包</span><b>DMG</b></div>
+          <div class="dl-spec-row"><span>大小</span><b>53.6 MB</b></div>
+          <div class="dl-spec-row"><span>版本</span><b>2026.11.24.2240</b></div>
+        </div>
+        <a class="dl-btn" href="https://github.com/harpsvials/mustardseed-app/releases/download/app-downloads/mustardseed-macos.dmg">
+          <span>下载 macOS 版</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v11"/><path d="M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19.5h14"/></svg>
+        </a>
+        <p class="dl-footnote">通用包 · 支持 Apple 芯片与 Intel</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== 安装提示 ===== -->
+  <section class="dl-guide" aria-labelledby="guideTitle">
+    <div class="dl-guide-head">
+      <h2 id="guideTitle">下载之后</h2>
+      <p>系统版本不同，提示文字可能略有差异。遇到拦截，按下面的步骤处理即可。</p>
+    </div>
+    <div class="dl-guide-grid">
+      <article class="dl-guide-item">
+        <span class="no">01</span>
+        <h3>Android</h3>
+        <p>点击下载后，如提示「禁止安装未知应用」，在浏览器或文件管理器的设置里允许安装，再重新打开 APK 完成安装。</p>
+      </article>
+      <article class="dl-guide-item">
+        <span class="no">02</span>
+        <h3>iOS</h3>
+        <p>在电脑安装 AltStore 或 Sideloadly，连接 iPhone 后导入 IPA，用 Apple ID 自签。再到「设置 → 通用 → VPN 与设备管理」信任开发者。</p>
+      </article>
+      <article class="dl-guide-item">
+        <span class="no">03</span>
+        <h3>macOS</h3>
+        <p>打开 DMG，把「芥菜种教会」拖入「应用程序」。首次启动若提示未验证开发者，右键点击应用选择「打开」。</p>
+      </article>
+    </div>
+    <div class="dl-source">
+      <p>iOS 为无签名构建，macOS 为未公证构建，因此需要上述手动确认；应用本身功能完整。</p>
+      <a href="https://github.com/harpsvials/mustardseed-app/releases/tag/app-downloads" target="_blank" rel="noopener">查看官方发布页</a>
+    </div>
+  </section>
+
+  <footer class="dl-footer">
+    <nav class="foot-nav" aria-label="站点导航">
+      <a class="site-link" href="index.html">主页</a>
+      <a class="site-link" href="sermons.html">讲道</a>
+      <a class="site-link" href="qt.html">灵修</a>
+      <a class="site-link" href="discussion.html">讨论</a>
+      <a class="site-link" href="testimonies.html">见证</a>
+      <a class="site-link" href="guestbook.html">留言</a>
+      <a class="site-link" href="prayer.html">祷告墙</a>
+      <a class="site-link" href="about.html">关于</a>
+    </nav>
+    <p class="foot-copy">mustard<span class="seed">·</span>seed — 让每个分享都像种子，落进土壤 <a class="foot-privacy" href="privacy.html">隐私政策</a> <a class="foot-app" href="download.html" aria-current="page">App 下载</a></p>
+  </footer>
+
+</div>
+
+<script>
+/* ===== 主题切换：与全站共用 ms-theme ===== */
+(function(){
+  var btn = document.getElementById('themeBtn');
+  var icon = document.getElementById('themeIcon');
+  var meta = document.querySelector('meta[name="theme-color"]');
+  var sun = '<path d="M12 8.2a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6z"/><path d="M12 3.2v2.1M12 18.7v2.1M3.2 12h2.1M18.7 12h2.1M5.7 5.7l1.5 1.5M16.8 16.8l1.5 1.5M18.3 5.7l-1.5 1.5M7.2 16.8l-1.5 1.5"/>';
+  var moon = '<path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2z"/>';
+  function sync(){
+    var light = document.documentElement.getAttribute('data-theme') === 'light';
+    icon.innerHTML = light ? sun : moon;
+    btn.setAttribute('aria-label', light ? '切换到暗色主题' : '切换到亮色主题');
+    if(meta) meta.setAttribute('content', light ? '#F6F0E2' : '#16281C');
+  }
+  sync();
+  btn.addEventListener('click', function(){
+    var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('ms-theme', next); }catch(e){}
+    sync();
+  });
+})();
+
+/* ===== 安卓版本号：读取站内 version.json，只在更高版本时覆盖 ===== */
+(function(){
+  var el = document.getElementById('androidVersion');
+  var shown = el.textContent.trim();
+  fetch('version.json', {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if(!d || !d.version || !/^v\d{4}\.\d{2}\.\d{2}\.\d{4}$/.test(d.version)) return;
+    if(d.version > shown) el.textContent = d.version;
+  }).catch(function(){});
+})();
+</script>
+
+</body>
+</html>
