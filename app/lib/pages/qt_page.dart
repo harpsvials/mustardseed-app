@@ -11,6 +11,7 @@ import '../i18n.dart';
 import '../theme.dart';
 import '../services/bible_verses.dart';
 import '../services/qt_reflection.dart';
+import '../widgets/shared.dart';
 
 /// 今日灵修快照：与网站同源，读 qt-data.json（由 GitHub Actions 每日抓取生成）
 class QtData {
@@ -245,48 +246,31 @@ class _QtPageState extends State<QtPage> {
     final isEn = AppLocale.value == AppLocale.en;
     return Row(
       children: [
-        _textSizeButton(
+        ReaderSizeButton(
+          plus: false,
           label: isEn ? 'Smaller' : '减小',
-          icon: Icons.text_decrease,
           onPressed: _textScale > _minTextScale
               ? () => _changeTextScale(-0.1)
               : null,
         ),
         const SizedBox(width: 8),
-        _textSizeButton(
+        ReaderSizeButton(
+          plus: true,
           label: isEn ? 'Larger' : '加大',
-          icon: Icons.text_increase,
           onPressed: _textScale < _maxTextScale
               ? () => _changeTextScale(0.1)
               : null,
         ),
-        const SizedBox(width: 12),
-        Text(
-          '${(_textScale * 100).round()}%',
-          style: TextStyle(fontSize: 12.5, color: AppColors.creamFaint),
+        const SizedBox(width: 10),
+        SizedBox(
+          width: 42,
+          child: Text(
+            '${(_textScale * 100).round()}%',
+            textAlign: TextAlign.left,
+            style: TextStyle(fontSize: 12.5, color: AppColors.creamFaint),
+          ),
         ),
       ],
-    );
-  }
-
-  Widget _textSizeButton({
-    required String label,
-    required IconData icon,
-    required VoidCallback? onPressed,
-  }) {
-    return OutlinedButton.icon(
-      onPressed: onPressed,
-      icon: Icon(icon, size: 16),
-      label: Text(label),
-      style: OutlinedButton.styleFrom(
-        foregroundColor: AppColors.cream,
-        disabledForegroundColor: AppColors.creamFaint.withValues(alpha: .4),
-        side: BorderSide(color: AppColors.lineStrong),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        minimumSize: const Size(0, 34),
-        textStyle: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w600),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
-      ),
     );
   }
 

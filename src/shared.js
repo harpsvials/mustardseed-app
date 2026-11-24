@@ -810,18 +810,16 @@ window.__hasBlocked = (function(){
   bar.setAttribute('role', 'group');
   bar.setAttribute('aria-label', c.group);
   bar.innerHTML =
-    '<span class="reader-size-label"></span>' +
-    '<button type="button" class="reader-size-down"></button>' +
-    '<button type="button" class="reader-size-up"></button>' +
+    '<button type="button" class="reader-size-down" aria-label="' + c.smaller + '">' +
+      '<span class="reader-size-glyph">A<span class="reader-size-sign">-</span></span>' +
+    '</button>' +
+    '<button type="button" class="reader-size-up" aria-label="' + c.larger + '">' +
+      '<span class="reader-size-glyph">A<span class="reader-size-sign">+</span></span>' +
+    '</button>' +
     '<span class="reader-size-value" aria-live="polite">100%</span>';
-  bar.querySelector('.reader-size-label').textContent = c.label;
   var down = bar.querySelector('.reader-size-down');
   var up = bar.querySelector('.reader-size-up');
   var value = bar.querySelector('.reader-size-value');
-  down.textContent = c.smaller;
-  up.textContent = c.larger;
-  down.setAttribute('aria-label', c.smaller);
-  up.setAttribute('aria-label', c.larger);
 
   var KEY = 'ms_reader_text_scale';
   var MIN = 0.85, MAX = 1.4, STEP = 0.1;

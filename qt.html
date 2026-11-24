@@ -15,7 +15,7 @@
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=Noto+Sans+SC:wght@300;400;500&amp;family=Noto+Sans:wght@300;400;500&amp;family=Noto+Serif:wght@400;600;700&amp;family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="src/site.css?v=20261124b">
+<link rel="stylesheet" href="src/site.css?v=20261124c">
 <link rel="canonical" href="https://www.zhuzhouchurch.com/qt.html">
 <style>
 /* ===== 灵修页：纸卡 + 两枚贴纸（本页专属，颜色不随主题变量漂移） ===== */
@@ -64,12 +64,14 @@ html[data-theme="light"] .qt-sheet{
 
 /* 字号调节：只放大正文与标题文字，卡片和图片尺寸保持稳定 */
 .qt-textsize{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-6px 0 clamp(16px,4.5vw,24px)}
-.qt-textsize-label{font-size:11.5px;letter-spacing:.14em;color:var(--qt-ink-faint)}
+.qt-textsize-label{display:none}
 .qt-textsize button{
   appearance:none;border:1px solid rgba(34,48,28,.24);background:rgba(255,255,255,.5);
-  color:var(--qt-ink);border-radius:999px;padding:6px 13px;font:inherit;font-size:13px;
+  color:var(--qt-ink);border-radius:9px;padding:6px 9px;min-width:48px;font:inherit;font-size:13px;
   line-height:1.2;cursor:pointer;transition:background .18s,border-color .18s,opacity .18s;
 }
+.qt-textsize-glyph{position:relative;display:inline-block;font-family:var(--font-serif);font-size:18px;font-weight:600;line-height:1;padding-right:2px}
+.qt-textsize-sign{position:absolute;top:-7px;right:-2px;font-family:var(--font-sans);font-size:10px;font-weight:700;line-height:1}
 .qt-textsize button:hover{border-color:rgba(34,48,28,.5);background:rgba(255,255,255,.8)}
 .qt-textsize button:focus-visible{outline:2px solid var(--qt-gold);outline-offset:2px}
 .qt-textsize button:disabled{opacity:.38;cursor:default}
@@ -351,9 +353,8 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
         </div>
 
         <div class="qt-textsize" role="group" aria-label="正文字号">
-          <span class="qt-textsize-label">字号</span>
-          <button type="button" id="qtFontDown" aria-label="减小正文字号">减小</button>
-          <button type="button" id="qtFontUp" aria-label="加大正文字号">加大</button>
+          <button type="button" id="qtFontDown" aria-label="减小正文字号"><span class="qt-textsize-glyph">A<span class="qt-textsize-sign">-</span></span></button>
+          <button type="button" id="qtFontUp" aria-label="加大正文字号"><span class="qt-textsize-glyph">A<span class="qt-textsize-sign">+</span></span></button>
           <span class="qt-textsize-value" id="qtFontValue" aria-live="polite">100%</span>
         </div>
 
@@ -526,7 +527,7 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
 }
 </script>
 <script src="src/i18n.js"></script>
-<script src="src/shared.js?v=20261124c"></script>
+<script src="src/shared.js?v=20261124d"></script>
 <script>
 (function(){
   /* 本页目前只有简体版本：其余语言入口改跳该语言主页，避免 404 */
@@ -556,7 +557,7 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
       if(isFinite(saved)) scale = saved;
     }catch(e){}
     function apply(next, save){
-      scale = Math.min(MAX, Math.max(MIN, Math.round(next * 10) / 10));
+      scale = Math.min(MAX, Math.max(MIN, Math.round(next * 100) / 100));
       sheet.style.setProperty('--qt-ts', String(scale));
       value.textContent = Math.round(scale * 100) + '%';
       down.disabled = scale <= MIN + 0.001;

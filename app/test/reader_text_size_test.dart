@@ -26,11 +26,12 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('100%'), findsOneWidget);
+    expect(find.byType(TextSizeGlyph), findsNWidgets(2));
     expect(bodyScale(tester, first), closeTo(1.0, 0.001));
 
-    await tester.tap(find.text('加大'));
+    await tester.tap(find.byTooltip('加大'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('加大'));
+    await tester.tap(find.byTooltip('加大'));
     await tester.pumpAndSettle();
     expect(find.text('120%'), findsOneWidget);
     expect(bodyScale(tester, first), closeTo(1.2, 0.001));
@@ -42,7 +43,7 @@ void main() {
     expect(bodyScale(tester, second), closeTo(1.2, 0.001));
 
     for (var i = 0; i < 4; i++) {
-      await tester.tap(find.text('减小'));
+      await tester.tap(find.byTooltip('减小'));
       await tester.pumpAndSettle();
     }
     expect(find.text('85%'), findsOneWidget);
@@ -50,8 +51,8 @@ void main() {
     expect(
       tester
           .widget<OutlinedButton>(
-            find.ancestor(
-              of: find.text('减小'),
+            find.descendant(
+              of: find.byTooltip('减小'),
               matching: find.byType(OutlinedButton),
             ),
           )
@@ -60,7 +61,7 @@ void main() {
     );
 
     for (var i = 0; i < 6; i++) {
-      await tester.tap(find.text('加大'));
+      await tester.tap(find.byTooltip('加大'));
       await tester.pumpAndSettle();
     }
     expect(find.text('140%'), findsOneWidget);

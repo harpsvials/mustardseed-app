@@ -243,6 +243,85 @@ class BlockView extends StatelessWidget {
   }
 }
 
+/// A- / A+ 字号按钮的统一字形，符号位于 A 的右上角。
+class TextSizeGlyph extends StatelessWidget {
+  final bool plus;
+
+  const TextSizeGlyph({super.key, required this.plus});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 22,
+      height: 20,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Positioned(
+            left: 0,
+            bottom: 0,
+            child: Text(
+              'A',
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w600,
+                height: 1,
+              ),
+            ),
+          ),
+          Positioned(
+            right: 0,
+            top: -2,
+            child: Text(
+              plus ? '+' : '-',
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w700,
+                height: 1,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// 关于 / 见证 / 讲稿 / 灵修共用的字号按钮。
+class ReaderSizeButton extends StatelessWidget {
+  final bool plus;
+  final String label;
+  final VoidCallback? onPressed;
+
+  const ReaderSizeButton({
+    super.key,
+    required this.plus,
+    required this.label,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: label,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          minimumSize: const Size(48, 36),
+          padding: const EdgeInsets.symmetric(horizontal: 9),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          visualDensity: VisualDensity.compact,
+          foregroundColor: AppColors.cream,
+          disabledForegroundColor: AppColors.creamFaint.withValues(alpha: .38),
+          side: BorderSide(color: AppColors.lineStrong),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
+        ),
+        child: TextSizeGlyph(plus: plus),
+      ),
+    );
+  }
+}
+
 /// 阅读页字号调节：关于 / 见证 / 讲稿详情共用同一设置（85%–140%）
 class ReaderTextSize extends StatefulWidget {
   final Widget child;
@@ -309,32 +388,23 @@ class _ReaderTextSizeState extends State<ReaderTextSize> {
           ),
           child: Row(
             children: [
-              Text(
-                isEn ? 'Text size' : '字号',
-                style: TextStyle(
-                  fontSize: 11.5,
-                  letterSpacing: 1.2,
-                  color: AppColors.creamDim,
-                ),
-              ),
-              const Spacer(),
-              _ReaderSizeButton(
+              ReaderSizeButton(
+                plus: false,
                 label: isEn ? 'Smaller' : '减小',
-                enabled: _scale > _min + .001,
-                onPressed: () => _change(-_step),
+                onPressed: _scale > _min + .001 ? () => _change(-_step) : null,
               ),
               const SizedBox(width: 8),
-              _ReaderSizeButton(
+              ReaderSizeButton(
+                plus: true,
                 label: isEn ? 'Larger' : '加大',
-                enabled: _scale < _max - .001,
-                onPressed: () => _change(_step),
+                onPressed: _scale < _max - .001 ? () => _change(_step) : null,
               ),
               const SizedBox(width: 10),
               SizedBox(
                 width: 42,
                 child: Text(
                   '${(_scale * 100).round()}%',
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 11.5,
                     color: AppColors.creamDim,
@@ -353,36 +423,6 @@ class _ReaderTextSizeState extends State<ReaderTextSize> {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _ReaderSizeButton extends StatelessWidget {
-  final String label;
-  final bool enabled;
-  final VoidCallback onPressed;
-
-  const _ReaderSizeButton({
-    required this.label,
-    required this.enabled,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: enabled ? onPressed : null,
-      style: OutlinedButton.styleFrom(
-        minimumSize: const Size(0, 34),
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        visualDensity: VisualDensity.compact,
-        foregroundColor: AppColors.cream,
-        side: BorderSide(color: AppColors.lineStrong),
-        shape: const StadiumBorder(),
-        textStyle: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500),
-      ),
-      child: Text(label),
     );
   }
 }
