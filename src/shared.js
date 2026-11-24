@@ -832,7 +832,7 @@ window.__hasBlocked = (function(){
   }catch(e){}
 
   function apply(next, save){
-    scale = Math.min(MAX, Math.max(MIN, Math.round(next * 10) / 10));
+    scale = Math.min(MAX, Math.max(MIN, Math.round(next * 100) / 100));
     document.documentElement.style.setProperty('--reader-ts', String(scale));
     value.textContent = Math.round(scale * 100) + '%';
     down.disabled = scale <= MIN + 0.001;
