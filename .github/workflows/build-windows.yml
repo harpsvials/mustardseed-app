@@ -29,7 +29,7 @@ jobs:
         run: |
           $tz = [TimeZoneInfo]::FindSystemTimeZoneById("China Standard Time")
           $now = [TimeZoneInfo]::ConvertTimeFromUtc([DateTime]::UtcNow, $tz)
-          $vname = "v" + $now.ToString("yyyy.MM.dd.HHmm")
+          $vname = $now.ToString("yyyy.MM.dd")
           "vname=$vname" >> $env:GITHUB_OUTPUT
           "vcode=$([DateTimeOffset]::UtcNow.ToUnixTimeSeconds())" >> $env:GITHUB_OUTPUT
 
