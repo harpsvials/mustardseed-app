@@ -73,7 +73,8 @@ html[data-theme="light"] .dl-icon-ring{background:radial-gradient(circle at 50% 
 html[data-theme="light"] .dl-card{background:var(--bg-card);}
 .dl-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
 .dl-plat{width:46px;height:46px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:14px;background:var(--plat-soft);border:1px solid var(--plat-border);color:var(--plat);}
-.dl-plat svg{width:24px;height:24px;}
+.dl-plat{overflow:hidden;padding:0;background:var(--bg-card);}
+.dl-plat img{display:block;width:100%;height:100%;object-fit:cover;border-radius:13px;}
 .dl-badge{flex:none;display:inline-flex;align-items:center;min-height:24px;padding:0 9px;margin-top:2px;border:1px solid var(--plat-border);border-radius:999px;color:var(--plat);font-size:10.5px;letter-spacing:.08em;white-space:nowrap;}
 .dl-title-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:20px;}
 .dl-card h3{font-family:var(--font-serif);font-size:27px;line-height:1.2;font-weight:700;color:var(--cream);letter-spacing:.02em;}
@@ -196,9 +197,7 @@ html[data-theme="light"] .dl-btn:hover{box-shadow:0 6px 18px rgba(84,62,24,.16);
 
       <article class="dl-card dl-card-android">
         <div class="dl-card-head">
-          <span class="dl-plat" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10.5a4 4 0 0 1 8 0v4.2a1.3 1.3 0 0 1-1.3 1.3H9.3A1.3 1.3 0 0 1 8 14.7v-4.2z"/><path d="M9.4 10.5 8.2 8.2M14.6 10.5l1.2-2.3"/><circle cx="10.4" cy="12.4" r=".6"/><circle cx="13.6" cy="12.4" r=".6"/><path d="M9.5 16v2.7M14.5 16v2.7"/></svg>
-          </span>
+          <span class="dl-plat" aria-hidden="true"><img src="assets/download/app-icon.png" alt="" width="512" height="512"></span>
           <span class="dl-badge">直接安装</span>
         </div>
         <div class="dl-title-row">
@@ -209,7 +208,7 @@ html[data-theme="light"] .dl-btn:hover{box-shadow:0 6px 18px rgba(84,62,24,.16);
         <div class="dl-specs">
           <div class="dl-spec-row"><span>安装包</span><b>APK</b></div>
           <div class="dl-spec-row"><span>大小</span><b>约 82 MB</b></div>
-          <div class="dl-spec-row"><span>版本</span><b id="androidVersion">v2026.11.25.0557</b></div>
+          <div class="dl-spec-row"><span>版本</span><b id="androidVersion">v2026.11.25.0622</b></div>
         </div>
         <a class="dl-btn" href="https://zhuzhouchurch.com/api/apk" id="androidBtn">
           <span>下载 Android 版</span>
@@ -220,9 +219,7 @@ html[data-theme="light"] .dl-btn:hover{box-shadow:0 6px 18px rgba(84,62,24,.16);
 
       <article class="dl-card dl-card-ios">
         <div class="dl-card-head">
-          <span class="dl-plat" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="3.2" width="11" height="17.6" rx="2.4"/><path d="M9.4 5.6h5.2"/><path d="M10.2 18.2h3.6"/></svg>
-          </span>
+          <span class="dl-plat" aria-hidden="true"><img src="assets/download/app-icon.png" alt="" width="512" height="512"></span>
           <span class="dl-badge">需自签</span>
         </div>
         <div class="dl-title-row">
@@ -244,9 +241,7 @@ html[data-theme="light"] .dl-btn:hover{box-shadow:0 6px 18px rgba(84,62,24,.16);
 
       <article class="dl-card dl-card-mac">
         <div class="dl-card-head">
-          <span class="dl-plat" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.2" width="16" height="10.4" rx="1.8"/><path d="M2.8 18.8h18.4"/><path d="M9.6 18.8h4.8"/></svg>
-          </span>
+          <span class="dl-plat" aria-hidden="true"><img src="assets/download/app-icon.png" alt="" width="512" height="512"></span>
           <span class="dl-badge">未公证</span>
         </div>
         <div class="dl-title-row">
