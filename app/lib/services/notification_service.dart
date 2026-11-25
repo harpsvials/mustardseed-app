@@ -37,6 +37,11 @@ class NotificationService {
           defaultPresentBadge: true,
           defaultPresentSound: true,
         ),
+        windows: WindowsInitializationSettings(
+          appName: '芥菜种教会',
+          appUserModelId: 'com.zhuzhouchurch.mustardseed_app',
+          guid: 'b6b1f6a0-2e65-4a3f-8f9f-3c1d5a7e9b21',
+        ),
       );
       await _plugin.initialize(settings: settings);
       _inited = true;
@@ -51,13 +56,15 @@ class NotificationService {
     try {
       final android = _plugin
           .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>();
+            AndroidFlutterLocalNotificationsPlugin
+          >();
       if (android != null) {
         return await android.requestNotificationsPermission() ?? false;
       }
       final ios = _plugin
           .resolvePlatformSpecificImplementation<
-              IOSFlutterLocalNotificationsPlugin>();
+            IOSFlutterLocalNotificationsPlugin
+          >();
       if (ios != null) {
         return await ios.requestPermissions(
               alert: true,
@@ -68,7 +75,8 @@ class NotificationService {
       }
       final macos = _plugin
           .resolvePlatformSpecificImplementation<
-              MacOSFlutterLocalNotificationsPlugin>();
+            MacOSFlutterLocalNotificationsPlugin
+          >();
       if (macos != null) {
         return await macos.requestPermissions(
               alert: true,
@@ -94,6 +102,7 @@ class NotificationService {
       ),
       iOS: DarwinNotificationDetails(),
       macOS: DarwinNotificationDetails(),
+      windows: WindowsNotificationDetails(),
     );
     try {
       await _plugin.show(

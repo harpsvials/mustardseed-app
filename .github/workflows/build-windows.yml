@@ -1,0 +1,61 @@
+name: Build Windows
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter pub get
+        working-directory: app
+        run: flutter pub get
+
+      - name: Set version (China time)
+        id: ver
+        shell: pwsh
+        run: |
+          $tz = [TimeZoneInfo]::FindSystemTimeZoneById("China Standard Time")
+          $now = [TimeZoneInfo]::ConvertTimeFromUtc([DateTime]::UtcNow, $tz)
+          $vname = "v" + $now.ToString("yyyy.MM.dd.HHmm")
+          "vname=$vname" >> $env:GITHUB_OUTPUT
+          "vcode=$([DateTimeOffset]::UtcNow.ToUnixTimeSeconds())" >> $env:GITHUB_OUTPUT
+
+      - name: Build Windows release
+        working-directory: app
+        run: flutter build windows --release --build-name ${{ steps.ver.outputs.vname }} --build-number ${{ steps.ver.outputs.vcode }}
+
+      - name: Package portable zip
+        shell: pwsh
+        run: |
+          $src = "app\build\windows\x64\runner\Release"
+          $stage = "app\build\windows\Mustardseed"
+          if (Test-Path $stage) { Remove-Item $stage -Recurse -Force }
+          Copy-Item $src $stage -Recurse
+          Compress-Archive -Path $stage -DestinationPath "app\build\windows\mustardseed-windows.zip" -Force
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mustardseed-windows
+          path: app/build/windows/mustardseed-windows.zip
+          if-no-files-found: error
+
+      - name: Publish to app-downloads release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload app-downloads "app\build\windows\mustardseed-windows.zip" --clobber --repo "${{ github.repository }}"
