@@ -422,23 +422,36 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
 
 <script type="application/json" id="qt-boot">
 {
-  "date": "2026-11-26",
-  "dateLabel": "2026年11月26日",
-  "weekday": "星期四",
-  "topic": "归向主时 帕子就除去了",
+  "date": "2026-11-27",
+  "dateLabel": "2026年11月27日",
+  "weekday": "星期五",
+  "topic": "装在瓦器里的 天上宝贝",
   "subtitle": "",
-  "reading": "哥林多后书3：12～18",
-  "sourceUrl": "https://www.youtube.com/watch?v=2xVdnKuKrEg",
+  "reading": "哥林多后书4：1～10",
+  "sourceUrl": "https://www.youtube.com/watch?v=uvoiEUxyuYE",
   "sourceName": "CGN中文台·活泼的生命",
-  "updated": "2026-11-26 05:00",
-  "updatedLabel": "2026年11月26日 05:00"
+  "updated": "2026-11-27 04:36",
+  "updatedLabel": "2026年11月27日 04:36"
 }
 </script>
 <script type="application/json" id="rpg-boot">
 {
-  "updated": "2026-11-26 09:20",
-  "updatedLabel": "2026年11月26日 09:20",
+  "updated": "2026-11-27 04:36",
+  "updatedLabel": "2026年11月27日 04:36",
+  "sourceUrl": "https://www.rpg-move.tw/category/rpg-daily/",
+  "keepDays": 7,
   "items": [
+    {
+      "date": "2026-11-27",
+      "dateLabel": "2026年11月27日",
+      "weekday": "星期五",
+      "verseImage": "daily_20261127-1.jpg",
+      "verseImageUrl": "https://mustardseed.harps-vials.workers.dev/api/asset?p=images/rpg/daily_20261127-1.jpg",
+      "prayerImage": "daily_20261127-2.jpg",
+      "prayerImageUrl": "https://mustardseed.harps-vials.workers.dev/api/asset?p=images/rpg/daily_20261127-2.jpg",
+      "sourceUrl": "https://www.rpg-move.tw/daily1127/",
+      "title": "每日经文1127 - RPG复兴祷告总动员"
+    },
     {
       "date": "2026-11-26",
       "dateLabel": "2026年11月26日",
@@ -504,17 +517,6 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
       "prayerImageUrl": "https://mustardseed.harps-vials.workers.dev/api/asset?p=images/rpg/daily_20261121-2.jpg",
       "sourceUrl": "https://www.rpg-move.tw/daily1121/",
       "title": "每日经文1121 - RPG复兴祷告总动员"
-    },
-    {
-      "date": "2026-11-20",
-      "dateLabel": "2026年11月20日",
-      "weekday": "星期五",
-      "verseImage": "daily_20261120-1.jpg",
-      "verseImageUrl": "https://mustardseed.harps-vials.workers.dev/api/asset?p=images/rpg/daily_20261120-1.jpg",
-      "prayerImage": "daily_20261120-2.jpg",
-      "prayerImageUrl": "https://mustardseed.harps-vials.workers.dev/api/asset?p=images/rpg/daily_20261120-2.jpg",
-      "sourceUrl": "https://www.rpg-move.tw/daily1120/",
-      "title": "每日经文1120 - RPG复兴祷告总动员"
     }
   ]
 }
@@ -652,10 +654,20 @@ html[data-theme="light"] .qt-figure figcaption .qt-tag{background:rgba(176,138,4
   render(data);
 
   try{
-    fetch('/api/data?f=qt-data.json', {cache:'no-store'})
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(j){ if(j && j.topic){ data = Object.assign({}, data, j); render(data); } })
-      .catch(function(){});
+    Promise.all([
+      fetch('/api/data?f=qt-data.json', {cache:'no-store'})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .catch(function(){ return null; }),
+      fetch('/qt-data.json?ts=' + Date.now(), {cache:'no-store'})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .catch(function(){ return null; })
+    ]).then(function(list){
+      var api = list[0], repo = list[1];
+      var apiDate = (api && api.date) || '';
+      var repoDate = (repo && repo.date) || '';
+      var pick = (repoDate && (!apiDate || repoDate > apiDate)) ? repo : (apiDate ? api : repo);
+      if(pick && pick.topic){ data = Object.assign({}, data, pick); render(data); }
+    }).catch(function(){});
   }catch(e){}
 
   try{
