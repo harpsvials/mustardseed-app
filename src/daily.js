@@ -55,14 +55,36 @@ async function fetchText(url) {
   return await res.text();
 }
 
+// 源站偶发对机房 IP 直接返回 403/挑战页；用 Google 翻译边缘节点取同一页面作兜底
+async function fetchRPGText(url) {
+  try {
+    return await fetchText(url);
+  } catch (e) {
+    const mirror = url.replace(
+      'https://www.rpg-move.tw',
+      'https://www-rpg--move-tw.translate.goog'
+    ) + (url.includes('?') ? '&' : '?') + '_x_tr_sl=zh-TW&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN';
+    return await fetchText(mirror);
+  }
+}
+
 async function fetchBinary(url) {
-  const res = await fetch(url, {
-    headers: { 'User-Agent': UA, Accept: 'image/jpeg,*/*' },
-    signal: AbortSignal.timeout(30000)
-  });
-  if (!res.ok) return null;
-  const buf = await res.arrayBuffer();
-  return buf.byteLength ? buf : null;
+  // 源站对部分机房 IP 会返回 Cloudflare 挑战页；失败时再走图片 CDN 取同一张原图
+  const candidates = [url];
+  const bare = url.replace(/^https?:\/\//, '');
+  candidates.push(`https://images.weserv.nl/?url=${encodeURIComponent(bare)}`);
+  for (const u of candidates) {
+    try {
+      const res = await fetch(u, {
+        headers: { 'User-Agent': UA, Accept: 'image/jpeg,*/*' },
+        signal: AbortSignal.timeout(30000)
+      });
+      if (!res.ok) continue;
+      const buf = await res.arrayBuffer();
+      if (buf.byteLength) return buf;
+    } catch (_) {}
+  }
+  return null;
 }
 
 const ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', '#39': "'", nbsp: ' ' };
@@ -276,29 +298,37 @@ async function updateQT(env) {
 }
 
 function parseRPGPost(url, html) {
-  const text = html.replace(/<[^>]+>/g, ' ');
+  // JSON-LD / 内联脚本里的图片地址会把斜杠转义成 \/，统一还原后再匹配
+  const raw = html.replace(/\\\//g, '/');
+  const text = raw.replace(/<[^>]+>/g, ' ');
   const m = text.match(/日期\s*[・·:：]?\s*(\d{4})-(\d{2})-(\d{2})/);
   if (!m) return null;
   const date = `${m[1]}-${m[2]}-${m[3]}`;
   const mmdd = m[2] + m[3];
 
-  const verseCands = [`${RPG_UPLOAD}daily_${mmdd}-1.jpg`];
-  const versePat = new RegExp(`https://www\\.rpg-move\\.tw/wp-content/uploads/daily_${mmdd}-1(?:-[^"') ]*)?\\.jpg`, 'g');
-  for (const c of html.match(versePat) || []) {
-    if (!verseCands.includes(c)) verseCands.push(c);
-  }
+  // 源站图片命名并不稳定：daily_1126-1.jpg / daily_1126-1-e1699582610162.jpg /
+  // 每日經文-1126-2.jpg 都出现过。按「MMDD-1 / MMDD-2」识别，不再死扣 daily_ 前缀。
+  const uploads = [...raw.matchAll(/https:\/\/www\.rpg-move\.tw\/wp-content\/uploads\/[^"'()\s]+?\.jpg/g)]
+    .map((x) => decodeEntities(x[0]))
+    .filter((u, i, arr) => arr.indexOf(u) === i);
 
-  let prayerUrl = null;
-  const prayerPat = new RegExp(`https://www\\.rpg-move\\.tw/wp-content/uploads/daily_${mmdd}-2(?:-[^"') ]*)?\\.jpg`, 'g');
-  for (const c of html.match(prayerPat) || []) {
-    if (/-\d+x\d+\.jpg$/.test(c)) continue;
-    prayerUrl = c;
-    break;
-  }
+  const verseRe = new RegExp(`${mmdd}-1(?:-[^/]*)?\\.jpg$`);
+  const prayerRe = new RegExp(`${mmdd}-2(?:-[^/]*)?\\.jpg$`);
+  const isResized = (u) => /-\d+x\d+\.jpg$/.test(u);
+  const rank = (u) => (isResized(u) ? 1 : 0) + (u.includes(`daily_${mmdd}-`) ? 0 : 2);
+
+  const standardVerse = `${RPG_UPLOAD}daily_${mmdd}-1.jpg`;
+  const verseCands = [standardVerse, ...uploads.filter((u) => verseRe.test(u))]
+    .filter((u, i, arr) => arr.indexOf(u) === i)
+    .sort((a, b) => rank(a) - rank(b));
+
+  const prayerUrl = uploads
+    .filter((u) => prayerRe.test(u) && !isResized(u))
+    .sort((a, b) => rank(a) - rank(b))[0] || null;
   if (!prayerUrl) return null;
 
   let title = '';
-  const mt = html.match(/<title>([\s\S]*?)<\/title>/i);
+  const mt = raw.match(/<title>([\s\S]*?)<\/title>/i);
   if (mt) title = decodeEntities(mt[1]).replace(/\s+/g, ' ').split(/[|｜]/)[0].trim();
 
   return { date, verseCands, prayerUrl, sourceUrl: url, title: simplify(title) || '每日經文' };
@@ -317,7 +347,7 @@ async function updateRPG(env) {
 
   let cat;
   try {
-    cat = await fetchText(RPG_CATEGORY);
+    cat = await fetchRPGText(RPG_CATEGORY);
   } catch (e) {
     return `rpg-cat-fail: ${e.message}`;
   }
@@ -343,7 +373,7 @@ async function updateRPG(env) {
   const items = new Map();
   for (const url of links.slice(0, 8)) {
     let html;
-    try { html = await fetchText(url); } catch (_) { continue; }
+    try { html = await fetchRPGText(url); } catch (_) { continue; }
     const parsed = parseRPGPost(url, html);
     if (!parsed) continue;
     if (parsed.date > today || parsed.date < earliest) continue;
@@ -438,7 +468,7 @@ const QT_EN_HOME = 'https://www.duranno.com/livinglife/qt/';
 // 先 Qwen（中文更自然），失败再退 Llama 3.3
 const AI_MODELS = ['@cf/qwen/qwen3.8-27b', '@cf/meta/llama-3.3-70b-instruct-fp8-fast'];
 // 译文规则改动时+1：KV 里旧版本会自动重译一次
-const REFLECTION_PROMPT_VERSION = 4;
+const REFLECTION_PROMPT_VERSION = 3;
 
 // 英文书卷名 → 中文（与 qt-data.json 的 reading 对齐，用来校验当天英文页与中文主题同章）
 const EN_BOOK_ZH = {
@@ -494,7 +524,7 @@ function parseEnQT(html) {
     .filter(Boolean);
 
   const headingRe = /^(.{1,80}?)\s*\((\d+)\s*:\s*(\d+)\s*[–\-—~]\s*(\d+)\)$/;
-  const cueRe = /^(Think|Reflect|Ponder|Meditate|Consider|Contemplate|What|How|Do you|Have you|In what|Where|Why|When|Ask|Is there|Can you|Take a moment)/i;
+  const cueRe = /^(Think|Reflect|What|How|Consider|Do you|Have you|In what|Where|Why|When|Ask|Is there|Can you|Take a moment)/i;
 
   const sections = [];
   for (let i = 0; i < blocks.length; i++) {
@@ -750,4 +780,4 @@ export async function updateDaily(env) {
 }
 
 // 仅供本地解析测试使用（Worker 运行时不引用）
-export const __internal = { parseYTFeed, pickYTEntry, parseYTVideo, normalizeReading, parseQT, parseEnQT };
+export const __internal = { parseYTFeed, pickYTEntry, parseYTVideo, normalizeReading, parseQT, parseEnQT, parseRPGPost };
