@@ -84,21 +84,31 @@ def parse_post(url, html):
     mmdd = d.strftime('%m%d')
     up = 'https://www.rpg-move.tw/wp-content/uploads/'
 
-    # 经文卡：页面里给的可能是带 -e<时间戳> 的编辑版，先试原图 daily_MMDD-1.jpg
-    verse_cands = [up + 'daily_%s-1.jpg' % mmdd]
-    pat = r'https://www\.rpg-move\.tw/wp-content/uploads/daily_%s-1(?:-[^"\') ]*)?\.jpg' % mmdd
-    for c in re.findall(pat, html):
-        if c not in verse_cands:
-            verse_cands.append(c)
+    # 源站图片命名不稳定：daily_1126-1-e<时间戳>.jpg、每日經文-1126-2.jpg
+    # 都出现过，按「MMDD-1 / MMDD-2」识别，不再死扣 daily_ 前缀。
+    raw = html.replace('\\/', '/')
+    urls = []
+    for u in re.findall(r'https://www\.rpg-move\.tw/wp-content/uploads/[^"\'()\s]+?\.jpg', raw):
+        if u not in urls:
+            urls.append(u)
 
-    # 祷告卡：正文那张 -2，排除 -768x523 之类缩放版
-    prayer = None
-    pat = r'https://www\.rpg-move\.tw/wp-content/uploads/daily_%s-2(?:-[^"\') ]*)?\.jpg' % mmdd
-    for c in re.findall(pat, html):
-        if re.search(r'-\d+x\d+\.jpg$', c):
-            continue
-        prayer = c
-        break
+    def is_resized(u):
+        return bool(re.search(r'-\d+x\d+\.jpg$', u))
+
+    def rank(u):
+        return (1 if is_resized(u) else 0) + (0 if ('daily_%s-' % mmdd) in u else 2)
+
+    verse = [up + 'daily_%s-1.jpg' % mmdd]
+    for u in urls:
+        if re.search(r'%s-1(?:-[^/]*)?\.jpg$' % mmdd, u) and u not in verse:
+            verse.append(u)
+    verse.sort(key=rank)
+
+    # 祷告卡：正文那张 -2，排除 -768x521 之类缩放版
+    prayers = [u for u in urls
+               if re.search(r'%s-2(?:-[^/]*)?\.jpg$' % mmdd, u) and not is_resized(u)]
+    prayers.sort(key=rank)
+    prayer = prayers[0] if prayers else None
     if not prayer:
         return None
 
@@ -107,7 +117,7 @@ def parse_post(url, html):
     if mt:
         title = re.split(r'[|｜]', re.sub(r'\s+', ' ', mt.group(1)).strip())[0].strip()
 
-    return {'date': d, 'verseCands': verse_cands, 'prayerUrl': prayer,
+    return {'date': d, 'verseCands': verse, 'prayerUrl': prayer,
             'sourceUrl': url, 'title': to_simplified(title) or '每日經文'}
 
 
